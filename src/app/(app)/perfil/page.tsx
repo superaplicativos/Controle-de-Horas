@@ -9,9 +9,11 @@ import { Label } from '@/components/ui/label';
 import { Save } from 'lucide-react';
 import { toast } from 'sonner';
 import { formatarMoeda } from '@/lib/calculations';
+import { useSync } from '@/lib/useSync';
 
 export default function PerfilPage() {
   const { professor, atualizarProfessor } = useAuth();
+  const { notificar } = useSync();
   const [nome, setNome] = useState(professor?.nome || '');
   const [valorHora, setValorHora] = useState(professor?.valor_hora?.toString() || '35');
   const [valorFalta, setValorFalta] = useState(professor?.valor_falta?.toString() || '35');
@@ -35,6 +37,7 @@ export default function PerfilPage() {
       valor_falta: vf,
     });
     toast.success('Perfil atualizado!');
+    notificar();
     setSalvando(false);
   }
 

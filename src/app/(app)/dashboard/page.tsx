@@ -16,6 +16,7 @@ import {
 import { criarFechamento } from '@/lib/calculations';
 import { salvarFechamento } from '@/lib/db';
 import { toast } from 'sonner';
+import { useSync } from '@/lib/useSync';
 
 const STATUS_COLORS = {
   presenca: '#10b981',
@@ -33,6 +34,7 @@ const STATUS_LABELS = {
 
 export default function DashboardPage() {
   const { professor } = useAuth();
+  const { notificar } = useSync();
   const [mesRef, setMesRef] = useState(mesAtualRef());
   const [aulas, setAulas] = useState<ReturnType<typeof calcularResumoMes> | null>(null);
   const [aulasAnterior, setAulasAnterior] = useState<ReturnType<typeof calcularResumoMes> | null>(null);
@@ -70,6 +72,7 @@ export default function DashboardPage() {
       const f = await criarFechamento(professor.id, mesRef, aulasMes);
       await salvarFechamento(f);
       toast.success(`Mês de ${nomeMes(mesRef)} fechado!`);
+      notificar();
       setSyncTick((t) => t + 1);
     } catch (e) {
       toast.error('Erro ao fechar mês');
