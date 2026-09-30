@@ -4,47 +4,29 @@ import { useEffect, useRef } from 'react';
 import { subscribeSyncState, type SyncState } from './sync';
 
 /**
- * Hook que recarrega os dados quando:
- * - O sync muda para 'synced' (dados novos chegaram do GitHub ou seed completou)
- * - A aba volta a ser visível (usuário voltou pro app)
- * - A janela recebe foco
+ * Hook que recarrega os dados (sem refresh da página) quando:
+ * - O sync completa (dados novos chegaram do GitHub)
  *
- * Uso:
- *   useAutoReload(carregar);
- * onde `carregar` é a função que busca dados do IndexedDB.
+ * NÃO recarrega em visibilitychange ou focus (causava piscar a tela no mobile).
+ * O usuário pode forçar reload manualmente com o botão de refresh.
  */
 export function useAutoReload(carregar: () => void | Promise<void>) {
   const lastStatus = useRef<string>('');
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Recarrega quando o sync muda para 'synced'
   useEffect(() => {
     const unsub = subscribeSyncState((s: SyncState) => {
       if (s.status === 'synced' && lastStatus.current !== 'synced') {
         lastStatus.current = 'synced';
-        // Aguarda 500ms pra garantir que o IndexedDB terminou de escrever
-        setTimeout(() => carregar(), 500);
+        if (timeoutRef.current) clearTimeout(timeoutRef.current);
+        timeoutRef.current = setTimeout(() => carregar(), 500);
       } else if (s.status === 'syncing') {
         lastStatus.current = 'syncing';
       }
     });
-    return unsub;
-  }, [carregar]);
-
-  // Recarrega quando a aba volta a ser visível
-  useEffect(() => {
-    const handleVisibility = () => {
-      if (document.visibilityState === 'visible') {
-        carregar();
-      }
+    return () => {
+      unsub();
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
     };
-    document.addEventListener('visibilitychange', handleVisibility);
-    return () => document.removeEventListener('visibilitychange', handleVisibility);
-  }, [carregar]);
-
-  // Recarrega quando a janela recebe foco
-  useEffect(() => {
-    const handleFocus = () => carregar();
-    window.addEventListener('focus', handleFocus);
-    return () => window.removeEventListener('focus', handleFocus);
   }, [carregar]);
 }

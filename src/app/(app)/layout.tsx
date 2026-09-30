@@ -37,7 +37,7 @@ const mobileNavItems = [
 ];
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
-  const { sessao, professor, carregando, logout } = useAuth();
+  const { sessao, professor, carregando, logout, atualizarProfessor } = useAuth();
   const router = useRouter();
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -84,13 +84,12 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       setGithubConfigured(true);
       await puxarDoGitHub(professor);
 
-      // Verifica assinatura (sincroniza com Worker)
+      // Verifica assinatura (sincroniza com Worker) — SEM reload
       try {
         const profAtualizado = await sincronizarAssinatura(professor);
         if (profAtualizado) {
-          // Se mudou, força reload pra aplicar novo status
-          window.location.reload();
-          return;
+          // Atualiza o estado local em vez de recarregar a página
+          atualizarProfessor(profAtualizado);
         }
       } catch (e) {
         console.warn('Erro ao verificar assinatura:', e);
@@ -102,7 +101,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         router.replace('/assinar');
       }
     })();
-  }, [sessao, professor, router, pathname]);
+  }, [sessao, professor, router, pathname, atualizarProfessor]);
 
   // Fecha o menu mobile ao trocar de rota
   useEffect(() => {
