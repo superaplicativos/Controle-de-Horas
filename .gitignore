@@ -10,6 +10,9 @@ out/
 # Production
 build/
 
+# Backup TXT (gerado dinamicamente pelo app, não versionar)
+data/backup.txt
+
 # Misc
 .DS_Store
 *.pem
