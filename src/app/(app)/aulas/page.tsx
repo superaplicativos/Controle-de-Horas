@@ -16,6 +16,7 @@ import { Plus, Pencil, Trash2, Search, X } from 'lucide-react';
 import { toast } from 'sonner';
 import { gerarId } from '@/lib/crypto';
 import { mesAtualRef } from '@/lib/calculations';
+import { useSync } from '@/lib/useSync';
 
 const STATUS_OPCOES: { value: StatusAula; label: string; cor: string }[] = [
   { value: 'presenca', label: 'Presença', cor: 'bg-emerald-100 text-emerald-700' },
@@ -28,6 +29,7 @@ const DURACOES: DuracaoAula[] = [1, 1.5, 2];
 
 export default function AulasPage() {
   const { professor } = useAuth();
+  const { notificar } = useSync();
   const [aulas, setAulas] = useState<Aula[]>([]);
   const [alunos, setAlunos] = useState<Aluno[]>([]);
   const [busca, setBusca] = useState('');
@@ -95,6 +97,7 @@ export default function AulasPage() {
 
     await salvarAula(aula);
     toast.success(editandoId ? 'Aula atualizada!' : 'Aula registrada!');
+    notificar();
     setModalOpen(false);
     setEditandoId(null);
     setForm({ aluno_id: '', data: hojeISO(), horario: '15:00', duracao: 2, status: 'presenca', conteudo: '' });
@@ -124,6 +127,7 @@ export default function AulasPage() {
     if (!confirm('Excluir esta aula?')) return;
     await deletarAula(id);
     toast.success('Aula excluída');
+    notificar();
     carregar();
   }
 

@@ -24,11 +24,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [professor, setProfessor] = useState<Professor | null>(null);
   const [carregando, setCarregando] = useState(true);
 
-  // Carrega sessão ao montar
+  // Carrega sessão ao montar (localStorage = persiste entre sessões)
   useEffect(() => {
     (async () => {
       try {
-        const raw = sessionStorage.getItem(SESSION_KEY);
+        const raw = localStorage.getItem(SESSION_KEY);
         if (raw) {
           const s = JSON.parse(raw) as Sessao;
           const prof = await buscarProfessorPorUsername(s.username);
@@ -36,7 +36,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             setSessao(s);
             setProfessor(prof);
           } else {
-            sessionStorage.removeItem(SESSION_KEY);
+            localStorage.removeItem(SESSION_KEY);
           }
         }
       } catch {
@@ -63,7 +63,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         nome: prof.nome,
         login_em: Date.now(),
       };
-      sessionStorage.setItem(SESSION_KEY, JSON.stringify(s));
+      localStorage.setItem(SESSION_KEY, JSON.stringify(s));
       setSessao(s);
       setProfessor(prof);
       return { ok: true };
@@ -102,7 +102,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         nome: prof.nome,
         login_em: Date.now(),
       };
-      sessionStorage.setItem(SESSION_KEY, JSON.stringify(s));
+      localStorage.setItem(SESSION_KEY, JSON.stringify(s));
       setSessao(s);
       setProfessor(prof);
       return { ok: true };
@@ -112,7 +112,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   function logout() {
-    sessionStorage.removeItem(SESSION_KEY);
+    localStorage.removeItem(SESSION_KEY);
     setSessao(null);
     setProfessor(null);
   }

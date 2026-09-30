@@ -17,6 +17,7 @@ import { ChevronLeft, ChevronRight, Plus } from 'lucide-react';
 import { toast } from 'sonner';
 import { gerarId } from '@/lib/crypto';
 import { cn } from '@/lib/utils';
+import { useSync } from '@/lib/useSync';
 
 const STATUS_OPCOES = [
   { value: 'presenca', label: 'Presença', cor: 'bg-emerald-500', badge: 'bg-emerald-100 text-emerald-700' },
@@ -30,6 +31,7 @@ const DURACOES: DuracaoAula[] = [1, 1.5, 2];
 export default function CalendarioPage() {
   const { professor } = useAuth();
   const router = useRouter();
+  const { notificar } = useSync();
   const [mesRef, setMesRef] = useState(mesAtualRef());
   const [aulas, setAulas] = useState<Aula[]>([]);
   const [alunos, setAlunos] = useState<Aluno[]>([]);
@@ -94,6 +96,7 @@ export default function CalendarioPage() {
     };
     await salvarAula(aula);
     toast.success('Aula adicionada no calendário!');
+    notificar();
     setModalOpen(false);
     setDiaSelecionado(null);
     carregar();

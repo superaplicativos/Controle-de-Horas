@@ -45,7 +45,9 @@ export default function ConfiguracoesPage() {
     try {
       await configurarGitHub(token.trim(), repo.trim(), branch.trim() || 'main');
       setConfigurado(true);
-      toast.success('Configuração salva!');
+      toast.success('Configuração salva! Sync ativado.');
+      // Faz um pull imediato pra baixar dados do GitHub
+      setTimeout(() => window.location.reload(), 1500);
     } catch (e) {
       toast.error('Erro ao salvar configuração');
     } finally {
@@ -57,19 +59,22 @@ export default function ConfiguracoesPage() {
     if (!professor) return;
     setSincronizando(true);
     try {
+      const { puxarDoGitHub, enviarParaGitHub } = await import('@/lib/sync');
       const res = direcao === 'puxar'
-        ? await sincronizarDoGitHub(professor.id)
-        : await sincronizarParaGitHub(professor);
-      if (res.ok) {
+        ? await puxarDoGitHub(professor.id)
+        : await enviarParaGitHub(professor);
+      if (res.status === 'synced') {
         toast.success(
           direcao === 'puxar'
-            ? `Puxado do GitHub: ${res.aulasImportadas || 0} aulas`
-            : `Enviado ao GitHub: ${res.aulasImportadas || 0} aulas`
+            ? `Puxado do GitHub: ${res.aulasSincronizadas} alterações`
+            : `Enviado ao GitHub: ${res.aulasSincronizadas} aulas`
         );
         const c = await lerConfigLocal();
         if (c) setUltimoSync(c.ultimo_sync);
-      } else {
+      } else if (res.status === 'error') {
         toast.error(`Erro: ${res.erro}`);
+      } else if (res.status === 'not-configured') {
+        toast.error('Configure o token e repo primeiro');
       }
     } catch (e) {
       toast.error('Erro ao sincronizar');
@@ -175,11 +180,18 @@ export default function ConfiguracoesPage() {
         </CardHeader>
         <CardContent className="space-y-3">
           {!configurado && (
-            <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 text-sm text-amber-800 flex gap-2">
+            <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 text-xs text-amber-800 flex gap-2">
               <AlertTriangle className="w-4 h-4 flex-shrink-0 mt-0.5" />
-              <div>
-                <strong>Configure o GitHub sync</strong> para que os dados sejam puxados automaticamente
-                ao abrir o app em qualquer dispositivo.
+              <div className="space-y-2">
+                <div>
+                  <strong>Sync não configurado.</strong> Seus dados ficam salvos apenas neste navegador.
+                </div>
+                <div className="text-[11px] space-y-0.5 pl-2 border-l-2 border-amber-300">
+                  <div>1. Crie um token em <strong>github.com → Settings → Developer settings → Personal access tokens → Fine-grained</strong></div>
+                  <div>2. Permissão: <strong>Contents (read &amp; write)</strong> no repo Controle-de-Horas</div>
+                  <div>3. Cole o token abaixo e clique em "Salvar configuração"</div>
+                  <div>4. Pronto! Dados sincronizam automaticamente entre celular e computador</div>
+                </div>
               </div>
             </div>
           )}

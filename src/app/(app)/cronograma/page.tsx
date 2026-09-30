@@ -15,11 +15,13 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, Dialog
 import { Plus, Pencil, Trash2, CalendarClock, Search, X, ArrowRight } from 'lucide-react';
 import { toast } from 'sonner';
 import { gerarId } from '@/lib/crypto';
+import { useSync } from '@/lib/useSync';
 
 const DURACOES: (1 | 1.5 | 2)[] = [1, 1.5, 2];
 
 export default function CronogramaPage() {
   const { professor } = useAuth();
+  const { notificar } = useSync();
   const [itens, setItens] = useState<CronogramaItem[]>([]);
   const [alunos, setAlunos] = useState<Aluno[]>([]);
   const [busca, setBusca] = useState('');
@@ -70,6 +72,7 @@ export default function CronogramaPage() {
 
     await salvarCronogramaItem(item);
     toast.success(editandoId ? 'Item atualizado!' : 'Item adicionado ao cronograma!');
+    notificar();
     setModalOpen(false);
     setEditandoId(null);
     setForm({ titulo: '', aluno_nome: '', data: hojeISO(), horario: '15:00', duracao: 2, observacao: '' });
@@ -93,6 +96,7 @@ export default function CronogramaPage() {
     if (!confirm('Remover este item do cronograma?')) return;
     await deletarCronogramaItem(id);
     toast.success('Item removido');
+    notificar();
     carregar();
   }
 

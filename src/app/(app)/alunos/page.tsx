@@ -14,9 +14,11 @@ import { Switch } from '@/components/ui/switch';
 import { Plus, Pencil, Trash2, User, Users } from 'lucide-react';
 import { toast } from 'sonner';
 import { gerarId } from '@/lib/crypto';
+import { useSync } from '@/lib/useSync';
 
 export default function AlunosPage() {
   const { professor } = useAuth();
+  const { notificar } = useSync();
   const [alunos, setAlunos] = useState<Aluno[]>([]);
   const [turmas, setTurmas] = useState<Turma[]>([]);
   const [modalOpen, setModalOpen] = useState(false);
@@ -51,6 +53,7 @@ export default function AlunosPage() {
     };
     await salvarAluno(aluno);
     toast.success(editandoId ? 'Aluno atualizado!' : 'Aluno cadastrado!');
+    notificar();
     setModalOpen(false);
     setEditandoId(null);
     setForm({ nome: '', tipo: 'vip', turma_id: null, ativo: true });
@@ -67,6 +70,7 @@ export default function AlunosPage() {
     if (!confirm('Excluir este aluno? As aulas relacionadas serão mantidas.')) return;
     await deletarAluno(id);
     toast.success('Aluno excluído');
+    notificar();
     carregar();
   }
 

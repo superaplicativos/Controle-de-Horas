@@ -5,26 +5,26 @@ import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/lib/auth';
 import { Button } from '@/components/ui/button';
-import { BookOpen, LayoutDashboard, CalendarDays, ClipboardList, CalendarClock, Users, Users2, BarChart3, User, Settings, LogOut, Menu, X, Cloud, Home } from 'lucide-react';
-import { sincronizarDoGitHub, lerConfigLocal } from '@/lib/github';
+import { BookOpen, LayoutDashboard, CalendarDays, ClipboardList, CalendarClock, Users, Users2, BarChart3, User, Settings, LogOut, Menu, X, Cloud, CloudOff, RefreshCw, CloudCog } from 'lucide-react';
 import { seedGuilherme } from '@/lib/seed';
+import { subscribeSyncState, type SyncState, puxarDoGitHub } from '@/lib/sync';
+import { lerConfigLocal } from '@/lib/github';
 import { cn } from '@/lib/utils';
 
 const navItems = [
-  { href: '/dashboard', label: 'Início', icon: Home, shortLabel: 'Início' },
-  { href: '/cronograma', label: 'Cronograma', icon: CalendarClock, shortLabel: 'Cronog.' },
-  { href: '/aulas', label: 'Aulas Dadas', icon: ClipboardList, shortLabel: 'Aulas' },
-  { href: '/calendario', label: 'Calendário', icon: CalendarDays, shortLabel: 'Calend.' },
-  { href: '/alunos', label: 'Alunos', icon: Users, shortLabel: 'Alunos' },
-  { href: '/turmas', label: 'Turmas', icon: Users2, shortLabel: 'Turmas' },
-  { href: '/fechamentos', label: 'Fechamentos', icon: BarChart3, shortLabel: 'Fecham.' },
-  { href: '/perfil', label: 'Perfil', icon: User, shortLabel: 'Perfil' },
-  { href: '/configuracoes', label: 'Configurações', icon: Settings, shortLabel: 'Config.' },
+  { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+  { href: '/cronograma', label: 'Cronograma', icon: CalendarClock },
+  { href: '/aulas', label: 'Aulas Dadas', icon: ClipboardList },
+  { href: '/calendario', label: 'Calendário', icon: CalendarDays },
+  { href: '/alunos', label: 'Alunos', icon: Users },
+  { href: '/turmas', label: 'Turmas', icon: Users2 },
+  { href: '/fechamentos', label: 'Fechamentos', icon: BarChart3 },
+  { href: '/perfil', label: 'Perfil', icon: User },
+  { href: '/configuracoes', label: 'Configurações', icon: Settings },
 ];
 
-// 5 principais para a bottom nav mobile
 const mobileNavItems = [
-  { href: '/dashboard', label: 'Início', icon: Home },
+  { href: '/dashboard', label: 'Início', icon: LayoutDashboard },
   { href: '/aulas', label: 'Aulas', icon: ClipboardList },
   { href: '/calendario', label: 'Calend.', icon: CalendarDays },
   { href: '/alunos', label: 'Alunos', icon: Users },
@@ -36,9 +36,13 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [syncing, setSyncing] = useState(false);
-  const [syncMsg, setSyncMsg] = useState('');
-  const [autoSyncOn, setAutoSyncOn] = useState(false);
+  const [syncState, setSyncState] = useState<SyncState>({
+    status: 'idle',
+    ultimoSync: null,
+    erro: null,
+    aulasSincronizadas: 0,
+  });
+  const [githubConfigured, setGithubConfigured] = useState(false);
 
   useEffect(() => {
     if (!carregando && !sessao) {
@@ -46,7 +50,13 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     }
   }, [carregando, sessao, router]);
 
-  // Auto-sync ao abrir o app: puxa o TXT mais recente do GitHub
+  // Subscribe ao estado de sync
+  useEffect(() => {
+    const unsub = subscribeSyncState(setSyncState);
+    return unsub;
+  }, []);
+
+  // Ao montar: seed + auto-pull
   useEffect(() => {
     if (!sessao || !professor) return;
     (async () => {
@@ -56,18 +66,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         console.error('seed error', e);
       }
       const config = await lerConfigLocal();
+      setGithubConfigured(!!config?.github_token && !!config.github_repo);
       if (config?.github_token && config.github_repo) {
-        setAutoSyncOn(true);
-        setSyncing(true);
-        const res = await sincronizarDoGitHub(professor.id);
-        setSyncing(false);
-        if (res.ok) {
-          setSyncMsg(`Sync: ${res.aulasImportadas || 0} aulas`);
-          setTimeout(() => setSyncMsg(''), 4000);
-        } else {
-          setSyncMsg(`Sync falhou`);
-          setTimeout(() => setSyncMsg(''), 6000);
-        }
+        await puxarDoGitHub(professor.id);
       }
     })();
   }, [sessao, professor]);
@@ -88,6 +89,25 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   if (!sessao || !professor) {
     return null;
   }
+
+  // Determinar ícone/label do sync
+  const syncIcon = (() => {
+    if (!githubConfigured) {
+      return { Icon: CloudOff, color: 'text-gray-400', label: 'Sem sync' };
+    }
+    if (syncState.status === 'syncing') {
+      return { Icon: RefreshCw, color: 'text-amber-500 animate-spin', label: 'Sincronizando...' };
+    }
+    if (syncState.status === 'error') {
+      return { Icon: CloudOff, color: 'text-red-500', label: syncState.erro || 'Erro' };
+    }
+    if (syncState.status === 'synced') {
+      return { Icon: Cloud, color: 'text-emerald-500', label: 'Sincronizado' };
+    }
+    return { Icon: CloudCog, color: 'text-muted-foreground', label: 'Aguardando' };
+  })();
+
+  const SyncIcon = syncIcon.Icon;
 
   return (
     <div className="min-h-screen flex bg-muted/10">
@@ -121,17 +141,12 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           })}
         </nav>
         <div className="border-t p-2 space-y-1">
-          {autoSyncOn && (
-            <div className="px-2 py-1 text-xs text-muted-foreground flex items-center gap-1 truncate">
-              <Cloud className={cn('w-3 h-3 flex-shrink-0', syncing && 'animate-pulse text-emerald-600')} />
-              <span className="truncate">{syncing ? 'Sincronizando...' : 'Sync ON'}</span>
+          <Link href="/configuracoes">
+            <div className="px-2 py-1.5 text-xs flex items-center gap-1.5 hover:bg-muted rounded cursor-pointer">
+              <SyncIcon className={cn('w-3.5 h-3.5 flex-shrink-0', syncIcon.color)} />
+              <span className="truncate text-muted-foreground">{syncIcon.label}</span>
             </div>
-          )}
-          {syncMsg && (
-            <div className="px-2 py-1 text-xs text-emerald-700 bg-emerald-50 rounded truncate">
-              {syncMsg}
-            </div>
-          )}
+          </Link>
           <Button variant="ghost" size="sm" className="w-full justify-start text-red-600 hover:text-red-700" onClick={logout}>
             <LogOut className="w-4 h-4 mr-2" /> Sair
           </Button>
@@ -147,16 +162,15 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           <BookOpen className="w-5 h-5 text-emerald-600 flex-shrink-0" />
           <span className="font-bold text-sm truncate">Controle de Aulas</span>
         </div>
-        {autoSyncOn && (
-          <Cloud className={cn('w-4 h-4 text-muted-foreground flex-shrink-0', syncing && 'animate-pulse text-emerald-600')} />
-        )}
-        <div className="w-5 flex-shrink-0" />
+        <Link href="/configuracoes" className="flex-shrink-0 p-1" aria-label="Status sync">
+          <SyncIcon className={cn('w-5 h-5', syncIcon.color)} />
+        </Link>
       </header>
 
-      {/* Sync msg banner mobile */}
-      {syncMsg && (
-        <div className="md:hidden fixed top-14 left-0 right-0 z-30 bg-emerald-100 text-emerald-800 text-xs text-center py-1 px-3 truncate">
-          {syncMsg}
+      {/* Sync erro banner mobile */}
+      {syncState.erro && (
+        <div className="md:hidden fixed top-14 left-0 right-0 z-30 bg-red-100 text-red-800 text-xs text-center py-1 px-3 truncate">
+          {syncState.erro}
         </div>
       )}
 
@@ -189,7 +203,11 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                 );
               })}
             </nav>
-            <div className="border-t p-2">
+            <div className="border-t p-2 space-y-1">
+              <div className="px-2 py-1 text-xs flex items-center gap-1.5">
+                <SyncIcon className={cn('w-3.5 h-3.5 flex-shrink-0', syncIcon.color)} />
+                <span className="truncate text-muted-foreground">{syncIcon.label}</span>
+              </div>
               <Button variant="ghost" size="sm" className="w-full justify-start text-red-600" onClick={() => { setMenuOpen(false); logout(); }}>
                 <LogOut className="w-4 h-4 mr-2" /> Sair
               </Button>

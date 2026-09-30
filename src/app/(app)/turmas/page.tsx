@@ -12,9 +12,11 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, Dialog
 import { Plus, Pencil, Trash2, Users2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { gerarId } from '@/lib/crypto';
+import { useSync } from '@/lib/useSync';
 
 export default function TurmasPage() {
   const { professor } = useAuth();
+  const { notificar } = useSync();
   const [turmas, setTurmas] = useState<Turma[]>([]);
   const [alunos, setAlunos] = useState<Aluno[]>([]);
   const [modalOpen, setModalOpen] = useState(false);
@@ -45,6 +47,7 @@ export default function TurmasPage() {
     };
     await salvarTurma(t);
     toast.success(editandoId ? 'Turma atualizada!' : 'Turma criada!');
+    notificar();
     setModalOpen(false);
     setEditandoId(null);
     setNome('');
@@ -61,6 +64,7 @@ export default function TurmasPage() {
     if (!confirm('Excluir esta turma? Alunos vinculados ficarão sem turma.')) return;
     await deletarTurma(id);
     toast.success('Turma excluída');
+    notificar();
     carregar();
   }
 
