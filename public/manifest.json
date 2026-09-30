@@ -1,0 +1,19 @@
+{
+  "name": "Controle de Aulas",
+  "short_name": "Aulas",
+  "description": "Sistema de gestão de aulas para professores autônomos",
+  "start_url": "/Controle-de-Horas/",
+  "display": "standalone",
+  "background_color": "#0a1410",
+  "theme_color": "#0a1410",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/Controle-de-Horas/images/og-cover.jpg",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "productivity", "business"]
+}

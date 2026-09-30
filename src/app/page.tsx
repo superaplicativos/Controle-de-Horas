@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/lib/auth';
 import { seedGuilherme } from '@/lib/seed';
+import LandingPage from '@/components/LandingPage';
 
 export default function Home() {
   const router = useRouter();
@@ -23,18 +24,20 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    if (!carregando && seedPronto) {
-      if (sessao) {
-        router.replace('/dashboard');
-      } else {
-        router.replace('/login');
-      }
+    if (!carregando && seedPronto && sessao) {
+      router.replace('/dashboard');
     }
   }, [carregando, sessao, router, seedPronto]);
 
+  // Se não está logado, mostra a landing page
+  if (!carregando && !sessao && seedPronto) {
+    return <LandingPage />;
+  }
+
+  // Loading state enquanto verifica sessão
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="animate-pulse text-muted-foreground">Carregando...</div>
+    <div className="min-h-screen flex items-center justify-center bg-[#0a1410]">
+      <div className="animate-pulse text-emerald-300">Carregando...</div>
     </div>
   );
 }
