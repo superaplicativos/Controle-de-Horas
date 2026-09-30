@@ -105,40 +105,64 @@ export async function puxarDoGitHub(professor: Professor): Promise<SyncState> {
 
     let alteracoes = 0;
     if (isFromThisProfessor) {
-      for (const a of backup.aulas) {
-        const local = aulasMap.get(a.id);
-        const aulaAdaptada = { ...a, professor_id: professorId };
-        if (!local) {
-          aulasMap.set(a.id, aulaAdaptada);
-          await salvarAula(aulaAdaptada);
-          alteracoes++;
-        } else if (a.criado_em > local.criado_em) {
-          aulasMap.set(a.id, aulaAdaptada);
-          await salvarAula(aulaAdaptada);
-          alteracoes++;
-        }
-      }
+      // Mapas por nome também (pra evitar duplicação quando o ID muda entre dispositivos)
+      const alunosPorNome = new Map<string, Aluno>();
+      for (const a of locaisAlunos) alunosPorNome.set(a.nome.toLowerCase(), a);
+      const turmasPorNome = new Map<string, Turma>();
+      for (const t of locaisTurmas) turmasPorNome.set(t.nome.toLowerCase(), t);
+      const aulasPorKey = new Map<string, Aula>();
+      for (const a of locaisAulas) aulasPorKey.set(`${a.data}|${a.aluno_nome}|${a.horario}`, a);
+      const cronPorKey = new Map<string, CronogramaItem>();
+      for (const c of locaisCronograma) cronPorKey.set(`${c.data}|${c.aluno_nome}|${c.horario}`, c);
+
       for (const a of backup.alunos) {
-        const local = alunosMap.get(a.id);
+        const localById = alunosMap.get(a.id);
+        const localByName = alunosPorNome.get(a.nome.toLowerCase());
         const alunoAdaptado = { ...a, professor_id: professorId };
-        if (!local || a.criado_em > local.criado_em) {
+        if (!localById && !localByName) {
+          // Novo aluno — salvar
+          await salvarAluno(alunoAdaptado);
+          alteracoes++;
+        } else if (localById && a.criado_em > localById.criado_em) {
+          // Mesmo ID, remoto mais recente — atualizar
           await salvarAluno(alunoAdaptado);
           alteracoes++;
         }
+        // Se localByName existe mas com ID diferente, ignoramos (já temos)
       }
       for (const t of backup.turmas) {
-        const local = turmasMap.get(t.id);
+        const localById = turmasMap.get(t.id);
+        const localByName = turmasPorNome.get(t.nome.toLowerCase());
         const turmaAdaptada = { ...t, professor_id: professorId };
-        if (!local || t.criado_em > local.criado_em) {
+        if (!localById && !localByName) {
           await salvarTurma(turmaAdaptada);
+          alteracoes++;
+        } else if (localById && t.criado_em > localById.criado_em) {
+          await salvarTurma(turmaAdaptada);
+          alteracoes++;
+        }
+      }
+      for (const a of backup.aulas) {
+        const localById = aulasMap.get(a.id);
+        const localByKey = aulasPorKey.get(`${a.data}|${a.aluno_nome}|${a.horario}`);
+        const aulaAdaptada = { ...a, professor_id: professorId };
+        if (!localById && !localByKey) {
+          await salvarAula(aulaAdaptada);
+          alteracoes++;
+        } else if (localById && a.criado_em > localById.criado_em) {
+          await salvarAula(aulaAdaptada);
           alteracoes++;
         }
       }
       const backupCronograma = (backup.cronograma || []) as CronogramaItem[];
       for (const c of backupCronograma) {
-        const local = cronogramaMap.get(c.id);
+        const localById = cronogramaMap.get(c.id);
+        const localByKey = cronPorKey.get(`${c.data}|${c.aluno_nome}|${c.horario}`);
         const cronAdaptado = { ...c, professor_id: professorId };
-        if (!local || c.criado_em > local.criado_em) {
+        if (!localById && !localByKey) {
+          await salvarCronogramaItem(cronAdaptado);
+          alteracoes++;
+        } else if (localById && c.criado_em > localById.criado_em) {
           await salvarCronogramaItem(cronAdaptado);
           alteracoes++;
         }
