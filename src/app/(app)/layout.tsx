@@ -5,10 +5,11 @@ import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/lib/auth';
 import { Button } from '@/components/ui/button';
-import { BookOpen, LayoutDashboard, CalendarDays, ClipboardList, CalendarClock, Users, Users2, BarChart3, User, Settings, LogOut, Menu, X, Cloud, CloudOff, RefreshCw, CloudCog } from 'lucide-react';
+import { BookOpen, LayoutDashboard, CalendarDays, ClipboardList, CalendarClock, Users, Users2, BarChart3, User, Settings, LogOut, Menu, X, Cloud, CloudOff, RefreshCw, CloudCog, Shield } from 'lucide-react';
 import { seedGuilherme } from '@/lib/seed';
 import { subscribeSyncState, type SyncState, puxarDoGitHub, notificarDadosAtualizados, subscribeConfigState } from '@/lib/sync';
 import { cn } from '@/lib/utils';
+import { temAcessoLiberado, sincronizarAssinatura } from '@/lib/assinatura';
 
 const navItems = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
@@ -20,6 +21,11 @@ const navItems = [
   { href: '/fechamentos', label: 'Fechamentos', icon: BarChart3 },
   { href: '/perfil', label: 'Perfil', icon: User },
   { href: '/configuracoes', label: 'Configurações', icon: Settings },
+];
+
+// Itens de admin (só aparecem para o dono)
+const adminNavItems = [
+  { href: '/admin', label: 'Painel Admin', icon: Shield },
 ];
 
 const mobileNavItems = [
@@ -65,22 +71,38 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     return unsub;
   }, []);
 
-  // Ao montar: seed + auto-pull
+  // Ao montar: seed + auto-pull + verificar assinatura
   useEffect(() => {
     if (!sessao || !professor) return;
     (async () => {
       try {
         await seedGuilherme();
-        // Notifica que o seed completou (dashboard e outras páginas vão recarregar)
         notificarDadosAtualizados();
       } catch (e) {
         console.error('seed error', e);
       }
-      // Sync sempre ativo (config hardcoded no Worker)
       setGithubConfigured(true);
       await puxarDoGitHub(professor);
+
+      // Verifica assinatura (sincroniza com Worker)
+      try {
+        const profAtualizado = await sincronizarAssinatura(professor);
+        if (profAtualizado) {
+          // Se mudou, força reload pra aplicar novo status
+          window.location.reload();
+          return;
+        }
+      } catch (e) {
+        console.warn('Erro ao verificar assinatura:', e);
+      }
+
+      // Verifica acesso
+      const acesso = temAcessoLiberado(professor);
+      if (!acesso.liberado && !professor.is_admin && pathname !== '/configuracoes') {
+        router.replace('/assinar');
+      }
     })();
-  }, [sessao, professor]);
+  }, [sessao, professor, router, pathname]);
 
   // Fecha o menu mobile ao trocar de rota
   useEffect(() => {
@@ -148,6 +170,32 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
               </Link>
             );
           })}
+          {/* Itens de admin (só para o dono) */}
+          {professor?.is_admin && (
+            <>
+              <div className="my-2 border-t border-emerald-900/30 pt-2">
+                <div className="px-3 py-1 text-[10px] uppercase tracking-wider text-emerald-100/40 font-semibold">
+                  Administração
+                </div>
+              </div>
+              {adminNavItems.map((item) => {
+                const Icon = item.icon;
+                const active = pathname === item.href;
+                return (
+                  <Link key={item.href} href={item.href}>
+                    <Button
+                      variant={active ? 'default' : 'ghost'}
+                      className={cn('w-full justify-start', active ? 'bg-yellow-600 hover:bg-yellow-700' : 'text-yellow-400 hover:bg-yellow-900/20')}
+                      size="sm"
+                    >
+                      <Icon className="w-4 h-4 mr-2" />
+                      {item.label}
+                    </Button>
+                  </Link>
+                );
+              })}
+            </>
+          )}
         </nav>
         <div className="border-t p-2 space-y-1">
           <Link href="/configuracoes">
@@ -211,6 +259,24 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                   </Link>
                 );
               })}
+              {professor?.is_admin && (
+                <>
+                  <div className="my-2 border-t border-emerald-900/30 pt-2 px-2 text-[10px] uppercase tracking-wider text-emerald-100/40 font-semibold">
+                    Administração
+                  </div>
+                  {adminNavItems.map((item) => {
+                    const Icon = item.icon;
+                    const active = pathname === item.href;
+                    return (
+                      <Link key={item.href} href={item.href} onClick={() => setMenuOpen(false)}>
+                        <Button variant={active ? 'default' : 'ghost'} className={cn('w-full justify-start', active ? 'bg-yellow-600 hover:bg-yellow-700' : 'text-yellow-400 hover:bg-yellow-900/20')} size="sm">
+                          <Icon className="w-4 h-4 mr-2" /> {item.label}
+                        </Button>
+                      </Link>
+                    );
+                  })}
+                </>
+              )}
             </nav>
             <div className="border-t p-2 space-y-1">
               <div className="px-2 py-1 text-xs flex items-center gap-1.5">

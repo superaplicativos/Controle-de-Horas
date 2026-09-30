@@ -13,6 +13,21 @@ export interface Professor {
   valor_hora: number;
   valor_falta: number;
   criado_em: number;
+  // Controle de assinatura Mercado Pago
+  assinatura_status: 'free_trial' | 'active' | 'cancelled' | 'blocked' | 'lifetime';
+  assinatura_id?: string; // preapproval_id do Mercado Pago
+  trial_fim?: number; // timestamp de fim do trial (7 dias)
+  bloqueado?: boolean; // admin pode bloquear manualmente
+  // Admin
+  is_admin?: boolean;
+}
+
+export interface SincronizacaoProfessor {
+  username: string;
+  assinatura_status: string;
+  assinatura_id?: string;
+  trial_fim?: number;
+  bloqueado?: boolean;
 }
 
 export interface Aluno {

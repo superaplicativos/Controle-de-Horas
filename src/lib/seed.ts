@@ -35,6 +35,10 @@ export async function seedGuilherme(): Promise<void> {
     valor_hora: 35,
     valor_falta: 35,
     criado_em: Date.now(),
+    // Guilherme é o dono — acesso vitalício
+    assinatura_status: 'lifetime',
+    bloqueado: false,
+    is_admin: true,
   };
 
   await salvarProfessor(professor);

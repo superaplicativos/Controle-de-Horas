@@ -93,6 +93,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         valor_hora: dados.valor_hora,
         valor_falta: 35, // default
         criado_em: Date.now(),
+        // Trial de 7 dias
+        assinatura_status: 'free_trial',
+        trial_fim: Date.now() + 7 * 24 * 60 * 60 * 1000,
+        bloqueado: false,
+        is_admin: username === 'guilherme', // Guilherme é admin
       };
 
       await salvarProfessor(prof);

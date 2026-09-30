@@ -28,13 +28,13 @@ const heroSlides = [
   },
   {
     img: '/Controle-de-Horas/images/hero-professor.jpg',
-    title: 'Feito por professores.',
-    subtitle: 'Mais de 27 anos de carreira em sala de aula. Sabemos sua rotina como ninguém.',
+    title: 'Pare de perder dinheiro.',
+    subtitle: 'Esqueça de cobrar aula que aluno faltou. O sistema conta tudo sozinho e ainda calcula o valor.',
   },
   {
     img: '/Controle-de-Horas/images/hero-calendar.jpg',
-    title: 'Cronograma que organiza.',
-    subtitle: 'Calendário visual, planejamento separado do registro. Tudo no lugar.',
+    title: 'Organize sua semana.',
+    subtitle: 'Calendário visual com todas as aulas, planejamento separado do registro. Tudo no lugar certo.',
   },
 ];
 
