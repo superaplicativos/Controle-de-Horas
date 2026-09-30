@@ -1,12 +1,3 @@
-```text
-Sistema web serverless para controle e gestão de aulas, presença e fechamento financeiro. Feito com Next.js 16, TypeScript, Tailwind e IndexedDB. Permite exportação de backup em arquivo .txt (JSON) e sincronização opcional com a GitHub API. Totalmente gratuito e hospedado no GitHub Pages. 📐
-
-```
-
----
-
-### 📄 Conteúdo para o `README.md`
-
 ```markdown
 # 📐 Sistema de Controle de Aulas
 
