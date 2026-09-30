@@ -1,9 +1,3 @@
-Aqui está a **Descrição para a bio/About do GitHub** (com exatamente 347 caracteres) e, em seguida, o código completo do **README.md** formatado em Markdown para você copiar e colar diretamente no seu repositório.
-
----
-
-### 📌 Descrição para o "About" do GitHub (347 caracteres)
-
 ```text
 Sistema web serverless para controle e gestão de aulas, presença e fechamento financeiro. Feito com Next.js 16, TypeScript, Tailwind e IndexedDB. Permite exportação de backup em arquivo .txt (JSON) e sincronização opcional com a GitHub API. Totalmente gratuito e hospedado no GitHub Pages. 📐
 
