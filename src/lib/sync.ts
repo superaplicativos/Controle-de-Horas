@@ -55,6 +55,22 @@ export function notificarDadosAtualizados() {
   setState({ status: 'synced', ultimoSync: Date.now(), erro: null, aulasSincronizadas: 0 });
 }
 
+// Listeners para quando o config do GitHub muda (pra atualizar o indicador)
+let configListeners: Array<(configured: boolean) => void> = [];
+
+export function subscribeConfigState(listener: (configured: boolean) => void) {
+  configListeners.push(listener);
+  return () => {
+    configListeners = configListeners.filter((l) => l !== listener);
+  };
+}
+
+export function notifyConfigChanged(configured: boolean) {
+  for (const l of configListeners) {
+    l(configured);
+  }
+}
+
 /**
  * Puxa dados do GitHub e mescla com o local (mais recente ganha).
  * Não sobrescreve dados locais mais novos.

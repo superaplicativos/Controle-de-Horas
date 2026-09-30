@@ -45,6 +45,9 @@ export default function ConfiguracoesPage() {
     try {
       await configurarGitHub(token.trim(), repo.trim(), branch.trim() || 'main');
       setConfigurado(true);
+      // Notifica o layout que o config mudou (atualiza o indicador no header)
+      const { notifyConfigChanged } = await import('@/lib/sync');
+      notifyConfigChanged(true);
       toast.success('Configuração salva! Sincronizando...');
       // Faz um pull + push sem recarregar a página (evita loop)
       const { sincronizarTudo } = await import('@/lib/sync');
