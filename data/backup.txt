@@ -1,6 +1,6 @@
 ========================================
  CONTROLE DE AULAS - BACKUP
- Exportado em: 2026-09-30T03:07:13.418Z
+ Exportado em: 2026-09-30T03:07:35.203Z
  Versão: 1
 ========================================
 
@@ -11,6 +11,7 @@ VALOR/HORA: R$ 35.00
 munixaku-gaohhcxq | TURMA KIDS | turma | ativo
 munixaku-srsn8rij | Joelma | vip | ativo
 munixaku-x67shnzi | TURMA ADOLESCENTES | turma | ativo
+muniyocd-8lyjrw6y | Aluno QA Multi-Device | vip | ativo
 
 ----- TURMAS -----
 munixakt-mp0b0vs9 | TURMA ADOLESCENTES
@@ -44,7 +45,7 @@ munixakt-z5lvrknk | TURMA KIDS
 ----- JSON COMPLETO -----
 {
   "versao": 1,
-  "exportado_em": "2026-09-30T03:07:13.418Z",
+  "exportado_em": "2026-09-30T03:07:35.203Z",
   "professor": {
     "nome": "Guilherme Miranda",
     "username": "guilherme",
@@ -229,6 +230,15 @@ munixakt-z5lvrknk | TURMA KIDS
       "turma_id": "munixakt-mp0b0vs9",
       "ativo": true,
       "criado_em": 1790737588686
+    },
+    {
+      "id": "muniyocd-8lyjrw6y",
+      "professor_id": "munixaks-cybi12gc",
+      "nome": "Aluno QA Multi-Device",
+      "tipo": "vip",
+      "turma_id": null,
+      "ativo": true,
+      "criado_em": 1790737653181
     }
   ],
   "turmas": [
