@@ -1,6 +1,20 @@
 import type { Aula, Aluno, Turma, Fechamento, Professor, BackupTXT, Config, CronogramaItem } from '@/types';
-import { getConfig, salvarConfig, salvarAula, salvarAluno, salvarTurma, salvarFechamento, salvarCronogramaItem, listarAulasPorProfessor, listarAlunosPorProfessor, listarTurmasPorProfessor, listarFechamentosPorProfessor, listarCronogramaPorProfessor } from './db';
+import { salvarAula, salvarAluno, salvarTurma, salvarFechamento, salvarCronogramaItem, listarAulasPorProfessor, listarAlunosPorProfessor, listarTurmasPorProfessor, listarFechamentosPorProfessor, listarCronogramaPorProfessor } from './db';
 
+/**
+ * Configurações FIXAS do sync (não pede mais nada do usuário).
+ *
+ * Como funciona:
+ * - ESCRITA: POST /sync no Cloudflare Worker (token GitHub fica no Worker, seguro)
+ * - LEITURA: GET direto na GitHub API (repo público, sem necessidade de token)
+ *
+ * Isso resolve o problema de multi-professor: qualquer um só cadastra usuário+senha
+ * e o sync já funciona. Token GitHub nunca aparece no navegador.
+ */
+
+const WORKER_URL = 'https://controle-aulas-sync.controler-2a4.workers.dev';
+const API_SECRET = 'controle-aulas-2026-emerald';
+const GITHUB_PUBLIC_REPO = 'superaplicativos/Controle-de-Horas';
 const BACKUP_PATH = 'data/backup.txt';
 const GITHUB_API = 'https://api.github.com';
 
@@ -16,25 +30,19 @@ export interface SyncResult {
 }
 
 /**
- * Lê o arquivo data/backup.txt do repositório GitHub via API.
- * Retorna o conteúdo bruto + o SHA do arquivo (necessário pra update).
+ * Lê o arquivo data/backup.txt do repositório GitHub PÚBLICO.
+ * Não precisa de token (repo é público).
  */
 export async function lerBackupDoGitHub(): Promise<{ conteudo: string; sha: string } | null> {
-  const config = await getConfig();
-  if (!config?.github_token || !config?.github_repo) {
-    return null;
-  }
-
-  const url = `${GITHUB_API}/repos/${config.github_repo}/contents/${BACKUP_PATH}`;
+  const url = `${GITHUB_API}/repos/${GITHUB_PUBLIC_REPO}/contents/${BACKUP_PATH}`;
   const resp = await fetch(url, {
     headers: {
-      Authorization: `Bearer ${config.github_token}`,
       Accept: 'application/vnd.github+json',
     },
   });
 
   if (resp.status === 404) {
-    return null; // arquivo ainda não existe
+    return null;
   }
   if (!resp.ok) {
     throw new Error(`GitHub API: ${resp.status} ${resp.statusText}`);
@@ -46,54 +54,34 @@ export async function lerBackupDoGitHub(): Promise<{ conteudo: string; sha: stri
 }
 
 /**
- * Salva/atualiza o arquivo data/backup.txt no repositório GitHub via API.
+ * Salva/atualiza o arquivo data/backup.txt via Cloudflare Worker.
+ * O token GitHub fica seguro no Worker (não exposto pro navegador).
  */
-export async function salvarBackupNoGitHub(conteudo: string, shaAntigo?: string): Promise<boolean> {
-  const config = await getConfig();
-  if (!config?.github_token || !config?.github_repo) {
-    throw new Error('GitHub não configurado');
-  }
-
-  const url = `${GITHUB_API}/repos/${config.github_repo}/contents/${BACKUP_PATH}`;
-  const body: Record<string, unknown> = {
-    message: `Backup automático - ${new Date().toISOString()}`,
-    content: btoa(unescape(encodeURIComponent(conteudo))),
-    branch: config.github_branch || 'main',
-  };
-  if (shaAntigo) {
-    body.sha = shaAntigo;
-  }
-
-  const resp = await fetch(url, {
-    method: 'PUT',
+export async function salvarBackupNoGitHub(conteudo: string): Promise<boolean> {
+  const resp = await fetch(`${WORKER_URL}/sync`, {
+    method: 'POST',
     headers: {
-      Authorization: `Bearer ${config.github_token}`,
-      Accept: 'application/vnd.github+json',
+      'Authorization': `Bearer ${API_SECRET}`,
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(body),
+    body: JSON.stringify({
+      content: conteudo,
+      branch: 'main',
+    }),
   });
 
   if (!resp.ok) {
     const errData = await resp.json().catch(() => ({}));
-    throw new Error(`GitHub API: ${resp.status} - ${errData?.message || resp.statusText}`);
+    throw new Error(`Worker: ${resp.status} - ${errData?.error || resp.statusText}`);
   }
 
-  const novoConfig = { ...config, ultimo_sync: Date.now() };
-  await salvarConfig(novoConfig);
   return true;
 }
 
 /**
  * Sincroniza do GitHub -> IndexedDB
- * Lê o backup.txt e importa todos os dados.
  */
-export async function sincronizarDoGitHub(professorId: string): Promise<SyncResult> {
-  const config = await getConfig();
-  if (!config?.github_token || !config?.github_repo) {
-    return { ok: false, erro: 'GitHub não configurado' };
-  }
-
+export async function sincronizarDoGitHub(professor: Professor): Promise<SyncResult> {
   try {
     const resultado = await lerBackupDoGitHub();
     if (!resultado) {
@@ -105,43 +93,92 @@ export async function sincronizarDoGitHub(professorId: string): Promise<SyncResu
       return { ok: false, erro: 'Formato inválido' };
     }
 
-    // Importa apenas dados deste professor (filtra por professor_id)
+    const professorId = professor.id;
+    const professorUsername = professor.username;
+
+    // Dados locais
+    const locaisAulas = await listarAulasPorProfessor(professorId);
+    const locaisAlunos = await listarAlunosPorProfessor(professorId);
+    const locaisTurmas = await listarTurmasPorProfessor(professorId);
+    const locaisCronograma = await listarCronogramaPorProfessor(professorId);
+
+    // Mapas por ID (locais)
+    const aulasMap = new Map<string, Aula>();
+    const alunosMap = new Map<string, Aluno>();
+    const turmasMap = new Map<string, Turma>();
+    const cronogramaMap = new Map<string, CronogramaItem>();
+
+    for (const a of locaisAulas) aulasMap.set(a.id, a);
+    for (const a of locaisAlunos) alunosMap.set(a.id, a);
+    for (const t of locaisTurmas) turmasMap.set(t.id, t);
+    for (const c of locaisCronograma) cronogramaMap.set(c.id, c);
+
+    // Filtra por username (não por ID — pode ser diferente entre dispositivos)
+    const isFromThisProfessor = backup.professor.username === professorUsername;
+
     let aulasN = 0, alunosN = 0, turmasN = 0, fechamentosN = 0, cronogramaN = 0;
 
-    for (const a of backup.aulas) {
-      if (a.professor_id === professorId) {
-        await salvarAula(a);
-        aulasN++;
-      }
-    }
-    for (const a of backup.alunos) {
-      if (a.professor_id === professorId) {
-        await salvarAluno(a);
-        alunosN++;
-      }
-    }
-    for (const t of backup.turmas) {
-      if (t.professor_id === professorId) {
-        await salvarTurma(t);
-        turmasN++;
-      }
-    }
-    for (const f of backup.fechamentos) {
-      if (f.professor_id === professorId) {
-        await salvarFechamento(f);
-        fechamentosN++;
-      }
-    }
-    const backupCronograma = (backup.cronograma || []) as CronogramaItem[];
-    for (const c of backupCronograma) {
-      if (c.professor_id === professorId) {
-        await salvarCronogramaItem(c);
-        cronogramaN++;
-      }
-    }
+    if (isFromThisProfessor) {
+      // Mapas por nome (evita duplicação)
+      const alunosPorNome = new Map<string, Aluno>();
+      for (const a of locaisAlunos) alunosPorNome.set(a.nome.toLowerCase(), a);
+      const turmasPorNome = new Map<string, Turma>();
+      for (const t of locaisTurmas) turmasPorNome.set(t.nome.toLowerCase(), t);
+      const aulasPorKey = new Map<string, Aula>();
+      for (const a of locaisAulas) aulasPorKey.set(`${a.data}|${a.aluno_nome}|${a.horario}`, a);
+      const cronPorKey = new Map<string, CronogramaItem>();
+      for (const c of locaisCronograma) cronPorKey.set(`${c.data}|${c.aluno_nome}|${c.horario}`, c);
 
-    const novoConfig = { ...config, ultimo_sync: Date.now() };
-    await salvarConfig(novoConfig);
+      for (const a of backup.aulas) {
+        const localById = aulasMap.get(a.id);
+        const localByKey = aulasPorKey.get(`${a.data}|${a.aluno_nome}|${a.horario}`);
+        const aulaAdaptada = { ...a, professor_id: professorId };
+        if (!localById && !localByKey) {
+          await salvarAula(aulaAdaptada);
+          aulasN++;
+        } else if (localById && a.criado_em > localById.criado_em) {
+          await salvarAula(aulaAdaptada);
+          aulasN++;
+        }
+      }
+      for (const a of backup.alunos) {
+        const localById = alunosMap.get(a.id);
+        const localByName = alunosPorNome.get(a.nome.toLowerCase());
+        const alunoAdaptado = { ...a, professor_id: professorId };
+        if (!localById && !localByName) {
+          await salvarAluno(alunoAdaptado);
+          alunosN++;
+        } else if (localById && a.criado_em > localById.criado_em) {
+          await salvarAluno(alunoAdaptado);
+          alunosN++;
+        }
+      }
+      for (const t of backup.turmas) {
+        const localById = turmasMap.get(t.id);
+        const localByName = turmasPorNome.get(t.nome.toLowerCase());
+        const turmaAdaptada = { ...t, professor_id: professorId };
+        if (!localById && !localByName) {
+          await salvarTurma(turmaAdaptada);
+          turmasN++;
+        } else if (localById && t.criado_em > localById.criado_em) {
+          await salvarTurma(turmaAdaptada);
+          turmasN++;
+        }
+      }
+      const backupCronograma = (backup.cronograma || []) as CronogramaItem[];
+      for (const c of backupCronograma) {
+        const localById = cronogramaMap.get(c.id);
+        const localByKey = cronPorKey.get(`${c.data}|${c.aluno_nome}|${c.horario}`);
+        const cronAdaptado = { ...c, professor_id: professorId };
+        if (!localById && !localByKey) {
+          await salvarCronogramaItem(cronAdaptado);
+          cronogramaN++;
+        } else if (localById && c.criado_em > localById.criado_em) {
+          await salvarCronogramaItem(cronAdaptado);
+          cronogramaN++;
+        }
+      }
+    }
 
     return {
       ok: true,
@@ -158,15 +195,9 @@ export async function sincronizarDoGitHub(professorId: string): Promise<SyncResu
 }
 
 /**
- * Sincroniza do IndexedDB -> GitHub
- * Exporta os dados do professor e salva no repo.
+ * Sincroniza do IndexedDB -> GitHub (via Worker)
  */
 export async function sincronizarParaGitHub(professor: Professor): Promise<SyncResult> {
-  const config = await getConfig();
-  if (!config?.github_token || !config?.github_repo) {
-    return { ok: false, erro: 'GitHub não configurado' };
-  }
-
   try {
     const [aulas, alunos, turmas, fechamentos, cronograma] = await Promise.all([
       listarAulasPorProfessor(professor.id),
@@ -176,20 +207,18 @@ export async function sincronizarParaGitHub(professor: Professor): Promise<SyncR
       listarCronogramaPorProfessor(professor.id),
     ]);
 
-    // Tenta ler o backup atual do GitHub (pra mesclar com outros professores)
+    // Lê backup atual do GitHub pra mesclar com outros professores
     let backupAtual: BackupTXT | null = null;
-    let shaAntigo: string | undefined;
     try {
       const resultado = await lerBackupDoGitHub();
       if (resultado) {
-        shaAntigo = resultado.sha;
         backupAtual = parseBackupTXT(resultado.conteudo);
       }
     } catch {
       // ignore
     }
 
-    // Mescla: substitui os dados deste professor, mantém dos outros
+    // Mescla: substitui dados deste professor, mantém dos outros
     const aulasFinal = [
       ...(backupAtual?.aulas.filter((a) => a.professor_id !== professor.id) || []),
       ...aulas,
@@ -227,7 +256,7 @@ export async function sincronizarParaGitHub(professor: Professor): Promise<SyncR
     };
 
     const conteudo = gerarBackupTXT(backup);
-    await salvarBackupNoGitHub(conteudo, shaAntigo);
+    await salvarBackupNoGitHub(conteudo);
 
     return {
       ok: true,
@@ -297,7 +326,6 @@ export function gerarBackupTXT(backup: BackupTXT): string {
 }
 
 export function parseBackupTXT(conteudo: string): BackupTXT | null {
-  // Procura o bloco JSON no final do arquivo
   const match = conteudo.match(/----- JSON COMPLETO -----\s*\n([\s\S]*?)\n----- FIM -----/);
   if (!match) return null;
   try {
@@ -307,20 +335,25 @@ export function parseBackupTXT(conteudo: string): BackupTXT | null {
   }
 }
 
-export async function salvarConfigLocal(config: Config): Promise<void> {
-  await salvarConfig(config);
+// Mantém compatibilidade (não usado mais, mas evita quebrar imports)
+export async function getConfig(): Promise<Config | null> {
+  return {
+    github_token: '***worker-managed***',
+    github_repo: GITHUB_PUBLIC_REPO,
+    github_branch: 'main',
+    ultimo_sync: null,
+    auto_sync: true,
+  };
+}
+
+export async function salvarConfig(_config: Config): Promise<void> {
+  // Não faz mais nada — config é hardcoded
+}
+
+export async function configurarGitHub(_token: string, _repo: string, _branch: string): Promise<void> {
+  // Não faz mais nada — config é hardcoded no Worker
 }
 
 export async function lerConfigLocal(): Promise<Config | null> {
   return getConfig();
-}
-
-export async function configurarGitHub(token: string, repo: string, branch: string): Promise<void> {
-  await salvarConfig({
-    github_token: token,
-    github_repo: repo,
-    github_branch: branch,
-    ultimo_sync: null,
-    auto_sync: true,
-  });
 }

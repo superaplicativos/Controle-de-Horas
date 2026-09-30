@@ -8,7 +8,6 @@ import { Button } from '@/components/ui/button';
 import { BookOpen, LayoutDashboard, CalendarDays, ClipboardList, CalendarClock, Users, Users2, BarChart3, User, Settings, LogOut, Menu, X, Cloud, CloudOff, RefreshCw, CloudCog } from 'lucide-react';
 import { seedGuilherme } from '@/lib/seed';
 import { subscribeSyncState, type SyncState, puxarDoGitHub, notificarDadosAtualizados, subscribeConfigState } from '@/lib/sync';
-import { lerConfigLocal } from '@/lib/github';
 import { cn } from '@/lib/utils';
 
 const navItems = [
@@ -61,6 +60,8 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     const unsub = subscribeConfigState((configured) => {
       setGithubConfigured(configured);
     });
+    // Sync sempre ativo
+    setGithubConfigured(true);
     return unsub;
   }, []);
 
@@ -75,11 +76,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       } catch (e) {
         console.error('seed error', e);
       }
-      const config = await lerConfigLocal();
-      setGithubConfigured(!!config?.github_token && !!config.github_repo);
-      if (config?.github_token && config.github_repo) {
-        await puxarDoGitHub(professor);
-      }
+      // Sync sempre ativo (config hardcoded no Worker)
+      setGithubConfigured(true);
+      await puxarDoGitHub(professor);
     })();
   }, [sessao, professor]);
 

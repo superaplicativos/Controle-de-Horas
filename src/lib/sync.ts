@@ -7,7 +7,7 @@
  */
 
 import type { Professor, Aula, Aluno, Turma, Fechamento, CronogramaItem, Config } from '@/types';
-import { salvarAula, salvarAluno, salvarTurma, salvarFechamento, salvarCronogramaItem, listarAulasPorProfessor, listarAlunosPorProfessor, listarTurmasPorProfessor, listarFechamentosPorProfessor, listarCronogramaPorProfessor, getConfig, salvarConfig } from './db';
+import { salvarAula, salvarAluno, salvarTurma, salvarFechamento, salvarCronogramaItem, listarAulasPorProfessor, listarAlunosPorProfessor, listarTurmasPorProfessor, listarFechamentosPorProfessor, listarCronogramaPorProfessor } from './db';
 import { gerarBackupTXT, parseBackupTXT, lerBackupDoGitHub, salvarBackupNoGitHub } from './github';
 
 export type SyncStatus = 'idle' | 'syncing' | 'synced' | 'error' | 'offline' | 'not-configured';
@@ -78,20 +78,13 @@ export function notifyConfigChanged(configured: boolean) {
  * (mesmo que o professor_id remoto seja diferente do local — caso de multi-dispositivo).
  */
 export async function puxarDoGitHub(professor: Professor): Promise<SyncState> {
-  const config = await getConfig();
-  if (!config?.github_token || !config?.github_repo) {
-    setState({ status: 'not-configured', erro: null });
-    return currentState;
-  }
-
+  // Sync sempre ativo (config hardcoded no Worker)
   setState({ status: 'syncing', erro: null });
 
   try {
     const resultado = await lerBackupDoGitHub();
     if (!resultado) {
       // Arquivo não existe ainda
-      const novoConfig = { ...config, ultimo_sync: Date.now() };
-      await salvarConfig(novoConfig);
       setState({ status: 'synced', ultimoSync: Date.now(), erro: null });
       return currentState;
     }
@@ -192,9 +185,6 @@ export async function puxarDoGitHub(professor: Professor): Promise<SyncState> {
       }
     }
 
-    const novoConfig = { ...config, ultimo_sync: Date.now() };
-    await salvarConfig(novoConfig);
-
     setState({
       status: 'synced',
       ultimoSync: Date.now(),
@@ -213,12 +203,7 @@ export async function puxarDoGitHub(professor: Professor): Promise<SyncState> {
  * Envia dados locais pro GitHub (debounced para não floodar).
  */
 export async function enviarParaGitHub(professor: Professor): Promise<SyncState> {
-  const config = await getConfig();
-  if (!config?.github_token || !config?.github_repo) {
-    setState({ status: 'not-configured', erro: null });
-    return currentState;
-  }
-
+  // Sync sempre ativo (config hardcoded no Worker)
   setState({ status: 'syncing', erro: null });
 
   try {
@@ -283,9 +268,6 @@ export async function enviarParaGitHub(professor: Professor): Promise<SyncState>
     const conteudo = gerarBackupTXT(backupTXT);
     await salvarBackupNoGitHub(conteudo, shaAntigo);
 
-    const novoConfig = { ...config, ultimo_sync: Date.now() };
-    await salvarConfig(novoConfig);
-
     setState({
       status: 'synced',
       ultimoSync: Date.now(),
@@ -326,6 +308,5 @@ export async function sincronizarTudo(professor: Professor): Promise<SyncState> 
   return currentState;
 }
 
-export async function getConfigSync(): Promise<Config | null> {
-  return getConfig();
-}
+// Inicializa sync state como "synced" (config hardcoded, sempre ativo)
+setState({ status: 'synced', ultimoSync: null, erro: null });
