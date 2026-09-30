@@ -118,26 +118,26 @@ export default function CronogramaPage() {
   const datasOrdenadas = Array.from(itensPorData.keys()).sort();
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3 sm:space-y-4">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <div>
-          <h1 className="text-2xl font-bold flex items-center gap-2">
-            <CalendarClock className="w-6 h-6 text-violet-600" /> Cronograma
+        <div className="min-w-0">
+          <h1 className="text-xl sm:text-2xl font-bold flex items-center gap-2">
+            <CalendarClock className="w-5 h-5 sm:w-6 sm:h-6 text-violet-600 flex-shrink-0" /> Cronograma
           </h1>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-xs sm:text-sm text-muted-foreground">
             Planejamento das próximas aulas. Use para se organizar — estas aulas <strong>não</strong> contabilizam no dashboard automaticamente.
           </p>
         </div>
         <Dialog open={modalOpen} onOpenChange={setModalOpen}>
           <DialogTrigger asChild>
-            <Button className="bg-violet-600 hover:bg-violet-700" onClick={() => {
+            <Button className="bg-violet-600 hover:bg-violet-700 w-full sm:w-auto flex-shrink-0" onClick={() => {
               setEditandoId(null);
               setForm({ titulo: '', aluno_nome: '', data: hojeISO(), horario: '15:00', duracao: 2, observacao: '' });
             }}>
               <Plus className="w-4 h-4 mr-2" /> Novo Item
             </Button>
           </DialogTrigger>
-          <DialogContent className="max-w-md">
+          <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto">
             <DialogHeader>
               <DialogTitle>{editandoId ? 'Editar Item' : 'Novo Item do Cronograma'}</DialogTitle>
             </DialogHeader>
@@ -254,9 +254,9 @@ export default function CronogramaPage() {
       <Card>
         <CardContent className="p-0">
           {itensFiltrados.length === 0 ? (
-            <div className="p-8 text-center text-muted-foreground">
-              <CalendarClock className="w-12 h-12 mx-auto mb-3 opacity-30" />
-              <p>Nenhum item no cronograma.</p>
+            <div className="p-6 sm:p-8 text-center text-muted-foreground">
+              <CalendarClock className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-3 opacity-30" />
+              <p className="text-sm">Nenhum item no cronograma.</p>
               <p className="text-xs mt-2">Clique em "Novo Item" para planejar suas próximas aulas.</p>
             </div>
           ) : (
@@ -265,42 +265,42 @@ export default function CronogramaPage() {
                 const itensDoDia = itensPorData.get(data) || [];
                 const [ano, mes, dia] = data.split('-');
                 return (
-                  <div key={data} className="p-3">
-                    <div className="flex items-center gap-2 mb-2 sticky top-0 bg-card">
-                      <div className="w-12 h-12 rounded-lg bg-violet-100 text-violet-700 flex flex-col items-center justify-center">
-                        <div className="text-lg font-bold leading-none">{dia}</div>
-                        <div className="text-[10px] uppercase">{mes}</div>
+                  <div key={data} className="p-2.5 sm:p-3">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-violet-100 text-violet-700 flex flex-col items-center justify-center flex-shrink-0">
+                        <div className="text-base sm:text-lg font-bold leading-none">{dia}</div>
+                        <div className="text-[9px] sm:text-[10px] uppercase">{mes}</div>
                       </div>
-                      <div>
+                      <div className="min-w-0">
                         <div className="font-semibold text-sm">{diaDaSemana(data)}</div>
                         <div className="text-xs text-muted-foreground">{itensDoDia.length} aula(s) planejada(s)</div>
                       </div>
                     </div>
-                    <div className="ml-14 space-y-2">
+                    <div className="sm:ml-14 space-y-2">
                       {itensDoDia.map((item) => (
                         <div key={item.id} className="p-2 rounded-lg border bg-muted/30 hover:bg-muted/50 transition-colors">
                           <div className="flex items-start gap-2">
                             <div className="flex-1 min-w-0">
-                              <div className="flex items-center gap-2 flex-wrap">
+                              <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
                                 <span className="font-semibold text-sm">{item.titulo}</span>
                                 {item.aluno_nome && (
-                                  <span className="text-xs px-2 py-0.5 rounded-full bg-violet-100 text-violet-700">
+                                  <span className="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 rounded-full bg-violet-100 text-violet-700">
                                     {item.aluno_nome}
                                   </span>
                                 )}
                               </div>
-                              <div className="text-xs text-muted-foreground mt-0.5">
+                              <div className="text-[11px] sm:text-xs text-muted-foreground mt-0.5 truncate">
                                 {item.horario && <span>{item.horario}</span>}
                                 {item.horario && ' · '}
                                 <span>{item.duracao}h</span>
                                 {item.observacao && ` · ${item.observacao}`}
                               </div>
                             </div>
-                            <div className="flex gap-1">
-                              <Button variant="ghost" size="icon" onClick={() => editar(item)} className="h-8 w-8">
+                            <div className="flex gap-0.5 sm:gap-1 flex-shrink-0">
+                              <Button variant="ghost" size="icon" className="h-7 w-7 sm:h-8 sm:w-8" onClick={() => editar(item)}>
                                 <Pencil className="w-3.5 h-3.5" />
                               </Button>
-                              <Button variant="ghost" size="icon" onClick={() => excluir(item.id)} className="h-8 w-8 text-red-600">
+                              <Button variant="ghost" size="icon" className="h-7 w-7 sm:h-8 sm:w-8 text-red-600" onClick={() => excluir(item.id)}>
                                 <Trash2 className="w-3.5 h-3.5" />
                               </Button>
                             </div>

@@ -41,11 +41,11 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-emerald-50 to-sky-50 p-4">
       <div className="w-full max-w-md">
         <div className="flex flex-col items-center mb-6">
-          <div className="w-16 h-16 rounded-2xl bg-emerald-600 flex items-center justify-center shadow-lg mb-3">
-            <BookOpen className="w-9 h-9 text-white" />
+          <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-emerald-600 flex items-center justify-center shadow-lg mb-3">
+            <BookOpen className="w-7 h-7 sm:w-9 sm:h-9 text-white" />
           </div>
-          <h1 className="text-2xl font-bold">Controle de Aulas</h1>
-          <p className="text-sm text-muted-foreground">Seu painel de gestão de horas e ganhos</p>
+          <h1 className="text-xl sm:text-2xl font-bold">Controle de Aulas</h1>
+          <p className="text-xs sm:text-sm text-muted-foreground text-center">Seu painel de gestão de horas e ganhos</p>
         </div>
 
         <Card className="shadow-lg">
@@ -70,10 +70,10 @@ export default function LoginPage() {
                 <UserPlus className="w-4 h-4 mr-2" /> Cadastrar
               </Button>
             </div>
-            <CardTitle>
+            <CardTitle className="text-base sm:text-lg">
               {modo === 'login' ? 'Bem-vindo de volta' : 'Criar conta de professor'}
             </CardTitle>
-            <CardDescription>
+            <CardDescription className="text-xs sm:text-sm">
               {modo === 'login'
                 ? 'Entre com seu usuário e senha'
                 : 'Preencha os dados para criar sua conta'}

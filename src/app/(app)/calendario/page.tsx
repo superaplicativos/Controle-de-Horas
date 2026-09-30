@@ -112,39 +112,39 @@ export default function CalendarioPage() {
   const horasMes = aulas.reduce((s, a) => s + (a.status === 'presenca' ? a.duracao : a.status === 'falta' ? 1 : 0), 0);
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3 sm:space-y-4">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <div>
-          <h1 className="text-2xl font-bold">Calendário</h1>
-          <p className="text-sm text-muted-foreground">{aulas.length} aulas · {horasMes.toFixed(1)}h · {formatarMoeda(totalMes)}</p>
+        <div className="min-w-0">
+          <h1 className="text-xl sm:text-2xl font-bold">Calendário</h1>
+          <p className="text-xs sm:text-sm text-muted-foreground truncate">{aulas.length} aulas · {horasMes.toFixed(1)}h · {formatarMoeda(totalMes)}</p>
         </div>
-        <div className="flex items-center gap-2">
-          <Button variant="outline" size="icon" onClick={() => navegarMes(-1)}><ChevronLeft className="w-4 h-4" /></Button>
-          <div className="px-4 py-2 bg-card border rounded-lg font-semibold text-sm min-w-[180px] text-center">{nomeMes(mesRef)}</div>
-          <Button variant="outline" size="icon" onClick={() => navegarMes(1)}><ChevronRight className="w-4 h-4" /></Button>
+        <div className="flex items-center gap-2 justify-between sm:justify-end">
+          <Button variant="outline" size="icon" className="h-8 w-8 sm:h-9 sm:w-9" onClick={() => navegarMes(-1)}><ChevronLeft className="w-4 h-4" /></Button>
+          <div className="px-3 sm:px-4 py-1.5 sm:py-2 bg-card border rounded-lg font-semibold text-xs sm:text-sm text-center flex-1 sm:min-w-[180px]">{nomeMes(mesRef)}</div>
+          <Button variant="outline" size="icon" className="h-8 w-8 sm:h-9 sm:w-9" onClick={() => navegarMes(1)}><ChevronRight className="w-4 h-4" /></Button>
         </div>
       </div>
 
       {/* Legenda */}
-      <div className="flex flex-wrap gap-3 text-xs">
+      <div className="flex flex-wrap gap-2 sm:gap-3 text-[10px] sm:text-xs">
         {STATUS_OPCOES.map((s) => (
           <div key={s.value} className="flex items-center gap-1.5">
-            <div className={cn('w-3 h-3 rounded-full', s.cor)} />
+            <div className={cn('w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full', s.cor)} />
             <span className="text-muted-foreground">{s.label}</span>
           </div>
         ))}
         <div className="flex items-center gap-1.5">
-          <div className="w-3 h-3 rounded-full bg-sky-500" />
+          <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-sky-500" />
           <span className="text-muted-foreground">Hoje</span>
         </div>
       </div>
 
       {/* Calendário grid */}
       <Card>
-        <CardContent className="p-3">
+        <CardContent className="p-2 sm:p-3">
           <div className="grid grid-cols-7 gap-1 mb-2">
-            {['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'].map((d) => (
-              <div key={d} className="text-center text-xs font-semibold text-muted-foreground py-2">{d}</div>
+            {['D', 'S', 'T', 'Q', 'Q', 'S', 'S'].map((d, idx) => (
+              <div key={idx} className="text-center text-[10px] sm:text-xs font-semibold text-muted-foreground py-1 sm:py-2">{d}</div>
             ))}
           </div>
           <div className="grid grid-cols-7 gap-1">
@@ -158,23 +158,23 @@ export default function CalendarioPage() {
                   key={idx}
                   onClick={() => abrirDia(dataISO)}
                   className={cn(
-                    'min-h-[80px] sm:min-h-[100px] p-1.5 rounded-lg border text-left hover:border-emerald-400 hover:bg-emerald-50/30 transition-colors',
+                    'min-h-[52px] sm:min-h-[100px] p-1 sm:p-1.5 rounded-lg border text-left hover:border-emerald-400 hover:bg-emerald-50/30 transition-colors',
                     isHoje ? 'border-sky-400 bg-sky-50' : 'border-border'
                   )}
                 >
-                  <div className={cn('text-xs font-bold mb-1', isHoje ? 'text-sky-600' : 'text-foreground')}>{dia}</div>
+                  <div className={cn('text-[10px] sm:text-xs font-bold mb-0.5', isHoje ? 'text-sky-600' : 'text-foreground')}>{dia}</div>
                   <div className="space-y-0.5">
-                    {aulasDia.slice(0, 3).map((a) => {
+                    {aulasDia.slice(0, 2).map((a) => {
                       const op = STATUS_OPCOES.find((s) => s.value === a.status);
                       return (
-                        <div key={a.id} className="flex items-center gap-1 text-[10px]">
-                          <div className={cn('w-1.5 h-1.5 rounded-full flex-shrink-0', op?.cor)} />
+                        <div key={a.id} className="flex items-center gap-0.5 sm:gap-1 text-[8px] sm:text-[10px]">
+                          <div className={cn('w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full flex-shrink-0', op?.cor)} />
                           <span className="truncate text-muted-foreground">{a.aluno_nome}</span>
                         </div>
                       );
                     })}
-                    {aulasDia.length > 3 && (
-                      <div className="text-[10px] text-muted-foreground">+{aulasDia.length - 3} mais</div>
+                    {aulasDia.length > 2 && (
+                      <div className="text-[8px] sm:text-[10px] text-muted-foreground">+{aulasDia.length - 2}</div>
                     )}
                   </div>
                 </button>
@@ -185,7 +185,7 @@ export default function CalendarioPage() {
       </Card>
 
       <Dialog open={modalOpen} onOpenChange={setModalOpen}>
-        <DialogContent className="max-w-md">
+        <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>
               {diaSelecionado && diaDaSemana(diaSelecionado)}, {diaSelecionado?.split('-')[2]}/{diaSelecionado?.split('-')[1]}

@@ -5,21 +5,30 @@ import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/lib/auth';
 import { Button } from '@/components/ui/button';
-import { BookOpen, LayoutDashboard, CalendarDays, ClipboardList, CalendarClock, Users, Users2, BarChart3, User, Settings, LogOut, Menu, X, Cloud } from 'lucide-react';
+import { BookOpen, LayoutDashboard, CalendarDays, ClipboardList, CalendarClock, Users, Users2, BarChart3, User, Settings, LogOut, Menu, X, Cloud, Home } from 'lucide-react';
 import { sincronizarDoGitHub, lerConfigLocal } from '@/lib/github';
 import { seedGuilherme } from '@/lib/seed';
 import { cn } from '@/lib/utils';
 
 const navItems = [
-  { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
-  { href: '/cronograma', label: 'Cronograma', icon: CalendarClock },
-  { href: '/aulas', label: 'Aulas Dadas', icon: ClipboardList },
-  { href: '/calendario', label: 'Calendário', icon: CalendarDays },
+  { href: '/dashboard', label: 'Início', icon: Home, shortLabel: 'Início' },
+  { href: '/cronograma', label: 'Cronograma', icon: CalendarClock, shortLabel: 'Cronog.' },
+  { href: '/aulas', label: 'Aulas Dadas', icon: ClipboardList, shortLabel: 'Aulas' },
+  { href: '/calendario', label: 'Calendário', icon: CalendarDays, shortLabel: 'Calend.' },
+  { href: '/alunos', label: 'Alunos', icon: Users, shortLabel: 'Alunos' },
+  { href: '/turmas', label: 'Turmas', icon: Users2, shortLabel: 'Turmas' },
+  { href: '/fechamentos', label: 'Fechamentos', icon: BarChart3, shortLabel: 'Fecham.' },
+  { href: '/perfil', label: 'Perfil', icon: User, shortLabel: 'Perfil' },
+  { href: '/configuracoes', label: 'Configurações', icon: Settings, shortLabel: 'Config.' },
+];
+
+// 5 principais para a bottom nav mobile
+const mobileNavItems = [
+  { href: '/dashboard', label: 'Início', icon: Home },
+  { href: '/aulas', label: 'Aulas', icon: ClipboardList },
+  { href: '/calendario', label: 'Calend.', icon: CalendarDays },
   { href: '/alunos', label: 'Alunos', icon: Users },
-  { href: '/turmas', label: 'Turmas', icon: Users2 },
-  { href: '/fechamentos', label: 'Fechamentos', icon: BarChart3 },
-  { href: '/perfil', label: 'Perfil', icon: User },
-  { href: '/configuracoes', label: 'Configurações', icon: Settings },
+  { href: '/configuracoes', label: 'Mais', icon: Settings },
 ];
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
@@ -41,7 +50,6 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (!sessao || !professor) return;
     (async () => {
-      // Garante que o seed tenha rodado (preenche aulas faltantes)
       try {
         await seedGuilherme();
       } catch (e) {
@@ -54,15 +62,20 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         const res = await sincronizarDoGitHub(professor.id);
         setSyncing(false);
         if (res.ok) {
-          setSyncMsg(`Sincronizado: ${res.aulasImportadas || 0} aulas`);
+          setSyncMsg(`Sync: ${res.aulasImportadas || 0} aulas`);
           setTimeout(() => setSyncMsg(''), 4000);
         } else {
-          setSyncMsg(`Sync falhou: ${res.erro}`);
+          setSyncMsg(`Sync falhou`);
           setTimeout(() => setSyncMsg(''), 6000);
         }
       }
     })();
   }, [sessao, professor]);
+
+  // Fecha o menu mobile ao trocar de rota
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
 
   if (carregando) {
     return (
@@ -84,7 +97,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           <div className="w-9 h-9 rounded-lg bg-emerald-600 flex items-center justify-center">
             <BookOpen className="w-5 h-5 text-white" />
           </div>
-          <div className="flex-1">
+          <div className="flex-1 min-w-0">
             <div className="font-bold text-sm">Controle de Aulas</div>
             <div className="text-xs text-muted-foreground truncate">{professor.nome}</div>
           </div>
@@ -107,15 +120,15 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
             );
           })}
         </nav>
-        <div className="border-t p-2">
+        <div className="border-t p-2 space-y-1">
           {autoSyncOn && (
-            <div className="px-2 py-1 text-xs text-muted-foreground flex items-center gap-1">
-              <Cloud className={cn('w-3 h-3', syncing && 'animate-pulse text-emerald-600')} />
-              {syncing ? 'Sincronizando...' : 'Sync automático ON'}
+            <div className="px-2 py-1 text-xs text-muted-foreground flex items-center gap-1 truncate">
+              <Cloud className={cn('w-3 h-3 flex-shrink-0', syncing && 'animate-pulse text-emerald-600')} />
+              <span className="truncate">{syncing ? 'Sincronizando...' : 'Sync ON'}</span>
             </div>
           )}
           {syncMsg && (
-            <div className="px-2 py-1 text-xs text-emerald-700 bg-emerald-50 rounded">
+            <div className="px-2 py-1 text-xs text-emerald-700 bg-emerald-50 rounded truncate">
               {syncMsg}
             </div>
           )}
@@ -126,45 +139,94 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       </aside>
 
       {/* Mobile top bar */}
-      <div className="md:hidden fixed top-0 left-0 right-0 z-40 h-14 bg-card border-b flex items-center px-3">
-        <Button variant="ghost" size="icon" onClick={() => setMenuOpen(!menuOpen)}>
+      <header className="md:hidden fixed top-0 left-0 right-0 z-40 h-14 bg-card border-b flex items-center px-3 safe-top">
+        <Button variant="ghost" size="icon" onClick={() => setMenuOpen(!menuOpen)} className="flex-shrink-0 -ml-2">
           {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </Button>
-        <div className="flex-1 flex items-center justify-center gap-2">
-          <BookOpen className="w-5 h-5 text-emerald-600" />
-          <span className="font-bold text-sm">Controle de Aulas</span>
+        <div className="flex-1 flex items-center justify-center gap-2 min-w-0">
+          <BookOpen className="w-5 h-5 text-emerald-600 flex-shrink-0" />
+          <span className="font-bold text-sm truncate">Controle de Aulas</span>
         </div>
-        <div className="w-10" />
-      </div>
+        {autoSyncOn && (
+          <Cloud className={cn('w-4 h-4 text-muted-foreground flex-shrink-0', syncing && 'animate-pulse text-emerald-600')} />
+        )}
+        <div className="w-5 flex-shrink-0" />
+      </header>
 
-      {/* Mobile menu */}
+      {/* Sync msg banner mobile */}
+      {syncMsg && (
+        <div className="md:hidden fixed top-14 left-0 right-0 z-30 bg-emerald-100 text-emerald-800 text-xs text-center py-1 px-3 truncate">
+          {syncMsg}
+        </div>
+      )}
+
+      {/* Mobile drawer menu */}
       {menuOpen && (
-        <div className="md:hidden fixed inset-0 z-30 bg-black/30" onClick={() => setMenuOpen(false)}>
-          <div className="absolute top-14 left-0 w-64 bg-card border-r h-[calc(100%-3.5rem)] p-2 overflow-y-auto" onClick={(e) => e.stopPropagation()}>
-            {navItems.map((item) => {
-              const Icon = item.icon;
-              const active = pathname === item.href;
-              return (
-                <Link key={item.href} href={item.href} onClick={() => setMenuOpen(false)}>
-                  <Button variant={active ? 'default' : 'ghost'} className={cn('w-full justify-start mb-1', active && 'bg-emerald-600')} size="sm">
-                    <Icon className="w-4 h-4 mr-2" /> {item.label}
-                  </Button>
-                </Link>
-              );
-            })}
-            <Button variant="ghost" size="sm" className="w-full justify-start text-red-600 mt-4" onClick={() => { setMenuOpen(false); logout(); }}>
-              <LogOut className="w-4 h-4 mr-2" /> Sair
-            </Button>
+        <div className="md:hidden fixed inset-0 z-50 bg-black/50" onClick={() => setMenuOpen(false)}>
+          <div
+            className="absolute top-0 left-0 w-[280px] max-w-[80vw] bg-card h-full flex flex-col overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="h-14 flex items-center gap-2 px-4 border-b">
+              <div className="w-9 h-9 rounded-lg bg-emerald-600 flex items-center justify-center">
+                <BookOpen className="w-5 h-5 text-white" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="font-bold text-sm">Controle de Aulas</div>
+                <div className="text-xs text-muted-foreground truncate">{professor.nome}</div>
+              </div>
+            </div>
+            <nav className="flex-1 p-2 space-y-1">
+              {navItems.map((item) => {
+                const Icon = item.icon;
+                const active = pathname === item.href;
+                return (
+                  <Link key={item.href} href={item.href} onClick={() => setMenuOpen(false)}>
+                    <Button variant={active ? 'default' : 'ghost'} className={cn('w-full justify-start', active && 'bg-emerald-600 hover:bg-emerald-700')} size="sm">
+                      <Icon className="w-4 h-4 mr-2" /> {item.label}
+                    </Button>
+                  </Link>
+                );
+              })}
+            </nav>
+            <div className="border-t p-2">
+              <Button variant="ghost" size="sm" className="w-full justify-start text-red-600" onClick={() => { setMenuOpen(false); logout(); }}>
+                <LogOut className="w-4 h-4 mr-2" /> Sair
+              </Button>
+            </div>
           </div>
         </div>
       )}
 
       {/* Main content */}
-      <main className="flex-1 md:ml-64 pt-14 md:pt-0">
-        <div className="container mx-auto p-4 md:p-6 max-w-7xl">
+      <main className="flex-1 md:ml-64 pt-14 pb-20 md:pb-0 md:pt-0">
+        <div className="px-3 py-3 md:container md:mx-auto md:p-6 md:max-w-7xl">
           {children}
         </div>
       </main>
+
+      {/* Bottom nav mobile */}
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-card border-t safe-bottom">
+        <div className="grid grid-cols-5 h-16">
+          {mobileNavItems.map((item) => {
+            const Icon = item.icon;
+            const active = pathname === item.href;
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  'flex flex-col items-center justify-center gap-0.5 text-[10px] transition-colors',
+                  active ? 'text-emerald-600' : 'text-muted-foreground hover:text-foreground'
+                )}
+              >
+                <Icon className={cn('w-5 h-5', active && 'scale-110')} />
+                <span className="font-medium leading-none">{item.label}</span>
+              </Link>
+            );
+          })}
+        </div>
+      </nav>
     </div>
   );
 }

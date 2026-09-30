@@ -107,26 +107,28 @@ export default function DashboardPage() {
   const totalFaltasAnt = rAnt?.totalFaltas || 0;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {/* Header com mês */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+      <div className="flex flex-col gap-3">
         <div>
-          <h1 className="text-2xl font-bold">Dashboard</h1>
-          <p className="text-sm text-muted-foreground">Olá, {professor?.nome?.split(' ')[0]}! Aqui está seu resumo.</p>
+          <h1 className="text-xl sm:text-2xl font-bold">Dashboard</h1>
+          <p className="text-xs sm:text-sm text-muted-foreground">Olá, {professor?.nome?.split(' ')[0]}! Aqui está seu resumo.</p>
         </div>
-        <div className="flex items-center gap-2">
-          <Button variant="outline" size="icon" onClick={() => navegarMes(-1)}>
-            <ChevronLeft className="w-4 h-4" />
-          </Button>
-          <div className="px-4 py-2 bg-card border rounded-lg font-semibold text-sm min-w-[180px] text-center">
-            {nomeMes(mesRef)}
+        <div className="flex items-center gap-2 justify-between sm:justify-end">
+          <div className="flex items-center gap-2">
+            <Button variant="outline" size="icon" onClick={() => navegarMes(-1)} className="h-8 w-8 sm:h-9 sm:w-9">
+              <ChevronLeft className="w-4 h-4" />
+            </Button>
+            <div className="px-3 sm:px-4 py-1.5 sm:py-2 bg-card border rounded-lg font-semibold text-xs sm:text-sm text-center flex-1 sm:flex-none sm:min-w-[180px]">
+              {nomeMes(mesRef)}
+            </div>
+            <Button variant="outline" size="icon" onClick={() => navegarMes(1)} className="h-8 w-8 sm:h-9 sm:w-9">
+              <ChevronRight className="w-4 h-4" />
+            </Button>
           </div>
-          <Button variant="outline" size="icon" onClick={() => navegarMes(1)}>
-            <ChevronRight className="w-4 h-4" />
-          </Button>
           {jaFechado ? (
-            <span className="text-xs text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-2 rounded-lg flex items-center gap-1">
-              <CheckCircle2 className="w-3 h-3" /> Fechado
+            <span className="text-xs text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg flex items-center gap-1">
+              <CheckCircle2 className="w-3 h-3" /> <span className="hidden sm:inline">Fechado</span>
             </span>
           ) : (
             <Button variant="default" size="sm" onClick={handleFecharMes} className="bg-amber-600 hover:bg-amber-700">
@@ -137,7 +139,7 @@ export default function DashboardPage() {
       </div>
 
       {/* KPIs */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4">
         <KpiCard
           titulo="Nº Aulas"
           valor={r.totalAulas.toString()}
@@ -172,7 +174,7 @@ export default function DashboardPage() {
       </div>
 
       {/* Grid de gráficos */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4">
         {/* Aulas por dia */}
         <Card>
           <CardHeader>
@@ -180,11 +182,11 @@ export default function DashboardPage() {
             <CardDescription>Distribuição das aulas ao longo do mês</CardDescription>
           </CardHeader>
           <CardContent>
-            <ResponsiveContainer width="100%" height={250}>
+            <ResponsiveContainer width="100%" height={200} className="!w-full">
               <BarChart data={r.aulasPorDia}>
                 <CartesianGrid strokeDasharray="3 3" className="opacity-30" />
-                <XAxis dataKey="dia" tick={{ fontSize: 11 }} />
-                <YAxis tick={{ fontSize: 11 }} allowDecimals={false} />
+                <XAxis dataKey="dia" tick={{ fontSize: 10 }} />
+                <YAxis tick={{ fontSize: 10 }} allowDecimals={false} width={25} />
                 <Tooltip
                   contentStyle={{ fontSize: 12, borderRadius: 8 }}
                   labelFormatter={(v) => `Dia ${v}`}
@@ -203,9 +205,9 @@ export default function DashboardPage() {
           </CardHeader>
           <CardContent>
             {statusData.length === 0 ? (
-              <div className="h-[250px] flex items-center justify-center text-muted-foreground text-sm">Sem dados</div>
+              <div className="h-[200px] flex items-center justify-center text-muted-foreground text-sm">Sem dados</div>
             ) : (
-              <ResponsiveContainer width="100%" height={250}>
+              <ResponsiveContainer width="100%" height={200} className="!w-full">
                 <PieChart>
                   <Pie
                     data={statusData}
@@ -213,8 +215,8 @@ export default function DashboardPage() {
                     nameKey="name"
                     cx="50%"
                     cy="50%"
-                    outerRadius={90}
-                    label={(e) => `${e.name}: ${e.value}`}
+                    outerRadius={70}
+                    label={(e) => `${e.value}`}
                     labelLine={false}
                   >
                     {statusData.map((entry, idx) => (
@@ -236,13 +238,13 @@ export default function DashboardPage() {
           </CardHeader>
           <CardContent>
             {r.ganhosPorSemana.length === 0 ? (
-              <div className="h-[250px] flex items-center justify-center text-muted-foreground text-sm">Sem dados</div>
+              <div className="h-[200px] flex items-center justify-center text-muted-foreground text-sm">Sem dados</div>
             ) : (
-              <ResponsiveContainer width="100%" height={250}>
+              <ResponsiveContainer width="100%" height={200} className="!w-full">
                 <LineChart data={r.ganhosPorSemana}>
                   <CartesianGrid strokeDasharray="3 3" className="opacity-30" />
-                  <XAxis dataKey="semana" tick={{ fontSize: 11 }} />
-                  <YAxis tick={{ fontSize: 11 }} />
+                  <XAxis dataKey="semana" tick={{ fontSize: 10 }} />
+                  <YAxis tick={{ fontSize: 10 }} width={40} tickFormatter={(v) => `R$${v}`} />
                   <Tooltip
                     contentStyle={{ fontSize: 12, borderRadius: 8 }}
                     formatter={(v: number) => formatarMoeda(v)}
@@ -265,13 +267,13 @@ export default function DashboardPage() {
           </CardHeader>
           <CardContent>
             {r.topAlunos.length === 0 ? (
-              <div className="h-[250px] flex items-center justify-center text-muted-foreground text-sm">Sem dados</div>
+              <div className="h-[200px] flex items-center justify-center text-muted-foreground text-sm">Sem dados</div>
             ) : (
-              <ResponsiveContainer width="100%" height={250}>
-                <BarChart data={r.topAlunos} layout="vertical">
+              <ResponsiveContainer width="100%" height={200} className="!w-full">
+                <BarChart data={r.topAlunos} layout="vertical" margin={{ left: 0, right: 10 }}>
                   <CartesianGrid strokeDasharray="3 3" className="opacity-30" />
-                  <XAxis type="number" tick={{ fontSize: 11 }} tickFormatter={(v) => `R$${v}`} />
-                  <YAxis type="category" dataKey="nome" tick={{ fontSize: 11 }} width={120} />
+                  <XAxis type="number" tick={{ fontSize: 10 }} tickFormatter={(v) => `R$${v}`} />
+                  <YAxis type="category" dataKey="nome" tick={{ fontSize: 10 }} width={90} />
                   <Tooltip
                     contentStyle={{ fontSize: 12, borderRadius: 8 }}
                     formatter={(v: number) => formatarMoeda(v)}
@@ -294,7 +296,7 @@ export default function DashboardPage() {
           {r.horasAcumuladas.length === 0 ? (
             <div className="h-[200px] flex items-center justify-center text-muted-foreground text-sm">Sem dados</div>
           ) : (
-            <ResponsiveContainer width="100%" height={220}>
+            <ResponsiveContainer width="100%" height={180} className="!w-full">
               <AreaChart data={r.horasAcumuladas}>
                 <defs>
                   <linearGradient id="horasGrad" x1="0" y1="0" x2="0" y2="1">
@@ -303,8 +305,8 @@ export default function DashboardPage() {
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" className="opacity-30" />
-                <XAxis dataKey="dia" tick={{ fontSize: 11 }} />
-                <YAxis tick={{ fontSize: 11 }} />
+                <XAxis dataKey="dia" tick={{ fontSize: 10 }} />
+                <YAxis tick={{ fontSize: 10 }} width={25} />
                 <Tooltip contentStyle={{ fontSize: 12, borderRadius: 8 }} formatter={(v: number) => `${v}h`} />
                 <Area type="monotone" dataKey="horas" stroke="#8b5cf6" strokeWidth={2} fill="url(#horasGrad)" />
               </AreaChart>
@@ -314,7 +316,7 @@ export default function DashboardPage() {
       </Card>
 
       {/* Resumo rápido */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
         <Card>
           <CardContent className="p-4">
             <div className="text-xs text-muted-foreground">Presenças</div>

@@ -146,19 +146,19 @@ export default function AulasPage() {
   return (
     <div className="space-y-4">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <div>
-          <h1 className="text-2xl font-bold">Aulas Dadas</h1>
-          <p className="text-sm text-muted-foreground">
+        <div className="min-w-0">
+          <h1 className="text-xl sm:text-2xl font-bold">Aulas Dadas</h1>
+          <p className="text-xs sm:text-sm text-muted-foreground truncate">
             {aulasFiltradas.length} aulas · {formatarHoras(horasMes)} · {formatarMoeda(totalMes)}
           </p>
         </div>
         <Dialog open={modalOpen} onOpenChange={setModalOpen}>
           <DialogTrigger asChild>
-            <Button onClick={abrirNova} className="bg-emerald-600 hover:bg-emerald-700">
+            <Button onClick={abrirNova} className="bg-emerald-600 hover:bg-emerald-700 w-full sm:w-auto">
               <Plus className="w-4 h-4 mr-2" /> Nova Aula
             </Button>
           </DialogTrigger>
-          <DialogContent className="max-w-md">
+          <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto">
             <DialogHeader>
               <DialogTitle>{editandoId ? 'Editar Aula' : 'Nova Aula'}</DialogTitle>
             </DialogHeader>
@@ -258,7 +258,7 @@ export default function AulasPage() {
 
       {/* Filtros */}
       <Card>
-        <CardContent className="p-3 flex flex-col sm:flex-row gap-2">
+        <CardContent className="p-3 flex flex-col gap-2">
           <div className="relative flex-1">
             <Search className="absolute left-2 top-2.5 w-4 h-4 text-muted-foreground" />
             <Input
@@ -273,31 +273,33 @@ export default function AulasPage() {
               </button>
             )}
           </div>
-          <Select value={filtroMes} onValueChange={setFiltroMes}>
-            <SelectTrigger className="w-full sm:w-40"><SelectValue /></SelectTrigger>
-            <SelectContent>
-              <SelectItem value="todos">Todos os meses</SelectItem>
-              {mesesDisponiveis.map((m) => (
-                <SelectItem key={m} value={m}>{m}</SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-          <Select value={filtroStatus} onValueChange={setFiltroStatus}>
-            <SelectTrigger className="w-full sm:w-40"><SelectValue /></SelectTrigger>
-            <SelectContent>
-              <SelectItem value="todos">Todos status</SelectItem>
-              {STATUS_OPCOES.map((s) => (
-                <SelectItem key={s.value} value={s.value}>{s.label}</SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          <div className="grid grid-cols-2 gap-2">
+            <Select value={filtroMes} onValueChange={setFiltroMes}>
+              <SelectTrigger className="w-full"><SelectValue /></SelectTrigger>
+              <SelectContent>
+                <SelectItem value="todos">Todos os meses</SelectItem>
+                {mesesDisponiveis.map((m) => (
+                  <SelectItem key={m} value={m}>{m}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            <Select value={filtroStatus} onValueChange={setFiltroStatus}>
+              <SelectTrigger className="w-full"><SelectValue /></SelectTrigger>
+              <SelectContent>
+                <SelectItem value="todos">Todos status</SelectItem>
+                {STATUS_OPCOES.map((s) => (
+                  <SelectItem key={s.value} value={s.value}>{s.label}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
         </CardContent>
       </Card>
 
       {/* Lista */}
       <Card>
         <CardContent className="p-0">
-          <div className="max-h-[70vh] overflow-y-auto">
+          <div className="max-h-[60vh] sm:max-h-[70vh] overflow-y-auto">
             {aulasFiltradas.length === 0 ? (
               <div className="p-8 text-center text-muted-foreground">
                 Nenhuma aula encontrada. Clique em "Nova Aula" para começar.
@@ -307,32 +309,32 @@ export default function AulasPage() {
                 {aulasFiltradas.map((a) => {
                   const statusOp = STATUS_OPCOES.find((s) => s.value === a.status);
                   return (
-                    <div key={a.id} className="p-3 flex items-center gap-3 hover:bg-muted/30">
-                      <div className="text-center min-w-[56px]">
-                        <div className="text-xs text-muted-foreground">{diaDaSemana(a.data)}</div>
-                        <div className="text-lg font-bold">{a.data.split('-')[2]}</div>
-                        <div className="text-xs text-muted-foreground">{a.data.split('-')[1]}/{a.data.split('-')[0]}</div>
+                    <div key={a.id} className="p-2.5 sm:p-3 flex items-center gap-2 sm:gap-3 hover:bg-muted/30">
+                      <div className="text-center min-w-[44px] sm:min-w-[56px]">
+                        <div className="text-[10px] sm:text-xs text-muted-foreground">{diaDaSemana(a.data)}</div>
+                        <div className="text-base sm:text-lg font-bold">{a.data.split('-')[2]}</div>
+                        <div className="text-[10px] sm:text-xs text-muted-foreground">{a.data.split('-')[1]}/{a.data.split('-')[0].slice(2)}</div>
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2">
-                          <span className="font-semibold truncate">{a.aluno_nome}</span>
-                          <span className="text-xs px-2 py-0.5 rounded-full bg-muted text-muted-foreground">{a.aluno_tipo}</span>
+                        <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
+                          <span className="font-semibold text-sm truncate">{a.aluno_nome}</span>
+                          <span className="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 rounded-full bg-muted text-muted-foreground">{a.aluno_tipo}</span>
                         </div>
-                        <div className="text-xs text-muted-foreground truncate">
+                        <div className="text-[11px] sm:text-xs text-muted-foreground truncate">
                           {a.horario} · {formatarHoras(a.duracao)}
                           {a.conteudo && ` · ${a.conteudo}`}
                         </div>
                       </div>
-                      <div className="text-right">
-                        <div className={`text-xs px-2 py-0.5 rounded-full ${statusOp?.cor}`}>{statusOp?.label}</div>
-                        <div className="font-bold text-sm mt-1">{formatarMoeda(a.valor)}</div>
+                      <div className="text-right flex-shrink-0">
+                        <div className={`text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 rounded-full ${statusOp?.cor} whitespace-nowrap`}>{statusOp?.label}</div>
+                        <div className="font-bold text-xs sm:text-sm mt-1">{formatarMoeda(a.valor)}</div>
                       </div>
-                      <div className="flex gap-1">
-                        <Button variant="ghost" size="icon" onClick={() => abrirEditar(a)}>
-                          <Pencil className="w-4 h-4" />
+                      <div className="flex gap-0.5 sm:gap-1 flex-shrink-0">
+                        <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => abrirEditar(a)}>
+                          <Pencil className="w-3.5 h-3.5" />
                         </Button>
-                        <Button variant="ghost" size="icon" onClick={() => excluir(a.id)} className="text-red-600">
-                          <Trash2 className="w-4 h-4" />
+                        <Button variant="ghost" size="icon" className="h-8 w-8 text-red-600" onClick={() => excluir(a.id)}>
+                          <Trash2 className="w-3.5 h-3.5" />
                         </Button>
                       </div>
                     </div>

@@ -157,19 +157,19 @@ export default function ConfiguracoesPage() {
   }
 
   return (
-    <div className="max-w-3xl mx-auto space-y-4">
-      <div>
-        <h1 className="text-2xl font-bold">Configurações</h1>
-        <p className="text-sm text-muted-foreground">GitHub sync, backup e gerenciamento</p>
+    <div className="max-w-3xl mx-auto space-y-3 sm:space-y-4">
+      <div className="min-w-0">
+        <h1 className="text-xl sm:text-2xl font-bold">Configurações</h1>
+        <p className="text-xs sm:text-sm text-muted-foreground">GitHub sync, backup e gerenciamento</p>
       </div>
 
       {/* GitHub Sync */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-base flex items-center gap-2">
-            <Github className="w-5 h-5" /> Sincronização com GitHub
+          <CardTitle className="text-sm sm:text-base flex items-center gap-2">
+            <Github className="w-4 h-4 sm:w-5 sm:h-5" /> Sincronização com GitHub
           </CardTitle>
-          <CardDescription>
+          <CardDescription className="text-xs">
             Permite puxar e enviar os dados automaticamente do repo. Assim você acessa de qualquer dispositivo.
           </CardDescription>
         </CardHeader>
@@ -209,7 +209,7 @@ export default function ConfiguracoesPage() {
               Permissões necessárias: <strong>Contents (read & write)</strong> no repo.
             </p>
           </div>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div className="space-y-1.5">
               <Label>Repositório (owner/repo)</Label>
               <Input value={repo} onChange={(e) => setRepo(e.target.value)} placeholder="superaplicativos/Controle-de-Horas" />
@@ -223,7 +223,7 @@ export default function ConfiguracoesPage() {
             <Switch checked={autoSync} onCheckedChange={setAutoSync} id="autosync" />
             <Label htmlFor="autosync">Puxar automaticamente ao abrir o app</Label>
           </div>
-          <div className="flex flex-wrap gap-2 pt-2">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-2 pt-2">
             <Button onClick={salvarConfig} disabled={salvandoConfig} variant="outline">
               <Cloud className="w-4 h-4 mr-2" /> Salvar configuração
             </Button>
@@ -248,11 +248,11 @@ export default function ConfiguracoesPage() {
       {/* Backup TXT */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-base">Backup local (.txt)</CardTitle>
-          <CardDescription>Exporte ou importe um arquivo .txt com todos os seus dados</CardDescription>
+          <CardTitle className="text-sm sm:text-base">Backup local (.txt)</CardTitle>
+          <CardDescription className="text-xs">Exporte ou importe um arquivo .txt com todos os seus dados</CardDescription>
         </CardHeader>
         <CardContent className="space-y-3">
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-2">
             <Button onClick={exportarTXT} variant="outline">
               <Download className="w-4 h-4 mr-2" /> Exportar .txt
             </Button>
@@ -277,11 +277,11 @@ export default function ConfiguracoesPage() {
       {/* Zona de perigo */}
       <Card className="border-red-200">
         <CardHeader>
-          <CardTitle className="text-base text-red-600">Zona de perigo</CardTitle>
-          <CardDescription>Ações irreversíveis</CardDescription>
+          <CardTitle className="text-sm sm:text-base text-red-600">Zona de perigo</CardTitle>
+          <CardDescription className="text-xs">Ações irreversíveis</CardDescription>
         </CardHeader>
         <CardContent className="space-y-3">
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-2">
             <Button variant="outline" onClick={resetarDados} disabled={salvandoConfig} className="border-amber-300 text-amber-700 hover:bg-amber-50">
               <RotateCcw className="w-4 h-4 mr-2" /> {salvandoConfig ? 'Resetando...' : 'Resetar dados (recriar padrão)'}
             </Button>

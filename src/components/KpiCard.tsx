@@ -25,26 +25,25 @@ export function KpiCard({ titulo, valor, subtitulo, tendencia, icon: Icon, cor =
   const c = corMap[cor];
   return (
     <Card className="overflow-hidden hover:shadow-md transition-shadow">
-      <CardContent className="p-5">
-        <div className="flex items-start justify-between">
-          <div className="flex-1">
-            <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">{titulo}</p>
-            <p className="text-2xl font-bold mt-1">{valor}</p>
-            {subtitulo && <p className="text-xs text-muted-foreground mt-1">{subtitulo}</p>}
+      <CardContent className="p-3 sm:p-5">
+        <div className="flex items-start justify-between gap-2">
+          <div className="flex-1 min-w-0">
+            <p className="text-[10px] sm:text-xs font-medium text-muted-foreground uppercase tracking-wide truncate">{titulo}</p>
+            <p className="text-lg sm:text-2xl font-bold mt-0.5 sm:mt-1 truncate">{valor}</p>
+            {subtitulo && <p className="text-[10px] sm:text-xs text-muted-foreground mt-0.5 truncate">{subtitulo}</p>}
             {tendencia !== undefined && (
-              <div className="flex items-center gap-1 mt-2">
-                <span className={cn('text-xs font-semibold px-2 py-0.5 rounded-full',
+              <div className="flex items-center gap-1 mt-1.5 sm:mt-2">
+                <span className={cn('text-[10px] sm:text-xs font-semibold px-1.5 sm:px-2 py-0.5 rounded-full',
                   tendencia >= 0 ? 'bg-emerald-100 text-emerald-700' : 'bg-rose-100 text-rose-700'
                 )}>
                   {tendencia >= 0 ? '↑' : '↓'} {Math.abs(tendencia).toFixed(0)}%
                 </span>
-                <span className="text-xs text-muted-foreground">vs mês anterior</span>
               </div>
             )}
           </div>
           {Icon && (
-            <div className={cn('p-2.5 rounded-lg', c.icon)}>
-              <Icon className={cn('w-6 h-6', c.text)} />
+            <div className={cn('p-1.5 sm:p-2.5 rounded-lg flex-shrink-0', c.icon)}>
+              <Icon className={cn('w-4 h-4 sm:w-6 sm:h-6', c.text)} />
             </div>
           )}
         </div>

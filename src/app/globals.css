@@ -118,5 +118,40 @@
   }
   body {
     @apply bg-background text-foreground;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+  /* Safe areas iOS */
+  .safe-top {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  /* Evita zoom em inputs no iOS (fonte >= 16px) */
+  input, select, textarea {
+    font-size: 16px;
+  }
+  @media (min-width: 768px) {
+    input, select, textarea {
+      font-size: inherit;
+    }
+  }
+  /* Scrollbar fina em listas */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.2);
+    border-radius: 3px;
+  }
+  /* Gráficos responsivos */
+  .recharts-responsive-container {
+    width: 100% !important;
+  }
+  .recharts-wrapper {
+    width: 100% !important;
   }
 }

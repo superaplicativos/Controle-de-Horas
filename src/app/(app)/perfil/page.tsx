@@ -41,16 +41,16 @@ export default function PerfilPage() {
   if (!professor) return null;
 
   return (
-    <div className="max-w-2xl mx-auto space-y-4">
-      <div>
-        <h1 className="text-2xl font-bold">Perfil</h1>
-        <p className="text-sm text-muted-foreground">Atualize seus dados e valores cobrados</p>
+    <div className="max-w-2xl mx-auto space-y-3 sm:space-y-4">
+      <div className="min-w-0">
+        <h1 className="text-xl sm:text-2xl font-bold">Perfil</h1>
+        <p className="text-xs sm:text-sm text-muted-foreground">Atualize seus dados e valores cobrados</p>
       </div>
 
       <Card>
         <CardHeader>
-          <CardTitle className="text-base">Dados do Professor</CardTitle>
-          <CardDescription>Informações pessoais</CardDescription>
+          <CardTitle className="text-sm sm:text-base">Dados do Professor</CardTitle>
+          <CardDescription className="text-xs">Informações pessoais</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={salvar} className="space-y-3">
@@ -62,7 +62,7 @@ export default function PerfilPage() {
               <Label>Usuário (não editável)</Label>
               <Input value={professor.username} disabled className="bg-muted" />
             </div>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div className="space-y-1.5">
                 <Label>Valor por hora (R$)</Label>
                 <Input
@@ -73,7 +73,7 @@ export default function PerfilPage() {
                   onChange={(e) => setValorHora(e.target.value)}
                   required
                 />
-                <p className="text-xs text-muted-foreground">Atual: {formatarMoeda(professor.valor_hora)}/h</p>
+                <p className="text-[10px] sm:text-xs text-muted-foreground">Atual: {formatarMoeda(professor.valor_hora)}/h</p>
               </div>
               <div className="space-y-1.5">
                 <Label>Valor por falta (R$)</Label>
@@ -85,10 +85,10 @@ export default function PerfilPage() {
                   onChange={(e) => setValorFalta(e.target.value)}
                   required
                 />
-                <p className="text-xs text-muted-foreground">Geralmente 1h = {formatarMoeda(professor.valor_falta)}</p>
+                <p className="text-[10px] sm:text-xs text-muted-foreground">Geralmente 1h = {formatarMoeda(professor.valor_falta)}</p>
               </div>
             </div>
-            <Button type="submit" disabled={salvando} className="bg-emerald-600 hover:bg-emerald-700">
+            <Button type="submit" disabled={salvando} className="bg-emerald-600 hover:bg-emerald-700 w-full sm:w-auto">
               <Save className="w-4 h-4 mr-2" /> {salvando ? 'Salvando...' : 'Salvar alterações'}
             </Button>
           </form>
@@ -97,30 +97,30 @@ export default function PerfilPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle className="text-base">Regras de cálculo</CardTitle>
+          <CardTitle className="text-sm sm:text-base">Regras de cálculo</CardTitle>
         </CardHeader>
-        <CardContent className="text-sm space-y-2">
-          <div className="flex justify-between p-2 bg-emerald-50 rounded">
+        <CardContent className="text-xs sm:text-sm space-y-2">
+          <div className="flex justify-between items-center p-2 bg-emerald-50 rounded">
             <span>Presença VIP 1h:</span>
             <strong>{formatarMoeda(professor.valor_hora * 1)}</strong>
           </div>
-          <div className="flex justify-between p-2 bg-emerald-50 rounded">
+          <div className="flex justify-between items-center p-2 bg-emerald-50 rounded">
             <span>Presença VIP 1,5h:</span>
             <strong>{formatarMoeda(professor.valor_hora * 1.5)}</strong>
           </div>
-          <div className="flex justify-between p-2 bg-emerald-50 rounded">
+          <div className="flex justify-between items-center p-2 bg-emerald-50 rounded">
             <span>Presença VIP 2h:</span>
             <strong>{formatarMoeda(professor.valor_hora * 2)}</strong>
           </div>
-          <div className="flex justify-between p-2 bg-emerald-50 rounded">
+          <div className="flex justify-between items-center p-2 bg-emerald-50 rounded">
             <span>Presença Turma (2h):</span>
             <strong>{formatarMoeda(professor.valor_hora * 2)}</strong>
           </div>
-          <div className="flex justify-between p-2 bg-rose-50 rounded">
+          <div className="flex justify-between items-center p-2 bg-rose-50 rounded">
             <span>Falta (qualquer tipo):</span>
             <strong>{formatarMoeda(professor.valor_falta)} (1h fixa)</strong>
           </div>
-          <div className="flex justify-between p-2 bg-gray-100 rounded">
+          <div className="flex justify-between items-center p-2 bg-gray-100 rounded">
             <span>Cancelada/Agendada:</span>
             <strong>R$ 0,00</strong>
           </div>
