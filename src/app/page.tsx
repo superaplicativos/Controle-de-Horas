@@ -18,9 +18,9 @@ export default function Home() {
       }
       if (!carregando) {
         if (sessao) {
-          router.replace('/Controle-de-Horas/dashboard');
+          router.replace('/dashboard');
         } else {
-          router.replace('/Controle-de-Horas/login');
+          router.replace('/login');
         }
       }
     })();

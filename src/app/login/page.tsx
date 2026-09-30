@@ -32,7 +32,7 @@ export default function LoginPage() {
 
     setCarregando(false);
     if (result.ok) {
-      router.push('/Controle-de-Horas/dashboard');
+      router.push('/dashboard');
     } else {
       setErro(result.erro || 'Erro');
     }

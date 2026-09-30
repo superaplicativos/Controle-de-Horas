@@ -10,14 +10,14 @@ import { sincronizarDoGitHub, lerConfigLocal } from '@/lib/github';
 import { cn } from '@/lib/utils';
 
 const navItems = [
-  { href: '/Controle-de-Horas/dashboard', label: 'Dashboard', icon: LayoutDashboard },
-  { href: '/Controle-de-Horas/calendario', label: 'Calendário', icon: CalendarDays },
-  { href: '/Controle-de-Horas/aulas', label: 'Aulas', icon: ClipboardList },
-  { href: '/Controle-de-Horas/alunos', label: 'Alunos', icon: Users },
-  { href: '/Controle-de-Horas/turmas', label: 'Turmas', icon: Users2 },
-  { href: '/Controle-de-Horas/fechamentos', label: 'Fechamentos', icon: BarChart3 },
-  { href: '/Controle-de-Horas/perfil', label: 'Perfil', icon: User },
-  { href: '/Controle-de-Horas/configuracoes', label: 'Configurações', icon: Settings },
+  { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+  { href: '/calendario', label: 'Calendário', icon: CalendarDays },
+  { href: '/aulas', label: 'Aulas', icon: ClipboardList },
+  { href: '/alunos', label: 'Alunos', icon: Users },
+  { href: '/turmas', label: 'Turmas', icon: Users2 },
+  { href: '/fechamentos', label: 'Fechamentos', icon: BarChart3 },
+  { href: '/perfil', label: 'Perfil', icon: User },
+  { href: '/configuracoes', label: 'Configurações', icon: Settings },
 ];
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
@@ -31,7 +31,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (!carregando && !sessao) {
-      router.replace('/Controle-de-Horas/login');
+      router.replace('/login');
     }
   }, [carregando, sessao, router]);
 
