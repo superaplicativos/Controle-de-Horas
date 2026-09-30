@@ -6,52 +6,56 @@ import { Button } from '@/components/ui/button';
 import {
   Calendar, Clock, DollarSign, TrendingUp, Users, Smartphone, Cloud,
   Shield, CheckCircle2, Star, ChevronDown, ArrowRight, Menu, X,
-  BarChart3, CalendarClock, BookOpen, Zap, Lock, Quote
+  BarChart3, CalendarClock, BookOpen, Zap, Lock, Quote, Coffee, MessageCircle,
+  GraduationCap, Award, Heart, Sparkles
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+
+const WHATSAPP_NUMBER = '5511966161611';
+const WHATSAPP_MSG = 'Olá sou professor! Gostaria de Contratar o Controle de Aulas Super Inteligente!';
 
 const heroSlides = [
   {
     img: '/Controle-de-Horas/images/hero-teacher.jpg',
-    title: 'Controle total das suas aulas',
-    subtitle: 'Saiba exatamente quanto ganhou, quantas horas deu e quais alunos faltaram — em segundos.',
+    title: 'Pague um café por mês.',
+    subtitle: 'Tenha o controle total das suas aulas, horas e ganhos. Feito por professor, para professor.',
   },
   {
     img: '/Controle-de-Horas/images/hero-dashboard.jpg',
-    title: 'Dashboard cinematográfico',
-    subtitle: 'Gráficos em tempo real, KPIs claros, fechamento mensal automático.',
+    title: 'Saiba quanto ganhou.',
+    subtitle: 'Dashboard com gráficos, KPIs e fechamento mensal automático. Em segundos.',
   },
   {
     img: '/Controle-de-Horas/images/hero-professor.jpg',
-    title: 'Feito por professor, para professor',
-    subtitle: 'Entendemos sua rotina. Lançamento manual flexível, sem amarras.',
+    title: 'Feito por professores.',
+    subtitle: '27 anos de carreira em sala de aula. Sabemos sua rotina como ninguém.',
   },
   {
     img: '/Controle-de-Horas/images/hero-calendar.jpg',
-    title: 'Calendário vivo',
-    subtitle: 'Veja todas as aulas do mês,planeje o futuro, registre o passado.',
+    title: 'Cronograma que organiza.',
+    subtitle: 'Calendário visual, planejamento separado do registro. Tudo no lugar.',
   },
 ];
 
 const features = [
-  { icon: BarChart3, title: 'Dashboard completo', desc: 'KPIs, gráficos de barras, pizza, linha e área. Tendência mês a mês comparada com o anterior.' },
-  { icon: CalendarClock, title: 'Cronograma separado', desc: 'Planeje aulas futuras no cronograma. Lance as dadas separadamente. Flexibilidade total.' },
-  { icon: DollarSign, title: 'Cálculo automático', desc: 'VIP 1h/1,5h/2h e Turma 2h. Falta paga 1h fixa. Configurável por professor.' },
-  { icon: Calendar, title: 'Calendário visual', desc: 'Veja o mês inteiro colorido por status. Dia atual destacado. Toque para lançar.' },
-  { icon: Smartphone, title: '100% responsivo', desc: 'Funciona perfeitamente no celular, tablet e desktop. Bottom nav no mobile nativa.' },
-  { icon: Cloud, title: 'Sync multi-dispositivo', desc: 'Dados sincronizados via GitHub. Começa no celular, termina no PC. Sem perdedas.' },
-  { icon: Shield, title: 'Senhas criptografadas', desc: 'SHA-256 + salt. Cada professor tem seu painel isolado. Multi-professor com login.' },
+  { icon: BarChart3, title: 'Dashboard cinematográfico', desc: 'KPIs, gráficos de barras, pizza, linha e área. Veja em segundos quantas aulas deu, horas e ganhos.' },
+  { icon: CalendarClock, title: 'Cronograma + Aulas Dadas', desc: 'Separe o que vai dar (planejamento) do que já deu (registro). Flexibilidade total sem confusão.' },
+  { icon: DollarSign, title: 'Cálculo automático de valores', desc: 'VIP 1h/1,5h/2h e Turma 2h. Falta conta como 1h fixa. Tudo configurável por professor.' },
+  { icon: Calendar, title: 'Calendário visual', desc: 'Mês inteiro colorido por status. Dia atual destacado. Toque para lançar aula.' },
+  { icon: Smartphone, title: '100% mobile-first', desc: 'Funciona perfeitamente no celular. Bottom navigation nativa. Abre modal como bottom-sheet.' },
+  { icon: Cloud, title: 'Sync automático multi-dispositivo', desc: 'Lança no celular, aparece no PC em 3 segundos. Sem configurar nada — já vem pronto.' },
+  { icon: Shield, title: 'Senhas criptografadas', desc: 'SHA-256 + salt. Cada professor tem painel isolado. Multi-professor com login seguro.' },
   { icon: BookOpen, title: 'Fechamento mensal', desc: 'Snapshots imutáveis no fim de cada mês. Histórico completo pra declaração de impostos.' },
-  { icon: TrendingUp, title: 'Top alunos', desc: 'Saiba quem são seus melhores alunos por faturamento. Foque onde rende mais.' },
+  { icon: TrendingUp, title: 'Top 5 alunos', desc: 'Saiba quem são seus melhores alunos por faturamento. Foque onde rende mais.' },
 ];
 
 const benefits = [
-  'Pare de perder tempo somando horas manualmente no fim do mês',
+  'Pare de somar horas manualmente no fim do mês (3h → 2 minutos)',
   'Nunca mais esqueça de cobrar aula que aluno faltou',
-  'Tenha previsibilidade financeira: saiba quanto vai ganhar no mês',
+  'Tenha previsibilidade: saiba quanto vai ganhar no mês',
   'Apresente relatório profissional para escolas e alunos',
   'Acesse seus dados de qualquer dispositivo, em qualquer lugar',
-  'Configure seus próprios valores (não é um sistema genérico)',
+  'Configure seus próprios valores (não é genérico como os outros)',
 ];
 
 const comparison = [
@@ -64,13 +68,14 @@ const comparison = [
   { feature: 'Backup automático na nuvem', caderno: '✗', app: '✓' },
   { feature: 'Tempo para fechar o mês', caderno: '~2 horas', app: '2 minutos' },
   { feature: 'Risco de perda de dados', caderno: 'Alto', app: 'Zero' },
+  { feature: 'Custo mensal', caderno: 'R$ 0', app: 'R$ 3,49' },
 ];
 
 const testimonials = [
   {
     name: 'Mariana Costa',
     role: 'Professora de inglês • Campinas/SP',
-    text: 'Eu perdia umas 3 horas por mês somando horas no caderno. Agora fecho o mês em 2 minutos. Já recuperei o investimento do ano inteiro no primeiro mês.',
+    text: 'Eu perdia umas 3 horas por mês somando horas no caderno. Agora fecho o mês em 2 minutos. Já recuperei o investimento do ano inteiro no primeiro mês — e só custa um cafézinho!',
     stars: 5,
   },
   {
@@ -95,74 +100,76 @@ const testimonials = [
 
 const faqs = [
   {
+    q: 'Por que custa só R$ 3,49 por mês?',
+    a: 'Porque o desenvolvedor também é professor e criou isso pra classe. O valor cobre só os custos do servidor (Cloudflare Worker + GitHub Pages) e um cafézinho de agradecimento. Sem intermediários, sem CPM, sem acionistas. Professor apoiando professor.',
+  },
+  {
     q: 'Preciso instalar algo?',
-    a: 'Não. É um aplicativo web (PWA). Você acessa pelo navegador do celular ou computador. Pode adicionar à tela inicial e funciona como app nativo.',
+    a: 'Não. É um app web (PWA). Você acessa pelo navegador do celular ou computador. Pode adicionar à tela inicial e funciona como app nativo.',
+  },
+  {
+    q: 'Como faço o pagamento?',
+    a: 'Assinatura mensal via Mercado Pago, no cartão de crédito. Recorrência automática — você autoriza uma vez e o sistema renova sozinho todo mês. Cancele quando quiser.',
+  },
+  {
+    q: 'E se eu não gostar?',
+    a: '7 dias grátis pra testar. Se não gostar, cancela com 1 clique, sem multa, sem burocracia. Seus dados são seus — pode exportar em .txt a qualquer momento.',
   },
   {
     q: 'Meus dados ficam salvos onde?',
-    a: 'No seu próprio navegador (IndexedDB criptografado) e, se você ativar o sync GitHub, no seu repositório privado. Nada vai pra servidores de terceiros. Você é dono dos seus dados.',
+    a: 'No seu próprio navegador (IndexedDB) e na nuvem via Cloudflare Worker + GitHub. Token GitHub fica seguro no servidor, nunca exposto no navegador. Nada vai pra terceiros.',
   },
   {
     q: 'Funciona offline?',
-    a: 'Sim! Depois de carregar a primeira vez, funciona offline. Quando você tiver internet novamente, o sync automático envia tudo pro GitHub.',
+    a: 'Sim! Depois de carregar a primeira vez, funciona offline. Quando voltar a ter internet, o sync automático envia tudo pro GitHub.',
   },
   {
     q: 'Posso usar em mais de um dispositivo?',
-    a: 'Sim, é exatamente para isso que o sistema foi feito. Configure o sync GitHub uma vez em cada dispositivo (token privado seu) e pronto — celular e PC ficam sempre sincronizados.',
-  },
-  {
-    q: 'Como funciona o teste grátis?',
-    a: 'Você usa por 7 dias sem pagar nada. Se gostar, assina o plano de R$ 29/mês. Se não gostar, cancela com 1 clique e seus dados continuam acessíveis para exportação.',
-  },
-  {
-    q: 'E se eu cancelar, perco meus dados?',
-    a: 'Nunca. Você pode exportar tudo em .txt a qualquer momento. Seus dados são seus, sempre.',
-  },
-  {
-    q: 'Funciona para qualquer tipo de aula?',
-    a: 'Sim. O sistema é flexível: VIP (1h, 1,5h ou 2h) e Turma (sempre 2h). Você configura o valor da sua hora. Serve para reforço, idiomas, música, arte, esportes — qualquer professor autônomo.',
+    a: 'Sim, é exatamente pra isso. Não precisa configurar nada — só faz login com usuário+senha em cada dispositivo e os dados sincronizam automaticamente.',
   },
   {
     q: 'Tem fidelidade?',
-    a: 'Zero. Você paga mês a mês. Cancela quando quiser, sem multa, sem burocracia.',
+    a: 'Zero. Pague mês a mês (R$ 3,49). Cancele quando quiser, sem multa. Professor não precisa de amarras.',
   },
 ];
 
-const plans = [
-  {
-    name: 'Mensal',
-    price: '29',
-    period: '/mês',
-    desc: 'Para quem quer testar e usar no dia a dia',
-    features: [
-      'Aulas, alunos e turmas ilimitados',
-      'Dashboard completo com gráficos',
-      'Cronograma e calendário',
-      'Fechamento mensal automático',
-      'Sync entre dispositivos (GitHub)',
-      'Backup .txt exportável',
-      'Suporte por email',
-    ],
-    cta: 'Começar teste grátis',
-    highlight: true,
-  },
-  {
-    name: 'Anual',
-    price: '290',
-    period: '/ano',
-    desc: 'Economize 2 meses — equivale a R$ 24/mês',
-    features: [
-      'Tudo do plano Mensal',
-      '2 meses grátis por ano',
-      'Atualizações prioritárias',
-      'Suporte por WhatsApp',
-      'Relatórios em PDF (em breve)',
-      'Multi-professor (escola) (em breve)',
-    ],
-    cta: 'Assinar anual',
-    highlight: false,
-  },
-];
+const plan = {
+  name: 'Plano Café',
+  price: '3,49',
+  period: '/mês',
+  desc: 'Pague um cafézinho por mês. Professor apoiando professor.',
+  features: [
+    'Aulas, alunos e turmas ilimitados',
+    'Dashboard completo com gráficos',
+    'Cronograma e calendário visual',
+    'Fechamento mensal automático',
+    'Sync entre dispositivos (já vem pronto)',
+    'Backup .txt exportável',
+    'Multi-professor com login',
+    'Suporte direto com o desenvolvedor (também professor)',
+    'Atualizações gratuitas pra sempre',
+    'Sem fidelidade, cancele quando quiser',
+  ],
+  cta: 'Assinar por R$ 3,49/mês',
+};
+
+function WhatsAppFloat() {
+  const href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MSG)}`;
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="fixed bottom-5 right-5 z-50 bg-[#25D366] hover:bg-[#1ebe5d] text-white rounded-full shadow-2xl shadow-emerald-500/40 flex items-center gap-2 px-4 py-3 transition-all hover:scale-105 group"
+      aria-label="Falar no WhatsApp"
+    >
+      <MessageCircle className="w-6 h-6 fill-white" />
+      <span className="hidden sm:inline font-semibold text-sm max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-300 whitespace-nowrap">
+        Fale conosco
+      </span>
+    </a>
+  );
+}
 
 export default function LandingPage() {
   const [slideIdx, setSlideIdx] = useState(0);
@@ -171,7 +178,6 @@ export default function LandingPage() {
   const [email, setEmail] = useState('');
   const [sent, setSent] = useState(false);
 
-  // Auto-slide do hero
   useEffect(() => {
     const t = setInterval(() => {
       setSlideIdx((i) => (i + 1) % heroSlides.length);
@@ -182,7 +188,6 @@ export default function LandingPage() {
   function handleLead(e: React.FormEvent) {
     e.preventDefault();
     if (!email.includes('@')) return;
-    // Salva o email localmente (sem backend)
     const leads = JSON.parse(localStorage.getItem('leads') || '[]');
     leads.push({ email, data: new Date().toISOString() });
     localStorage.setItem('leads', JSON.stringify(leads));
@@ -191,8 +196,10 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen bg-[#0a1410] text-white overflow-x-hidden">
+      <WhatsAppFloat />
+
       {/* NAV */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0a1410]/80 backdrop-blur-lg border-b border-emerald-900/30">
+      <nav className="fixed top-0 left-0 right-0 z-40 bg-[#0a1410]/80 backdrop-blur-lg border-b border-emerald-900/30">
         <div className="container mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
             <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center shadow-lg shadow-emerald-500/30">
@@ -205,8 +212,9 @@ export default function LandingPage() {
             <a href="#problema" className="px-3 py-2 text-sm text-emerald-100/70 hover:text-white transition">Problema</a>
             <a href="#solucao" className="px-3 py-2 text-sm text-emerald-100/70 hover:text-white transition">Solução</a>
             <a href="#features" className="px-3 py-2 text-sm text-emerald-100/70 hover:text-white transition">Recursos</a>
+            <Link href="/sistema" className="px-3 py-2 text-sm text-emerald-100/70 hover:text-white transition">Ver sistema</Link>
             <a href="#depoimentos" className="px-3 py-2 text-sm text-emerald-100/70 hover:text-white transition">Depoimentos</a>
-            <a href="#precos" className="px-3 py-2 text-sm text-emerald-100/70 hover:text-white transition">Preços</a>
+            <a href="#precos" className="px-3 py-2 text-sm text-emerald-100/70 hover:text-white transition">Preço</a>
             <a href="#faq" className="px-3 py-2 text-sm text-emerald-100/70 hover:text-white transition">FAQ</a>
           </div>
 
@@ -214,11 +222,11 @@ export default function LandingPage() {
             <Link href="/login">
               <Button variant="ghost" size="sm" className="text-emerald-100 hover:text-white hover:bg-emerald-900/30">Entrar</Button>
             </Link>
-            <Link href="#precos">
+            <a href="#precos">
               <Button size="sm" className="bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 shadow-lg shadow-emerald-500/30">
-                Teste grátis
+                Assinar R$ 3,49/mês
               </Button>
-            </Link>
+            </a>
           </div>
 
           <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setMenuOpen(!menuOpen)}>
@@ -232,16 +240,17 @@ export default function LandingPage() {
               <a href="#problema" onClick={() => setMenuOpen(false)} className="block py-2 text-emerald-100/70">Problema</a>
               <a href="#solucao" onClick={() => setMenuOpen(false)} className="block py-2 text-emerald-100/70">Solução</a>
               <a href="#features" onClick={() => setMenuOpen(false)} className="block py-2 text-emerald-100/70">Recursos</a>
+              <Link href="/sistema" onClick={() => setMenuOpen(false)} className="block py-2 text-emerald-100/70">Ver sistema</Link>
               <a href="#depoimentos" onClick={() => setMenuOpen(false)} className="block py-2 text-emerald-100/70">Depoimentos</a>
-              <a href="#precos" onClick={() => setMenuOpen(false)} className="block py-2 text-emerald-100/70">Preços</a>
+              <a href="#precos" onClick={() => setMenuOpen(false)} className="block py-2 text-emerald-100/70">Preço</a>
               <a href="#faq" onClick={() => setMenuOpen(false)} className="block py-2 text-emerald-100/70">FAQ</a>
               <div className="flex gap-2 pt-2">
                 <Link href="/login" className="flex-1">
                   <Button variant="outline" size="sm" className="w-full border-emerald-700 text-emerald-100">Entrar</Button>
                 </Link>
-                <Link href="#precos" className="flex-1">
-                  <Button size="sm" className="w-full bg-emerald-500">Teste grátis</Button>
-                </Link>
+                <a href="#precos" className="flex-1">
+                  <Button size="sm" className="w-full bg-emerald-500">Assinar</Button>
+                </a>
               </div>
             </div>
           </div>
@@ -250,7 +259,6 @@ export default function LandingPage() {
 
       {/* HERO */}
       <section className="relative min-h-screen flex items-center pt-16 overflow-hidden">
-        {/* Background slider */}
         <div className="absolute inset-0">
           {heroSlides.map((slide, idx) => (
             <div
@@ -271,18 +279,17 @@ export default function LandingPage() {
           ))}
         </div>
 
-        {/* Content */}
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 mb-6">
-              <Zap className="w-3 h-3 text-emerald-400" />
-              <span className="text-xs text-emerald-300 font-medium">7 dias grátis • Sem cartão de crédito</span>
+              <Coffee className="w-3 h-3 text-emerald-400" />
+              <span className="text-xs text-emerald-300 font-medium">Pague 1 café por mês • Sem cartão pra testar</span>
             </div>
 
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold leading-[1.05] mb-6">
               <span className="block">{heroSlides[slideIdx].title}</span>
               <span className="block mt-2 bg-gradient-to-r from-emerald-300 via-emerald-400 to-yellow-300 bg-clip-text text-transparent">
-                para professores
+                feito por professores
               </span>
             </h1>
 
@@ -291,19 +298,18 @@ export default function LandingPage() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3">
-              <Link href="#precos">
+              <a href="#precos">
                 <Button size="lg" className="bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 shadow-xl shadow-emerald-500/30 text-base sm:text-lg px-8">
-                  Começar agora <ArrowRight className="w-4 h-4 ml-2" />
+                  Assinar R$ 3,49/mês <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
-              </Link>
-              <Link href="/login">
+              </a>
+              <Link href="/sistema">
                 <Button size="lg" variant="outline" className="border-emerald-700 text-emerald-100 hover:bg-emerald-900/30 text-base sm:text-lg px-8">
-                  Ver demo
+                  Ver o sistema
                 </Button>
               </Link>
             </div>
 
-            {/* Slide indicators */}
             <div className="flex gap-2 mt-12">
               {heroSlides.map((_, idx) => (
                 <button
@@ -317,7 +323,7 @@ export default function LandingPage() {
               ))}
             </div>
 
-            <div className="mt-8 flex items-center gap-4 text-sm text-emerald-100/60">
+            <div className="mt-8 flex flex-wrap items-center gap-4 text-sm text-emerald-100/60">
               <div className="flex items-center gap-1">
                 <div className="flex">
                   {[1,2,3,4,5].map(i => <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />)}
@@ -332,7 +338,6 @@ export default function LandingPage() {
           </div>
         </div>
 
-        {/* Scroll cue */}
         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:block">
           <ChevronDown className="w-6 h-6 text-emerald-100/40 animate-bounce" />
         </div>
@@ -345,8 +350,8 @@ export default function LandingPage() {
             {[
               { v: '+2.500', l: 'Professores ativos' },
               { v: '+85.000', l: 'Aulas registradas' },
-              { v: 'R$ 2,3M', l: 'Em ganhos controlados' },
-              { v: '4,9/5', l: 'Avaliação média' },
+              { v: '27 anos', l: 'Carreira dos criadores' },
+              { v: 'R$ 3,49', l: 'Por mês só' },
             ].map((s, i) => (
               <div key={i} className="text-center">
                 <div className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-emerald-300 to-yellow-300 bg-clip-text text-transparent">{s.v}</div>
@@ -376,12 +381,12 @@ export default function LandingPage() {
                 O PROBLEMA
               </div>
               <h2 className="text-3xl sm:text-5xl font-bold mb-6 leading-tight">
-                A rotina do professor autônomo <span className="text-red-400">não precisa ser caótica</span>
+                A rotina do professor <span className="text-red-400">não precisa ser caótica</span>
               </h2>
               <div className="space-y-4 text-emerald-100/80">
-                <p>Você já passou horas no fim do mês somando horas no caderno? Já esqueceu de cobrar aula que aluno faltou? Já perdeu dados de meses inteiros porque o caderno rasgou ou o app parou?</p>
-                <p>Professor autônomo já tem muito com que se preocupar: planejar aulas, dar aulas, cobrar alunos, pagar impostos. <strong className="text-white">Somar horas não deveria ser um deles.</strong></p>
-                <p>O método do caderno não escala. Planilha do Excel trava. App gringo não entende que falta paga 1h fixa. Você precisa de algo feito pra sua realidade brasileira.</p>
+                <p>Você já passou horas no fim do mês somando horas no caderno? Já esqueceu de cobrar aula que aluno faltou? Já perdeu dados de meses inteiros porque o caderno rasgou?</p>
+                <p>Professor já tem muito com que se preocupar: planejar aulas, dar aulas, cobrar alunos, pagar impostos. <strong className="text-white">Somar horas não deveria ser um deles.</strong></p>
+                <p>Caderno não escala. Excel trava. App gringo não entende que falta paga 1h fixa. Você precisa de algo feito pra sua realidade brasileira — por quem entende.</p>
               </div>
             </div>
           </div>
@@ -401,7 +406,7 @@ export default function LandingPage() {
                 <span className="bg-gradient-to-r from-emerald-300 to-yellow-300 bg-clip-text text-transparent">Simples. Profissional. Seu.</span>
               </h2>
               <p className="text-emerald-100/80 mb-8 text-lg">
-                O Controle de Aulas foi criado por um professor, para professores. Cada detalhe foi pensado na sua rotina real — não é mais um app genérico adaptado.
+                Criado por professores com <strong className="text-white">27 anos de carreira</strong> em sala de aula. Cada detalhe foi pensado na sua rotina real — não é mais um app genérico adaptado.
               </p>
               <ul className="space-y-3">
                 {benefits.map((b, i) => (
@@ -415,7 +420,7 @@ export default function LandingPage() {
             <div className="relative">
               <img
                 src="/Controle-de-Horas/images/solution-calm.jpg"
-                alt="Professor tranquilo usando o app no tablet"
+                alt="Professor tranquilo usando o app"
                 className="rounded-2xl shadow-2xl border border-emerald-900/30"
               />
               <div className="absolute -bottom-4 -left-4 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-4 py-2 rounded-lg shadow-lg font-semibold text-sm">
@@ -426,8 +431,65 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* SCREENSHOTS REAIS */}
+      <section className="py-20 sm:py-28">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <div className="inline-block px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold mb-4">
+              VEJA O SISTEMA POR DENTRO
+            </div>
+            <h2 className="text-3xl sm:text-5xl font-bold mb-4">
+              Prints reais do <span className="bg-gradient-to-r from-emerald-300 to-yellow-300 bg-clip-text text-transparent">sistema funcionando</span>
+            </h2>
+            <p className="text-emerald-100/70 text-lg">
+              Imagens reais, sem Photoshop. É exatamente isso que você vai usar.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <div className="group">
+              <div className="relative overflow-hidden rounded-2xl border border-emerald-900/40 hover:border-emerald-500/50 transition-all">
+                <img
+                  src="/Controle-de-Horas/images/aulas.png"
+                  alt="Tela de Aulas Dadas do sistema Controle de Aulas"
+                  className="w-full h-auto group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a1410] via-transparent to-transparent opacity-80" />
+                <div className="absolute bottom-4 left-4 right-4">
+                  <h3 className="text-xl font-bold mb-1">📋 Aulas Dadas</h3>
+                  <p className="text-sm text-emerald-100/80">Lista completa com dia, horário, duração, status e valor. Filtros por mês e busca rápida.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="group">
+              <div className="relative overflow-hidden rounded-2xl border border-emerald-900/40 hover:border-emerald-500/50 transition-all">
+                <img
+                  src="/Controle-de-Horas/images/aulas2.png"
+                  alt="Tela do formulário de nova aula do sistema Controle de Aulas"
+                  className="w-full h-auto group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a1410] via-transparent to-transparent opacity-80" />
+                <div className="absolute bottom-4 left-4 right-4">
+                  <h3 className="text-xl font-bold mb-1">✏️ Registro de Aula</h3>
+                  <p className="text-sm text-emerald-100/80">Formulário simples: aluno, data (hoje por padrão), horário, duração, status e conteúdo. Cálculo automático.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="text-center mt-12">
+            <Link href="/sistema">
+              <Button size="lg" variant="outline" className="border-emerald-700 text-emerald-100 hover:bg-emerald-900/30">
+                Ver mais prints e detalhes <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* FEATURES */}
-      <section id="features" className="py-20 sm:py-28">
+      <section id="features" className="py-20 sm:py-28 bg-gradient-to-b from-[#0a1410] to-[#0f1f17]">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <div className="inline-block px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold mb-4">
@@ -462,7 +524,7 @@ export default function LandingPage() {
       </section>
 
       {/* COMPARATIVO */}
-      <section className="py-20 sm:py-28 bg-gradient-to-b from-[#0a1410] to-[#0f1f17]">
+      <section className="py-20 sm:py-28">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <div className="inline-block px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold mb-4">
@@ -493,6 +555,43 @@ export default function LandingPage() {
                   ))}
                 </tbody>
               </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CONFIANÇA - 27 ANOS */}
+      <section className="py-20 sm:py-28 bg-gradient-to-br from-emerald-900/20 via-[#0a1410] to-yellow-900/10">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="max-w-3xl mx-auto text-center">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-yellow-500/10 border border-yellow-500/30 mb-6">
+              <GraduationCap className="w-3 h-3 text-yellow-400" />
+              <span className="text-xs text-yellow-300 font-medium">FEITO POR PROFESSORES, PARA PROFESSORES</span>
+            </div>
+            <h2 className="text-3xl sm:text-5xl font-bold mb-6 leading-tight">
+              Não é uma startup gringa. <br/>
+              <span className="bg-gradient-to-r from-emerald-300 to-yellow-300 bg-clip-text text-transparent">É a classe se unindo.</span>
+            </h2>
+            <p className="text-lg sm:text-xl text-emerald-100/80 mb-8">
+              O desenvolvedor é professor também. Mais de <strong className="text-white">27 anos de carreira</strong> em sala de aula, vivendo os mesmos problemas que você. Criou o sistema pra si mesmo — e decidiu compartilhar com a classe por um cafézinho por mês.
+            </p>
+
+            <div className="grid sm:grid-cols-3 gap-6 mt-12">
+              <div className="p-6 rounded-2xl bg-emerald-900/20 border border-emerald-900/40">
+                <Award className="w-8 h-8 text-yellow-400 mx-auto mb-3" />
+                <div className="text-2xl font-bold">27 anos</div>
+                <div className="text-sm text-emerald-100/70">de carreira em sala de aula</div>
+              </div>
+              <div className="p-6 rounded-2xl bg-emerald-900/20 border border-emerald-900/40">
+                <Heart className="w-8 h-8 text-red-400 mx-auto mb-3" />
+                <div className="text-2xl font-bold">Café por mês</div>
+                <div className="text-sm text-emerald-100/70">só isso, sem lucro exagerado</div>
+              </div>
+              <div className="p-6 rounded-2xl bg-emerald-900/20 border border-emerald-900/40">
+                <Users className="w-8 h-8 text-emerald-400 mx-auto mb-3" />
+                <div className="text-2xl font-bold">+2.500</div>
+                <div className="text-sm text-emerald-100/70">professores já usando</div>
+              </div>
             </div>
           </div>
         </div>
@@ -547,69 +646,56 @@ export default function LandingPage() {
       <section id="precos" className="py-20 sm:py-28 bg-gradient-to-b from-[#0a1410] to-[#0f1f17]">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <div className="inline-block px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold mb-4">
-              PREÇOS
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-yellow-500/10 border border-yellow-500/30 mb-4">
+              <Coffee className="w-3 h-3 text-yellow-400" />
+              <span className="text-xs text-yellow-300 font-semibold">PAGUE UM CAFÉ POR MÊS</span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-bold mb-4">
-              Investimento que se <span className="bg-gradient-to-r from-emerald-300 to-yellow-300 bg-clip-text text-transparent">paga no primeiro mês</span>
+              Só R$ 3,49 por mês. <span className="bg-gradient-to-r from-emerald-300 to-yellow-300 bg-clip-text text-transparent">Sério.</span>
             </h2>
             <p className="text-emerald-100/70 text-lg">
-              7 dias grátis. Sem cartão de crédito. Cancele quando quiser.
+              Professor apoiando professor. Sem intermediários, sem CPM, sem acionistas. Um cafézinho pra sustentar o sistema.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            {plans.map((plan, i) => (
-              <div
-                key={i}
-                className={cn(
-                  'p-8 rounded-2xl border relative',
-                  plan.highlight
-                    ? 'border-emerald-500 bg-gradient-to-b from-emerald-900/30 to-transparent shadow-2xl shadow-emerald-500/20'
-                    : 'border-emerald-900/40 bg-emerald-900/10'
-                )}
-              >
-                {plan.highlight && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-4 py-1 rounded-full text-xs font-bold shadow-lg">
-                    MAIS POPULAR
-                  </div>
-                )}
-                <h3 className="text-xl font-bold mb-2">{plan.name}</h3>
-                <p className="text-sm text-emerald-100/60 mb-6">{plan.desc}</p>
-                <div className="flex items-baseline gap-1 mb-6">
-                  <span className="text-sm text-emerald-100/60">R$</span>
-                  <span className="text-5xl font-bold">{plan.price}</span>
-                  <span className="text-emerald-100/60">{plan.period}</span>
-                </div>
-                <ul className="space-y-3 mb-8">
-                  {plan.features.map((f, idx) => (
-                    <li key={idx} className="flex items-start gap-2 text-sm">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
-                      <span className="text-emerald-100/90">{f}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Link href="/login" className="block">
-                  <Button
-                    className={cn(
-                      'w-full',
-                      plan.highlight
-                        ? 'bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 shadow-lg shadow-emerald-500/30'
-                        : 'bg-emerald-900/40 hover:bg-emerald-900/60 border border-emerald-700'
-                    )}
-                    size="lg"
-                  >
-                    {plan.cta}
-                  </Button>
-                </Link>
+          <div className="max-w-md mx-auto">
+            <div className="p-8 sm:p-10 rounded-2xl border-2 border-emerald-500 bg-gradient-to-b from-emerald-900/30 to-transparent shadow-2xl shadow-emerald-500/20 relative">
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-4 py-1 rounded-full text-xs font-bold shadow-lg">
+                PLANO ÚNICO
               </div>
-            ))}
+              <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
+              <p className="text-sm text-emerald-100/60 mb-6">{plan.desc}</p>
+              <div className="flex items-baseline gap-1 mb-2">
+                <span className="text-sm text-emerald-100/60">R$</span>
+                <span className="text-6xl font-bold bg-gradient-to-r from-emerald-300 to-yellow-300 bg-clip-text text-transparent">{plan.price}</span>
+                <span className="text-emerald-100/60 text-xl">{plan.period}</span>
+              </div>
+              <p className="text-xs text-emerald-100/50 mb-6">no cartão de crédito • recorrência mensal via Mercado Pago</p>
+              <ul className="space-y-3 mb-8">
+                {plan.features.map((f, idx) => (
+                  <li key={idx} className="flex items-start gap-2 text-sm">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
+                    <span className="text-emerald-100/90">{f}</span>
+                  </li>
+                ))}
+              </ul>
+              <a
+                href="#precos"
+                className="block w-full text-center bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-white font-bold py-3 px-6 rounded-lg shadow-lg shadow-emerald-500/30 transition-all hover:scale-105"
+              >
+                {plan.cta} <ArrowRight className="inline w-4 h-4 ml-2" />
+              </a>
+              <p className="text-xs text-emerald-100/50 mt-4 text-center">
+                🔒 Pagamento seguro Mercado Pago • Cancele quando quiser
+              </p>
+            </div>
           </div>
 
           <div className="mt-8 flex flex-wrap justify-center gap-4 text-xs text-emerald-100/50">
             <div className="flex items-center gap-1"><Lock className="w-3 h-3" /> Dados criptografados</div>
             <div className="flex items-center gap-1"><Shield className="w-3 h-3" /> Conforme LGPD</div>
             <div className="flex items-center gap-1"><Cloud className="w-3 h-3" /> Backup automático</div>
+            <div className="flex items-center gap-1"><Coffee className="w-3 h-3" /> Só um cafézinho</div>
           </div>
         </div>
       </section>
@@ -622,10 +708,10 @@ export default function LandingPage() {
               AINDA EM DÚVIDA?
             </div>
             <h2 className="text-3xl sm:text-5xl font-bold mb-4">
-              Receba <span className="bg-gradient-to-r from-emerald-300 to-yellow-300 bg-clip-text text-transparent">10 dicas</span> de organização para professores
+              Receba <span className="bg-gradient-to-r from-emerald-300 to-yellow-300 bg-clip-text text-transparent">10 dicas</span> de organização
             </h2>
             <p className="text-emerald-100/70 text-lg mb-8">
-              Ebook gratuito + atualizações do produto. Sem spam.
+              Ebook gratuito + atualizações. Sem spam.
             </p>
 
             {sent ? (
@@ -653,9 +739,6 @@ export default function LandingPage() {
                 </Button>
               </form>
             )}
-            <p className="text-xs text-emerald-100/40 mt-4">
-              Ao se inscrever você concorda com nossa política de privacidade.
-            </p>
           </div>
         </div>
       </section>
@@ -698,20 +781,33 @@ export default function LandingPage() {
         <div className="absolute inset-0 bg-gradient-to-br from-emerald-600/20 via-emerald-500/10 to-yellow-500/10" />
         <div className="container mx-auto px-4 sm:px-6 relative">
           <div className="max-w-3xl mx-auto text-center">
+            <Coffee className="w-12 h-12 mx-auto mb-6 text-yellow-300" />
             <h2 className="text-4xl sm:text-6xl font-bold mb-6 leading-tight">
-              Comece <span className="bg-gradient-to-r from-emerald-300 to-yellow-300 bg-clip-text text-transparent">hoje mesmo</span>
+              Comece hoje por <span className="bg-gradient-to-r from-emerald-300 to-yellow-300 bg-clip-text text-transparent">um cafézinho</span>
             </h2>
             <p className="text-xl text-emerald-100/80 mb-8">
-              Junte-se a +2.500 professores que já organizaram a vida.
+              Junte-se a +2.500 professores que já organizaram a vida. R$ 3,49/mês, sem fidelidade.
             </p>
-            <Link href="/login">
+            <a href="#precos">
               <Button size="lg" className="bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 shadow-xl shadow-emerald-500/30 text-base sm:text-lg px-10">
-                Teste 7 dias grátis <ArrowRight className="w-5 h-5 ml-2" />
+                Assinar agora <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
-            </Link>
+            </a>
             <p className="text-sm text-emerald-100/60 mt-4">
-              Sem cartão de crédito • Cancele quando quiser
+              7 dias grátis • Sem cartão pra testar • Cancele quando quiser
             </p>
+
+            <div className="mt-8">
+              <a
+                href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MSG)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-emerald-300 hover:text-emerald-200 text-sm"
+              >
+                <MessageCircle className="w-4 h-4" />
+                Ou fale com a gente no WhatsApp
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -728,14 +824,15 @@ export default function LandingPage() {
                 <span className="font-bold">Controle de Aulas</span>
               </div>
               <p className="text-sm text-emerald-100/60">
-                O sistema de gestão feito por professor, para professor.
+                Sistema de gestão feito por professor, para professor. 27 anos de carreira em cada detalhe.
               </p>
             </div>
             <div>
               <h4 className="font-semibold mb-3 text-sm">Produto</h4>
               <ul className="space-y-2 text-sm text-emerald-100/60">
+                <li><Link href="/sistema" className="hover:text-emerald-300">Ver sistema</Link></li>
                 <li><a href="#features" className="hover:text-emerald-300">Recursos</a></li>
-                <li><a href="#precos" className="hover:text-emerald-300">Preços</a></li>
+                <li><a href="#precos" className="hover:text-emerald-300">Preço</a></li>
                 <li><a href="#faq" className="hover:text-emerald-300">FAQ</a></li>
                 <li><Link href="/login" className="hover:text-emerald-300">Entrar</Link></li>
               </ul>
@@ -760,11 +857,11 @@ export default function LandingPage() {
             </div>
           </div>
           <div className="pt-8 border-t border-emerald-900/30 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-emerald-100/50">
-            <p>© 2026 Controle de Aulas. Todos os direitos reservados.</p>
-            <p>Feito com 💚 para professores brasileiros</p>
+            <p>© 2026 Controle de Aulas. Professor apoiando professor. ☕</p>
+            <p>Feito com 💚 no Brasil</p>
           </div>
           <div className="mt-6 p-3 rounded-lg bg-emerald-900/10 border border-emerald-900/30 text-[11px] text-emerald-100/40 leading-relaxed">
-            <strong className="text-emerald-100/60">Aviso de direitos autorais:</strong> Este software é protegido por direitos autorais. A reprodução, distribuição, modificação ou comercialização não autorizada deste sistema, no todo ou em parte, sem o consentimento expresso por escrito do desenvolvedor, constitui violação da Lei nº 9.610/98 (Lei de Direitos Autorais). Para licenciamento comercial, parcerias ou autorizações, entre em contato através do repositório oficial.
+            <strong className="text-emerald-100/60">Aviso de direitos autorais:</strong> Este software é protegido por direitos autorais. A reprodução, distribuição, modificação ou comercialização não autorizada deste sistema, no todo ou em parte, sem o consentimento expresso por escrito do desenvolvedor, constitui violação da Lei nº 9.610/98 (Lei de Direitos Autorais). Para licenciamento comercial, parcerias ou autorizações, entre em contato pelo WhatsApp +55 11 96616-1611.
           </div>
         </div>
       </footer>
