@@ -1,0 +1,59 @@
+# Controle de Aulas
+
+> Sistema de gestão de aulas para professores autônomos.
+
+## O que é
+
+O Controle de Aulas é um sistema online para professores autônomos que registra aulas dadas, organiza o cronograma e calcula quanto o professor tem a receber por aula, por aluno e por mês. Feito por professores com mais de 27 anos de carreira em sala de aula.
+
+## Para quem é
+
+- Professores particulares (reforço, idiomas, música, arte, esportes)
+- Professores autônomos que dão aulas VIP e de turma
+- Tutores que precisam controlar horas e ganhos mensais
+
+## Funcionalidades reais
+
+1. **Dashboard com gráficos**: número de aulas, horas trabalhadas, valor a receber e faltas do mês
+2. **Cronograma e Aulas Dadas separados**: planeje o futuro sem poluir os números; registre o que já deu
+3. **Cálculo automático do valor a receber**: aulas VIP de 1, 1,5 ou 2 horas; turmas de 2 horas; falta conta como 1 hora fixa
+4. **Calendário visual**: mês inteiro colorido por status, dia atual destacado
+5. **100% responsivo**: funciona no celular, tablet e computador
+6. **Sincronização entre dispositivos**: automática via Cloudflare Worker, sem configuração
+7. **Senhas criptografadas**: SHA-256 com salt, painel isolado por professor
+8. **Fechamento mensal**: snapshots imutáveis no fim de cada mês
+9. **Ranking de alunos**: saiba quem gera mais valor
+
+## Preço
+
+- R$ 3,49 por mês via Mercado Pago (cartão de crédito, recorrência mensal)
+- 7 dias grátis sem cartão de crédito
+- Sem fidelidade, cancele quando quiser
+
+## Como testar
+
+1. Acesse https://superaplicativos.github.io/Controle-de-Horas/
+2. Cadastre-se com usuário, senha, nome e valor por hora
+3. Adicione alunos e registre aulas
+4. Veja o dashboard atualizar em tempo real
+
+## Links
+
+- [Página inicial](https://superaplicativos.github.io/Controle-de-Horas/)
+- [Tour pelo sistema](https://superaplicativos.github.io/Controle-de-Horas/sistema)
+- [Entrar](https://superaplicativos.github.io/Controle-de-Horas/login)
+- [Funcionalidades](https://superaplicativos.github.io/Controle-de-Horas/#funcionalidades)
+- [Como funciona](https://superaplicativos.github.io/Controle-de-Horas/#como-funciona)
+- [Perguntas frequentes](https://superaplicativos.github.io/Controle-de-Horas/#perguntas-frequentes)
+- [Preço](https://superaplicativos.github.io/Controle-de-Horas/#preco)
+
+## Contato
+
+WhatsApp: +55 11 96616-1611
+
+## Tecnologia
+
+- Next.js 16 com exportação estática, hospedado no GitHub Pages
+- Cloudflare Worker para sincronização (token GitHub protegido no servidor)
+- IndexedDB para armazenamento local no navegador
+- SHA-256 com salt para senhas

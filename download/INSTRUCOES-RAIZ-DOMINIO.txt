@@ -1,0 +1,58 @@
+# ESTES ARQUIVOS PRECISAM IR NO REPOSITÓRIO superaplicativos.github.io
+# (não no Controle-de-Horas)
+#
+# O GitHub Pages serve os arquivos da raiz do domínio (superaplicativos.github.io)
+# a partir do repositório com o mesmo nome. Para que robots.txt e sitemap.xml
+# sejam lidos corretamente na raiz, eles precisam estar nesse repositório.
+#
+# Instruções:
+# 1. Crie um repositório chamado superaplicativos.github.io (se não existir)
+# 2. Copie os dois arquivos abaixo para a raiz desse repositório
+# 3. Publique via GitHub Pages
+
+# ===== ARQUIVO: robots.txt (coloque na raiz de superaplicativos.github.io) =====
+
+User-agent: *
+Allow: /
+
+# Permite explicitamente crawlers de IA
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+Sitemap: https://superaplicativos.github.io/sitemap.xml
+
+# ===== ARQUIVO: sitemap.xml (coloque na raiz de superaplicativos.github.io) =====
+
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://superaplicativos.github.io/Controle-de-Horas/</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://superaplicativos.github.io/Controle-de-Horas/sistema</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://superaplicativos.github.io/Controle-de-Horas/login</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+</urlset>
