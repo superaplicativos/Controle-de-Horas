@@ -1,6 +1,6 @@
 ========================================
  CONTROLE DE AULAS - BACKUP
- Exportado em: 2026-09-30T02:56:43.510Z
+ Exportado em: 2026-09-30T02:57:05.314Z
  Versão: 1
 ========================================
 
@@ -11,6 +11,7 @@ VALOR/HORA: R$ 35.00
 munii79a-6ha520ms | TURMA KIDS | turma | ativo
 munii79a-78uzjc70 | Joelma | vip | ativo
 munii79a-oxjrox99 | TURMA ADOLESCENTES | turma | ativo
+munil6bm-inh70mf7 | Aluno QA Celular | vip | ativo
 
 ----- TURMAS -----
 munii799-nfirqkre | TURMA ADOLESCENTES
@@ -44,7 +45,7 @@ munii799-y4txbiw2 | TURMA KIDS
 ----- JSON COMPLETO -----
 {
   "versao": 1,
-  "exportado_em": "2026-09-30T02:56:43.510Z",
+  "exportado_em": "2026-09-30T02:57:05.314Z",
   "professor": {
     "nome": "Guilherme Miranda",
     "username": "guilherme",
@@ -229,6 +230,15 @@ munii799-y4txbiw2 | TURMA KIDS
       "turma_id": "munii799-nfirqkre",
       "ativo": true,
       "criado_em": 1790736884542
+    },
+    {
+      "id": "munil6bm-inh70mf7",
+      "professor_id": "munii796-h0wsw7qu",
+      "nome": "Aluno QA Celular",
+      "tipo": "vip",
+      "turma_id": null,
+      "ativo": true,
+      "criado_em": 1790737023298
     }
   ],
   "turmas": [
