@@ -17,6 +17,7 @@ import { toast } from 'sonner';
 import { gerarId } from '@/lib/crypto';
 import { mesAtualRef } from '@/lib/calculations';
 import { useSync } from '@/lib/useSync';
+import { useAutoReload } from '@/lib/useAutoReload';
 
 const STATUS_OPCOES: { value: StatusAula; label: string; cor: string }[] = [
   { value: 'presenca', label: 'Presença', cor: 'bg-emerald-100 text-emerald-700' },
@@ -57,6 +58,7 @@ export default function AulasPage() {
   }, [professor]);
 
   useEffect(() => { carregar(); }, [carregar]);
+  useAutoReload(carregar);
 
   async function salvar(e: React.FormEvent) {
     e.preventDefault();

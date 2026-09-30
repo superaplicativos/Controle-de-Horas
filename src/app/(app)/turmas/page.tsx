@@ -13,6 +13,7 @@ import { Plus, Pencil, Trash2, Users2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { gerarId } from '@/lib/crypto';
 import { useSync } from '@/lib/useSync';
+import { useAutoReload } from '@/lib/useAutoReload';
 
 export default function TurmasPage() {
   const { professor } = useAuth();
@@ -34,6 +35,7 @@ export default function TurmasPage() {
   }, [professor]);
 
   useEffect(() => { carregar(); }, [carregar]);
+  useAutoReload(carregar);
 
   async function salvar(e: React.FormEvent) {
     e.preventDefault();

@@ -49,6 +49,13 @@ function setState(s: Partial<SyncState>) {
 }
 
 /**
+ * Força um "synced" state (usado após seed completar, pra triggerar reload das páginas).
+ */
+export function notificarDadosAtualizados() {
+  setState({ status: 'synced', ultimoSync: Date.now(), erro: null, aulasSincronizadas: 0 });
+}
+
+/**
  * Puxa dados do GitHub e mescla com o local (mais recente ganha).
  * Não sobrescreve dados locais mais novos.
  * Usa o `username` do professor para identificar quais dados pertencem a ele

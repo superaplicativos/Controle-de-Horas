@@ -7,7 +7,7 @@ import { useAuth } from '@/lib/auth';
 import { Button } from '@/components/ui/button';
 import { BookOpen, LayoutDashboard, CalendarDays, ClipboardList, CalendarClock, Users, Users2, BarChart3, User, Settings, LogOut, Menu, X, Cloud, CloudOff, RefreshCw, CloudCog } from 'lucide-react';
 import { seedGuilherme } from '@/lib/seed';
-import { subscribeSyncState, type SyncState, puxarDoGitHub } from '@/lib/sync';
+import { subscribeSyncState, type SyncState, puxarDoGitHub, notificarDadosAtualizados } from '@/lib/sync';
 import { lerConfigLocal } from '@/lib/github';
 import { cn } from '@/lib/utils';
 
@@ -62,6 +62,8 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     (async () => {
       try {
         await seedGuilherme();
+        // Notifica que o seed completou (dashboard e outras páginas vão recarregar)
+        notificarDadosAtualizados();
       } catch (e) {
         console.error('seed error', e);
       }

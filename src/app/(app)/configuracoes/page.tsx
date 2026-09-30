@@ -45,9 +45,14 @@ export default function ConfiguracoesPage() {
     try {
       await configurarGitHub(token.trim(), repo.trim(), branch.trim() || 'main');
       setConfigurado(true);
-      toast.success('Configuração salva! Sync ativado.');
-      // Faz um pull imediato pra baixar dados do GitHub
-      setTimeout(() => window.location.reload(), 1500);
+      toast.success('Configuração salva! Sincronizando...');
+      // Faz um pull + push sem recarregar a página (evita loop)
+      const { sincronizarTudo } = await import('@/lib/sync');
+      if (professor) {
+        await sincronizarTudo(professor);
+      }
+      setUltimoSync(Date.now());
+      toast.success('Sincronização concluída!');
     } catch (e) {
       toast.error('Erro ao salvar configuração');
     } finally {
@@ -153,8 +158,9 @@ export default function ConfiguracoesPage() {
     try {
       setSalvandoConfig(true);
       await resetarDadosProfessor(professor);
-      toast.success('Dados resetados! Recarregando...');
-      setTimeout(() => window.location.reload(), 1500);
+      toast.success('Dados resetados!');
+      // Não recarrega a página — as outras páginas vão detectar a mudança via useAutoReload
+      setSalvandoConfig(false);
     } catch (e) {
       toast.error('Erro ao resetar dados');
       setSalvandoConfig(false);

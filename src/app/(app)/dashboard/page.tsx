@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 import { useAuth } from '@/lib/auth';
 import { listarAulasPorMes, listarAulasPorProfessor, buscarFechamentoMes } from '@/lib/db';
 import { calcularResumoMes, mesAtualRef, nomeMes, mesAnteriorRef, formatarMoeda, formatarHoras } from '@/lib/calculations';
@@ -8,7 +8,7 @@ import { KpiCard } from '@/components/KpiCard';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Calendar, Clock, DollarSign, XCircle, TrendingUp, Award, ChevronLeft, ChevronRight, CheckCircle2 } from 'lucide-react';
+import { Calendar, Clock, DollarSign, XCircle, TrendingUp, Award, ChevronLeft, ChevronRight, CheckCircle2, RefreshCw } from 'lucide-react';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   PieChart, Pie, Cell, Legend, LineChart, Line, AreaChart, Area,
@@ -17,6 +17,8 @@ import { criarFechamento } from '@/lib/calculations';
 import { salvarFechamento } from '@/lib/db';
 import { toast } from 'sonner';
 import { useSync } from '@/lib/useSync';
+import { useAutoReload } from '@/lib/useAutoReload';
+import { cn } from '@/lib/utils';
 
 const STATUS_COLORS = {
   presenca: '#10b981',
@@ -34,13 +36,14 @@ const STATUS_LABELS = {
 
 export default function DashboardPage() {
   const { professor } = useAuth();
-  const { notificar } = useSync();
+  const { notificar, status: syncStatus } = useSync();
   const [mesRef, setMesRef] = useState(mesAtualRef());
   const [aulas, setAulas] = useState<ReturnType<typeof calcularResumoMes> | null>(null);
   const [aulasAnterior, setAulasAnterior] = useState<ReturnType<typeof calcularResumoMes> | null>(null);
   const [carregando, setCarregando] = useState(true);
   const [jaFechado, setJaFechado] = useState(false);
   const [syncTick, setSyncTick] = useState(0);
+  const lastSyncStatus = useRef<string>('');
 
   const carregar = useCallback(async () => {
     if (!professor) return;
@@ -63,6 +66,9 @@ export default function DashboardPage() {
   useEffect(() => {
     carregar();
   }, [carregar, syncTick]);
+
+  // useAutoReload cuida de recarregar quando sync completa, aba volta a ser visível, etc.
+  useAutoReload(carregar);
 
   async function handleFecharMes() {
     if (!professor) return;
@@ -113,9 +119,21 @@ export default function DashboardPage() {
     <div className="space-y-4 sm:space-y-6">
       {/* Header com mês */}
       <div className="flex flex-col gap-3">
-        <div>
-          <h1 className="text-xl sm:text-2xl font-bold">Dashboard</h1>
-          <p className="text-xs sm:text-sm text-muted-foreground">Olá, {professor?.nome?.split(' ')[0]}! Aqui está seu resumo.</p>
+        <div className="flex items-start justify-between gap-2">
+          <div className="min-w-0">
+            <h1 className="text-xl sm:text-2xl font-bold">Dashboard</h1>
+            <p className="text-xs sm:text-sm text-muted-foreground">Olá, {professor?.nome?.split(' ')[0]}! Aqui está seu resumo.</p>
+          </div>
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={() => { setCarregando(true); carregar(); }}
+            disabled={carregando}
+            className="h-8 w-8 sm:h-9 sm:w-9 flex-shrink-0"
+            title="Atualizar"
+          >
+            <RefreshCw className={cn('w-4 h-4', carregando && 'animate-spin')} />
+          </Button>
         </div>
         <div className="flex items-center gap-2 justify-between sm:justify-end">
           <div className="flex items-center gap-2">

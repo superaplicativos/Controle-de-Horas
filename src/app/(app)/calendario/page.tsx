@@ -18,6 +18,7 @@ import { toast } from 'sonner';
 import { gerarId } from '@/lib/crypto';
 import { cn } from '@/lib/utils';
 import { useSync } from '@/lib/useSync';
+import { useAutoReload } from '@/lib/useAutoReload';
 
 const STATUS_OPCOES = [
   { value: 'presenca', label: 'Presença', cor: 'bg-emerald-500', badge: 'bg-emerald-100 text-emerald-700' },
@@ -52,6 +53,7 @@ export default function CalendarioPage() {
   }, [professor, mesRef]);
 
   useEffect(() => { carregar(); }, [carregar]);
+  useAutoReload(carregar);
 
   function navegarMes(direcao: number) {
     const [ano, mes] = mesRef.split('-').map(Number);

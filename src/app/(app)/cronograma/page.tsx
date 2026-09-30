@@ -16,6 +16,7 @@ import { Plus, Pencil, Trash2, CalendarClock, Search, X, ArrowRight } from 'luci
 import { toast } from 'sonner';
 import { gerarId } from '@/lib/crypto';
 import { useSync } from '@/lib/useSync';
+import { useAutoReload } from '@/lib/useAutoReload';
 
 const DURACOES: (1 | 1.5 | 2)[] = [1, 1.5, 2];
 
@@ -48,6 +49,7 @@ export default function CronogramaPage() {
   }, [professor]);
 
   useEffect(() => { carregar(); }, [carregar]);
+  useAutoReload(carregar);
 
   async function salvar(e: React.FormEvent) {
     e.preventDefault();

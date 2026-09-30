@@ -9,6 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Calendar, Clock, DollarSign, XCircle, CheckCircle2 } from 'lucide-react';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
+import { useAutoReload } from '@/lib/useAutoReload';
 
 export default function FechamentosPage() {
   const { professor } = useAuth();
@@ -23,6 +24,7 @@ export default function FechamentosPage() {
   }, [professor]);
 
   useEffect(() => { carregar(); }, [carregar]);
+  useAutoReload(carregar);
 
   const totalGeral = fechamentos.reduce((s, f) => s + f.total_ganhos, 0);
   const totalHorasGeral = fechamentos.reduce((s, f) => s + f.total_horas, 0);
