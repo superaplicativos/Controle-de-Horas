@@ -49,7 +49,10 @@ export default function CalendarioPage() {
       listarAlunosPorProfessor(professor.id),
     ]);
     setAulas(a);
-    setAlunos(al.filter((x) => x.ativo));
+    setAlunos(al.sort((a, b) => {
+      if (a.ativo !== b.ativo) return a.ativo ? -1 : 1;
+      return a.nome.localeCompare(b.nome);
+    }));
   }, [professor, mesRef]);
 
   useEffect(() => { carregar(); }, [carregar]);
@@ -201,9 +204,11 @@ export default function CalendarioPage() {
               <Label>Aluno / Turma</Label>
               <Select value={form.aluno_id} onValueChange={(v) => setForm({ ...form, aluno_id: v })}>
                 <SelectTrigger><SelectValue placeholder="Selecione..." /></SelectTrigger>
-                <SelectContent>
+                <SelectContent className="max-h-[60vh]">
                   {alunos.map((a) => (
-                    <SelectItem key={a.id} value={a.id}>{a.nome} ({a.tipo})</SelectItem>
+                    <SelectItem key={a.id} value={a.id} className={cn(!a.ativo && 'opacity-60')}>
+                      {a.nome} ({a.tipo}){!a.ativo && ' • inativo'}
+                    </SelectItem>
                   ))}
                 </SelectContent>
               </Select>

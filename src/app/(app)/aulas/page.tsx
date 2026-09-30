@@ -18,6 +18,7 @@ import { gerarId } from '@/lib/crypto';
 import { mesAtualRef } from '@/lib/calculations';
 import { useSync } from '@/lib/useSync';
 import { useAutoReload } from '@/lib/useAutoReload';
+import { cn } from '@/lib/utils';
 
 const STATUS_OPCOES: { value: StatusAula; label: string; cor: string }[] = [
   { value: 'presenca', label: 'Presença', cor: 'bg-emerald-100 text-emerald-700' },
@@ -54,7 +55,12 @@ export default function AulasPage() {
       listarAlunosPorProfessor(professor.id),
     ]);
     setAulas(todas.sort((a, b) => b.data.localeCompare(a.data) || b.criado_em - a.criado_em));
-    setAlunos(al.filter((a) => a.ativo));
+    // Mostra TODOS os alunos (ativos + inativos) pra poder registrar aula de quem foi inativado
+    setAlunos(al.sort((a, b) => {
+      // Ativos primeiro, depois inativos, alfabético dentro de cada grupo
+      if (a.ativo !== b.ativo) return a.ativo ? -1 : 1;
+      return a.nome.localeCompare(b.nome);
+    }));
   }, [professor]);
 
   useEffect(() => { carregar(); }, [carregar]);
@@ -173,10 +179,12 @@ export default function AulasPage() {
                 <Label>Aluno / Turma</Label>
                 <Select value={form.aluno_id} onValueChange={(v) => setForm({ ...form, aluno_id: v })}>
                   <SelectTrigger><SelectValue placeholder="Selecione..." /></SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="max-h-[60vh]">
                     {alunos.map((a) => (
-                      <SelectItem key={a.id} value={a.id}>
-                        {a.nome} ({a.tipo})
+                      <SelectItem key={a.id} value={a.id} className={cn('flex items-center', !a.ativo && 'opacity-60')}>
+                        <span className="truncate">{a.nome}</span>
+                        <span className="ml-2 text-[10px] px-1.5 py-0.5 rounded-full bg-muted text-muted-foreground">{a.tipo}</span>
+                        {!a.ativo && <span className="ml-1 text-[10px] px-1.5 py-0.5 rounded-full bg-gray-200 text-gray-600">inativo</span>}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -184,6 +192,7 @@ export default function AulasPage() {
                 {alunos.length === 0 && (
                   <p className="text-xs text-muted-foreground">Cadastre alunos primeiro na aba Alunos.</p>
                 )}
+                <p className="text-[11px] text-muted-foreground">Mostrando ativos e inativos. Inativos aparecem mais claros.</p>
               </div>
 
               <div className="grid grid-cols-2 gap-3">

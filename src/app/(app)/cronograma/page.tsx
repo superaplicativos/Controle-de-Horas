@@ -17,6 +17,7 @@ import { toast } from 'sonner';
 import { gerarId } from '@/lib/crypto';
 import { useSync } from '@/lib/useSync';
 import { useAutoReload } from '@/lib/useAutoReload';
+import { cn } from '@/lib/utils';
 
 const DURACOES: (1 | 1.5 | 2)[] = [1, 1.5, 2];
 
@@ -45,7 +46,10 @@ export default function CronogramaPage() {
       listarAlunosPorProfessor(professor.id),
     ]);
     setItens(c.sort((a, b) => a.data.localeCompare(b.data) || a.horario.localeCompare(b.horario)));
-    setAlunos(al.filter((x) => x.ativo));
+    setAlunos(al.sort((a, b) => {
+      if (a.ativo !== b.ativo) return a.ativo ? -1 : 1;
+      return a.nome.localeCompare(b.nome);
+    }));
   }, [professor]);
 
   useEffect(() => { carregar(); }, [carregar]);
@@ -163,9 +167,11 @@ export default function CronogramaPage() {
                   onValueChange={(v) => setForm({ ...form, aluno_nome: v })}
                 >
                   <SelectTrigger><SelectValue placeholder="Selecione um aluno/turma..." /></SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="max-h-[60vh]">
                     {alunos.map((a) => (
-                      <SelectItem key={a.id} value={a.nome}>{a.nome} ({a.tipo})</SelectItem>
+                      <SelectItem key={a.id} value={a.nome} className={cn(!a.ativo && 'opacity-60')}>
+                        {a.nome} ({a.tipo}){!a.ativo && ' • inativo'}
+                      </SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
