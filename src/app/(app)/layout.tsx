@@ -7,7 +7,7 @@ import { useAuth } from '@/lib/auth';
 import { Button } from '@/components/ui/button';
 import { BookOpen, LayoutDashboard, CalendarDays, ClipboardList, CalendarClock, Users, Users2, BarChart3, User, Settings, LogOut, Menu, X, Cloud, CloudOff, RefreshCw, CloudCog, Shield } from 'lucide-react';
 import { seedGuilherme } from '@/lib/seed';
-import { subscribeSyncState, type SyncState, puxarDoGitHub, notificarDadosAtualizados, subscribeConfigState } from '@/lib/sync';
+import { subscribeSyncState, type SyncState, puxarDoGitHub, enviarParaGitHub, notificarDadosAtualizados, subscribeConfigState } from '@/lib/sync';
 import { cn } from '@/lib/utils';
 import { temAcessoLiberado, sincronizarAssinatura } from '@/lib/assinatura';
 
@@ -71,7 +71,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     return unsub;
   }, []);
 
-  // Ao montar: seed + auto-pull + verificar assinatura
+  // Ao montar: seed + ENVIAR dados locais ANTES de puxar (não perde dados)
   useEffect(() => {
     if (!sessao || !professor) return;
     (async () => {
@@ -82,13 +82,21 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         console.error('seed error', e);
       }
       setGithubConfigured(true);
+
+      // 1. PRIMEIRO envia dados locais pro GitHub (protege dados do usuário)
+      try {
+        await enviarParaGitHub(professor);
+      } catch (e) {
+        console.warn('Erro ao enviar dados:', e);
+      }
+
+      // 2. DEPOIS puxa dados do GitHub (sem sobrescrever locais)
       await puxarDoGitHub(professor);
 
-      // Verifica assinatura (sincroniza com Worker) — SEM reload
+      // 3. Verifica assinatura
       try {
         const profAtualizado = await sincronizarAssinatura(professor);
         if (profAtualizado) {
-          // Atualiza o estado local em vez de recarregar a página
           atualizarProfessor(profAtualizado);
         }
       } catch (e) {
