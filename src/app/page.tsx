@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/lib/auth';
 import { seedGuilherme } from '@/lib/seed';
@@ -8,23 +8,29 @@ import { seedGuilherme } from '@/lib/seed';
 export default function Home() {
   const router = useRouter();
   const { sessao, carregando } = useAuth();
+  const [seedPronto, setSeedPronto] = useState(false);
 
   useEffect(() => {
     (async () => {
       try {
-        await seedGuilherme(); // cadastra Guilherme na 1a vez
-      } catch {
-        // ignore
-      }
-      if (!carregando) {
-        if (sessao) {
-          router.replace('/dashboard');
-        } else {
-          router.replace('/login');
-        }
+        await seedGuilherme();
+      } catch (e) {
+        console.error('seed error', e);
+      } finally {
+        setSeedPronto(true);
       }
     })();
-  }, [carregando, sessao, router]);
+  }, []);
+
+  useEffect(() => {
+    if (!carregando && seedPronto) {
+      if (sessao) {
+        router.replace('/dashboard');
+      } else {
+        router.replace('/login');
+      }
+    }
+  }, [carregando, sessao, router, seedPronto]);
 
   return (
     <div className="min-h-screen flex items-center justify-center">
