@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/lib/auth';
 import { Button } from '@/components/ui/button';
@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { BookOpen, LogIn, UserPlus } from 'lucide-react';
+import { seedGuilherme } from '@/lib/seed';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -19,6 +20,18 @@ export default function LoginPage() {
   const [valorHora, setValorHora] = useState('35');
   const [erro, setErro] = useState('');
   const [carregando, setCarregando] = useState(false);
+
+  // Roda o seed do Guilherme quando a página de login carrega
+  // (garante que o usuário dono sempre exista, mesmo após limpar dados)
+  useEffect(() => {
+    (async () => {
+      try {
+        await seedGuilherme();
+      } catch (e) {
+        console.error('seed error', e);
+      }
+    })();
+  }, []);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
