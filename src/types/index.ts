@@ -69,6 +69,18 @@ export interface Config {
   auto_sync: boolean;
 }
 
+export interface CronogramaItem {
+  id: string;
+  professor_id: string;
+  titulo: string;
+  aluno_nome: string;
+  data: string; // YYYY-MM-DD
+  horario: string; // HH:MM
+  duracao: 1 | 1.5 | 2;
+  observacao: string;
+  criado_em: number;
+}
+
 export interface BackupTXT {
   versao: number;
   exportado_em: string;
@@ -81,6 +93,7 @@ export interface BackupTXT {
   alunos: Aluno[];
   turmas: Turma[];
   fechamentos: Fechamento[];
+  cronograma: CronogramaItem[];
 }
 
 export interface Sessao {

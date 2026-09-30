@@ -1,5 +1,5 @@
-import type { Aula, Aluno, Turma, Fechamento, Professor, BackupTXT, Config } from '@/types';
-import { getConfig, salvarConfig, salvarAula, salvarAluno, salvarTurma, salvarFechamento, listarAulasPorProfessor, listarAlunosPorProfessor, listarTurmasPorProfessor, listarFechamentosPorProfessor } from './db';
+import type { Aula, Aluno, Turma, Fechamento, Professor, BackupTXT, Config, CronogramaItem } from '@/types';
+import { getConfig, salvarConfig, salvarAula, salvarAluno, salvarTurma, salvarFechamento, salvarCronogramaItem, listarAulasPorProfessor, listarAlunosPorProfessor, listarTurmasPorProfessor, listarFechamentosPorProfessor, listarCronogramaPorProfessor } from './db';
 
 const BACKUP_PATH = 'data/backup.txt';
 const GITHUB_API = 'https://api.github.com';
@@ -106,7 +106,7 @@ export async function sincronizarDoGitHub(professorId: string): Promise<SyncResu
     }
 
     // Importa apenas dados deste professor (filtra por professor_id)
-    let aulasN = 0, alunosN = 0, turmasN = 0, fechamentosN = 0;
+    let aulasN = 0, alunosN = 0, turmasN = 0, fechamentosN = 0, cronogramaN = 0;
 
     for (const a of backup.aulas) {
       if (a.professor_id === professorId) {
@@ -130,6 +130,13 @@ export async function sincronizarDoGitHub(professorId: string): Promise<SyncResu
       if (f.professor_id === professorId) {
         await salvarFechamento(f);
         fechamentosN++;
+      }
+    }
+    const backupCronograma = (backup.cronograma || []) as CronogramaItem[];
+    for (const c of backupCronograma) {
+      if (c.professor_id === professorId) {
+        await salvarCronogramaItem(c);
+        cronogramaN++;
       }
     }
 
@@ -161,11 +168,12 @@ export async function sincronizarParaGitHub(professor: Professor): Promise<SyncR
   }
 
   try {
-    const [aulas, alunos, turmas, fechamentos] = await Promise.all([
+    const [aulas, alunos, turmas, fechamentos, cronograma] = await Promise.all([
       listarAulasPorProfessor(professor.id),
       listarAlunosPorProfessor(professor.id),
       listarTurmasPorProfessor(professor.id),
       listarFechamentosPorProfessor(professor.id),
+      listarCronogramaPorProfessor(professor.id),
     ]);
 
     // Tenta ler o backup atual do GitHub (pra mesclar com outros professores)
@@ -198,6 +206,10 @@ export async function sincronizarParaGitHub(professor: Professor): Promise<SyncR
       ...(backupAtual?.fechamentos.filter((f) => f.professor_id !== professor.id) || []),
       ...fechamentos,
     ];
+    const cronogramaFinal = [
+      ...((backupAtual?.cronograma || []).filter((c) => c.professor_id !== professor.id)),
+      ...cronograma,
+    ];
 
     const backup: BackupTXT = {
       versao: 1,
@@ -211,6 +223,7 @@ export async function sincronizarParaGitHub(professor: Professor): Promise<SyncR
       alunos: alunosFinal,
       turmas: turmasFinal,
       fechamentos: fechamentosFinal,
+      cronograma: cronogramaFinal,
     };
 
     const conteudo = gerarBackupTXT(backup);
@@ -256,11 +269,17 @@ export function gerarBackupTXT(backup: BackupTXT): string {
   }
   linhas.push('');
 
-  linhas.push('----- AULAS -----');
+  linhas.push('----- AULAS DADAS -----');
   for (const a of backup.aulas) {
     linhas.push(
       `${a.data} | ${a.aluno_nome.padEnd(20).slice(0, 20)} | ${a.horario} | ${a.duracao}h | ${a.status.padEnd(10)} | R$ ${a.valor.toFixed(2)} | ${a.conteudo}`
     );
+  }
+  linhas.push('');
+
+  linhas.push('----- CRONOGRAMA (PLANEJAMENTO) -----');
+  for (const c of (backup.cronograma || [])) {
+    linhas.push(`${c.data} | ${c.aluno_nome.padEnd(20).slice(0, 20)} | ${c.horario} | ${c.duracao}h | ${c.titulo} | ${c.observacao}`);
   }
   linhas.push('');
 

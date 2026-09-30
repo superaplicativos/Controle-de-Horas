@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/lib/auth';
-import { CREDENCIAIS_DEMO } from '@/lib/seed';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -145,18 +144,11 @@ export default function LoginPage() {
               <Button type="submit" disabled={carregando} className="w-full">
                 {carregando ? 'Processando...' : modo === 'login' ? 'Entrar' : 'Criar conta'}
               </Button>
-              {modo === 'login' && (
-                <div className="text-xs text-center text-muted-foreground border-t w-full pt-3">
-                  <p>Conta demo:</p>
-                  <p className="font-mono">usuário: <strong>{CREDENCIAIS_DEMO.username}</strong></p>
-                  <p className="font-mono">senha: <strong>{CREDENCIAIS_DEMO.senha}</strong></p>
-                </div>
-              )}
             </CardFooter>
           </form>
         </Card>
         <p className="text-center text-xs text-muted-foreground mt-4">
-          Seus dados ficam no seu navegador. Configure o sync via GitHub nas configurações.
+          Seus dados ficam salvos no seu navegador. Configure o sync via GitHub nas configurações.
         </p>
       </div>
     </div>

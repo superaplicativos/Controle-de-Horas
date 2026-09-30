@@ -1,5 +1,5 @@
 import { openDB, type DBSchema, type IDBPDatabase } from 'idb';
-import type { Professor, Aluno, Turma, Aula, Fechamento, Config } from '@/types';
+import type { Professor, Aluno, Turma, Aula, Fechamento, Config, CronogramaItem } from '@/types';
 
 interface ControleAulasDB extends DBSchema {
   professores: {
@@ -27,6 +27,11 @@ interface ControleAulasDB extends DBSchema {
     value: Fechamento;
     indexes: { 'by-professor': string; 'by-professor-mes': [string, string] };
   };
+  cronograma: {
+    key: string;
+    value: CronogramaItem;
+    indexes: { 'by-professor': string; 'by-data': string };
+  };
   config: {
     key: string;
     value: Config & { id: string };
@@ -36,38 +41,47 @@ interface ControleAulasDB extends DBSchema {
 let dbInstance: IDBPDatabase<ControleAulasDB> | null = null;
 
 const DB_NAME = 'controle-aulas-db';
-const DB_VERSION = 1;
+const DB_VERSION = 2;
 
 export async function getDB(): Promise<IDBPDatabase<ControleAulasDB>> {
   if (dbInstance) return dbInstance;
 
   dbInstance = await openDB<ControleAulasDB>(DB_NAME, DB_VERSION, {
-    upgrade(db) {
-      if (!db.objectStoreNames.contains('professores')) {
-        const profStore = db.createObjectStore('professores', { keyPath: 'id' });
-        profStore.createIndex('by-username', 'username', { unique: true });
+    upgrade(db, oldVersion) {
+      if (oldVersion < 1) {
+        if (!db.objectStoreNames.contains('professores')) {
+          const profStore = db.createObjectStore('professores', { keyPath: 'id' });
+          profStore.createIndex('by-username', 'username', { unique: true });
+        }
+        if (!db.objectStoreNames.contains('alunos')) {
+          const alunoStore = db.createObjectStore('alunos', { keyPath: 'id' });
+          alunoStore.createIndex('by-professor', 'professor_id');
+        }
+        if (!db.objectStoreNames.contains('turmas')) {
+          const turmaStore = db.createObjectStore('turmas', { keyPath: 'id' });
+          turmaStore.createIndex('by-professor', 'professor_id');
+        }
+        if (!db.objectStoreNames.contains('aulas')) {
+          const aulaStore = db.createObjectStore('aulas', { keyPath: 'id' });
+          aulaStore.createIndex('by-professor', 'professor_id');
+          aulaStore.createIndex('by-mes', 'mes_ref');
+          aulaStore.createIndex('by-professor-mes', ['professor_id', 'mes_ref']);
+        }
+        if (!db.objectStoreNames.contains('fechamentos')) {
+          const fechStore = db.createObjectStore('fechamentos', { keyPath: 'id' });
+          fechStore.createIndex('by-professor', 'professor_id');
+          fechStore.createIndex('by-professor-mes', ['professor_id', 'mes']);
+        }
+        if (!db.objectStoreNames.contains('config')) {
+          db.createObjectStore('config', { keyPath: 'id' });
+        }
       }
-      if (!db.objectStoreNames.contains('alunos')) {
-        const alunoStore = db.createObjectStore('alunos', { keyPath: 'id' });
-        alunoStore.createIndex('by-professor', 'professor_id');
-      }
-      if (!db.objectStoreNames.contains('turmas')) {
-        const turmaStore = db.createObjectStore('turmas', { keyPath: 'id' });
-        turmaStore.createIndex('by-professor', 'professor_id');
-      }
-      if (!db.objectStoreNames.contains('aulas')) {
-        const aulaStore = db.createObjectStore('aulas', { keyPath: 'id' });
-        aulaStore.createIndex('by-professor', 'professor_id');
-        aulaStore.createIndex('by-mes', 'mes_ref');
-        aulaStore.createIndex('by-professor-mes', ['professor_id', 'mes_ref']);
-      }
-      if (!db.objectStoreNames.contains('fechamentos')) {
-        const fechStore = db.createObjectStore('fechamentos', { keyPath: 'id' });
-        fechStore.createIndex('by-professor', 'professor_id');
-        fechStore.createIndex('by-professor-mes', ['professor_id', 'mes']);
-      }
-      if (!db.objectStoreNames.contains('config')) {
-        db.createObjectStore('config', { keyPath: 'id' });
+      if (oldVersion < 2) {
+        if (!db.objectStoreNames.contains('cronograma')) {
+          const cronStore = db.createObjectStore('cronograma', { keyPath: 'id' });
+          cronStore.createIndex('by-professor', 'professor_id');
+          cronStore.createIndex('by-data', 'data');
+        }
       }
     },
   });
@@ -192,13 +206,15 @@ export async function limparDadosProfessor(professorId: string): Promise<void> {
   const turmas = await db.getAllFromIndex('turmas', 'by-professor', professorId);
   const aulas = await db.getAllFromIndex('aulas', 'by-professor', professorId);
   const fechamentos = await db.getAllFromIndex('fechamentos', 'by-professor', professorId);
+  const cronograma = await db.getAllFromIndex('cronograma', 'by-professor', professorId);
 
-  const tx = db.transaction(['alunos', 'turmas', 'aulas', 'fechamentos'], 'readwrite');
+  const tx = db.transaction(['alunos', 'turmas', 'aulas', 'fechamentos', 'cronograma'], 'readwrite');
   await Promise.all([
     ...alunos.map((a) => tx.objectStore('alunos').delete(a.id)),
     ...turmas.map((t) => tx.objectStore('turmas').delete(t.id)),
     ...aulas.map((a) => tx.objectStore('aulas').delete(a.id)),
     ...fechamentos.map((f) => tx.objectStore('fechamentos').delete(f.id)),
+    ...cronograma.map((c) => tx.objectStore('cronograma').delete(c.id)),
   ]);
   await tx.done;
 }
@@ -208,12 +224,31 @@ export async function exportarDadosProfessor(professorId: string): Promise<{
   alunos: Aluno[];
   turmas: Turma[];
   fechamentos: Fechamento[];
+  cronograma: CronogramaItem[];
 }> {
-  const [aulas, alunos, turmas, fechamentos] = await Promise.all([
+  const [aulas, alunos, turmas, fechamentos, cronograma] = await Promise.all([
     listarAulasPorProfessor(professorId),
     listarAlunosPorProfessor(professorId),
     listarTurmasPorProfessor(professorId),
     listarFechamentosPorProfessor(professorId),
+    listarCronogramaPorProfessor(professorId),
   ]);
-  return { aulas, alunos, turmas, fechamentos };
+  return { aulas, alunos, turmas, fechamentos, cronograma };
+}
+
+// ============ CRONOGRAMA ============
+
+export async function salvarCronogramaItem(item: CronogramaItem): Promise<void> {
+  const db = await getDB();
+  await db.put('cronograma', item);
+}
+
+export async function listarCronogramaPorProfessor(professorId: string): Promise<CronogramaItem[]> {
+  const db = await getDB();
+  return db.getAllFromIndex('cronograma', 'by-professor', professorId);
+}
+
+export async function deletarCronogramaItem(id: string): Promise<void> {
+  const db = await getDB();
+  await db.delete('cronograma', id);
 }

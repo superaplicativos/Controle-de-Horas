@@ -5,14 +5,15 @@ import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/lib/auth';
 import { Button } from '@/components/ui/button';
-import { BookOpen, LayoutDashboard, CalendarDays, ClipboardList, Users, Users2, BarChart3, User, Settings, LogOut, Menu, X, Cloud } from 'lucide-react';
+import { BookOpen, LayoutDashboard, CalendarDays, ClipboardList, CalendarClock, Users, Users2, BarChart3, User, Settings, LogOut, Menu, X, Cloud } from 'lucide-react';
 import { sincronizarDoGitHub, lerConfigLocal } from '@/lib/github';
 import { cn } from '@/lib/utils';
 
 const navItems = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+  { href: '/cronograma', label: 'Cronograma', icon: CalendarClock },
+  { href: '/aulas', label: 'Aulas Dadas', icon: ClipboardList },
   { href: '/calendario', label: 'Calendário', icon: CalendarDays },
-  { href: '/aulas', label: 'Aulas', icon: ClipboardList },
   { href: '/alunos', label: 'Alunos', icon: Users },
   { href: '/turmas', label: 'Turmas', icon: Users2 },
   { href: '/fechamentos', label: 'Fechamentos', icon: BarChart3 },
