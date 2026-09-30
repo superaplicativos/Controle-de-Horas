@@ -1,6 +1,6 @@
 ========================================
  CONTROLE DE AULAS - BACKUP
- Exportado em: 2026-09-30T02:50:52.366Z
+ Exportado em: 2026-09-30T02:51:29.061Z
  Versão: 1
 ========================================
 
@@ -11,6 +11,7 @@ VALOR/HORA: R$ 35.00
 muni3kai-pd0y2150 | TURMA KIDS | turma | ativo
 muni3kai-vd2y6u98 | Joelma | vip | ativo
 muni3kai-vjk1hmke | TURMA ADOLESCENTES | turma | ativo
+munidyvb-wc2p11vl | Aluno Teste Sync | vip | ativo
 
 ----- TURMAS -----
 muni3kag-ie02xj2v | TURMA KIDS
@@ -44,7 +45,7 @@ muni3kah-e6uai5ku | TURMA ADOLESCENTES
 ----- JSON COMPLETO -----
 {
   "versao": 1,
-  "exportado_em": "2026-09-30T02:50:52.366Z",
+  "exportado_em": "2026-09-30T02:51:29.061Z",
   "professor": {
     "nome": "Guilherme Miranda",
     "username": "guilherme",
@@ -229,6 +230,15 @@ muni3kah-e6uai5ku | TURMA ADOLESCENTES
       "turma_id": "muni3kah-e6uai5ku",
       "ativo": true,
       "criado_em": 1790736201594
+    },
+    {
+      "id": "munidyvb-wc2p11vl",
+      "professor_id": "muni3kaf-wqbkf5vn",
+      "nome": "Aluno Teste Sync",
+      "tipo": "vip",
+      "turma_id": null,
+      "ativo": true,
+      "criado_em": 1790736687047
     }
   ],
   "turmas": [
