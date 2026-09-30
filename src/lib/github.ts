@@ -5,18 +5,13 @@ import { salvarAula, salvarAluno, salvarTurma, salvarFechamento, salvarCronogram
  * Configurações FIXAS do sync (não pede mais nada do usuário).
  *
  * Como funciona:
- * - ESCRITA: POST /sync no Cloudflare Worker (token GitHub fica no Worker, seguro)
- * - LEITURA: GET direto na GitHub API (repo público, sem necessidade de token)
- *
- * Isso resolve o problema de multi-professor: qualquer um só cadastra usuário+senha
- * e o sync já funciona. Token GitHub nunca aparece no navegador.
+ * - ESCRITA: POST /sync no Cloudflare Worker
+ * - LEITURA: GET /backup no Cloudflare Worker (também usa token GitHub, evita rate limit)
  */
 
 const WORKER_URL = 'https://controle-aulas-sync.controler-2a4.workers.dev';
 const API_SECRET = 'controle-aulas-2026-emerald';
-const GITHUB_PUBLIC_REPO = 'superaplicativos/Controle-de-Horas';
 const BACKUP_PATH = 'data/backup.txt';
-const GITHUB_API = 'https://api.github.com';
 
 export interface SyncResult {
   ok: boolean;
@@ -30,14 +25,14 @@ export interface SyncResult {
 }
 
 /**
- * Lê o arquivo data/backup.txt do repositório GitHub PÚBLICO.
- * Não precisa de token (repo é público).
+ * Lê o arquivo data/backup.txt via Cloudflare Worker.
+ * O Worker tem o token GitHub embutido — não sofre com rate limit.
  */
 export async function lerBackupDoGitHub(): Promise<{ conteudo: string; sha: string } | null> {
-  const url = `${GITHUB_API}/repos/${GITHUB_PUBLIC_REPO}/contents/${BACKUP_PATH}`;
-  const resp = await fetch(url, {
+  const resp = await fetch(`${WORKER_URL}/backup`, {
     headers: {
-      Accept: 'application/vnd.github+json',
+      'Authorization': `Bearer ${API_SECRET}`,
+      'Accept': 'application/json',
     },
   });
 
@@ -45,17 +40,19 @@ export async function lerBackupDoGitHub(): Promise<{ conteudo: string; sha: stri
     return null;
   }
   if (!resp.ok) {
-    throw new Error(`GitHub API: ${resp.status} ${resp.statusText}`);
+    const errData = await resp.json().catch(() => ({}));
+    throw new Error(`Worker GET /backup: ${resp.status} - ${errData?.error || resp.statusText}`);
   }
 
   const data = await resp.json();
-  const conteudo = atob(data.content.replace(/\n/g, ''));
-  return { conteudo, sha: data.sha };
+  if (!data.exists) {
+    return null;
+  }
+  return { conteudo: data.content, sha: data.sha };
 }
 
 /**
  * Salva/atualiza o arquivo data/backup.txt via Cloudflare Worker.
- * O token GitHub fica seguro no Worker (não exposto pro navegador).
  */
 export async function salvarBackupNoGitHub(conteudo: string): Promise<boolean> {
   const resp = await fetch(`${WORKER_URL}/sync`, {
@@ -72,7 +69,7 @@ export async function salvarBackupNoGitHub(conteudo: string): Promise<boolean> {
 
   if (!resp.ok) {
     const errData = await resp.json().catch(() => ({}));
-    throw new Error(`Worker: ${resp.status} - ${errData?.error || resp.statusText}`);
+    throw new Error(`Worker POST /sync: ${resp.status} - ${errData?.error || resp.statusText}`);
   }
 
   return true;
@@ -339,7 +336,7 @@ export function parseBackupTXT(conteudo: string): BackupTXT | null {
 export async function getConfig(): Promise<Config | null> {
   return {
     github_token: '***worker-managed***',
-    github_repo: GITHUB_PUBLIC_REPO,
+    github_repo: 'superaplicativos/Controle-de-Horas',
     github_branch: 'main',
     ultimo_sync: null,
     auto_sync: true,
