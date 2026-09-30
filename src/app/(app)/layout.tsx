@@ -68,7 +68,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       const config = await lerConfigLocal();
       setGithubConfigured(!!config?.github_token && !!config.github_repo);
       if (config?.github_token && config.github_repo) {
-        await puxarDoGitHub(professor.id);
+        await puxarDoGitHub(professor);
       }
     })();
   }, [sessao, professor]);

@@ -25,7 +25,7 @@ export function useSync() {
     if (!professor) return;
     let mounted = true;
     (async () => {
-      const s = await puxarDoGitHub(professor.id);
+      const s = await puxarDoGitHub(professor);
       if (!mounted) return;
       setState(s);
     })();

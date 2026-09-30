@@ -51,8 +51,10 @@ function setState(s: Partial<SyncState>) {
 /**
  * Puxa dados do GitHub e mescla com o local (mais recente ganha).
  * Não sobrescreve dados locais mais novos.
+ * Usa o `username` do professor para identificar quais dados pertencem a ele
+ * (mesmo que o professor_id remoto seja diferente do local — caso de multi-dispositivo).
  */
-export async function puxarDoGitHub(professorId: string): Promise<SyncState> {
+export async function puxarDoGitHub(professor: Professor): Promise<SyncState> {
   const config = await getConfig();
   if (!config?.github_token || !config?.github_repo) {
     setState({ status: 'not-configured', erro: null });
@@ -77,64 +79,69 @@ export async function puxarDoGitHub(professorId: string): Promise<SyncState> {
       return currentState;
     }
 
-    // Mescla: pega dados do professor remoto + dados locais
-    // Resolução de conflitos: quem tem `criado_em` mais recente ganha
+    const professorId = professor.id;
+    const professorUsername = professor.username;
+
+    // Dados locais
     const locaisAulas = await listarAulasPorProfessor(professorId);
     const locaisAlunos = await listarAlunosPorProfessor(professorId);
     const locaisTurmas = await listarTurmasPorProfessor(professorId);
     const locaisCronograma = await listarCronogramaPorProfessor(professorId);
 
-    // Constrói mapas por ID
+    // Mapas por ID (locais)
     const aulasMap = new Map<string, Aula>();
     const alunosMap = new Map<string, Aluno>();
     const turmasMap = new Map<string, Turma>();
     const cronogramaMap = new Map<string, CronogramaItem>();
 
-    // Primeiro adiciona locais
     for (const a of locaisAulas) aulasMap.set(a.id, a);
     for (const a of locaisAlunos) alunosMap.set(a.id, a);
     for (const t of locaisTurmas) turmasMap.set(t.id, t);
     for (const c of locaisCronograma) cronogramaMap.set(c.id, c);
 
-    // Depois mescla com remotos (mais recente ganha)
+    // Mescla com remotos: adaptar professor_id (pode ser diferente em multi-dispositivo)
+    // Critério: se o backup.professor.username === professor.username, os dados são deste professor.
+    const isFromThisProfessor = backup.professor.username === professorUsername;
+
     let alteracoes = 0;
-    for (const a of backup.aulas) {
-      if (a.professor_id !== professorId) continue;
-      const local = aulasMap.get(a.id);
-      if (!local) {
-        aulasMap.set(a.id, a);
-        await salvarAula(a);
-        alteracoes++;
-      } else if (a.criado_em > local.criado_em) {
-        // Remoto é mais recente — sobrescreve
-        aulasMap.set(a.id, a);
-        await salvarAula(a);
-        alteracoes++;
+    if (isFromThisProfessor) {
+      for (const a of backup.aulas) {
+        const local = aulasMap.get(a.id);
+        const aulaAdaptada = { ...a, professor_id: professorId };
+        if (!local) {
+          aulasMap.set(a.id, aulaAdaptada);
+          await salvarAula(aulaAdaptada);
+          alteracoes++;
+        } else if (a.criado_em > local.criado_em) {
+          aulasMap.set(a.id, aulaAdaptada);
+          await salvarAula(aulaAdaptada);
+          alteracoes++;
+        }
       }
-    }
-    for (const a of backup.alunos) {
-      if (a.professor_id !== professorId) continue;
-      const local = alunosMap.get(a.id);
-      if (!local || a.criado_em > local.criado_em) {
-        await salvarAluno(a);
-        alteracoes++;
+      for (const a of backup.alunos) {
+        const local = alunosMap.get(a.id);
+        const alunoAdaptado = { ...a, professor_id: professorId };
+        if (!local || a.criado_em > local.criado_em) {
+          await salvarAluno(alunoAdaptado);
+          alteracoes++;
+        }
       }
-    }
-    for (const t of backup.turmas) {
-      if (t.professor_id !== professorId) continue;
-      const local = turmasMap.get(t.id);
-      if (!local || t.criado_em > local.criado_em) {
-        await salvarTurma(t);
-        alteracoes++;
+      for (const t of backup.turmas) {
+        const local = turmasMap.get(t.id);
+        const turmaAdaptada = { ...t, professor_id: professorId };
+        if (!local || t.criado_em > local.criado_em) {
+          await salvarTurma(turmaAdaptada);
+          alteracoes++;
+        }
       }
-    }
-    const backupCronograma = (backup.cronograma || []) as CronogramaItem[];
-    for (const c of backupCronograma) {
-      if (c.professor_id !== professorId) continue;
-      const local = cronogramaMap.get(c.id);
-      if (!local || c.criado_em > local.criado_em) {
-        await salvarCronogramaItem(c);
-        alteracoes++;
+      const backupCronograma = (backup.cronograma || []) as CronogramaItem[];
+      for (const c of backupCronograma) {
+        const local = cronogramaMap.get(c.id);
+        const cronAdaptado = { ...c, professor_id: professorId };
+        if (!local || c.criado_em > local.criado_em) {
+          await salvarCronogramaItem(cronAdaptado);
+          alteracoes++;
+        }
       }
     }
 
@@ -266,7 +273,7 @@ export function notificarAlteracao(professor: Professor) {
  */
 export async function sincronizarTudo(professor: Professor): Promise<SyncState> {
   // 1. Puxa dados remotos
-  await puxarDoGitHub(professor.id);
+  await puxarDoGitHub(professor);
   // 2. Envia dados mesclados
   await enviarParaGitHub(professor);
   return currentState;

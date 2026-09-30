@@ -61,7 +61,7 @@ export default function ConfiguracoesPage() {
     try {
       const { puxarDoGitHub, enviarParaGitHub } = await import('@/lib/sync');
       const res = direcao === 'puxar'
-        ? await puxarDoGitHub(professor.id)
+        ? await puxarDoGitHub(professor)
         : await enviarParaGitHub(professor);
       if (res.status === 'synced') {
         toast.success(
