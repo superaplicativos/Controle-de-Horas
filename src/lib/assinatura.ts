@@ -14,7 +14,7 @@
 
 import type { Professor } from '@/types';
 
-export const WORKER_URL = 'https://controle-aulas-sync.controler-2a4.workers.dev';
+export const WORKER_URL = 'https://controle-aulas-sync.control-de-horas.workers.dev';
 export const API_SECRET = 'controle-aulas-2026-emerald';
 
 /**

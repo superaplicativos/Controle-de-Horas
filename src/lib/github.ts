@@ -9,7 +9,7 @@ import { salvarAula, salvarAluno, salvarTurma, salvarFechamento, salvarCronogram
  * - LEITURA: GET /backup no Cloudflare Worker (também usa token GitHub, evita rate limit)
  */
 
-const WORKER_URL = 'https://controle-aulas-sync.controler-2a4.workers.dev';
+const WORKER_URL = 'https://controle-aulas-sync.control-de-horas.workers.dev';
 const API_SECRET = 'controle-aulas-2026-emerald';
 const BACKUP_PATH = 'data/backup.txt';
 
