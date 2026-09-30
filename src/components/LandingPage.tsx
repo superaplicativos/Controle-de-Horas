@@ -13,6 +13,7 @@ import { cn } from '@/lib/utils';
 
 const WHATSAPP_NUMBER = '5511966161611';
 const WHATSAPP_MSG = 'Olá sou professor! Gostaria de Contratar o Controle de Aulas Super Inteligente!';
+const MERCADO_PAGO_LINK = 'https://mpago.la/2jx6dyC';
 
 const heroSlides = [
   {
@@ -222,7 +223,7 @@ export default function LandingPage() {
             <Link href="/login">
               <Button variant="ghost" size="sm" className="text-emerald-100 hover:text-white hover:bg-emerald-900/30">Entrar</Button>
             </Link>
-            <a href="#precos">
+            <a href={MERCADO_PAGO_LINK} target="_blank" rel="noopener noreferrer">
               <Button size="sm" className="bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 shadow-lg shadow-emerald-500/30">
                 Assinar R$ 3,49/mês
               </Button>
@@ -248,7 +249,7 @@ export default function LandingPage() {
                 <Link href="/login" className="flex-1">
                   <Button variant="outline" size="sm" className="w-full border-emerald-700 text-emerald-100">Entrar</Button>
                 </Link>
-                <a href="#precos" className="flex-1">
+                <a href={MERCADO_PAGO_LINK} target="_blank" rel="noopener noreferrer" className="flex-1">
                   <Button size="sm" className="w-full bg-emerald-500">Assinar</Button>
                 </a>
               </div>
@@ -298,7 +299,7 @@ export default function LandingPage() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3">
-              <a href="#precos">
+              <a href={MERCADO_PAGO_LINK} target="_blank" rel="noopener noreferrer">
                 <Button size="lg" className="bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 shadow-xl shadow-emerald-500/30 text-base sm:text-lg px-8">
                   Assinar R$ 3,49/mês <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
@@ -680,13 +681,15 @@ export default function LandingPage() {
                 ))}
               </ul>
               <a
-                href="#precos"
+                href={MERCADO_PAGO_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="block w-full text-center bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-white font-bold py-3 px-6 rounded-lg shadow-lg shadow-emerald-500/30 transition-all hover:scale-105"
               >
                 {plan.cta} <ArrowRight className="inline w-4 h-4 ml-2" />
               </a>
               <p className="text-xs text-emerald-100/50 mt-4 text-center">
-                🔒 Pagamento seguro Mercado Pago • Cancele quando quiser
+                🔒 Pagamento seguro Mercado Pago • Abre em nova aba
               </p>
             </div>
           </div>
@@ -788,7 +791,7 @@ export default function LandingPage() {
             <p className="text-xl text-emerald-100/80 mb-8">
               Junte-se a +2.500 professores que já organizaram a vida. R$ 3,49/mês, sem fidelidade.
             </p>
-            <a href="#precos">
+            <a href={MERCADO_PAGO_LINK} target="_blank" rel="noopener noreferrer">
               <Button size="lg" className="bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 shadow-xl shadow-emerald-500/30 text-base sm:text-lg px-10">
                 Assinar agora <ArrowRight className="w-5 h-5 ml-2" />
               </Button>

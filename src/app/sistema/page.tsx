@@ -10,6 +10,7 @@ import {
 
 const WHATSAPP_NUMBER = '5511966161611';
 const WHATSAPP_MSG = 'Olá sou professor! Gostaria de Contratar o Controle de Aulas Super Inteligente!';
+const MERCADO_PAGO_LINK = 'https://mpago.la/2jx6dyC';
 
 const screenshots = [
   {
@@ -231,11 +232,11 @@ export default function SistemaPage() {
             R$ 3,49/mês. 7 dias grátis pra testar. Sem cartão de crédito pra começar. Cancele quando quiser.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Link href="/login">
+            <a href={MERCADO_PAGO_LINK} target="_blank" rel="noopener noreferrer">
               <Button size="lg" className="bg-gradient-to-r from-emerald-500 to-emerald-600 shadow-lg shadow-emerald-500/30 px-8">
                 Assinar R$ 3,49/mês <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
-            </Link>
+            </a>
             <a
               href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MSG)}`}
               target="_blank"
