@@ -139,8 +139,9 @@ export default function DashboardPage() {
       {/* KPIs */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <KpiCard
-          titulo="Aulas"
+          titulo="Nº Aulas"
           valor={r.totalAulas.toString()}
+          subtitulo="quantidade de aulas"
           icon={Calendar}
           cor="sky"
           tendencia={calcTend(r.totalAulas, totalAulasAnt)}
@@ -148,6 +149,7 @@ export default function DashboardPage() {
         <KpiCard
           titulo="Horas"
           valor={formatarHoras(r.totalHoras)}
+          subtitulo="horas trabalhadas"
           icon={Clock}
           cor="violet"
           tendencia={calcTend(r.totalHoras, totalHorasAnt)}
@@ -162,6 +164,7 @@ export default function DashboardPage() {
         <KpiCard
           titulo="Faltas"
           valor={r.totalFaltas.toString()}
+          subtitulo="alunos faltaram"
           icon={XCircle}
           cor="rose"
           tendencia={calcTend(r.totalFaltas, totalFaltasAnt)}

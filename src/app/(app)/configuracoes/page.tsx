@@ -7,11 +7,12 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
-import { Cloud, Download, Upload, RefreshCw, AlertTriangle, CheckCircle2, Github } from 'lucide-react';
+import { Cloud, Download, Upload, RefreshCw, AlertTriangle, CheckCircle2, Github, RotateCcw } from 'lucide-react';
 import { toast } from 'sonner';
 import { configurarGitHub, sincronizarDoGitHub, sincronizarParaGitHub, lerConfigLocal } from '@/lib/github';
 import { exportarDadosProfessor, limparDadosProfessor } from '@/lib/db';
 import { gerarBackupTXT, parseBackupTXT } from '@/lib/github';
+import { resetarDadosProfessor } from '@/lib/seed';
 import { format } from 'date-fns';
 
 export default function ConfiguracoesPage() {
@@ -141,6 +142,20 @@ export default function ConfiguracoesPage() {
     toast.success('Dados locais apagados');
   }
 
+  async function resetarDados() {
+    if (!professor) return;
+    if (!confirm('Isso vai APAGAR todas as suas aulas/alunos/turmas/fechamentos/cronograma e RECRIAR os dados padrão (Guilherme) no mês atual. Continuar?')) return;
+    try {
+      setSalvandoConfig(true);
+      await resetarDadosProfessor(professor);
+      toast.success('Dados resetados! Recarregando...');
+      setTimeout(() => window.location.reload(), 1500);
+    } catch (e) {
+      toast.error('Erro ao resetar dados');
+      setSalvandoConfig(false);
+    }
+  }
+
   return (
     <div className="max-w-3xl mx-auto space-y-4">
       <div>
@@ -265,10 +280,21 @@ export default function ConfiguracoesPage() {
           <CardTitle className="text-base text-red-600">Zona de perigo</CardTitle>
           <CardDescription>Ações irreversíveis</CardDescription>
         </CardHeader>
-        <CardContent>
-          <Button variant="outline" onClick={limparTudo} className="text-red-600 border-red-300 hover:bg-red-50">
-            Apagar todos os dados locais
-          </Button>
+        <CardContent className="space-y-3">
+          <div className="flex flex-wrap gap-2">
+            <Button variant="outline" onClick={resetarDados} disabled={salvandoConfig} className="border-amber-300 text-amber-700 hover:bg-amber-50">
+              <RotateCcw className="w-4 h-4 mr-2" /> {salvandoConfig ? 'Resetando...' : 'Resetar dados (recriar padrão)'}
+            </Button>
+            <Button variant="outline" onClick={limparTudo} className="text-red-600 border-red-300 hover:bg-red-50">
+              Apagar todos os dados locais
+            </Button>
+          </div>
+          <p className="text-xs text-muted-foreground">
+            <strong>Resetar dados</strong>: apaga tudo e recria as aulas padrão (KIDS, ADOLESCENTES, Joelma) no mês atual. Use se o dashboard estiver inconsistente.
+          </p>
+          <p className="text-xs text-muted-foreground">
+            <strong>Apagar tudo</strong>: limpa completamente, sem recriar nada.
+          </p>
         </CardContent>
       </Card>
 

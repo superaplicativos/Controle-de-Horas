@@ -7,6 +7,7 @@ import { useAuth } from '@/lib/auth';
 import { Button } from '@/components/ui/button';
 import { BookOpen, LayoutDashboard, CalendarDays, ClipboardList, CalendarClock, Users, Users2, BarChart3, User, Settings, LogOut, Menu, X, Cloud } from 'lucide-react';
 import { sincronizarDoGitHub, lerConfigLocal } from '@/lib/github';
+import { seedGuilherme } from '@/lib/seed';
 import { cn } from '@/lib/utils';
 
 const navItems = [
@@ -40,6 +41,12 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (!sessao || !professor) return;
     (async () => {
+      // Garante que o seed tenha rodado (preenche aulas faltantes)
+      try {
+        await seedGuilherme();
+      } catch (e) {
+        console.error('seed error', e);
+      }
       const config = await lerConfigLocal();
       if (config?.github_token && config.github_repo) {
         setAutoSyncOn(true);
