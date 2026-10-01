@@ -1,6 +1,6 @@
 ========================================
  CONTROLE DE AULAS - BACKUP
- Exportado em: 2026-10-01T04:58:49.723Z
+ Exportado em: 2026-10-01T05:02:46.482Z
  Versão: 1
 ========================================
 
@@ -27,20 +27,17 @@ mungu0r3-3agqknpa | Flavia SEB | vip | ativo
 mungvvjy-o0o5k5rn | Marcelo Dercat | vip | ativo
 mungw4gn-ctaxzmtb | Thiago Patrick | vip | ativo
 mungwsva-xh4f3y07 | Pedro Henrique | vip | ativo
-mungx3py-4p6g6shk | Maria JosÃ© | vip | ativo
+mungx3py-4p6g6shk | Maria JosÃÂ© | vip | ativo
 mungxqg6-yo3nih2n | Ines 9235 | vip | ativo
 muniyocd-8lyjrw6y | Aluno QA Multi-Device | vip | ativo
 munjtqmw-phy1zkcy | Raquel Ribeiro | vip | inativo
 muokkpaq-hs73ge2b | Maria Alice | vip | ativo
-muous5iu-469rpn6r | Maria JosÃÂÃÂÃÂÃÂ© Junqueira da Silva | vip | ativo
+muous5iu-469rpn6r | Maria JosÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ© Junqueira da Silva | vip | ativo
 muous5iu-egqsywid | Thiago Patrick Bellini | vip | ativo
 muous5iu-nhebprfj | Joelma Faria | vip | ativo
 muous5iu-s1l3z7im | TURMA KIDS 2 | turma | ativo
 muous5iu-skgmv65o | Pedro Henrique Russo Nardi | vip | ativo
 muous5iu-uqh5lr4d | Marcelo Dercatshoff Pereira | vip | ativo
-mup2d861-66n30b1c | TURMA ADOLESCENTES | turma | ativo
-mup2d861-af69sa80 | TURMA KIDS | turma | ativo
-mup2d861-vh0h8tt4 | Joelma | vip | ativo
 
 ----- TURMAS -----
 mup1qarl-zna93juz | TURMA KIDS
@@ -51,8 +48,6 @@ mup1syrb-7ue2e7cr | TURMA KIDS
 mung05af-5up11y1q | TURMA KIDS
 mung05af-fnbt6a3u | TURMA ADOLESCENTES
 muous5iu-t0j4i8lx | TURMA KIDS 2
-mup2d860-lqjub8zx | TURMA KIDS
-mup2d860-yunszp2w | TURMA ADOLESCENTES
 
 ----- AULAS DADAS -----
 2026-09-01 | Thiago Patrick Belli |  | 1h | falta      | R$ 35.00 | Excel / Mkt Digital
@@ -123,29 +118,29 @@ mup2d860-yunszp2w | TURMA ADOLESCENTES
 2026-09-25 | TURMA KIDS           | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS
 2026-09-25 | TURMA ADOLESCENTES   | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma Adolescentes
 2026-09-25 | TURMA KIDS           | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS
-2026-09-05 | Maria JosÃ©          | 09:30 | 2h | presenca   | R$ 70.00 | SMARTPHONE
-2026-09-12 | Maria JosÃ©          | 09:30 | 2h | presenca   | R$ 70.00 | SMARTPHONE
-2026-09-26 | Maria JosÃ©          | 09:30 | 2h | presenca   | R$ 70.00 | SMARTPHONE
+2026-09-05 | Maria JosÃÂ©        | 09:30 | 2h | presenca   | R$ 70.00 | SMARTPHONE
+2026-09-12 | Maria JosÃÂ©        | 09:30 | 2h | presenca   | R$ 70.00 | SMARTPHONE
+2026-09-26 | Maria JosÃÂ©        | 09:30 | 2h | presenca   | R$ 70.00 | SMARTPHONE
 2026-09-30 | Maria Alice          | 14:00 | 2h | presenca   | R$ 70.00 | TRAFEGO PAGO
 2026-09-05 | Maria JosÃÂÃÂÃÂ |  | 2h | presenca   | R$ 70.00 | Uso do Celular
 2026-09-29 | TURMA KIDS 2         | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS 2
 2026-09-22 | Thiago Patrick Belli |  | 1h | falta      | R$ 35.00 | Excel / Mkt Digital
-2026-09-11 | Joelma Faria         |  | 1h | falta      | R$ 35.00 | Mkt Dig / AI / Ed VÃÂÃÂÃÂÃÂ­deos
+2026-09-11 | Joelma Faria         |  | 1h | falta      | R$ 35.00 | Mkt Dig / AI / Ed VÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ­deos
 2026-09-17 | Marcelo Dercatshoff  |  | 2h | presenca   | R$ 70.00 | Marketing Digital
 2026-09-12 | Maria JosÃÂÃÂÃÂ |  | 2h | presenca   | R$ 70.00 | Uso do Celular
-2026-09-18 | Pedro Henrique Russo |  | 2h | presenca   | R$ 70.00 | IA / LÃÂÃÂÃÂÃÂ³gica de ProgramaÃÂÃÂÃÂÃÂ§ÃÂÃÂÃÂÃÂ£o
+2026-09-18 | Pedro Henrique Russo |  | 2h | presenca   | R$ 70.00 | IA / LÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ³gica de ProgramaÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ§ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ£o
 2026-09-10 | Marcelo Dercatshoff  |  | 2h | presenca   | R$ 70.00 | Marketing Digital
 2026-09-29 | Thiago Patrick Belli |  | 1h | falta      | R$ 35.00 | Excel / Mkt Digital
-2026-09-20 | Joelma Faria         |  | 2h | presenca   | R$ 70.00 | Mkt Dig / AI / Ed VÃÂÃÂÃÂÃÂ­deos
+2026-09-20 | Joelma Faria         |  | 2h | presenca   | R$ 70.00 | Mkt Dig / AI / Ed VÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ­deos
 2026-09-03 | Marcelo Dercatshoff  |  | 2h | presenca   | R$ 70.00 | Marketing Digital
 2026-09-26 | Maria JosÃÂÃÂÃÂ |  | 2h | presenca   | R$ 70.00 | Uso do Celular
 2026-09-01 | Thiago Patrick Belli |  | 1h | falta      | R$ 35.00 | Excel / Mkt Digital
-2026-09-04 | Pedro Henrique Russo |  | 1h | falta      | R$ 35.00 | IA / LÃÂÃÂÃÂÃÂ³gica de ProgramaÃÂÃÂÃÂÃÂ§ÃÂÃÂÃÂÃÂ£o
-2026-09-30 | Maria Alice          |  | 2h | presenca   | R$ 70.00 | TrÃÂÃÂÃÂÃÂ¡fego Pago
-2026-09-11 | Pedro Henrique Russo |  | 2h | presenca   | R$ 70.00 | IA / LÃÂÃÂÃÂÃÂ³gica de ProgramaÃÂÃÂÃÂÃÂ§ÃÂÃÂÃÂÃÂ£o
+2026-09-04 | Pedro Henrique Russo |  | 1h | falta      | R$ 35.00 | IA / LÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ³gica de ProgramaÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ§ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ£o
+2026-09-30 | Maria Alice          |  | 2h | presenca   | R$ 70.00 | TrÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¡fego Pago
+2026-09-11 | Pedro Henrique Russo |  | 2h | presenca   | R$ 70.00 | IA / LÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ³gica de ProgramaÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ§ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ£o
 2026-09-19 | Maria JosÃÂÃÂÃÂ |  | 2h | presenca   | R$ 70.00 | Uso do Celular
 2026-09-24 | Thiago Patrick Belli |  | 2h | presenca   | R$ 70.00 | Excel / Mkt Digital
-2026-09-25 | Pedro Henrique Russo |  | 2h | presenca   | R$ 70.00 | IA / LÃÂÃÂÃÂÃÂ³gica de ProgramaÃÂÃÂÃÂÃÂ§ÃÂÃÂÃÂÃÂ£o
+2026-09-25 | Pedro Henrique Russo |  | 2h | presenca   | R$ 70.00 | IA / LÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ³gica de ProgramaÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ§ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ£o
 2026-09-15 | Thiago Patrick Belli |  | 1h | falta      | R$ 35.00 | Excel / Mkt Digital
 2026-10-12 | TURMA KIDS           | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS
 2026-10-19 | TURMA ADOLESCENTES   | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma Adolescentes
@@ -157,16 +152,6 @@ mup2d860-yunszp2w | TURMA ADOLESCENTES
 2026-10-25 | TURMA KIDS           | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS
 2026-10-12 | TURMA ADOLESCENTES   | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma Adolescentes
 2026-10-05 | TURMA KIDS           | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS
-2026-10-19 | TURMA ADOLESCENTES   | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma Adolescentes
-2026-10-05 | TURMA ADOLESCENTES   | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma Adolescentes
-2026-10-19 | TURMA KIDS           | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS
-2026-10-12 | TURMA ADOLESCENTES   | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma Adolescentes
-2026-10-25 | TURMA ADOLESCENTES   | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma Adolescentes
-2026-10-29 | TURMA KIDS           | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS
-2026-10-10 | Joelma               | --:-- | 1h | falta      | R$ 35.00 | Falta - VIP
-2026-10-05 | TURMA KIDS           | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS
-2026-10-12 | TURMA KIDS           | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS
-2026-10-25 | TURMA KIDS           | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS
 
 ----- CRONOGRAMA (PLANEJAMENTO) -----
 2026-10-19 | TURMA ADOLESCENTES   | 17:00 | 2h | Aula Turma Adolescentes | Aula regular
@@ -196,15 +181,6 @@ mup2d860-yunszp2w | TURMA ADOLESCENTES
 2026-10-25 | TURMA ADOLESCENTES   | 17:00 | 2h | Aula Turma Adolescentes | Aula regular
 2026-10-19 | TURMA KIDS           | 15:00 | 2h | Aula Turma KIDS | Aula regular
 2026-10-05 | TURMA ADOLESCENTES   | 17:00 | 2h | Aula Turma Adolescentes | Aula regular
-2026-10-25 | TURMA ADOLESCENTES   | 17:00 | 2h | Aula Turma Adolescentes | Aula regular
-2026-10-12 | TURMA KIDS           | 15:00 | 2h | Aula Turma KIDS | Aula regular
-2026-10-19 | TURMA KIDS           | 15:00 | 2h | Aula Turma KIDS | Aula regular
-2026-10-19 | TURMA ADOLESCENTES   | 17:00 | 2h | Aula Turma Adolescentes | Aula regular
-2026-10-25 | TURMA KIDS           | 15:00 | 2h | Aula Turma KIDS | Aula regular
-2026-10-12 | TURMA ADOLESCENTES   | 17:00 | 2h | Aula Turma Adolescentes | Aula regular
-2026-10-05 | TURMA KIDS           | 15:00 | 2h | Aula Turma KIDS | Aula regular
-2026-10-05 | TURMA ADOLESCENTES   | 17:00 | 2h | Aula Turma Adolescentes | Aula regular
-2026-10-29 | TURMA KIDS           | 17:00 | 2h | Aula Turma KIDS | Aula regular
 
 ----- FECHAMENTOS -----
 2025-09: 10 aulas | 19h | R$ 665.00 | 1 faltas
@@ -212,7 +188,7 @@ mup2d860-yunszp2w | TURMA ADOLESCENTES
 ----- JSON COMPLETO -----
 {
   "versao": 1,
-  "exportado_em": "2026-10-01T04:58:49.723Z",
+  "exportado_em": "2026-10-01T05:02:46.482Z",
   "professor": {
     "nome": "Guilherme Miranda",
     "username": "guilherme",
@@ -1243,7 +1219,7 @@ mup2d860-yunszp2w | TURMA ADOLESCENTES
       "id": "munkat8z-7u14ir5g",
       "professor_id": "mung059m-2bot73zp",
       "aluno_id": "mungx3py-4p6g6shk",
-      "aluno_nome": "Maria JosÃ©",
+      "aluno_nome": "Maria JosÃÂ©",
       "aluno_tipo": "vip",
       "data": "2026-09-05",
       "horario": "09:30",
@@ -1258,7 +1234,7 @@ mup2d860-yunszp2w | TURMA ADOLESCENTES
       "id": "munkbj8m-11qq8sp6",
       "professor_id": "mung059m-2bot73zp",
       "aluno_id": "mungx3py-4p6g6shk",
-      "aluno_nome": "Maria JosÃ©",
+      "aluno_nome": "Maria JosÃÂ©",
       "aluno_tipo": "vip",
       "data": "2026-09-12",
       "horario": "09:30",
@@ -1273,7 +1249,7 @@ mup2d860-yunszp2w | TURMA ADOLESCENTES
       "id": "munkc8nx-ci3r9evo",
       "professor_id": "mung059m-2bot73zp",
       "aluno_id": "mungx3py-4p6g6shk",
-      "aluno_nome": "Maria JosÃ©",
+      "aluno_nome": "Maria JosÃÂ©",
       "aluno_tipo": "vip",
       "data": "2026-09-26",
       "horario": "09:30",
@@ -1303,7 +1279,7 @@ mup2d860-yunszp2w | TURMA ADOLESCENTES
       "id": "muous5iu-07d197sq",
       "professor_id": "mung059m-2bot73zp",
       "aluno_id": "muous5iu-469rpn6r",
-      "aluno_nome": "Maria JosÃÂÃÂÃÂÃÂ© Junqueira da Silva",
+      "aluno_nome": "Maria JosÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ© Junqueira da Silva",
       "aluno_tipo": "vip",
       "data": "2026-09-05",
       "horario": "",
@@ -1354,7 +1330,7 @@ mup2d860-yunszp2w | TURMA ADOLESCENTES
       "horario": "",
       "duracao": 1,
       "status": "falta",
-      "conteudo": "Mkt Dig / AI / Ed VÃÂÃÂÃÂÃÂ­deos",
+      "conteudo": "Mkt Dig / AI / Ed VÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ­deos",
       "valor": 35,
       "mes_ref": "2026-09",
       "criado_em": 1790817970422
@@ -1378,7 +1354,7 @@ mup2d860-yunszp2w | TURMA ADOLESCENTES
       "id": "muous5iu-a8z0bubj",
       "professor_id": "mung059m-2bot73zp",
       "aluno_id": "muous5iu-469rpn6r",
-      "aluno_nome": "Maria JosÃÂÃÂÃÂÃÂ© Junqueira da Silva",
+      "aluno_nome": "Maria JosÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ© Junqueira da Silva",
       "aluno_tipo": "vip",
       "data": "2026-09-12",
       "horario": "",
@@ -1399,7 +1375,7 @@ mup2d860-yunszp2w | TURMA ADOLESCENTES
       "horario": "",
       "duracao": 2,
       "status": "presenca",
-      "conteudo": "IA / LÃÂÃÂÃÂÃÂ³gica de ProgramaÃÂÃÂÃÂÃÂ§ÃÂÃÂÃÂÃÂ£o",
+      "conteudo": "IA / LÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ³gica de ProgramaÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ§ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ£o",
       "valor": 70,
       "mes_ref": "2026-09",
       "criado_em": 1790817970422
@@ -1444,7 +1420,7 @@ mup2d860-yunszp2w | TURMA ADOLESCENTES
       "horario": "",
       "duracao": 2,
       "status": "presenca",
-      "conteudo": "Mkt Dig / AI / Ed VÃÂÃÂÃÂÃÂ­deos",
+      "conteudo": "Mkt Dig / AI / Ed VÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ­deos",
       "valor": 70,
       "mes_ref": "2026-09",
       "criado_em": 1790817970422
@@ -1468,7 +1444,7 @@ mup2d860-yunszp2w | TURMA ADOLESCENTES
       "id": "muous5iu-ihtg0ftv",
       "professor_id": "mung059m-2bot73zp",
       "aluno_id": "muous5iu-469rpn6r",
-      "aluno_nome": "Maria JosÃÂÃÂÃÂÃÂ© Junqueira da Silva",
+      "aluno_nome": "Maria JosÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ© Junqueira da Silva",
       "aluno_tipo": "vip",
       "data": "2026-09-26",
       "horario": "",
@@ -1504,7 +1480,7 @@ mup2d860-yunszp2w | TURMA ADOLESCENTES
       "horario": "",
       "duracao": 1,
       "status": "falta",
-      "conteudo": "IA / LÃÂÃÂÃÂÃÂ³gica de ProgramaÃÂÃÂÃÂÃÂ§ÃÂÃÂÃÂÃÂ£o",
+      "conteudo": "IA / LÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ³gica de ProgramaÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ§ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ£o",
       "valor": 35,
       "mes_ref": "2026-09",
       "criado_em": 1790817970422
@@ -1519,7 +1495,7 @@ mup2d860-yunszp2w | TURMA ADOLESCENTES
       "horario": "",
       "duracao": 2,
       "status": "presenca",
-      "conteudo": "TrÃÂÃÂÃÂÃÂ¡fego Pago",
+      "conteudo": "TrÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¡fego Pago",
       "valor": 70,
       "mes_ref": "2026-09",
       "criado_em": 1790817970422
@@ -1534,7 +1510,7 @@ mup2d860-yunszp2w | TURMA ADOLESCENTES
       "horario": "",
       "duracao": 2,
       "status": "presenca",
-      "conteudo": "IA / LÃÂÃÂÃÂÃÂ³gica de ProgramaÃÂÃÂÃÂÃÂ§ÃÂÃÂÃÂÃÂ£o",
+      "conteudo": "IA / LÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ³gica de ProgramaÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ§ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ£o",
       "valor": 70,
       "mes_ref": "2026-09",
       "criado_em": 1790817970422
@@ -1543,7 +1519,7 @@ mup2d860-yunszp2w | TURMA ADOLESCENTES
       "id": "muous5iu-qvtgzgq2",
       "professor_id": "mung059m-2bot73zp",
       "aluno_id": "muous5iu-469rpn6r",
-      "aluno_nome": "Maria JosÃÂÃÂÃÂÃÂ© Junqueira da Silva",
+      "aluno_nome": "Maria JosÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ© Junqueira da Silva",
       "aluno_tipo": "vip",
       "data": "2026-09-19",
       "horario": "",
@@ -1579,7 +1555,7 @@ mup2d860-yunszp2w | TURMA ADOLESCENTES
       "horario": "",
       "duracao": 2,
       "status": "presenca",
-      "conteudo": "IA / LÃÂÃÂÃÂÃÂ³gica de ProgramaÃÂÃÂÃÂÃÂ§ÃÂÃÂÃÂÃÂ£o",
+      "conteudo": "IA / LÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ³gica de ProgramaÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ§ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ£o",
       "valor": 70,
       "mes_ref": "2026-09",
       "criado_em": 1790817970422
@@ -1748,156 +1724,6 @@ mup2d860-yunszp2w | TURMA ADOLESCENTES
       "valor": 70,
       "mes_ref": "2026-10",
       "criado_em": 1790824021168
-    },
-    {
-      "id": "mup2d863-1vgkkvy9",
-      "professor_id": "mup2d85z-mkltmhh1",
-      "aluno_id": "mup2d861-66n30b1c",
-      "aluno_nome": "TURMA ADOLESCENTES",
-      "aluno_tipo": "turma",
-      "data": "2026-10-19",
-      "horario": "17:00",
-      "duracao": 2,
-      "status": "presenca",
-      "conteudo": "Aula regular - turma Adolescentes",
-      "valor": 70,
-      "mes_ref": "2026-10",
-      "criado_em": 1790830710939
-    },
-    {
-      "id": "mup2d863-6dzygj4x",
-      "professor_id": "mup2d85z-mkltmhh1",
-      "aluno_id": "mup2d861-66n30b1c",
-      "aluno_nome": "TURMA ADOLESCENTES",
-      "aluno_tipo": "turma",
-      "data": "2026-10-05",
-      "horario": "17:00",
-      "duracao": 2,
-      "status": "presenca",
-      "conteudo": "Aula regular - turma Adolescentes",
-      "valor": 70,
-      "mes_ref": "2026-10",
-      "criado_em": 1790830710939
-    },
-    {
-      "id": "mup2d863-7gwlqlgk",
-      "professor_id": "mup2d85z-mkltmhh1",
-      "aluno_id": "mup2d861-af69sa80",
-      "aluno_nome": "TURMA KIDS",
-      "aluno_tipo": "turma",
-      "data": "2026-10-19",
-      "horario": "15:00",
-      "duracao": 2,
-      "status": "presenca",
-      "conteudo": "Aula regular - turma KIDS",
-      "valor": 70,
-      "mes_ref": "2026-10",
-      "criado_em": 1790830710939
-    },
-    {
-      "id": "mup2d863-ezkialmx",
-      "professor_id": "mup2d85z-mkltmhh1",
-      "aluno_id": "mup2d861-66n30b1c",
-      "aluno_nome": "TURMA ADOLESCENTES",
-      "aluno_tipo": "turma",
-      "data": "2026-10-12",
-      "horario": "17:00",
-      "duracao": 2,
-      "status": "presenca",
-      "conteudo": "Aula regular - turma Adolescentes",
-      "valor": 70,
-      "mes_ref": "2026-10",
-      "criado_em": 1790830710939
-    },
-    {
-      "id": "mup2d863-gavq219j",
-      "professor_id": "mup2d85z-mkltmhh1",
-      "aluno_id": "mup2d861-66n30b1c",
-      "aluno_nome": "TURMA ADOLESCENTES",
-      "aluno_tipo": "turma",
-      "data": "2026-10-25",
-      "horario": "17:00",
-      "duracao": 2,
-      "status": "presenca",
-      "conteudo": "Aula regular - turma Adolescentes",
-      "valor": 70,
-      "mes_ref": "2026-10",
-      "criado_em": 1790830710939
-    },
-    {
-      "id": "mup2d863-injbfhey",
-      "professor_id": "mup2d85z-mkltmhh1",
-      "aluno_id": "mup2d861-af69sa80",
-      "aluno_nome": "TURMA KIDS",
-      "aluno_tipo": "turma",
-      "data": "2026-10-29",
-      "horario": "17:00",
-      "duracao": 2,
-      "status": "presenca",
-      "conteudo": "Aula regular - turma KIDS",
-      "valor": 70,
-      "mes_ref": "2026-10",
-      "criado_em": 1790830710939
-    },
-    {
-      "id": "mup2d863-kmn1ovx2",
-      "professor_id": "mup2d85z-mkltmhh1",
-      "aluno_id": "mup2d861-vh0h8tt4",
-      "aluno_nome": "Joelma",
-      "aluno_tipo": "vip",
-      "data": "2026-10-10",
-      "horario": "--:--",
-      "duracao": 1,
-      "status": "falta",
-      "conteudo": "Falta - VIP",
-      "valor": 35,
-      "mes_ref": "2026-10",
-      "criado_em": 1790830710939
-    },
-    {
-      "id": "mup2d863-m40tsq6u",
-      "professor_id": "mup2d85z-mkltmhh1",
-      "aluno_id": "mup2d861-af69sa80",
-      "aluno_nome": "TURMA KIDS",
-      "aluno_tipo": "turma",
-      "data": "2026-10-05",
-      "horario": "15:00",
-      "duracao": 2,
-      "status": "presenca",
-      "conteudo": "Aula regular - turma KIDS",
-      "valor": 70,
-      "mes_ref": "2026-10",
-      "criado_em": 1790830710939
-    },
-    {
-      "id": "mup2d863-v8zjuriw",
-      "professor_id": "mup2d85z-mkltmhh1",
-      "aluno_id": "mup2d861-af69sa80",
-      "aluno_nome": "TURMA KIDS",
-      "aluno_tipo": "turma",
-      "data": "2026-10-12",
-      "horario": "15:00",
-      "duracao": 2,
-      "status": "presenca",
-      "conteudo": "Aula regular - turma KIDS",
-      "valor": 70,
-      "mes_ref": "2026-10",
-      "criado_em": 1790830710939
-    },
-    {
-      "id": "mup2d863-zfz7p560",
-      "professor_id": "mup2d85z-mkltmhh1",
-      "aluno_id": "mup2d861-af69sa80",
-      "aluno_nome": "TURMA KIDS",
-      "aluno_tipo": "turma",
-      "data": "2026-10-25",
-      "horario": "15:00",
-      "duracao": 2,
-      "status": "presenca",
-      "conteudo": "Aula regular - turma KIDS",
-      "valor": 70,
-      "mes_ref": "2026-10",
-      "criado_em": 1790830710939
     }
   ],
   "alunos": [
@@ -2075,7 +1901,7 @@ mup2d860-yunszp2w | TURMA ADOLESCENTES
     {
       "id": "mungx3py-4p6g6shk",
       "professor_id": "mung059m-2bot73zp",
-      "nome": "Maria JosÃ©",
+      "nome": "Maria JosÃÂ©",
       "tipo": "vip",
       "turma_id": null,
       "ativo": true,
@@ -2120,7 +1946,7 @@ mup2d860-yunszp2w | TURMA ADOLESCENTES
     {
       "id": "muous5iu-469rpn6r",
       "professor_id": "mung059m-2bot73zp",
-      "nome": "Maria JosÃÂÃÂÃÂÃÂ© Junqueira da Silva",
+      "nome": "Maria JosÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ© Junqueira da Silva",
       "tipo": "vip",
       "turma_id": null,
       "ativo": true,
@@ -2170,33 +1996,6 @@ mup2d860-yunszp2w | TURMA ADOLESCENTES
       "turma_id": null,
       "ativo": true,
       "criado_em": 1790817970422
-    },
-    {
-      "id": "mup2d861-66n30b1c",
-      "professor_id": "mup2d85z-mkltmhh1",
-      "nome": "TURMA ADOLESCENTES",
-      "tipo": "turma",
-      "turma_id": "mup2d860-yunszp2w",
-      "ativo": true,
-      "criado_em": 1790830710937
-    },
-    {
-      "id": "mup2d861-af69sa80",
-      "professor_id": "mup2d85z-mkltmhh1",
-      "nome": "TURMA KIDS",
-      "tipo": "turma",
-      "turma_id": "mup2d860-lqjub8zx",
-      "ativo": true,
-      "criado_em": 1790830710937
-    },
-    {
-      "id": "mup2d861-vh0h8tt4",
-      "professor_id": "mup2d85z-mkltmhh1",
-      "nome": "Joelma",
-      "tipo": "vip",
-      "turma_id": null,
-      "ativo": true,
-      "criado_em": 1790830710937
     }
   ],
   "turmas": [
@@ -2247,18 +2046,6 @@ mup2d860-yunszp2w | TURMA ADOLESCENTES
       "professor_id": "mung059m-2bot73zp",
       "nome": "TURMA KIDS 2",
       "criado_em": 1790817970422
-    },
-    {
-      "id": "mup2d860-lqjub8zx",
-      "professor_id": "mup2d85z-mkltmhh1",
-      "nome": "TURMA KIDS",
-      "criado_em": 1790830710936
-    },
-    {
-      "id": "mup2d860-yunszp2w",
-      "professor_id": "mup2d85z-mkltmhh1",
-      "nome": "TURMA ADOLESCENTES",
-      "criado_em": 1790830710936
     }
   ],
   "fechamentos": [
@@ -2572,105 +2359,6 @@ mup2d860-yunszp2w | TURMA ADOLESCENTES
       "duracao": 2,
       "observacao": "Aula regular",
       "criado_em": 1790824021168
-    },
-    {
-      "id": "mup2d863-49mvgkvk",
-      "professor_id": "mup2d85z-mkltmhh1",
-      "titulo": "Aula Turma Adolescentes",
-      "aluno_nome": "TURMA ADOLESCENTES",
-      "data": "2026-10-25",
-      "horario": "17:00",
-      "duracao": 2,
-      "observacao": "Aula regular",
-      "criado_em": 1790830710939
-    },
-    {
-      "id": "mup2d863-6rcbgcfh",
-      "professor_id": "mup2d85z-mkltmhh1",
-      "titulo": "Aula Turma KIDS",
-      "aluno_nome": "TURMA KIDS",
-      "data": "2026-10-12",
-      "horario": "15:00",
-      "duracao": 2,
-      "observacao": "Aula regular",
-      "criado_em": 1790830710939
-    },
-    {
-      "id": "mup2d863-8ehj5wvb",
-      "professor_id": "mup2d85z-mkltmhh1",
-      "titulo": "Aula Turma KIDS",
-      "aluno_nome": "TURMA KIDS",
-      "data": "2026-10-19",
-      "horario": "15:00",
-      "duracao": 2,
-      "observacao": "Aula regular",
-      "criado_em": 1790830710939
-    },
-    {
-      "id": "mup2d863-aiyp6ue9",
-      "professor_id": "mup2d85z-mkltmhh1",
-      "titulo": "Aula Turma Adolescentes",
-      "aluno_nome": "TURMA ADOLESCENTES",
-      "data": "2026-10-19",
-      "horario": "17:00",
-      "duracao": 2,
-      "observacao": "Aula regular",
-      "criado_em": 1790830710939
-    },
-    {
-      "id": "mup2d863-obe46bh4",
-      "professor_id": "mup2d85z-mkltmhh1",
-      "titulo": "Aula Turma KIDS",
-      "aluno_nome": "TURMA KIDS",
-      "data": "2026-10-25",
-      "horario": "15:00",
-      "duracao": 2,
-      "observacao": "Aula regular",
-      "criado_em": 1790830710939
-    },
-    {
-      "id": "mup2d863-p1icv48y",
-      "professor_id": "mup2d85z-mkltmhh1",
-      "titulo": "Aula Turma Adolescentes",
-      "aluno_nome": "TURMA ADOLESCENTES",
-      "data": "2026-10-12",
-      "horario": "17:00",
-      "duracao": 2,
-      "observacao": "Aula regular",
-      "criado_em": 1790830710939
-    },
-    {
-      "id": "mup2d863-p4v3okvo",
-      "professor_id": "mup2d85z-mkltmhh1",
-      "titulo": "Aula Turma KIDS",
-      "aluno_nome": "TURMA KIDS",
-      "data": "2026-10-05",
-      "horario": "15:00",
-      "duracao": 2,
-      "observacao": "Aula regular",
-      "criado_em": 1790830710939
-    },
-    {
-      "id": "mup2d863-uqo6bjsl",
-      "professor_id": "mup2d85z-mkltmhh1",
-      "titulo": "Aula Turma Adolescentes",
-      "aluno_nome": "TURMA ADOLESCENTES",
-      "data": "2026-10-05",
-      "horario": "17:00",
-      "duracao": 2,
-      "observacao": "Aula regular",
-      "criado_em": 1790830710939
-    },
-    {
-      "id": "mup2d863-ylwpvhh4",
-      "professor_id": "mup2d85z-mkltmhh1",
-      "titulo": "Aula Turma KIDS",
-      "aluno_nome": "TURMA KIDS",
-      "data": "2026-10-29",
-      "horario": "17:00",
-      "duracao": 2,
-      "observacao": "Aula regular",
-      "criado_em": 1790830710939
     }
   ]
 }
