@@ -1,6 +1,6 @@
 ========================================
  CONTROLE DE AULAS - BACKUP
- Exportado em: 2026-10-01T03:23:18.339Z
+ Exportado em: 2026-10-01T03:23:25.622Z
  Versão: 1
 ========================================
 
@@ -11,7 +11,7 @@ VALOR/HORA: R$ 35.00
 muous5iu-egqsywid | Thiago Patrick Bellini | vip | ativo
 muous5iu-uqh5lr4d | Marcelo Dercatshoff Pereira | vip | ativo
 muous5iu-skgmv65o | Pedro Henrique Russo Nardi | vip | ativo
-muous5iu-469rpn6r | Maria JosÃÂÃÂ© Junqueira da Silva | vip | ativo
+muous5iu-469rpn6r | Maria JosÃÂÃÂÃÂÃÂ© Junqueira da Silva | vip | ativo
 muous5iu-nhebprfj | Joelma Faria | vip | ativo
 muous5iu-fhtgc26k | Maria Alice | vip | ativo
 muous5iu-r8pzuhg6 | TURMA KIDS | turma | ativo
@@ -45,17 +45,17 @@ muoyxnix-ozik6s65 | TURMA ADOLESCENTES
 2026-09-03 | Marcelo Dercatshoff  |  | 2h | presenca   | R$ 70.00 | Marketing Digital
 2026-09-10 | Marcelo Dercatshoff  |  | 2h | presenca   | R$ 70.00 | Marketing Digital
 2026-09-17 | Marcelo Dercatshoff  |  | 2h | presenca   | R$ 70.00 | Marketing Digital
-2026-09-04 | Pedro Henrique Russo |  | 1h | falta      | R$ 35.00 | IA / LÃÂÃÂ³gica de ProgramaÃÂÃÂ§ÃÂÃÂ£o
-2026-09-11 | Pedro Henrique Russo |  | 2h | presenca   | R$ 70.00 | IA / LÃÂÃÂ³gica de ProgramaÃÂÃÂ§ÃÂÃÂ£o
-2026-09-18 | Pedro Henrique Russo |  | 2h | presenca   | R$ 70.00 | IA / LÃÂÃÂ³gica de ProgramaÃÂÃÂ§ÃÂÃÂ£o
-2026-09-25 | Pedro Henrique Russo |  | 2h | presenca   | R$ 70.00 | IA / LÃÂÃÂ³gica de ProgramaÃÂÃÂ§ÃÂÃÂ£o
-2026-09-05 | Maria JosÃÂÃÂ© Ju |  | 2h | presenca   | R$ 70.00 | Uso do Celular
-2026-09-12 | Maria JosÃÂÃÂ© Ju |  | 2h | presenca   | R$ 70.00 | Uso do Celular
-2026-09-19 | Maria JosÃÂÃÂ© Ju |  | 2h | presenca   | R$ 70.00 | Uso do Celular
-2026-09-26 | Maria JosÃÂÃÂ© Ju |  | 2h | presenca   | R$ 70.00 | Uso do Celular
-2026-09-11 | Joelma Faria         |  | 1h | falta      | R$ 35.00 | Mkt Dig / AI / Ed VÃÂÃÂ­deos
-2026-09-20 | Joelma Faria         |  | 2h | presenca   | R$ 70.00 | Mkt Dig / AI / Ed VÃÂÃÂ­deos
-2026-09-30 | Maria Alice          |  | 2h | presenca   | R$ 70.00 | TrÃÂÃÂ¡fego Pago
+2026-09-04 | Pedro Henrique Russo |  | 1h | falta      | R$ 35.00 | IA / LÃÂÃÂÃÂÃÂ³gica de ProgramaÃÂÃÂÃÂÃÂ§ÃÂÃÂÃÂÃÂ£o
+2026-09-11 | Pedro Henrique Russo |  | 2h | presenca   | R$ 70.00 | IA / LÃÂÃÂÃÂÃÂ³gica de ProgramaÃÂÃÂÃÂÃÂ§ÃÂÃÂÃÂÃÂ£o
+2026-09-18 | Pedro Henrique Russo |  | 2h | presenca   | R$ 70.00 | IA / LÃÂÃÂÃÂÃÂ³gica de ProgramaÃÂÃÂÃÂÃÂ§ÃÂÃÂÃÂÃÂ£o
+2026-09-25 | Pedro Henrique Russo |  | 2h | presenca   | R$ 70.00 | IA / LÃÂÃÂÃÂÃÂ³gica de ProgramaÃÂÃÂÃÂÃÂ§ÃÂÃÂÃÂÃÂ£o
+2026-09-05 | Maria JosÃÂÃÂÃÂ |  | 2h | presenca   | R$ 70.00 | Uso do Celular
+2026-09-12 | Maria JosÃÂÃÂÃÂ |  | 2h | presenca   | R$ 70.00 | Uso do Celular
+2026-09-19 | Maria JosÃÂÃÂÃÂ |  | 2h | presenca   | R$ 70.00 | Uso do Celular
+2026-09-26 | Maria JosÃÂÃÂÃÂ |  | 2h | presenca   | R$ 70.00 | Uso do Celular
+2026-09-11 | Joelma Faria         |  | 1h | falta      | R$ 35.00 | Mkt Dig / AI / Ed VÃÂÃÂÃÂÃÂ­deos
+2026-09-20 | Joelma Faria         |  | 2h | presenca   | R$ 70.00 | Mkt Dig / AI / Ed VÃÂÃÂÃÂÃÂ­deos
+2026-09-30 | Maria Alice          |  | 2h | presenca   | R$ 70.00 | TrÃÂÃÂÃÂÃÂ¡fego Pago
 2026-09-05 | TURMA KIDS           | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS
 2026-09-12 | TURMA KIDS           | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS
 2026-09-19 | TURMA KIDS           | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS
@@ -129,7 +129,7 @@ muoyxnix-ozik6s65 | TURMA ADOLESCENTES
 ----- JSON COMPLETO -----
 {
   "versao": 1,
-  "exportado_em": "2026-10-01T03:23:18.339Z",
+  "exportado_em": "2026-10-01T03:23:25.622Z",
   "professor": {
     "nome": "Guilherme Miranda",
     "username": "guilherme",
@@ -266,7 +266,7 @@ muoyxnix-ozik6s65 | TURMA ADOLESCENTES
       "horario": "",
       "duracao": 1,
       "status": "falta",
-      "conteudo": "IA / LÃÂÃÂ³gica de ProgramaÃÂÃÂ§ÃÂÃÂ£o",
+      "conteudo": "IA / LÃÂÃÂÃÂÃÂ³gica de ProgramaÃÂÃÂÃÂÃÂ§ÃÂÃÂÃÂÃÂ£o",
       "valor": 35,
       "mes_ref": "2026-09",
       "criado_em": 1790817970422
@@ -281,7 +281,7 @@ muoyxnix-ozik6s65 | TURMA ADOLESCENTES
       "horario": "",
       "duracao": 2,
       "status": "presenca",
-      "conteudo": "IA / LÃÂÃÂ³gica de ProgramaÃÂÃÂ§ÃÂÃÂ£o",
+      "conteudo": "IA / LÃÂÃÂÃÂÃÂ³gica de ProgramaÃÂÃÂÃÂÃÂ§ÃÂÃÂÃÂÃÂ£o",
       "valor": 70,
       "mes_ref": "2026-09",
       "criado_em": 1790817970422
@@ -296,7 +296,7 @@ muoyxnix-ozik6s65 | TURMA ADOLESCENTES
       "horario": "",
       "duracao": 2,
       "status": "presenca",
-      "conteudo": "IA / LÃÂÃÂ³gica de ProgramaÃÂÃÂ§ÃÂÃÂ£o",
+      "conteudo": "IA / LÃÂÃÂÃÂÃÂ³gica de ProgramaÃÂÃÂÃÂÃÂ§ÃÂÃÂÃÂÃÂ£o",
       "valor": 70,
       "mes_ref": "2026-09",
       "criado_em": 1790817970422
@@ -311,7 +311,7 @@ muoyxnix-ozik6s65 | TURMA ADOLESCENTES
       "horario": "",
       "duracao": 2,
       "status": "presenca",
-      "conteudo": "IA / LÃÂÃÂ³gica de ProgramaÃÂÃÂ§ÃÂÃÂ£o",
+      "conteudo": "IA / LÃÂÃÂÃÂÃÂ³gica de ProgramaÃÂÃÂÃÂÃÂ§ÃÂÃÂÃÂÃÂ£o",
       "valor": 70,
       "mes_ref": "2026-09",
       "criado_em": 1790817970422
@@ -320,7 +320,7 @@ muoyxnix-ozik6s65 | TURMA ADOLESCENTES
       "id": "muous5iu-07d197sq",
       "professor_id": "guilherme-dono-001",
       "aluno_id": "muous5iu-469rpn6r",
-      "aluno_nome": "Maria JosÃÂÃÂ© Junqueira da Silva",
+      "aluno_nome": "Maria JosÃÂÃÂÃÂÃÂ© Junqueira da Silva",
       "aluno_tipo": "vip",
       "data": "2026-09-05",
       "horario": "",
@@ -335,7 +335,7 @@ muoyxnix-ozik6s65 | TURMA ADOLESCENTES
       "id": "muous5iu-a8z0bubj",
       "professor_id": "guilherme-dono-001",
       "aluno_id": "muous5iu-469rpn6r",
-      "aluno_nome": "Maria JosÃÂÃÂ© Junqueira da Silva",
+      "aluno_nome": "Maria JosÃÂÃÂÃÂÃÂ© Junqueira da Silva",
       "aluno_tipo": "vip",
       "data": "2026-09-12",
       "horario": "",
@@ -350,7 +350,7 @@ muoyxnix-ozik6s65 | TURMA ADOLESCENTES
       "id": "muous5iu-qvtgzgq2",
       "professor_id": "guilherme-dono-001",
       "aluno_id": "muous5iu-469rpn6r",
-      "aluno_nome": "Maria JosÃÂÃÂ© Junqueira da Silva",
+      "aluno_nome": "Maria JosÃÂÃÂÃÂÃÂ© Junqueira da Silva",
       "aluno_tipo": "vip",
       "data": "2026-09-19",
       "horario": "",
@@ -365,7 +365,7 @@ muoyxnix-ozik6s65 | TURMA ADOLESCENTES
       "id": "muous5iu-ihtg0ftv",
       "professor_id": "guilherme-dono-001",
       "aluno_id": "muous5iu-469rpn6r",
-      "aluno_nome": "Maria JosÃÂÃÂ© Junqueira da Silva",
+      "aluno_nome": "Maria JosÃÂÃÂÃÂÃÂ© Junqueira da Silva",
       "aluno_tipo": "vip",
       "data": "2026-09-26",
       "horario": "",
@@ -386,7 +386,7 @@ muoyxnix-ozik6s65 | TURMA ADOLESCENTES
       "horario": "",
       "duracao": 1,
       "status": "falta",
-      "conteudo": "Mkt Dig / AI / Ed VÃÂÃÂ­deos",
+      "conteudo": "Mkt Dig / AI / Ed VÃÂÃÂÃÂÃÂ­deos",
       "valor": 35,
       "mes_ref": "2026-09",
       "criado_em": 1790817970422
@@ -401,7 +401,7 @@ muoyxnix-ozik6s65 | TURMA ADOLESCENTES
       "horario": "",
       "duracao": 2,
       "status": "presenca",
-      "conteudo": "Mkt Dig / AI / Ed VÃÂÃÂ­deos",
+      "conteudo": "Mkt Dig / AI / Ed VÃÂÃÂÃÂÃÂ­deos",
       "valor": 70,
       "mes_ref": "2026-09",
       "criado_em": 1790817970422
@@ -416,7 +416,7 @@ muoyxnix-ozik6s65 | TURMA ADOLESCENTES
       "horario": "",
       "duracao": 2,
       "status": "presenca",
-      "conteudo": "TrÃÂÃÂ¡fego Pago",
+      "conteudo": "TrÃÂÃÂÃÂÃÂ¡fego Pago",
       "valor": 70,
       "mes_ref": "2026-09",
       "criado_em": 1790817970422
@@ -1158,7 +1158,7 @@ muoyxnix-ozik6s65 | TURMA ADOLESCENTES
     {
       "id": "muous5iu-469rpn6r",
       "professor_id": "guilherme-dono-001",
-      "nome": "Maria JosÃÂÃÂ© Junqueira da Silva",
+      "nome": "Maria JosÃÂÃÂÃÂÃÂ© Junqueira da Silva",
       "tipo": "vip",
       "turma_id": null,
       "ativo": true,
