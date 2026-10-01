@@ -72,12 +72,17 @@ export default function DashboardPage() {
 
   async function handleFecharMes() {
     if (!professor) return;
-    if (!confirm(`Confirma o fechamento de ${nomeMes(mesRef)}? Após fechar, as aulas deste mês não poderão mais ser editadas.`)) return;
+    if (!confirm(`Confirma o fechamento de ${nomeMes(mesRef)}?
+
+Você pode fechar meses anteriores — não precisa ser o mês atual.
+Ex: feche setembro em outubro se a escola pagar dia 10.
+
+Após fechar, as aulas deste mês não poderão mais ser editadas.`)) return;
     try {
       const aulasMes = await listarAulasPorMes(professor.id, mesRef);
       const f = await criarFechamento(professor.id, mesRef, aulasMes);
       await salvarFechamento(f);
-      toast.success(`Mês de ${nomeMes(mesRef)} fechado!`);
+      toast.success(`Mês de ${nomeMes(mesRef)} fechado com sucesso!`);
       notificar();
       setSyncTick((t) => t + 1);
     } catch (e) {

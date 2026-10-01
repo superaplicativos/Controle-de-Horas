@@ -29,12 +29,32 @@ const heroSlides = [
   {
     img: '/Controle-de-Horas/images/hero-professor.jpg',
     title: 'Pare de perder dinheiro.',
-    subtitle: 'Esqueça de cobrar aula que aluno faltou. O sistema conta tudo sozinho e ainda calcula o valor.',
+    subtitle: 'Esqueça de cobrar aula que aluno faltou. O sistema conta tudo sozinho e calcula o valor.',
   },
   {
     img: '/Controle-de-Horas/images/hero-calendar.jpg',
     title: 'Organize sua semana.',
     subtitle: 'Calendário visual com todas as aulas, planejamento separado do registro. Tudo no lugar certo.',
+  },
+  {
+    img: '/Controle-de-Horas/images/hero-dashboard.jpg',
+    title: 'Feche o mês quando quiser.',
+    subtitle: 'A escola paga dia 10? Sem problema. Feche setembro em 10 de outubro. Flexibilidade total.',
+  },
+  {
+    img: '/Controle-de-Horas/images/hero-teacher.jpg',
+    title: 'Funciona no celular e no PC.',
+    subtitle: 'Lance a aula no celular ao sair da escola. Chegue em casa e veja tudo pronto no computador.',
+  },
+  {
+    img: '/Controle-de-Horas/images/hero-professor.jpg',
+    title: 'VIP, turma ou ambos.',
+    subtitle: 'Aulas particulares de 1, 1h30 ou 2h. Turmas de 2h. Falta conta como 1h fixa. Tudo configurável.',
+  },
+  {
+    img: '/Controle-de-Horas/images/hero-calendar.jpg',
+    title: 'Seus dados, sempre seguros.',
+    subtitle: 'Backup automático na nuvem. Acesse de qualquer dispositivo. Nunca perca um registro.',
   },
 ];
 
@@ -294,17 +314,10 @@ export default function LandingPage() {
 
               <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold leading-[1.05] mb-6">
                 <span className="block">{heroSlides[slideIdx].title}</span>
-                <span className="block mt-2 bg-gradient-to-r from-emerald-300 via-emerald-400 to-yellow-300 bg-clip-text text-transparent">
-                  feito por professores
-                </span>
               </h1>
 
-              {/* Parágrafo de definição para AEO (40-60 palavras) */}
               <p className="text-lg sm:text-xl text-emerald-100/80 mb-8 max-w-xl">
-                O Controle de Aulas é um sistema online para professores autônomos
-                que registra aulas dadas, organiza o cronograma e calcula quanto o
-                professor tem a receber por aula, por aluno e por mês. Feito por
-                professores com mais de 27 anos de carreira em sala de aula.
+                {heroSlides[slideIdx].subtitle}
               </p>
 
               <div className="flex flex-col sm:flex-row gap-3">
