@@ -1,13 +1,13 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/lib/auth';
 import { Button } from '@/components/ui/button';
 import { BookOpen, LayoutDashboard, CalendarDays, ClipboardList, CalendarClock, Users, Users2, BarChart3, User, Settings, LogOut, Menu, X, Cloud, CloudOff, RefreshCw, CloudCog, Shield } from 'lucide-react';
 import { seedGuilherme } from '@/lib/seed';
-import { subscribeSyncState, type SyncState, puxarDoGitHub, enviarParaGitHub, notificarDadosAtualizados, subscribeConfigState } from '@/lib/sync';
+import { subscribeSyncState, type SyncState, puxarDoGitHub, enviarParaGitHub, subscribeConfigState } from '@/lib/sync';
 import { cn } from '@/lib/utils';
 import { temAcessoLiberado, sincronizarAssinatura } from '@/lib/assinatura';
 
@@ -71,43 +71,48 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     return unsub;
   }, []);
 
-  // Ao montar: seed + ENVIAR dados locais ANTES de puxar (não perde dados)
+  // Ao montar: seed + sync (RODA APENAS UMA VEZ por sessão)
+  const syncRanRef = useRef(false);
   useEffect(() => {
     if (!sessao || !professor) return;
+    if (syncRanRef.current) return; // já rodou — não repete
+    syncRanRef.current = true;
+    const profRef = professor; // captura valor atual
     (async () => {
       try {
         await seedGuilherme();
-        notificarDadosAtualizados();
       } catch (e) {
         console.error('seed error', e);
       }
       setGithubConfigured(true);
 
-      // 1. PRIMEIRO envia dados locais pro GitHub (protege dados do usuário)
+      // 1. Envia dados locais
       try {
-        await enviarParaGitHub(professor);
+        await enviarParaGitHub(profRef);
       } catch (e) {
         console.warn('Erro ao enviar dados:', e);
       }
 
-      // 2. DEPOIS puxa dados do GitHub (sem sobrescrever locais)
-      await puxarDoGitHub(professor);
+      // 2. Puxa dados do GitHub (sem sobrescrever locais)
+      await puxarDoGitHub(profRef);
 
-      // 3. Verifica assinatura
-      try {
-        const profAtualizado = await sincronizarAssinatura(professor);
-        if (profAtualizado) {
-          atualizarProfessor(profAtualizado);
+      // 3. Verifica assinatura (só pra não-admin)
+      if (!profRef.is_admin && profRef.assinatura_status !== 'lifetime') {
+        try {
+          const profAtualizado = await sincronizarAssinatura(profRef);
+          if (profAtualizado) {
+            atualizarProfessor(profAtualizado);
+          }
+        } catch (e) {
+          console.warn('Erro ao verificar assinatura:', e);
         }
-      } catch (e) {
-        console.warn('Erro ao verificar assinatura:', e);
       }
 
-      // Verifica acesso (Guilherme sempre tem acesso, não importa o que o Worker diga)
-      if (professor.is_admin || professor.assinatura_status === 'lifetime') {
-        // Dono do sistema — acesso livre, nunca redireciona pra /assinar
+      // Verifica acesso
+      if (profRef.is_admin || profRef.assinatura_status === 'lifetime') {
+        // Dono — acesso livre
       } else {
-        const acesso = temAcessoLiberado(professor);
+        const acesso = temAcessoLiberado(profRef);
         if (!acesso.liberado && pathname !== '/configuracoes') {
           router.replace('/assinar');
         }
