@@ -4,7 +4,7 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from '
 import type { Professor, Sessao } from '@/types';
 import { gerarSalt, hashSenha, verificarSenha, gerarId } from './crypto';
 import { salvarProfessor, buscarProfessorPorUsername } from './db';
-import { loginProfessorAPI, cadastrarProfessorAPI } from './api';
+import { seedGuilherme } from './seed';
 
 const SESSION_KEY = 'controle-aulas-session';
 
@@ -28,6 +28,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     (async () => {
       try {
+        // Garante que o Guilherme existe
+        await seedGuilherme();
+
         const raw = localStorage.getItem(SESSION_KEY);
         if (raw) {
           const s = JSON.parse(raw) as Sessao;
@@ -48,30 +51,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   async function login(username: string, senha: string) {
     try {
-      // 1. Tenta login via Worker API (D1)
-      try {
-        const result = await loginProfessorAPI(username.trim(), senha);
-        if (result.ok && result.professor) {
-          const p = result.professor;
-          const prof: Professor = {
-            id: p.id, username: p.username, senha_hash: p.senha_hash, salt: p.salt,
-            nome: p.nome, valor_hora: p.valor_hora, valor_falta: p.valor_falta,
-            criado_em: p.criado_em, assinatura_status: p.assinatura_status,
-            assinatura_id: p.assinatura_id, trial_fim: p.trial_fim,
-            bloqueado: !!p.bloqueado, is_admin: !!p.is_admin,
-          };
-          await salvarProfessor(prof);
-          const s: Sessao = { professor_id: prof.id, username: prof.username, nome: prof.nome, login_em: Date.now() };
-          localStorage.setItem(SESSION_KEY, JSON.stringify(s));
-          setSessao(s);
-          setProfessor(prof);
-          return { ok: true };
-        }
-      } catch (e) {
-        console.warn('Worker API login falhou, tentando IndexedDB...');
-      }
+      // Garante Guilherme existe antes de tentar login
+      await seedGuilherme();
 
-      // 2. FALLBACK: login via IndexedDB local
       const prof = await buscarProfessorPorUsername(username.trim());
       if (!prof) return { ok: false, erro: 'Usuário não encontrado' };
       const ok = await verificarSenha(senha, prof.salt, prof.senha_hash);
@@ -81,7 +63,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setSessao(s);
       setProfessor(prof);
       return { ok: true };
-    } catch (e) {
+    } catch {
       return { ok: false, erro: 'Erro ao fazer login' };
     }
   }
@@ -92,30 +74,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (username.length < 3) return { ok: false, erro: 'Usuário deve ter no mínimo 3 caracteres' };
       if (dados.senha.length < 4) return { ok: false, erro: 'Senha deve ter no mínimo 4 caracteres' };
 
-      // 1. Tenta cadastrar via Worker API (D1)
-      try {
-        const result = await cadastrarProfessorAPI({ username, senha: dados.senha, nome: dados.nome.trim(), valor_hora: dados.valor_hora });
-        if (result.ok && result.professor) {
-          const p = result.professor;
-          const prof: Professor = {
-            id: p.id, username: p.username, senha_hash: p.senha_hash, salt: p.salt,
-            nome: p.nome, valor_hora: p.valor_hora, valor_falta: p.valor_falta,
-            criado_em: p.criado_em, assinatura_status: p.assinatura_status,
-            assinatura_id: p.assinatura_id, trial_fim: p.trial_fim,
-            bloqueado: !!p.bloqueado, is_admin: !!p.is_admin,
-          };
-          await salvarProfessor(prof);
-          const s: Sessao = { professor_id: prof.id, username: prof.username, nome: prof.nome, login_em: Date.now() };
-          localStorage.setItem(SESSION_KEY, JSON.stringify(s));
-          setSessao(s);
-          setProfessor(prof);
-          return { ok: true };
-        }
-      } catch (e) {
-        console.warn('Worker API cadastro falhou, tentando IndexedDB...');
-      }
-
-      // 2. FALLBACK: cadastra no IndexedDB local
       const existente = await buscarProfessorPorUsername(username);
       if (existente) return { ok: false, erro: 'Usuário já existe' };
 
@@ -134,7 +92,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setSessao(s);
       setProfessor(prof);
       return { ok: true };
-    } catch (e) {
+    } catch {
       return { ok: false, erro: 'Erro ao cadastrar' };
     }
   }

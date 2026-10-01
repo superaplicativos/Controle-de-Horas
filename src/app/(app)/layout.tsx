@@ -7,9 +7,8 @@ import { useAuth } from '@/lib/auth';
 import { Button } from '@/components/ui/button';
 import { BookOpen, LayoutDashboard, CalendarDays, ClipboardList, CalendarClock, Users, Users2, BarChart3, User, Settings, LogOut, Menu, X, Cloud, CloudOff, RefreshCw, CloudCog, Shield } from 'lucide-react';
 import { seedGuilherme } from '@/lib/seed';
-import { subscribeSyncState, type SyncState, puxarDoGitHub, enviarParaGitHub, subscribeConfigState } from '@/lib/sync';
+import { subscribeSyncState, type SyncState, puxarDoGitHub, enviarParaGitHub } from '@/lib/sync';
 import { cn } from '@/lib/utils';
-import { temAcessoLiberado, sincronizarAssinatura } from '@/lib/assinatura';
 
 const navItems = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
@@ -37,7 +36,7 @@ const mobileNavItems = [
 ];
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
-  const { sessao, professor, carregando, logout, atualizarProfessor } = useAuth();
+  const { sessao, professor, carregando, logout } = useAuth();
   const router = useRouter();
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -48,6 +47,11 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     aulasSincronizadas: 0,
   });
   const [githubConfigured, setGithubConfigured] = useState(false);
+
+  useEffect(() => {
+    const unsub = subscribeSyncState(setSyncState);
+    return unsub;
+  }, []);
 
   useEffect(() => {
     if (!carregando && !sessao) {
@@ -62,29 +66,14 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     }
   }, [sessao, pathname, router]);
 
-  // Subscribe ao estado de sync
-  useEffect(() => {
-    const unsub = subscribeSyncState(setSyncState);
-    return unsub;
-  }, []);
-
-  // Subscribe a mudanças de config do GitHub
-  useEffect(() => {
-    const unsub = subscribeConfigState((configured) => {
-      setGithubConfigured(configured);
-    });
-    // Sync sempre ativo
-    setGithubConfigured(true);
-    return unsub;
-  }, []);
-
-  // Ao montar: seed + sync (RODA APENAS UMA VEZ por sessão)
+  // Sync: roda UMA VEZ quando loga (usa ref pra não repetir)
   const syncRanRef = useRef(false);
   useEffect(() => {
     if (!sessao || !professor) return;
-    if (syncRanRef.current) return; // já rodou — não repete
+    if (syncRanRef.current) return;
     syncRanRef.current = true;
-    const profRef = professor; // captura valor atual
+
+    const profSnapshot = professor;
     (async () => {
       try {
         await seedGuilherme();
@@ -94,39 +83,15 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       setGithubConfigured(true);
 
       // 1. Envia dados locais
-      try {
-        await enviarParaGitHub(profRef);
-      } catch (e) {
-        console.warn('Erro ao enviar dados:', e);
-      }
+      try { await enviarParaGitHub(profSnapshot); } catch (e) { console.warn('send:', e); }
 
-      // 2. Puxa dados do GitHub (sem sobrescrever locais)
-      await puxarDoGitHub(profRef);
+      // 2. Puxa do GitHub (full replace — limpa e reimporta)
+      try { await puxarDoGitHub(profSnapshot); } catch (e) { console.warn('pull:', e); }
 
-      // 3. Verifica assinatura (só pra não-admin)
-      if (!profRef.is_admin && profRef.assinatura_status !== 'lifetime') {
-        try {
-          const profAtualizado = await sincronizarAssinatura(profRef);
-          if (profAtualizado) {
-            atualizarProfessor(profAtualizado);
-          }
-        } catch (e) {
-          console.warn('Erro ao verificar assinatura:', e);
-        }
-      }
-
-      // Verifica acesso — Guilherme SEMPRE tem acesso (username ou is_admin ou lifetime)
-      const isGuilherme = profRef.username === 'guilherme' || profRef.is_admin || profRef.assinatura_status === 'lifetime';
-      if (isGuilherme) {
-        // Dono do sistema — acesso livre, nunca redireciona
-      } else {
-        const acesso = temAcessoLiberado(profRef);
-        if (!acesso.liberado && pathname !== '/configuracoes') {
-          router.replace('/assinar');
-        }
-      }
+      // 3. Guilherme nunca é verificado/bloqueado
+      // (não chama sincronizarAssinatura pra dono)
     })();
-  }, [sessao, professor, router, pathname, atualizarProfessor]);
+  }, [sessao, professor]);
 
   // Fecha o menu mobile ao trocar de rota
   useEffect(() => {
