@@ -1,7 +1,7 @@
 ========================================
  CONTROLE DE AULAS - BACKUP
- Exportado em: 2026-10-01T05:04:54.590Z
- Versao: 1
+ Exportado em: 2026-10-01T05:05:26.962Z
+ Versão: 1
 ========================================
 
 PROFESSOR: Guilherme Miranda (@guilherme)
@@ -24,39 +24,43 @@ mup2lg72-djxf27os | TURMA ADOLESCENTES
 mup2lg72-09lko7di | TURMA KIDS 2
 
 ----- AULAS DADAS -----
-2026-09-01 | Thiago Patrick Bellini | --:-- | 1h | falta | R$ 35.00 | Excel / Mkt Digital
-2026-09-15 | Thiago Patrick Bellini | --:-- | 1h | falta | R$ 35.00 | Excel / Mkt Digital
-2026-09-22 | Thiago Patrick Bellini | --:-- | 1h | falta | R$ 35.00 | Excel / Mkt Digital
-2026-09-24 | Thiago Patrick Bellini | --:-- | 2h | presenca | R$ 70.00 | Excel / Mkt Digital
-2026-09-29 | Thiago Patrick Bellini | --:-- | 1h | falta | R$ 35.00 | Excel / Mkt Digital
-2026-09-03 | Marcelo Dercatshoff Pereira | --:-- | 2h | presenca | R$ 70.00 | Marketing Digital
-2026-09-10 | Marcelo Dercatshoff Pereira | --:-- | 2h | presenca | R$ 70.00 | Marketing Digital
-2026-09-17 | Marcelo Dercatshoff Pereira | --:-- | 2h | presenca | R$ 70.00 | Marketing Digital
-2026-09-04 | Pedro Henrique Russo Nardi | --:-- | 1h | falta | R$ 35.00 | IA / Logica de Programacao
-2026-09-11 | Pedro Henrique Russo Nardi | --:-- | 2h | presenca | R$ 70.00 | IA / Logica de Programacao
-2026-09-18 | Pedro Henrique Russo Nardi | --:-- | 2h | presenca | R$ 70.00 | IA / Logica de Programacao
-2026-09-25 | Pedro Henrique Russo Nardi | --:-- | 2h | presenca | R$ 70.00 | IA / Logica de Programacao
-2026-09-05 | Maria Jose Junqueira da Silva | --:-- | 2h | presenca | R$ 70.00 | Uso do Celular
-2026-09-12 | Maria Jose Junqueira da Silva | --:-- | 2h | presenca | R$ 70.00 | Uso do Celular
-2026-09-19 | Maria Jose Junqueira da Silva | --:-- | 2h | presenca | R$ 70.00 | Uso do Celular
-2026-09-26 | Maria Jose Junqueira da Silva | --:-- | 2h | presenca | R$ 70.00 | Uso do Celular
-2026-09-11 | Joelma Faria | --:-- | 1h | falta | R$ 35.00 | Mkt Dig / AI / Ed Videos
-2026-09-20 | Joelma Faria | --:-- | 2h | presenca | R$ 70.00 | Mkt Dig / AI / Ed Videos
-2026-09-30 | Maria Alice | --:-- | 2h | presenca | R$ 70.00 | Trafego Pago
-2026-09-05 | TURMA KIDS | 15:00 | 2h | presenca | R$ 70.00 | Aula regular
-2026-09-12 | TURMA KIDS | 15:00 | 2h | presenca | R$ 70.00 | Aula regular
-2026-09-19 | TURMA KIDS | 15:00 | 2h | presenca | R$ 70.00 | Aula regular
-2026-09-26 | TURMA KIDS | 15:00 | 2h | presenca | R$ 70.00 | Aula regular
-2026-09-05 | TURMA ADOLESCENTES | 17:00 | 2h | presenca | R$ 70.00 | Aula regular
-2026-09-12 | TURMA ADOLESCENTES | 17:00 | 2h | presenca | R$ 70.00 | Aula regular
-2026-09-19 | TURMA ADOLESCENTES | 17:00 | 2h | presenca | R$ 70.00 | Aula regular
-2026-09-26 | TURMA ADOLESCENTES | 17:00 | 2h | presenca | R$ 70.00 | Aula regular
-2026-09-29 | TURMA KIDS 2 | 17:00 | 2h | presenca | R$ 70.00 | Aula regular
+2026-09-01 | Thiago Patrick Belli |  | 1h | falta      | R$ 35.00 | Excel / Mkt Digital
+2026-09-15 | Thiago Patrick Belli |  | 1h | falta      | R$ 35.00 | Excel / Mkt Digital
+2026-09-22 | Thiago Patrick Belli |  | 1h | falta      | R$ 35.00 | Excel / Mkt Digital
+2026-09-24 | Thiago Patrick Belli |  | 2h | presenca   | R$ 70.00 | Excel / Mkt Digital
+2026-09-29 | Thiago Patrick Belli |  | 1h | falta      | R$ 35.00 | Excel / Mkt Digital
+2026-09-03 | Marcelo Dercatshoff  |  | 2h | presenca   | R$ 70.00 | Marketing Digital
+2026-09-10 | Marcelo Dercatshoff  |  | 2h | presenca   | R$ 70.00 | Marketing Digital
+2026-09-17 | Marcelo Dercatshoff  |  | 2h | presenca   | R$ 70.00 | Marketing Digital
+2026-09-04 | Pedro Henrique Russo |  | 1h | falta      | R$ 35.00 | IA / Logica de Programacao
+2026-09-11 | Pedro Henrique Russo |  | 2h | presenca   | R$ 70.00 | IA / Logica de Programacao
+2026-09-18 | Pedro Henrique Russo |  | 2h | presenca   | R$ 70.00 | IA / Logica de Programacao
+2026-09-25 | Pedro Henrique Russo |  | 2h | presenca   | R$ 70.00 | IA / Logica de Programacao
+2026-09-05 | Maria Jose Junqueira |  | 2h | presenca   | R$ 70.00 | Uso do Celular
+2026-09-12 | Maria Jose Junqueira |  | 2h | presenca   | R$ 70.00 | Uso do Celular
+2026-09-19 | Maria Jose Junqueira |  | 2h | presenca   | R$ 70.00 | Uso do Celular
+2026-09-26 | Maria Jose Junqueira |  | 2h | presenca   | R$ 70.00 | Uso do Celular
+2026-09-11 | Joelma Faria         |  | 1h | falta      | R$ 35.00 | Mkt Dig / AI / Ed Videos
+2026-09-20 | Joelma Faria         |  | 2h | presenca   | R$ 70.00 | Mkt Dig / AI / Ed Videos
+2026-09-30 | Maria Alice          |  | 2h | presenca   | R$ 70.00 | Trafego Pago
+2026-09-05 | TURMA KIDS           | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular
+2026-09-12 | TURMA KIDS           | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular
+2026-09-19 | TURMA KIDS           | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular
+2026-09-26 | TURMA KIDS           | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular
+2026-09-05 | TURMA ADOLESCENTES   | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular
+2026-09-12 | TURMA ADOLESCENTES   | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular
+2026-09-19 | TURMA ADOLESCENTES   | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular
+2026-09-26 | TURMA ADOLESCENTES   | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular
+2026-09-29 | TURMA KIDS 2         | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular
+
+----- CRONOGRAMA (PLANEJAMENTO) -----
+
+----- FECHAMENTOS -----
 
 ----- JSON COMPLETO -----
 {
   "versao": 1,
-  "exportado_em": "2026-10-01T05:04:54.590Z",
+  "exportado_em": "2026-10-01T05:05:26.962Z",
   "professor": {
     "nome": "Guilherme Miranda",
     "username": "guilherme",
