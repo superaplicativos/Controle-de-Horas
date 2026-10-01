@@ -11,6 +11,7 @@
 
 import type { Professor } from '@/types';
 import { puxarDoCloud, enviarParaCloud } from './api';
+import { sincronizarDoGitHub as puxarDoGithubTxt, sincronizarParaGitHub as enviarParaGithubTxt } from './github';
 
 export type SyncStatus = 'idle' | 'syncing' | 'synced' | 'error' | 'offline' | 'not-configured';
 
@@ -70,14 +71,22 @@ export function notifyConfigChanged(configured: boolean) {
 export async function puxarDoGitHub(professor: Professor): Promise<SyncState> {
   setState({ status: 'syncing', erro: null });
   try {
+    // 1. Tenta via D1 (api.ts)
     const result = await puxarDoCloud(professor);
     if (result.ok) {
-      setState({
-        status: 'synced',
-        ultimoSync: Date.now(),
-        erro: null,
-        aulasSincronizadas: result.alteracoes,
-      });
+      setState({ status: 'synced', ultimoSync: Date.now(), erro: null, aulasSincronizadas: result.alteracoes });
+      return currentState;
+    }
+    console.warn('D1 falhou, tentando GitHub .txt...', result.erro);
+  } catch (e: any) {
+    console.warn('D1 falhou, tentando GitHub .txt...', e.message);
+  }
+
+  // 2. FALLBACK: via GitHub .txt (github.ts — funciona com Worker atual)
+  try {
+    const result = await puxarDoGithubTxt(professor);
+    if (result.ok) {
+      setState({ status: 'synced', ultimoSync: Date.now(), erro: null, aulasSincronizadas: result.aulasImportadas || 0 });
     } else {
       setState({ status: 'error', erro: result.erro || 'Erro ao puxar dados' });
     }
@@ -94,14 +103,22 @@ export async function puxarDoGitHub(professor: Professor): Promise<SyncState> {
 export async function enviarParaGitHub(professor: Professor): Promise<SyncState> {
   setState({ status: 'syncing', erro: null });
   try {
+    // 1. Tenta via D1 (api.ts)
     const result = await enviarParaCloud(professor);
     if (result.ok) {
-      setState({
-        status: 'synced',
-        ultimoSync: Date.now(),
-        erro: null,
-        aulasSincronizadas: 0,
-      });
+      setState({ status: 'synced', ultimoSync: Date.now(), erro: null, aulasSincronizadas: 0 });
+      return currentState;
+    }
+    console.warn('D1 envio falhou, tentando GitHub .txt...', result.erro);
+  } catch (e: any) {
+    console.warn('D1 envio falhou, tentando GitHub .txt...', e.message);
+  }
+
+  // 2. FALLBACK: via GitHub .txt (github.ts — funciona com Worker atual)
+  try {
+    const result = await enviarParaGithubTxt(professor);
+    if (result.ok) {
+      setState({ status: 'synced', ultimoSync: Date.now(), erro: null, aulasSincronizadas: 0 });
     } else {
       setState({ status: 'error', erro: result.erro || 'Erro ao enviar dados' });
     }
