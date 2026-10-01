@@ -8,7 +8,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Cloud, Download, Upload, RefreshCw, AlertTriangle, CheckCircle2, RotateCcw, Zap } from 'lucide-react';
 import { toast } from 'sonner';
-import { sincronizarDoGitHub, sincronizarParaGitHub, gerarBackupTXT, parseBackupTXT } from '@/lib/github';
+import { puxarDoGitHub, enviarParaGitHub } from '@/lib/sync';
+import { gerarBackupTXT, parseBackupTXT } from '@/lib/github';
 import { exportarDadosProfessor, limparDadosProfessor } from '@/lib/db';
 import { resetarDadosProfessor } from '@/lib/seed';
 import { format } from 'date-fns';
@@ -23,16 +24,16 @@ export default function ConfiguracoesPage() {
     setSincronizando(true);
     try {
       const res = direcao === 'puxar'
-        ? await sincronizarDoGitHub(professor)
-        : await sincronizarParaGitHub(professor);
-      if (res.ok) {
+        ? await puxarDoGitHub(professor)
+        : await enviarParaGitHub(professor);
+      if (res.status === 'synced') {
         toast.success(
           direcao === 'puxar'
-            ? `Puxado do GitHub: ${res.aulasImportadas || 0} alterações`
-            : `Enviado ao GitHub: ${res.aulasImportadas || 0} aulas`
+            ? `Dados puxados do banco: ${res.aulasSincronizadas || 0} alterações`
+            : `Dados enviados ao banco!`
         );
         setUltimoSync(Date.now());
-      } else {
+      } else if (res.status === 'error') {
         toast.error(`Erro: ${res.erro}`);
       }
     } catch (e) {

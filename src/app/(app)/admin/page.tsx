@@ -9,7 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Shield, Users, DollarSign, Clock, Search, CheckCircle2, XCircle, Ban, Unlock } from 'lucide-react';
 import { toast } from 'sonner';
-import { WORKER_URL, API_SECRET } from '@/lib/assinatura';
+import { listarProfessoresAPI, atualizarProfessorAPI } from '@/lib/api';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
@@ -33,17 +33,13 @@ export default function AdminPage() {
   const carregar = useCallback(async () => {
     setCarregando(true);
     try {
-      const resp = await fetch(`${WORKER_URL}/admin/professores`, {
-        headers: {
-          'Authorization': `Bearer ${API_SECRET}`,
-        },
-      });
-      if (!resp.ok) {
-        toast.error('Erro ao carregar professores');
-        return;
-      }
-      const data = await resp.json();
-      setProfessores(data.professores || []);
+      const profs = await listarProfessoresAPI();
+      // Converte int → boolean do D1
+      setProfessores(profs.map((p: any) => ({
+        ...p,
+        bloqueado: !!p.bloqueado,
+        is_admin: !!p.is_admin,
+      })));
     } catch (e) {
       toast.error('Erro ao carregar professores');
     } finally {
@@ -65,15 +61,8 @@ export default function AdminPage() {
 
   async function atualizarProfessor(username: string, dados: { assinatura_status?: string; bloqueado?: boolean }) {
     try {
-      const resp = await fetch(`${WORKER_URL}/admin/professor/${username}`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${API_SECRET}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(dados),
-      });
-      if (!resp.ok) {
+      const ok = await atualizarProfessorAPI(username, dados);
+      if (!ok) {
         toast.error('Erro ao atualizar professor');
         return;
       }
