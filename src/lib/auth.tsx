@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
 import type { Professor, Sessao } from '@/types';
+import { gerarSalt, hashSenha, verificarSenha, gerarId } from './crypto';
 import { salvarProfessor, buscarProfessorPorUsername } from './db';
 import { loginProfessorAPI, cadastrarProfessorAPI } from './api';
 
