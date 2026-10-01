@@ -23,7 +23,8 @@ export { WORKER_URL, API_SECRET };
 export function temAcessoLiberado(professor: Professor | null): { liberado: boolean; motivo?: string; diasRestantesTrial?: number } {
   if (!professor) return { liberado: false, motivo: 'Não logado' };
 
-  if (professor.is_admin || professor.assinatura_status === 'lifetime') {
+  // Guilherme (dono) — SEMPRE liberado, não importa o que o Worker diga
+  if (professor.username === 'guilherme' || professor.is_admin || professor.assinatura_status === 'lifetime') {
     return { liberado: true };
   }
 

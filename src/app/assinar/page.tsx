@@ -13,9 +13,13 @@ export default function AssinarPage() {
   const router = useRouter();
   const [verificando, setVerificando] = useState(false);
 
-  // Verifica se já tem acesso (caso o webhook já tenha atualizado)
+  // Guilherme NUNCA fica nesta página — redirect imediato
   useEffect(() => {
     if (!professor) return;
+    if (professor.username === 'guilherme' || professor.is_admin || professor.assinatura_status === 'lifetime') {
+      router.replace('/dashboard');
+      return;
+    }
     const acesso = temAcessoLiberado(professor);
     if (acesso.liberado && professor.assinatura_status === 'active') {
       router.replace('/dashboard');

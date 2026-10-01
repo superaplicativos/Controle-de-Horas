@@ -55,6 +55,13 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     }
   }, [carregando, sessao, router]);
 
+  // BLOQUEIO ABSOLUTO: Guilherme NUNCA vai pra /assinar
+  useEffect(() => {
+    if (sessao?.username === 'guilherme' && pathname === '/assinar') {
+      router.replace('/dashboard');
+    }
+  }, [sessao, pathname, router]);
+
   // Subscribe ao estado de sync
   useEffect(() => {
     const unsub = subscribeSyncState(setSyncState);
@@ -108,9 +115,10 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         }
       }
 
-      // Verifica acesso
-      if (profRef.is_admin || profRef.assinatura_status === 'lifetime') {
-        // Dono — acesso livre
+      // Verifica acesso — Guilherme SEMPRE tem acesso (username ou is_admin ou lifetime)
+      const isGuilherme = profRef.username === 'guilherme' || profRef.is_admin || profRef.assinatura_status === 'lifetime';
+      if (isGuilherme) {
+        // Dono do sistema — acesso livre, nunca redireciona
       } else {
         const acesso = temAcessoLiberado(profRef);
         if (!acesso.liberado && pathname !== '/configuracoes') {
