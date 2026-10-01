@@ -1,6 +1,6 @@
 ========================================
  CONTROLE DE AULAS - BACKUP
- Exportado em: 2026-09-30T03:32:38.157Z
+ Exportado em: 2026-10-01T01:26:10.422Z
  Versão: 1
 ========================================
 
@@ -8,94 +8,55 @@ PROFESSOR: Guilherme Miranda (@guilherme)
 VALOR/HORA: R$ 35.00
 
 ----- ALUNOS -----
-munixaku-gaohhcxq | TURMA KIDS | turma | ativo
-munixaku-srsn8rij | Joelma | vip | ativo
-munixaku-x67shnzi | TURMA ADOLESCENTES | turma | ativo
-muniyocd-8lyjrw6y | Aluno QA Multi-Device | vip | ativo
-muniyocd-8lyjrw6y | Aluno QA Multi-Device | vip | ativo
-munjp8w0-0ebn1l7a | Joelma | vip | ativo
-munjp8w0-umdha05t | TURMA ADOLESCENTES | turma | ativo
-munjp8w0-x6nc3i2r | TURMA KIDS | turma | ativo
-muniyocd-8lyjrw6y | Aluno QA Multi-Device | vip | ativo
-munju4a8-8s9tq6lp | TURMA ADOLESCENTES | turma | ativo
-munju4a8-gwmgxepr | TURMA KIDS | turma | ativo
-munju4a8-ur97cei5 | Joelma | vip | ativo
+muous5iu-egqsywid | Thiago Patrick Bellini | vip | ativo
+muous5iu-uqh5lr4d | Marcelo Dercatshoff Pereira | vip | ativo
+muous5iu-skgmv65o | Pedro Henrique Russo Nardi | vip | ativo
+muous5iu-469rpn6r | Maria José Junqueira da Silva | vip | ativo
+muous5iu-nhebprfj | Joelma Faria | vip | ativo
+muous5iu-fhtgc26k | Maria Alice | vip | ativo
+muous5iu-r8pzuhg6 | TURMA KIDS | turma | ativo
+muous5iu-0funmi3x | TURMA ADOLESCENTES | turma | ativo
+muous5iu-s1l3z7im | TURMA KIDS 2 | turma | ativo
 
 ----- TURMAS -----
-munixakt-mp0b0vs9 | TURMA ADOLESCENTES
-munixakt-z5lvrknk | TURMA KIDS
-munjp8vz-8wsfawz5 | TURMA ADOLESCENTES
-munjp8vz-oqmmhh4w | TURMA KIDS
-munju4a7-ahtpc67i | TURMA KIDS
-munju4a7-xr4z2kvv | TURMA ADOLESCENTES
+muous5iu-nec12kbc | TURMA KIDS
+muous5iu-hr2e4lob | TURMA ADOLESCENTES
+muous5iu-t0j4i8lx | TURMA KIDS 2
 
 ----- AULAS DADAS -----
-2026-09-25 | TURMA KIDS           | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS
-2026-09-10 | Joelma               | --:-- | 1h | falta      | R$ 35.00 | Falta - VIP
-2026-09-19 | TURMA ADOLESCENTES   | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma Adolescentes
-2026-09-05 | TURMA KIDS           | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS
-2026-09-29 | TURMA KIDS           | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS
-2026-09-05 | TURMA ADOLESCENTES   | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma Adolescentes
-2026-09-12 | TURMA KIDS           | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS
-2026-09-25 | TURMA ADOLESCENTES   | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma Adolescentes
-2026-09-19 | TURMA KIDS           | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS
-2026-09-12 | TURMA ADOLESCENTES   | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma Adolescentes
-2026-09-05 | TURMA ADOLESCENTES   | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma Adolescentes
-2026-09-19 | TURMA ADOLESCENTES   | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma Adolescentes
-2026-09-10 | Joelma               | --:-- | 1h | falta      | R$ 35.00 | Falta - VIP
-2026-09-12 | TURMA KIDS           | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS
-2026-09-12 | TURMA ADOLESCENTES   | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma Adolescentes
-2026-09-05 | TURMA KIDS           | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS
-2026-09-29 | TURMA KIDS           | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS
-2026-09-25 | TURMA ADOLESCENTES   | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma Adolescentes
-2026-09-19 | TURMA KIDS           | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS
-2026-09-25 | TURMA KIDS           | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS
-2026-09-05 | TURMA ADOLESCENTES   | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma Adolescentes
-2026-09-05 | TURMA KIDS           | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS
-2026-09-12 | TURMA KIDS           | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS
-2026-09-19 | TURMA KIDS           | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS
-2026-09-29 | TURMA KIDS           | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS
-2026-09-10 | Joelma               | --:-- | 1h | falta      | R$ 35.00 | Falta - VIP
-2026-09-19 | TURMA ADOLESCENTES   | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma Adolescentes
-2026-09-25 | TURMA ADOLESCENTES   | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma Adolescentes
-2026-09-25 | TURMA KIDS           | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS
-2026-09-12 | TURMA ADOLESCENTES   | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma Adolescentes
-
------ CRONOGRAMA (PLANEJAMENTO) -----
-2026-09-05 | TURMA KIDS           | 15:00 | 2h | Aula Turma KIDS | Aula regular
-2026-09-29 | TURMA KIDS           | 17:00 | 2h | Aula Turma KIDS | Aula regular
-2026-09-19 | TURMA KIDS           | 15:00 | 2h | Aula Turma KIDS | Aula regular
-2026-09-19 | TURMA ADOLESCENTES   | 17:00 | 2h | Aula Turma Adolescentes | Aula regular
-2026-09-12 | TURMA KIDS           | 15:00 | 2h | Aula Turma KIDS | Aula regular
-2026-09-25 | TURMA ADOLESCENTES   | 17:00 | 2h | Aula Turma Adolescentes | Aula regular
-2026-09-12 | TURMA ADOLESCENTES   | 17:00 | 2h | Aula Turma Adolescentes | Aula regular
-2026-09-05 | TURMA ADOLESCENTES   | 17:00 | 2h | Aula Turma Adolescentes | Aula regular
-2026-09-25 | TURMA KIDS           | 15:00 | 2h | Aula Turma KIDS | Aula regular
-2026-09-12 | TURMA ADOLESCENTES   | 17:00 | 2h | Aula Turma Adolescentes | Aula regular
-2026-09-19 | TURMA KIDS           | 15:00 | 2h | Aula Turma KIDS | Aula regular
-2026-09-29 | TURMA KIDS           | 17:00 | 2h | Aula Turma KIDS | Aula regular
-2026-09-19 | TURMA ADOLESCENTES   | 17:00 | 2h | Aula Turma Adolescentes | Aula regular
-2026-09-05 | TURMA KIDS           | 15:00 | 2h | Aula Turma KIDS | Aula regular
-2026-09-05 | TURMA ADOLESCENTES   | 17:00 | 2h | Aula Turma Adolescentes | Aula regular
-2026-09-25 | TURMA ADOLESCENTES   | 17:00 | 2h | Aula Turma Adolescentes | Aula regular
-2026-09-12 | TURMA KIDS           | 15:00 | 2h | Aula Turma KIDS | Aula regular
-2026-09-25 | TURMA KIDS           | 15:00 | 2h | Aula Turma KIDS | Aula regular
-2026-09-05 | TURMA KIDS           | 15:00 | 2h | Aula Turma KIDS | Aula regular
-2026-09-05 | TURMA ADOLESCENTES   | 17:00 | 2h | Aula Turma Adolescentes | Aula regular
-2026-09-29 | TURMA KIDS           | 17:00 | 2h | Aula Turma KIDS | Aula regular
-2026-09-12 | TURMA ADOLESCENTES   | 17:00 | 2h | Aula Turma Adolescentes | Aula regular
-2026-09-19 | TURMA ADOLESCENTES   | 17:00 | 2h | Aula Turma Adolescentes | Aula regular
-2026-09-12 | TURMA KIDS           | 15:00 | 2h | Aula Turma KIDS | Aula regular
-2026-09-25 | TURMA KIDS           | 15:00 | 2h | Aula Turma KIDS | Aula regular
-2026-09-25 | TURMA ADOLESCENTES   | 17:00 | 2h | Aula Turma Adolescentes | Aula regular
-2026-09-19 | TURMA KIDS           | 15:00 | 2h | Aula Turma KIDS | Aula regular
-
------ FECHAMENTOS -----
+2025-09-01 | Thiago Patrick Bellini    | --:-- | 1h | falta      | R$ 35.00 | Excel / Mkt Digital
+2025-09-15 | Thiago Patrick Bellini    | --:-- | 1h | falta      | R$ 35.00 | Excel / Mkt Digital
+2025-09-22 | Thiago Patrick Bellini    | --:-- | 1h | falta      | R$ 35.00 | Excel / Mkt Digital
+2025-09-24 | Thiago Patrick Bellini    | --:-- | 2h | presenca   | R$ 70.00 | Excel / Mkt Digital
+2025-09-29 | Thiago Patrick Bellini    | --:-- | 1h | falta      | R$ 35.00 | Excel / Mkt Digital
+2025-09-03 | Marcelo Dercatshoff Perei | --:-- | 2h | presenca   | R$ 70.00 | Marketing Digital
+2025-09-10 | Marcelo Dercatshoff Perei | --:-- | 2h | presenca   | R$ 70.00 | Marketing Digital
+2025-09-17 | Marcelo Dercatshoff Perei | --:-- | 2h | presenca   | R$ 70.00 | Marketing Digital
+2025-09-04 | Pedro Henrique Russo Nard | --:-- | 1h | falta      | R$ 35.00 | IA / Lógica de Programação
+2025-09-11 | Pedro Henrique Russo Nard | --:-- | 2h | presenca   | R$ 70.00 | IA / Lógica de Programação
+2025-09-18 | Pedro Henrique Russo Nard | --:-- | 2h | presenca   | R$ 70.00 | IA / Lógica de Programação
+2025-09-25 | Pedro Henrique Russo Nard | --:-- | 2h | presenca   | R$ 70.00 | IA / Lógica de Programação
+2025-09-05 | Maria José Junqueira da S | --:-- | 2h | presenca   | R$ 70.00 | Uso do Celular
+2025-09-12 | Maria José Junqueira da S | --:-- | 2h | presenca   | R$ 70.00 | Uso do Celular
+2025-09-19 | Maria José Junqueira da S | --:-- | 2h | presenca   | R$ 70.00 | Uso do Celular
+2025-09-26 | Maria José Junqueira da S | --:-- | 2h | presenca   | R$ 70.00 | Uso do Celular
+2025-09-11 | Joelma Faria              | --:-- | 1h | falta      | R$ 35.00 | Mkt Dig / AI / Ed Vídeos
+2025-09-20 | Joelma Faria              | --:-- | 2h | presenca   | R$ 70.00 | Mkt Dig / AI / Ed Vídeos
+2025-09-30 | Maria Alice               | --:-- | 2h | presenca   | R$ 70.00 | Tráfego Pago
+2025-09-05 | TURMA KIDS                | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS
+2025-09-12 | TURMA KIDS                | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS
+2025-09-19 | TURMA KIDS                | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS
+2025-09-26 | TURMA KIDS                | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS
+2025-09-05 | TURMA ADOLESCENTES        | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma Adolescentes
+2025-09-12 | TURMA ADOLESCENTES        | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma Adolescentes
+2025-09-19 | TURMA ADOLESCENTES        | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma Adolescentes
+2025-09-26 | TURMA ADOLESCENTES        | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma Adolescentes
+2025-09-29 | TURMA KIDS 2              | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS 2
 
 ----- JSON COMPLETO -----
 {
   "versao": 1,
-  "exportado_em": "2026-09-30T03:32:38.157Z",
+  "exportado_em": "2026-10-01T01:26:10.422Z",
   "professor": {
     "nome": "Guilherme Miranda",
     "username": "guilherme",
@@ -103,903 +64,530 @@ munju4a7-xr4z2kvv | TURMA ADOLESCENTES
   },
   "aulas": [
     {
-      "id": "munixakw-1m8fky5j",
-      "professor_id": "munixaks-cybi12gc",
-      "aluno_id": "munixaku-gaohhcxq",
-      "aluno_nome": "TURMA KIDS",
-      "aluno_tipo": "turma",
-      "data": "2026-09-25",
-      "horario": "15:00",
-      "duracao": 2,
-      "status": "presenca",
-      "conteudo": "Aula regular - turma KIDS",
-      "valor": 70,
-      "mes_ref": "2026-09",
-      "criado_em": 1790737588688
-    },
-    {
-      "id": "munixakw-5menaa1w",
-      "professor_id": "munixaks-cybi12gc",
-      "aluno_id": "munixaku-srsn8rij",
-      "aluno_nome": "Joelma",
+      "id": "muous5iu-jc9d0m90",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muous5iu-egqsywid",
+      "aluno_nome": "Thiago Patrick Bellini",
       "aluno_tipo": "vip",
-      "data": "2026-09-10",
-      "horario": "--:--",
+      "data": "2025-09-01",
+      "horario": "",
       "duracao": 1,
       "status": "falta",
-      "conteudo": "Falta - VIP",
+      "conteudo": "Excel / Mkt Digital",
       "valor": 35,
-      "mes_ref": "2026-09",
-      "criado_em": 1790737588688
+      "mes_ref": "2025-09",
+      "criado_em": 1790817970422
     },
     {
-      "id": "munixakw-7f33pexa",
-      "professor_id": "munixaks-cybi12gc",
-      "aluno_id": "munixaku-x67shnzi",
-      "aluno_nome": "TURMA ADOLESCENTES",
-      "aluno_tipo": "turma",
-      "data": "2026-09-19",
-      "horario": "17:00",
-      "duracao": 2,
-      "status": "presenca",
-      "conteudo": "Aula regular - turma Adolescentes",
-      "valor": 70,
-      "mes_ref": "2026-09",
-      "criado_em": 1790737588688
-    },
-    {
-      "id": "munixakw-8bnoowoc",
-      "professor_id": "munixaks-cybi12gc",
-      "aluno_id": "munixaku-gaohhcxq",
-      "aluno_nome": "TURMA KIDS",
-      "aluno_tipo": "turma",
-      "data": "2026-09-05",
-      "horario": "15:00",
-      "duracao": 2,
-      "status": "presenca",
-      "conteudo": "Aula regular - turma KIDS",
-      "valor": 70,
-      "mes_ref": "2026-09",
-      "criado_em": 1790737588688
-    },
-    {
-      "id": "munixakw-cm3bp3t0",
-      "professor_id": "munixaks-cybi12gc",
-      "aluno_id": "munixaku-gaohhcxq",
-      "aluno_nome": "TURMA KIDS",
-      "aluno_tipo": "turma",
-      "data": "2026-09-29",
-      "horario": "17:00",
-      "duracao": 2,
-      "status": "presenca",
-      "conteudo": "Aula regular - turma KIDS",
-      "valor": 70,
-      "mes_ref": "2026-09",
-      "criado_em": 1790737588688
-    },
-    {
-      "id": "munixakw-ekqx1jvz",
-      "professor_id": "munixaks-cybi12gc",
-      "aluno_id": "munixaku-x67shnzi",
-      "aluno_nome": "TURMA ADOLESCENTES",
-      "aluno_tipo": "turma",
-      "data": "2026-09-05",
-      "horario": "17:00",
-      "duracao": 2,
-      "status": "presenca",
-      "conteudo": "Aula regular - turma Adolescentes",
-      "valor": 70,
-      "mes_ref": "2026-09",
-      "criado_em": 1790737588688
-    },
-    {
-      "id": "munixakw-f3ddvle6",
-      "professor_id": "munixaks-cybi12gc",
-      "aluno_id": "munixaku-gaohhcxq",
-      "aluno_nome": "TURMA KIDS",
-      "aluno_tipo": "turma",
-      "data": "2026-09-12",
-      "horario": "15:00",
-      "duracao": 2,
-      "status": "presenca",
-      "conteudo": "Aula regular - turma KIDS",
-      "valor": 70,
-      "mes_ref": "2026-09",
-      "criado_em": 1790737588688
-    },
-    {
-      "id": "munixakw-ms186ztg",
-      "professor_id": "munixaks-cybi12gc",
-      "aluno_id": "munixaku-x67shnzi",
-      "aluno_nome": "TURMA ADOLESCENTES",
-      "aluno_tipo": "turma",
-      "data": "2026-09-25",
-      "horario": "17:00",
-      "duracao": 2,
-      "status": "presenca",
-      "conteudo": "Aula regular - turma Adolescentes",
-      "valor": 70,
-      "mes_ref": "2026-09",
-      "criado_em": 1790737588688
-    },
-    {
-      "id": "munixakw-s3d0y7fw",
-      "professor_id": "munixaks-cybi12gc",
-      "aluno_id": "munixaku-gaohhcxq",
-      "aluno_nome": "TURMA KIDS",
-      "aluno_tipo": "turma",
-      "data": "2026-09-19",
-      "horario": "15:00",
-      "duracao": 2,
-      "status": "presenca",
-      "conteudo": "Aula regular - turma KIDS",
-      "valor": 70,
-      "mes_ref": "2026-09",
-      "criado_em": 1790737588688
-    },
-    {
-      "id": "munixakw-z4ol0eg7",
-      "professor_id": "munixaks-cybi12gc",
-      "aluno_id": "munixaku-x67shnzi",
-      "aluno_nome": "TURMA ADOLESCENTES",
-      "aluno_tipo": "turma",
-      "data": "2026-09-12",
-      "horario": "17:00",
-      "duracao": 2,
-      "status": "presenca",
-      "conteudo": "Aula regular - turma Adolescentes",
-      "valor": 70,
-      "mes_ref": "2026-09",
-      "criado_em": 1790737588688
-    },
-    {
-      "id": "munjp8w2-35q5k1an",
-      "professor_id": "munjp8vy-9rz9nnwo",
-      "aluno_id": "munjp8w0-umdha05t",
-      "aluno_nome": "TURMA ADOLESCENTES",
-      "aluno_tipo": "turma",
-      "data": "2026-09-05",
-      "horario": "17:00",
-      "duracao": 2,
-      "status": "presenca",
-      "conteudo": "Aula regular - turma Adolescentes",
-      "valor": 70,
-      "mes_ref": "2026-09",
-      "criado_em": 1790738892866
-    },
-    {
-      "id": "munjp8w2-4yfvkv86",
-      "professor_id": "munjp8vy-9rz9nnwo",
-      "aluno_id": "munjp8w0-umdha05t",
-      "aluno_nome": "TURMA ADOLESCENTES",
-      "aluno_tipo": "turma",
-      "data": "2026-09-19",
-      "horario": "17:00",
-      "duracao": 2,
-      "status": "presenca",
-      "conteudo": "Aula regular - turma Adolescentes",
-      "valor": 70,
-      "mes_ref": "2026-09",
-      "criado_em": 1790738892866
-    },
-    {
-      "id": "munjp8w2-aensqxzf",
-      "professor_id": "munjp8vy-9rz9nnwo",
-      "aluno_id": "munjp8w0-0ebn1l7a",
-      "aluno_nome": "Joelma",
+      "id": "muous5iu-yfqit2pu",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muous5iu-egqsywid",
+      "aluno_nome": "Thiago Patrick Bellini",
       "aluno_tipo": "vip",
-      "data": "2026-09-10",
-      "horario": "--:--",
+      "data": "2025-09-15",
+      "horario": "",
       "duracao": 1,
       "status": "falta",
-      "conteudo": "Falta - VIP",
+      "conteudo": "Excel / Mkt Digital",
       "valor": 35,
-      "mes_ref": "2026-09",
-      "criado_em": 1790738892866
+      "mes_ref": "2025-09",
+      "criado_em": 1790817970422
     },
     {
-      "id": "munjp8w2-cfsuvz7v",
-      "professor_id": "munjp8vy-9rz9nnwo",
-      "aluno_id": "munjp8w0-x6nc3i2r",
-      "aluno_nome": "TURMA KIDS",
-      "aluno_tipo": "turma",
-      "data": "2026-09-12",
-      "horario": "15:00",
-      "duracao": 2,
-      "status": "presenca",
-      "conteudo": "Aula regular - turma KIDS",
-      "valor": 70,
-      "mes_ref": "2026-09",
-      "criado_em": 1790738892866
-    },
-    {
-      "id": "munjp8w2-mg6w04b4",
-      "professor_id": "munjp8vy-9rz9nnwo",
-      "aluno_id": "munjp8w0-umdha05t",
-      "aluno_nome": "TURMA ADOLESCENTES",
-      "aluno_tipo": "turma",
-      "data": "2026-09-12",
-      "horario": "17:00",
-      "duracao": 2,
-      "status": "presenca",
-      "conteudo": "Aula regular - turma Adolescentes",
-      "valor": 70,
-      "mes_ref": "2026-09",
-      "criado_em": 1790738892866
-    },
-    {
-      "id": "munjp8w2-mmp9yo09",
-      "professor_id": "munjp8vy-9rz9nnwo",
-      "aluno_id": "munjp8w0-x6nc3i2r",
-      "aluno_nome": "TURMA KIDS",
-      "aluno_tipo": "turma",
-      "data": "2026-09-05",
-      "horario": "15:00",
-      "duracao": 2,
-      "status": "presenca",
-      "conteudo": "Aula regular - turma KIDS",
-      "valor": 70,
-      "mes_ref": "2026-09",
-      "criado_em": 1790738892866
-    },
-    {
-      "id": "munjp8w2-pi6bz28y",
-      "professor_id": "munjp8vy-9rz9nnwo",
-      "aluno_id": "munjp8w0-x6nc3i2r",
-      "aluno_nome": "TURMA KIDS",
-      "aluno_tipo": "turma",
-      "data": "2026-09-29",
-      "horario": "17:00",
-      "duracao": 2,
-      "status": "presenca",
-      "conteudo": "Aula regular - turma KIDS",
-      "valor": 70,
-      "mes_ref": "2026-09",
-      "criado_em": 1790738892866
-    },
-    {
-      "id": "munjp8w2-sgvzv7qj",
-      "professor_id": "munjp8vy-9rz9nnwo",
-      "aluno_id": "munjp8w0-umdha05t",
-      "aluno_nome": "TURMA ADOLESCENTES",
-      "aluno_tipo": "turma",
-      "data": "2026-09-25",
-      "horario": "17:00",
-      "duracao": 2,
-      "status": "presenca",
-      "conteudo": "Aula regular - turma Adolescentes",
-      "valor": 70,
-      "mes_ref": "2026-09",
-      "criado_em": 1790738892866
-    },
-    {
-      "id": "munjp8w2-v795v8p2",
-      "professor_id": "munjp8vy-9rz9nnwo",
-      "aluno_id": "munjp8w0-x6nc3i2r",
-      "aluno_nome": "TURMA KIDS",
-      "aluno_tipo": "turma",
-      "data": "2026-09-19",
-      "horario": "15:00",
-      "duracao": 2,
-      "status": "presenca",
-      "conteudo": "Aula regular - turma KIDS",
-      "valor": 70,
-      "mes_ref": "2026-09",
-      "criado_em": 1790738892866
-    },
-    {
-      "id": "munjp8w2-vwxj83d7",
-      "professor_id": "munjp8vy-9rz9nnwo",
-      "aluno_id": "munjp8w0-x6nc3i2r",
-      "aluno_nome": "TURMA KIDS",
-      "aluno_tipo": "turma",
-      "data": "2026-09-25",
-      "horario": "15:00",
-      "duracao": 2,
-      "status": "presenca",
-      "conteudo": "Aula regular - turma KIDS",
-      "valor": 70,
-      "mes_ref": "2026-09",
-      "criado_em": 1790738892866
-    },
-    {
-      "id": "munju4aa-45tm3c77",
-      "professor_id": "munju4a7-tfcuzgl3",
-      "aluno_id": "munju4a8-8s9tq6lp",
-      "aluno_nome": "TURMA ADOLESCENTES",
-      "aluno_tipo": "turma",
-      "data": "2026-09-05",
-      "horario": "17:00",
-      "duracao": 2,
-      "status": "presenca",
-      "conteudo": "Aula regular - turma Adolescentes",
-      "valor": 70,
-      "mes_ref": "2026-09",
-      "criado_em": 1790739120178
-    },
-    {
-      "id": "munju4aa-s68r9jf3",
-      "professor_id": "munju4a7-tfcuzgl3",
-      "aluno_id": "munju4a8-gwmgxepr",
-      "aluno_nome": "TURMA KIDS",
-      "aluno_tipo": "turma",
-      "data": "2026-09-05",
-      "horario": "15:00",
-      "duracao": 2,
-      "status": "presenca",
-      "conteudo": "Aula regular - turma KIDS",
-      "valor": 70,
-      "mes_ref": "2026-09",
-      "criado_em": 1790739120178
-    },
-    {
-      "id": "munju4aa-t7051ldk",
-      "professor_id": "munju4a7-tfcuzgl3",
-      "aluno_id": "munju4a8-gwmgxepr",
-      "aluno_nome": "TURMA KIDS",
-      "aluno_tipo": "turma",
-      "data": "2026-09-12",
-      "horario": "15:00",
-      "duracao": 2,
-      "status": "presenca",
-      "conteudo": "Aula regular - turma KIDS",
-      "valor": 70,
-      "mes_ref": "2026-09",
-      "criado_em": 1790739120178
-    },
-    {
-      "id": "munju4ab-1phnsac6",
-      "professor_id": "munju4a7-tfcuzgl3",
-      "aluno_id": "munju4a8-gwmgxepr",
-      "aluno_nome": "TURMA KIDS",
-      "aluno_tipo": "turma",
-      "data": "2026-09-19",
-      "horario": "15:00",
-      "duracao": 2,
-      "status": "presenca",
-      "conteudo": "Aula regular - turma KIDS",
-      "valor": 70,
-      "mes_ref": "2026-09",
-      "criado_em": 1790739120179
-    },
-    {
-      "id": "munju4ab-51155x7q",
-      "professor_id": "munju4a7-tfcuzgl3",
-      "aluno_id": "munju4a8-gwmgxepr",
-      "aluno_nome": "TURMA KIDS",
-      "aluno_tipo": "turma",
-      "data": "2026-09-29",
-      "horario": "17:00",
-      "duracao": 2,
-      "status": "presenca",
-      "conteudo": "Aula regular - turma KIDS",
-      "valor": 70,
-      "mes_ref": "2026-09",
-      "criado_em": 1790739120179
-    },
-    {
-      "id": "munju4ab-6xropwjh",
-      "professor_id": "munju4a7-tfcuzgl3",
-      "aluno_id": "munju4a8-ur97cei5",
-      "aluno_nome": "Joelma",
+      "id": "muous5iu-1okz0lmg",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muous5iu-egqsywid",
+      "aluno_nome": "Thiago Patrick Bellini",
       "aluno_tipo": "vip",
-      "data": "2026-09-10",
-      "horario": "--:--",
+      "data": "2025-09-22",
+      "horario": "",
       "duracao": 1,
       "status": "falta",
-      "conteudo": "Falta - VIP",
+      "conteudo": "Excel / Mkt Digital",
       "valor": 35,
-      "mes_ref": "2026-09",
-      "criado_em": 1790739120179
+      "mes_ref": "2025-09",
+      "criado_em": 1790817970422
     },
     {
-      "id": "munju4ab-9sdxt6co",
-      "professor_id": "munju4a7-tfcuzgl3",
-      "aluno_id": "munju4a8-8s9tq6lp",
-      "aluno_nome": "TURMA ADOLESCENTES",
-      "aluno_tipo": "turma",
-      "data": "2026-09-19",
-      "horario": "17:00",
+      "id": "muous5iu-ubfm51s1",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muous5iu-egqsywid",
+      "aluno_nome": "Thiago Patrick Bellini",
+      "aluno_tipo": "vip",
+      "data": "2025-09-24",
+      "horario": "",
       "duracao": 2,
       "status": "presenca",
-      "conteudo": "Aula regular - turma Adolescentes",
+      "conteudo": "Excel / Mkt Digital",
       "valor": 70,
-      "mes_ref": "2026-09",
-      "criado_em": 1790739120179
+      "mes_ref": "2025-09",
+      "criado_em": 1790817970422
     },
     {
-      "id": "munju4ab-dssk9uwz",
-      "professor_id": "munju4a7-tfcuzgl3",
-      "aluno_id": "munju4a8-8s9tq6lp",
-      "aluno_nome": "TURMA ADOLESCENTES",
-      "aluno_tipo": "turma",
-      "data": "2026-09-25",
-      "horario": "17:00",
+      "id": "muous5iu-d1d0fa29",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muous5iu-egqsywid",
+      "aluno_nome": "Thiago Patrick Bellini",
+      "aluno_tipo": "vip",
+      "data": "2025-09-29",
+      "horario": "",
+      "duracao": 1,
+      "status": "falta",
+      "conteudo": "Excel / Mkt Digital",
+      "valor": 35,
+      "mes_ref": "2025-09",
+      "criado_em": 1790817970422
+    },
+    {
+      "id": "muous5iu-g47u87dz",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muous5iu-uqh5lr4d",
+      "aluno_nome": "Marcelo Dercatshoff Pereira",
+      "aluno_tipo": "vip",
+      "data": "2025-09-03",
+      "horario": "",
       "duracao": 2,
       "status": "presenca",
-      "conteudo": "Aula regular - turma Adolescentes",
+      "conteudo": "Marketing Digital",
       "valor": 70,
-      "mes_ref": "2026-09",
-      "criado_em": 1790739120179
+      "mes_ref": "2025-09",
+      "criado_em": 1790817970422
     },
     {
-      "id": "munju4ab-l53cvh2o",
-      "professor_id": "munju4a7-tfcuzgl3",
-      "aluno_id": "munju4a8-gwmgxepr",
+      "id": "muous5iu-bsi5xi7c",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muous5iu-uqh5lr4d",
+      "aluno_nome": "Marcelo Dercatshoff Pereira",
+      "aluno_tipo": "vip",
+      "data": "2025-09-10",
+      "horario": "",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Marketing Digital",
+      "valor": 70,
+      "mes_ref": "2025-09",
+      "criado_em": 1790817970422
+    },
+    {
+      "id": "muous5iu-a8gao3gq",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muous5iu-uqh5lr4d",
+      "aluno_nome": "Marcelo Dercatshoff Pereira",
+      "aluno_tipo": "vip",
+      "data": "2025-09-17",
+      "horario": "",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Marketing Digital",
+      "valor": 70,
+      "mes_ref": "2025-09",
+      "criado_em": 1790817970422
+    },
+    {
+      "id": "muous5iu-jknioqco",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muous5iu-skgmv65o",
+      "aluno_nome": "Pedro Henrique Russo Nardi",
+      "aluno_tipo": "vip",
+      "data": "2025-09-04",
+      "horario": "",
+      "duracao": 1,
+      "status": "falta",
+      "conteudo": "IA / Lógica de Programação",
+      "valor": 35,
+      "mes_ref": "2025-09",
+      "criado_em": 1790817970422
+    },
+    {
+      "id": "muous5iu-pwmrz0bo",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muous5iu-skgmv65o",
+      "aluno_nome": "Pedro Henrique Russo Nardi",
+      "aluno_tipo": "vip",
+      "data": "2025-09-11",
+      "horario": "",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "IA / Lógica de Programação",
+      "valor": 70,
+      "mes_ref": "2025-09",
+      "criado_em": 1790817970422
+    },
+    {
+      "id": "muous5iu-atmzi610",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muous5iu-skgmv65o",
+      "aluno_nome": "Pedro Henrique Russo Nardi",
+      "aluno_tipo": "vip",
+      "data": "2025-09-18",
+      "horario": "",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "IA / Lógica de Programação",
+      "valor": 70,
+      "mes_ref": "2025-09",
+      "criado_em": 1790817970422
+    },
+    {
+      "id": "muous5iu-wnp2icf2",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muous5iu-skgmv65o",
+      "aluno_nome": "Pedro Henrique Russo Nardi",
+      "aluno_tipo": "vip",
+      "data": "2025-09-25",
+      "horario": "",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "IA / Lógica de Programação",
+      "valor": 70,
+      "mes_ref": "2025-09",
+      "criado_em": 1790817970422
+    },
+    {
+      "id": "muous5iu-07d197sq",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muous5iu-469rpn6r",
+      "aluno_nome": "Maria José Junqueira da Silva",
+      "aluno_tipo": "vip",
+      "data": "2025-09-05",
+      "horario": "",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Uso do Celular",
+      "valor": 70,
+      "mes_ref": "2025-09",
+      "criado_em": 1790817970422
+    },
+    {
+      "id": "muous5iu-a8z0bubj",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muous5iu-469rpn6r",
+      "aluno_nome": "Maria José Junqueira da Silva",
+      "aluno_tipo": "vip",
+      "data": "2025-09-12",
+      "horario": "",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Uso do Celular",
+      "valor": 70,
+      "mes_ref": "2025-09",
+      "criado_em": 1790817970422
+    },
+    {
+      "id": "muous5iu-qvtgzgq2",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muous5iu-469rpn6r",
+      "aluno_nome": "Maria José Junqueira da Silva",
+      "aluno_tipo": "vip",
+      "data": "2025-09-19",
+      "horario": "",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Uso do Celular",
+      "valor": 70,
+      "mes_ref": "2025-09",
+      "criado_em": 1790817970422
+    },
+    {
+      "id": "muous5iu-ihtg0ftv",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muous5iu-469rpn6r",
+      "aluno_nome": "Maria José Junqueira da Silva",
+      "aluno_tipo": "vip",
+      "data": "2025-09-26",
+      "horario": "",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Uso do Celular",
+      "valor": 70,
+      "mes_ref": "2025-09",
+      "criado_em": 1790817970422
+    },
+    {
+      "id": "muous5iu-92qyqi4b",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muous5iu-nhebprfj",
+      "aluno_nome": "Joelma Faria",
+      "aluno_tipo": "vip",
+      "data": "2025-09-11",
+      "horario": "",
+      "duracao": 1,
+      "status": "falta",
+      "conteudo": "Mkt Dig / AI / Ed Vídeos",
+      "valor": 35,
+      "mes_ref": "2025-09",
+      "criado_em": 1790817970422
+    },
+    {
+      "id": "muous5iu-erezacxk",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muous5iu-nhebprfj",
+      "aluno_nome": "Joelma Faria",
+      "aluno_tipo": "vip",
+      "data": "2025-09-20",
+      "horario": "",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Mkt Dig / AI / Ed Vídeos",
+      "valor": 70,
+      "mes_ref": "2025-09",
+      "criado_em": 1790817970422
+    },
+    {
+      "id": "muous5iu-p84zt2vr",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muous5iu-fhtgc26k",
+      "aluno_nome": "Maria Alice",
+      "aluno_tipo": "vip",
+      "data": "2025-09-30",
+      "horario": "",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Tráfego Pago",
+      "valor": 70,
+      "mes_ref": "2025-09",
+      "criado_em": 1790817970422
+    },
+    {
+      "id": "muous5iu-sbmdl7vu",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muous5iu-r8pzuhg6",
       "aluno_nome": "TURMA KIDS",
       "aluno_tipo": "turma",
-      "data": "2026-09-25",
+      "data": "2025-09-05",
       "horario": "15:00",
       "duracao": 2,
       "status": "presenca",
       "conteudo": "Aula regular - turma KIDS",
       "valor": 70,
-      "mes_ref": "2026-09",
-      "criado_em": 1790739120179
+      "mes_ref": "2025-09",
+      "criado_em": 1790817970422
     },
     {
-      "id": "munju4ab-l74vimle",
-      "professor_id": "munju4a7-tfcuzgl3",
-      "aluno_id": "munju4a8-8s9tq6lp",
+      "id": "muous5iu-t256i4si",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muous5iu-r8pzuhg6",
+      "aluno_nome": "TURMA KIDS",
+      "aluno_tipo": "turma",
+      "data": "2025-09-12",
+      "horario": "15:00",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Aula regular - turma KIDS",
+      "valor": 70,
+      "mes_ref": "2025-09",
+      "criado_em": 1790817970422
+    },
+    {
+      "id": "muous5iu-48ohzjb7",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muous5iu-r8pzuhg6",
+      "aluno_nome": "TURMA KIDS",
+      "aluno_tipo": "turma",
+      "data": "2025-09-19",
+      "horario": "15:00",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Aula regular - turma KIDS",
+      "valor": 70,
+      "mes_ref": "2025-09",
+      "criado_em": 1790817970422
+    },
+    {
+      "id": "muous5iu-f6naypoj",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muous5iu-r8pzuhg6",
+      "aluno_nome": "TURMA KIDS",
+      "aluno_tipo": "turma",
+      "data": "2025-09-26",
+      "horario": "15:00",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Aula regular - turma KIDS",
+      "valor": 70,
+      "mes_ref": "2025-09",
+      "criado_em": 1790817970422
+    },
+    {
+      "id": "muous5iu-clka7man",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muous5iu-0funmi3x",
       "aluno_nome": "TURMA ADOLESCENTES",
       "aluno_tipo": "turma",
-      "data": "2026-09-12",
+      "data": "2025-09-05",
       "horario": "17:00",
       "duracao": 2,
       "status": "presenca",
       "conteudo": "Aula regular - turma Adolescentes",
       "valor": 70,
-      "mes_ref": "2026-09",
-      "criado_em": 1790739120179
+      "mes_ref": "2025-09",
+      "criado_em": 1790817970422
+    },
+    {
+      "id": "muous5iu-dp99hwn1",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muous5iu-0funmi3x",
+      "aluno_nome": "TURMA ADOLESCENTES",
+      "aluno_tipo": "turma",
+      "data": "2025-09-12",
+      "horario": "17:00",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Aula regular - turma Adolescentes",
+      "valor": 70,
+      "mes_ref": "2025-09",
+      "criado_em": 1790817970422
+    },
+    {
+      "id": "muous5iu-nceno02v",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muous5iu-0funmi3x",
+      "aluno_nome": "TURMA ADOLESCENTES",
+      "aluno_tipo": "turma",
+      "data": "2025-09-19",
+      "horario": "17:00",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Aula regular - turma Adolescentes",
+      "valor": 70,
+      "mes_ref": "2025-09",
+      "criado_em": 1790817970422
+    },
+    {
+      "id": "muous5iu-ty899ulm",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muous5iu-0funmi3x",
+      "aluno_nome": "TURMA ADOLESCENTES",
+      "aluno_tipo": "turma",
+      "data": "2025-09-26",
+      "horario": "17:00",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Aula regular - turma Adolescentes",
+      "valor": 70,
+      "mes_ref": "2025-09",
+      "criado_em": 1790817970422
+    },
+    {
+      "id": "muous5iu-0h30agfp",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muous5iu-s1l3z7im",
+      "aluno_nome": "TURMA KIDS 2",
+      "aluno_tipo": "turma",
+      "data": "2025-09-29",
+      "horario": "17:00",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Aula regular - turma KIDS 2",
+      "valor": 70,
+      "mes_ref": "2025-09",
+      "criado_em": 1790817970422
     }
   ],
   "alunos": [
     {
-      "id": "munixaku-gaohhcxq",
-      "professor_id": "munixaks-cybi12gc",
+      "id": "muous5iu-egqsywid",
+      "professor_id": "guilherme-dono-001",
+      "nome": "Thiago Patrick Bellini",
+      "tipo": "vip",
+      "turma_id": null,
+      "ativo": true,
+      "criado_em": 1790817970422
+    },
+    {
+      "id": "muous5iu-uqh5lr4d",
+      "professor_id": "guilherme-dono-001",
+      "nome": "Marcelo Dercatshoff Pereira",
+      "tipo": "vip",
+      "turma_id": null,
+      "ativo": true,
+      "criado_em": 1790817970422
+    },
+    {
+      "id": "muous5iu-skgmv65o",
+      "professor_id": "guilherme-dono-001",
+      "nome": "Pedro Henrique Russo Nardi",
+      "tipo": "vip",
+      "turma_id": null,
+      "ativo": true,
+      "criado_em": 1790817970422
+    },
+    {
+      "id": "muous5iu-469rpn6r",
+      "professor_id": "guilherme-dono-001",
+      "nome": "Maria José Junqueira da Silva",
+      "tipo": "vip",
+      "turma_id": null,
+      "ativo": true,
+      "criado_em": 1790817970422
+    },
+    {
+      "id": "muous5iu-nhebprfj",
+      "professor_id": "guilherme-dono-001",
+      "nome": "Joelma Faria",
+      "tipo": "vip",
+      "turma_id": null,
+      "ativo": true,
+      "criado_em": 1790817970422
+    },
+    {
+      "id": "muous5iu-fhtgc26k",
+      "professor_id": "guilherme-dono-001",
+      "nome": "Maria Alice",
+      "tipo": "vip",
+      "turma_id": null,
+      "ativo": true,
+      "criado_em": 1790817970422
+    },
+    {
+      "id": "muous5iu-r8pzuhg6",
+      "professor_id": "guilherme-dono-001",
       "nome": "TURMA KIDS",
       "tipo": "turma",
-      "turma_id": "munixakt-z5lvrknk",
+      "turma_id": "muous5iu-nec12kbc",
       "ativo": true,
-      "criado_em": 1790737588686
+      "criado_em": 1790817970422
     },
     {
-      "id": "munixaku-srsn8rij",
-      "professor_id": "munixaks-cybi12gc",
-      "nome": "Joelma",
-      "tipo": "vip",
-      "turma_id": null,
-      "ativo": true,
-      "criado_em": 1790737588686
-    },
-    {
-      "id": "munixaku-x67shnzi",
-      "professor_id": "munixaks-cybi12gc",
+      "id": "muous5iu-0funmi3x",
+      "professor_id": "guilherme-dono-001",
       "nome": "TURMA ADOLESCENTES",
       "tipo": "turma",
-      "turma_id": "munixakt-mp0b0vs9",
+      "turma_id": "muous5iu-hr2e4lob",
       "ativo": true,
-      "criado_em": 1790737588686
+      "criado_em": 1790817970422
     },
     {
-      "id": "muniyocd-8lyjrw6y",
-      "professor_id": "munixaks-cybi12gc",
-      "nome": "Aluno QA Multi-Device",
-      "tipo": "vip",
-      "turma_id": null,
-      "ativo": true,
-      "criado_em": 1790737653181
-    },
-    {
-      "id": "muniyocd-8lyjrw6y",
-      "professor_id": "munjp8vy-9rz9nnwo",
-      "nome": "Aluno QA Multi-Device",
-      "tipo": "vip",
-      "turma_id": null,
-      "ativo": true,
-      "criado_em": 1790737653181
-    },
-    {
-      "id": "munjp8w0-0ebn1l7a",
-      "professor_id": "munjp8vy-9rz9nnwo",
-      "nome": "Joelma",
-      "tipo": "vip",
-      "turma_id": null,
-      "ativo": true,
-      "criado_em": 1790738892864
-    },
-    {
-      "id": "munjp8w0-umdha05t",
-      "professor_id": "munjp8vy-9rz9nnwo",
-      "nome": "TURMA ADOLESCENTES",
+      "id": "muous5iu-s1l3z7im",
+      "professor_id": "guilherme-dono-001",
+      "nome": "TURMA KIDS 2",
       "tipo": "turma",
-      "turma_id": "munjp8vz-8wsfawz5",
+      "turma_id": "muous5iu-t0j4i8lx",
       "ativo": true,
-      "criado_em": 1790738892864
-    },
-    {
-      "id": "munjp8w0-x6nc3i2r",
-      "professor_id": "munjp8vy-9rz9nnwo",
-      "nome": "TURMA KIDS",
-      "tipo": "turma",
-      "turma_id": "munjp8vz-oqmmhh4w",
-      "ativo": true,
-      "criado_em": 1790738892864
-    },
-    {
-      "id": "muniyocd-8lyjrw6y",
-      "professor_id": "munju4a7-tfcuzgl3",
-      "nome": "Aluno QA Multi-Device",
-      "tipo": "vip",
-      "turma_id": null,
-      "ativo": true,
-      "criado_em": 1790737653181
-    },
-    {
-      "id": "munju4a8-8s9tq6lp",
-      "professor_id": "munju4a7-tfcuzgl3",
-      "nome": "TURMA ADOLESCENTES",
-      "tipo": "turma",
-      "turma_id": "munju4a7-xr4z2kvv",
-      "ativo": true,
-      "criado_em": 1790739120176
-    },
-    {
-      "id": "munju4a8-gwmgxepr",
-      "professor_id": "munju4a7-tfcuzgl3",
-      "nome": "TURMA KIDS",
-      "tipo": "turma",
-      "turma_id": "munju4a7-ahtpc67i",
-      "ativo": true,
-      "criado_em": 1790739120176
-    },
-    {
-      "id": "munju4a8-ur97cei5",
-      "professor_id": "munju4a7-tfcuzgl3",
-      "nome": "Joelma",
-      "tipo": "vip",
-      "turma_id": null,
-      "ativo": true,
-      "criado_em": 1790739120176
+      "criado_em": 1790817970422
     }
   ],
   "turmas": [
     {
-      "id": "munixakt-mp0b0vs9",
-      "professor_id": "munixaks-cybi12gc",
-      "nome": "TURMA ADOLESCENTES",
-      "criado_em": 1790737588685
-    },
-    {
-      "id": "munixakt-z5lvrknk",
-      "professor_id": "munixaks-cybi12gc",
+      "id": "muous5iu-nec12kbc",
+      "professor_id": "guilherme-dono-001",
       "nome": "TURMA KIDS",
-      "criado_em": 1790737588685
+      "criado_em": 1790817970422
     },
     {
-      "id": "munjp8vz-8wsfawz5",
-      "professor_id": "munjp8vy-9rz9nnwo",
+      "id": "muous5iu-hr2e4lob",
+      "professor_id": "guilherme-dono-001",
       "nome": "TURMA ADOLESCENTES",
-      "criado_em": 1790738892863
+      "criado_em": 1790817970422
     },
     {
-      "id": "munjp8vz-oqmmhh4w",
-      "professor_id": "munjp8vy-9rz9nnwo",
-      "nome": "TURMA KIDS",
-      "criado_em": 1790738892863
-    },
-    {
-      "id": "munju4a7-ahtpc67i",
-      "professor_id": "munju4a7-tfcuzgl3",
-      "nome": "TURMA KIDS",
-      "criado_em": 1790739120175
-    },
-    {
-      "id": "munju4a7-xr4z2kvv",
-      "professor_id": "munju4a7-tfcuzgl3",
-      "nome": "TURMA ADOLESCENTES",
-      "criado_em": 1790739120175
+      "id": "muous5iu-t0j4i8lx",
+      "professor_id": "guilherme-dono-001",
+      "nome": "TURMA KIDS 2",
+      "criado_em": 1790817970422
     }
   ],
   "fechamentos": [],
-  "cronograma": [
-    {
-      "id": "munixakw-1y93v1pl",
-      "professor_id": "munixaks-cybi12gc",
-      "titulo": "Aula Turma KIDS",
-      "aluno_nome": "TURMA KIDS",
-      "data": "2026-09-05",
-      "horario": "15:00",
-      "duracao": 2,
-      "observacao": "Aula regular",
-      "criado_em": 1790737588688
-    },
-    {
-      "id": "munixakw-bitn6vjd",
-      "professor_id": "munixaks-cybi12gc",
-      "titulo": "Aula Turma KIDS",
-      "aluno_nome": "TURMA KIDS",
-      "data": "2026-09-29",
-      "horario": "17:00",
-      "duracao": 2,
-      "observacao": "Aula regular",
-      "criado_em": 1790737588688
-    },
-    {
-      "id": "munixakw-dbjkriey",
-      "professor_id": "munixaks-cybi12gc",
-      "titulo": "Aula Turma KIDS",
-      "aluno_nome": "TURMA KIDS",
-      "data": "2026-09-19",
-      "horario": "15:00",
-      "duracao": 2,
-      "observacao": "Aula regular",
-      "criado_em": 1790737588688
-    },
-    {
-      "id": "munixakw-f6trauo9",
-      "professor_id": "munixaks-cybi12gc",
-      "titulo": "Aula Turma Adolescentes",
-      "aluno_nome": "TURMA ADOLESCENTES",
-      "data": "2026-09-19",
-      "horario": "17:00",
-      "duracao": 2,
-      "observacao": "Aula regular",
-      "criado_em": 1790737588688
-    },
-    {
-      "id": "munixakw-g3q6ckbw",
-      "professor_id": "munixaks-cybi12gc",
-      "titulo": "Aula Turma KIDS",
-      "aluno_nome": "TURMA KIDS",
-      "data": "2026-09-12",
-      "horario": "15:00",
-      "duracao": 2,
-      "observacao": "Aula regular",
-      "criado_em": 1790737588688
-    },
-    {
-      "id": "munixakw-hyt9dsun",
-      "professor_id": "munixaks-cybi12gc",
-      "titulo": "Aula Turma Adolescentes",
-      "aluno_nome": "TURMA ADOLESCENTES",
-      "data": "2026-09-25",
-      "horario": "17:00",
-      "duracao": 2,
-      "observacao": "Aula regular",
-      "criado_em": 1790737588688
-    },
-    {
-      "id": "munixakw-jczj76yf",
-      "professor_id": "munixaks-cybi12gc",
-      "titulo": "Aula Turma Adolescentes",
-      "aluno_nome": "TURMA ADOLESCENTES",
-      "data": "2026-09-12",
-      "horario": "17:00",
-      "duracao": 2,
-      "observacao": "Aula regular",
-      "criado_em": 1790737588688
-    },
-    {
-      "id": "munixakw-m2rvbsxg",
-      "professor_id": "munixaks-cybi12gc",
-      "titulo": "Aula Turma Adolescentes",
-      "aluno_nome": "TURMA ADOLESCENTES",
-      "data": "2026-09-05",
-      "horario": "17:00",
-      "duracao": 2,
-      "observacao": "Aula regular",
-      "criado_em": 1790737588688
-    },
-    {
-      "id": "munixakw-rd59hr5i",
-      "professor_id": "munixaks-cybi12gc",
-      "titulo": "Aula Turma KIDS",
-      "aluno_nome": "TURMA KIDS",
-      "data": "2026-09-25",
-      "horario": "15:00",
-      "duracao": 2,
-      "observacao": "Aula regular",
-      "criado_em": 1790737588688
-    },
-    {
-      "id": "munjp8w2-1ynmqvxz",
-      "professor_id": "munjp8vy-9rz9nnwo",
-      "titulo": "Aula Turma Adolescentes",
-      "aluno_nome": "TURMA ADOLESCENTES",
-      "data": "2026-09-12",
-      "horario": "17:00",
-      "duracao": 2,
-      "observacao": "Aula regular",
-      "criado_em": 1790738892866
-    },
-    {
-      "id": "munjp8w2-n828n618",
-      "professor_id": "munjp8vy-9rz9nnwo",
-      "titulo": "Aula Turma KIDS",
-      "aluno_nome": "TURMA KIDS",
-      "data": "2026-09-19",
-      "horario": "15:00",
-      "duracao": 2,
-      "observacao": "Aula regular",
-      "criado_em": 1790738892866
-    },
-    {
-      "id": "munjp8w2-qvu6f1nv",
-      "professor_id": "munjp8vy-9rz9nnwo",
-      "titulo": "Aula Turma KIDS",
-      "aluno_nome": "TURMA KIDS",
-      "data": "2026-09-29",
-      "horario": "17:00",
-      "duracao": 2,
-      "observacao": "Aula regular",
-      "criado_em": 1790738892866
-    },
-    {
-      "id": "munjp8w2-rzwbduoq",
-      "professor_id": "munjp8vy-9rz9nnwo",
-      "titulo": "Aula Turma Adolescentes",
-      "aluno_nome": "TURMA ADOLESCENTES",
-      "data": "2026-09-19",
-      "horario": "17:00",
-      "duracao": 2,
-      "observacao": "Aula regular",
-      "criado_em": 1790738892866
-    },
-    {
-      "id": "munjp8w2-s81fn34i",
-      "professor_id": "munjp8vy-9rz9nnwo",
-      "titulo": "Aula Turma KIDS",
-      "aluno_nome": "TURMA KIDS",
-      "data": "2026-09-05",
-      "horario": "15:00",
-      "duracao": 2,
-      "observacao": "Aula regular",
-      "criado_em": 1790738892866
-    },
-    {
-      "id": "munjp8w2-sjakykw7",
-      "professor_id": "munjp8vy-9rz9nnwo",
-      "titulo": "Aula Turma Adolescentes",
-      "aluno_nome": "TURMA ADOLESCENTES",
-      "data": "2026-09-05",
-      "horario": "17:00",
-      "duracao": 2,
-      "observacao": "Aula regular",
-      "criado_em": 1790738892866
-    },
-    {
-      "id": "munjp8w2-tgkhkipz",
-      "professor_id": "munjp8vy-9rz9nnwo",
-      "titulo": "Aula Turma Adolescentes",
-      "aluno_nome": "TURMA ADOLESCENTES",
-      "data": "2026-09-25",
-      "horario": "17:00",
-      "duracao": 2,
-      "observacao": "Aula regular",
-      "criado_em": 1790738892866
-    },
-    {
-      "id": "munjp8w2-wtahzy3a",
-      "professor_id": "munjp8vy-9rz9nnwo",
-      "titulo": "Aula Turma KIDS",
-      "aluno_nome": "TURMA KIDS",
-      "data": "2026-09-12",
-      "horario": "15:00",
-      "duracao": 2,
-      "observacao": "Aula regular",
-      "criado_em": 1790738892866
-    },
-    {
-      "id": "munjp8w2-wvltnekb",
-      "professor_id": "munjp8vy-9rz9nnwo",
-      "titulo": "Aula Turma KIDS",
-      "aluno_nome": "TURMA KIDS",
-      "data": "2026-09-25",
-      "horario": "15:00",
-      "duracao": 2,
-      "observacao": "Aula regular",
-      "criado_em": 1790738892866
-    },
-    {
-      "id": "munju4aa-f19tohh4",
-      "professor_id": "munju4a7-tfcuzgl3",
-      "titulo": "Aula Turma KIDS",
-      "aluno_nome": "TURMA KIDS",
-      "data": "2026-09-05",
-      "horario": "15:00",
-      "duracao": 2,
-      "observacao": "Aula regular",
-      "criado_em": 1790739120178
-    },
-    {
-      "id": "munju4aa-rkoo92x7",
-      "professor_id": "munju4a7-tfcuzgl3",
-      "titulo": "Aula Turma Adolescentes",
-      "aluno_nome": "TURMA ADOLESCENTES",
-      "data": "2026-09-05",
-      "horario": "17:00",
-      "duracao": 2,
-      "observacao": "Aula regular",
-      "criado_em": 1790739120178
-    },
-    {
-      "id": "munju4ab-1jbec7ri",
-      "professor_id": "munju4a7-tfcuzgl3",
-      "titulo": "Aula Turma KIDS",
-      "aluno_nome": "TURMA KIDS",
-      "data": "2026-09-29",
-      "horario": "17:00",
-      "duracao": 2,
-      "observacao": "Aula regular",
-      "criado_em": 1790739120179
-    },
-    {
-      "id": "munju4ab-5raxcmpa",
-      "professor_id": "munju4a7-tfcuzgl3",
-      "titulo": "Aula Turma Adolescentes",
-      "aluno_nome": "TURMA ADOLESCENTES",
-      "data": "2026-09-12",
-      "horario": "17:00",
-      "duracao": 2,
-      "observacao": "Aula regular",
-      "criado_em": 1790739120179
-    },
-    {
-      "id": "munju4ab-9vqc7bls",
-      "professor_id": "munju4a7-tfcuzgl3",
-      "titulo": "Aula Turma Adolescentes",
-      "aluno_nome": "TURMA ADOLESCENTES",
-      "data": "2026-09-19",
-      "horario": "17:00",
-      "duracao": 2,
-      "observacao": "Aula regular",
-      "criado_em": 1790739120179
-    },
-    {
-      "id": "munju4ab-kzdvv3ba",
-      "professor_id": "munju4a7-tfcuzgl3",
-      "titulo": "Aula Turma KIDS",
-      "aluno_nome": "TURMA KIDS",
-      "data": "2026-09-12",
-      "horario": "15:00",
-      "duracao": 2,
-      "observacao": "Aula regular",
-      "criado_em": 1790739120179
-    },
-    {
-      "id": "munju4ab-lrygqnsd",
-      "professor_id": "munju4a7-tfcuzgl3",
-      "titulo": "Aula Turma KIDS",
-      "aluno_nome": "TURMA KIDS",
-      "data": "2026-09-25",
-      "horario": "15:00",
-      "duracao": 2,
-      "observacao": "Aula regular",
-      "criado_em": 1790739120179
-    },
-    {
-      "id": "munju4ab-pegim1qx",
-      "professor_id": "munju4a7-tfcuzgl3",
-      "titulo": "Aula Turma Adolescentes",
-      "aluno_nome": "TURMA ADOLESCENTES",
-      "data": "2026-09-25",
-      "horario": "17:00",
-      "duracao": 2,
-      "observacao": "Aula regular",
-      "criado_em": 1790739120179
-    },
-    {
-      "id": "munju4ab-pj6xewxv",
-      "professor_id": "munju4a7-tfcuzgl3",
-      "titulo": "Aula Turma KIDS",
-      "aluno_nome": "TURMA KIDS",
-      "data": "2026-09-19",
-      "horario": "15:00",
-      "duracao": 2,
-      "observacao": "Aula regular",
-      "criado_em": 1790739120179
-    }
-  ]
+  "cronograma": []
 }
 ----- FIM -----
