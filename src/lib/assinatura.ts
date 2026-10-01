@@ -55,6 +55,11 @@ export function temAcessoLiberado(professor: Professor | null): { liberado: bool
  * Sincroniza o status da assinatura com o D1 (via Worker API).
  */
 export async function sincronizarAssinatura(professor: Professor): Promise<Professor | null> {
+  // Guilherme (dono) NUNCA tem assinatura alterada pelo Worker
+  if (professor.is_admin || professor.assinatura_status === 'lifetime') {
+    return null;
+  }
+
   try {
     const data = await verificarAssinaturaAPI(professor.username);
     if (!data) return null;

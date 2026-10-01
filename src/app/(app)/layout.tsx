@@ -103,10 +103,14 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         console.warn('Erro ao verificar assinatura:', e);
       }
 
-      // Verifica acesso
-      const acesso = temAcessoLiberado(professor);
-      if (!acesso.liberado && !professor.is_admin && pathname !== '/configuracoes') {
-        router.replace('/assinar');
+      // Verifica acesso (Guilherme sempre tem acesso, não importa o que o Worker diga)
+      if (professor.is_admin || professor.assinatura_status === 'lifetime') {
+        // Dono do sistema — acesso livre, nunca redireciona pra /assinar
+      } else {
+        const acesso = temAcessoLiberado(professor);
+        if (!acesso.liberado && pathname !== '/configuracoes') {
+          router.replace('/assinar');
+        }
       }
     })();
   }, [sessao, professor, router, pathname, atualizarProfessor]);
