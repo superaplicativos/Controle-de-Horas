@@ -1,6 +1,6 @@
 ========================================
  CONTROLE DE AULAS - BACKUP
- Exportado em: 2026-10-01T01:26:10.422Z
+ Exportado em: 2026-10-01T03:19:02.542Z
  Versão: 1
 ========================================
 
@@ -11,7 +11,7 @@ VALOR/HORA: R$ 35.00
 muous5iu-egqsywid | Thiago Patrick Bellini | vip | ativo
 muous5iu-uqh5lr4d | Marcelo Dercatshoff Pereira | vip | ativo
 muous5iu-skgmv65o | Pedro Henrique Russo Nardi | vip | ativo
-muous5iu-469rpn6r | Maria José Junqueira da Silva | vip | ativo
+muous5iu-469rpn6r | Maria JosÃ© Junqueira da Silva | vip | ativo
 muous5iu-nhebprfj | Joelma Faria | vip | ativo
 muous5iu-fhtgc26k | Maria Alice | vip | ativo
 muous5iu-r8pzuhg6 | TURMA KIDS | turma | ativo
@@ -24,39 +24,52 @@ muous5iu-hr2e4lob | TURMA ADOLESCENTES
 muous5iu-t0j4i8lx | TURMA KIDS 2
 
 ----- AULAS DADAS -----
-2025-09-01 | Thiago Patrick Bellini    | --:-- | 1h | falta      | R$ 35.00 | Excel / Mkt Digital
-2025-09-15 | Thiago Patrick Bellini    | --:-- | 1h | falta      | R$ 35.00 | Excel / Mkt Digital
-2025-09-22 | Thiago Patrick Bellini    | --:-- | 1h | falta      | R$ 35.00 | Excel / Mkt Digital
-2025-09-24 | Thiago Patrick Bellini    | --:-- | 2h | presenca   | R$ 70.00 | Excel / Mkt Digital
-2025-09-29 | Thiago Patrick Bellini    | --:-- | 1h | falta      | R$ 35.00 | Excel / Mkt Digital
-2025-09-03 | Marcelo Dercatshoff Perei | --:-- | 2h | presenca   | R$ 70.00 | Marketing Digital
-2025-09-10 | Marcelo Dercatshoff Perei | --:-- | 2h | presenca   | R$ 70.00 | Marketing Digital
-2025-09-17 | Marcelo Dercatshoff Perei | --:-- | 2h | presenca   | R$ 70.00 | Marketing Digital
-2025-09-04 | Pedro Henrique Russo Nard | --:-- | 1h | falta      | R$ 35.00 | IA / Lógica de Programação
-2025-09-11 | Pedro Henrique Russo Nard | --:-- | 2h | presenca   | R$ 70.00 | IA / Lógica de Programação
-2025-09-18 | Pedro Henrique Russo Nard | --:-- | 2h | presenca   | R$ 70.00 | IA / Lógica de Programação
-2025-09-25 | Pedro Henrique Russo Nard | --:-- | 2h | presenca   | R$ 70.00 | IA / Lógica de Programação
-2025-09-05 | Maria José Junqueira da S | --:-- | 2h | presenca   | R$ 70.00 | Uso do Celular
-2025-09-12 | Maria José Junqueira da S | --:-- | 2h | presenca   | R$ 70.00 | Uso do Celular
-2025-09-19 | Maria José Junqueira da S | --:-- | 2h | presenca   | R$ 70.00 | Uso do Celular
-2025-09-26 | Maria José Junqueira da S | --:-- | 2h | presenca   | R$ 70.00 | Uso do Celular
-2025-09-11 | Joelma Faria              | --:-- | 1h | falta      | R$ 35.00 | Mkt Dig / AI / Ed Vídeos
-2025-09-20 | Joelma Faria              | --:-- | 2h | presenca   | R$ 70.00 | Mkt Dig / AI / Ed Vídeos
-2025-09-30 | Maria Alice               | --:-- | 2h | presenca   | R$ 70.00 | Tráfego Pago
-2025-09-05 | TURMA KIDS                | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS
-2025-09-12 | TURMA KIDS                | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS
-2025-09-19 | TURMA KIDS                | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS
-2025-09-26 | TURMA KIDS                | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS
-2025-09-05 | TURMA ADOLESCENTES        | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma Adolescentes
-2025-09-12 | TURMA ADOLESCENTES        | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma Adolescentes
-2025-09-19 | TURMA ADOLESCENTES        | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma Adolescentes
-2025-09-26 | TURMA ADOLESCENTES        | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma Adolescentes
-2025-09-29 | TURMA KIDS 2              | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS 2
+2025-09-01 | Thiago Patrick Belli |  | 1h | falta      | R$ 35.00 | Excel / Mkt Digital
+2025-09-15 | Thiago Patrick Belli |  | 1h | falta      | R$ 35.00 | Excel / Mkt Digital
+2025-09-22 | Thiago Patrick Belli |  | 1h | falta      | R$ 35.00 | Excel / Mkt Digital
+2025-09-24 | Thiago Patrick Belli |  | 2h | presenca   | R$ 70.00 | Excel / Mkt Digital
+2025-09-29 | Thiago Patrick Belli |  | 1h | falta      | R$ 35.00 | Excel / Mkt Digital
+2025-09-03 | Marcelo Dercatshoff  |  | 2h | presenca   | R$ 70.00 | Marketing Digital
+2025-09-10 | Marcelo Dercatshoff  |  | 2h | presenca   | R$ 70.00 | Marketing Digital
+2025-09-17 | Marcelo Dercatshoff  |  | 2h | presenca   | R$ 70.00 | Marketing Digital
+2025-09-04 | Pedro Henrique Russo |  | 1h | falta      | R$ 35.00 | IA / LÃ³gica de ProgramaÃ§Ã£o
+2025-09-11 | Pedro Henrique Russo |  | 2h | presenca   | R$ 70.00 | IA / LÃ³gica de ProgramaÃ§Ã£o
+2025-09-18 | Pedro Henrique Russo |  | 2h | presenca   | R$ 70.00 | IA / LÃ³gica de ProgramaÃ§Ã£o
+2025-09-25 | Pedro Henrique Russo |  | 2h | presenca   | R$ 70.00 | IA / LÃ³gica de ProgramaÃ§Ã£o
+2025-09-05 | Maria JosÃ© Junqueir |  | 2h | presenca   | R$ 70.00 | Uso do Celular
+2025-09-12 | Maria JosÃ© Junqueir |  | 2h | presenca   | R$ 70.00 | Uso do Celular
+2025-09-19 | Maria JosÃ© Junqueir |  | 2h | presenca   | R$ 70.00 | Uso do Celular
+2025-09-26 | Maria JosÃ© Junqueir |  | 2h | presenca   | R$ 70.00 | Uso do Celular
+2025-09-11 | Joelma Faria         |  | 1h | falta      | R$ 35.00 | Mkt Dig / AI / Ed VÃ­deos
+2025-09-20 | Joelma Faria         |  | 2h | presenca   | R$ 70.00 | Mkt Dig / AI / Ed VÃ­deos
+2025-09-30 | Maria Alice          |  | 2h | presenca   | R$ 70.00 | TrÃ¡fego Pago
+2025-09-05 | TURMA KIDS           | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS
+2025-09-12 | TURMA KIDS           | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS
+2025-09-19 | TURMA KIDS           | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS
+2025-09-26 | TURMA KIDS           | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS
+2025-09-05 | TURMA ADOLESCENTES   | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma Adolescentes
+2025-09-12 | TURMA ADOLESCENTES   | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma Adolescentes
+2025-09-19 | TURMA ADOLESCENTES   | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma Adolescentes
+2025-09-26 | TURMA ADOLESCENTES   | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma Adolescentes
+2025-09-29 | TURMA KIDS 2         | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS 2
+
+----- CRONOGRAMA (PLANEJAMENTO) -----
+2026-10-29 | TURMA KIDS           | 17:00 | 2h | Aula Turma KIDS | Aula regular
+2026-10-25 | TURMA KIDS           | 15:00 | 2h | Aula Turma KIDS | Aula regular
+2026-10-12 | TURMA ADOLESCENTES   | 17:00 | 2h | Aula Turma Adolescentes | Aula regular
+2026-10-05 | TURMA ADOLESCENTES   | 17:00 | 2h | Aula Turma Adolescentes | Aula regular
+2026-10-19 | TURMA KIDS           | 15:00 | 2h | Aula Turma KIDS | Aula regular
+2026-10-12 | TURMA KIDS           | 15:00 | 2h | Aula Turma KIDS | Aula regular
+2026-10-19 | TURMA ADOLESCENTES   | 17:00 | 2h | Aula Turma Adolescentes | Aula regular
+2026-10-25 | TURMA ADOLESCENTES   | 17:00 | 2h | Aula Turma Adolescentes | Aula regular
+2026-10-05 | TURMA KIDS           | 15:00 | 2h | Aula Turma KIDS | Aula regular
+
+----- FECHAMENTOS -----
 
 ----- JSON COMPLETO -----
 {
   "versao": 1,
-  "exportado_em": "2026-10-01T01:26:10.422Z",
+  "exportado_em": "2026-10-01T03:19:02.542Z",
   "professor": {
     "nome": "Guilherme Miranda",
     "username": "guilherme",
@@ -193,7 +206,7 @@ muous5iu-t0j4i8lx | TURMA KIDS 2
       "horario": "",
       "duracao": 1,
       "status": "falta",
-      "conteudo": "IA / Lógica de Programação",
+      "conteudo": "IA / LÃ³gica de ProgramaÃ§Ã£o",
       "valor": 35,
       "mes_ref": "2025-09",
       "criado_em": 1790817970422
@@ -208,7 +221,7 @@ muous5iu-t0j4i8lx | TURMA KIDS 2
       "horario": "",
       "duracao": 2,
       "status": "presenca",
-      "conteudo": "IA / Lógica de Programação",
+      "conteudo": "IA / LÃ³gica de ProgramaÃ§Ã£o",
       "valor": 70,
       "mes_ref": "2025-09",
       "criado_em": 1790817970422
@@ -223,7 +236,7 @@ muous5iu-t0j4i8lx | TURMA KIDS 2
       "horario": "",
       "duracao": 2,
       "status": "presenca",
-      "conteudo": "IA / Lógica de Programação",
+      "conteudo": "IA / LÃ³gica de ProgramaÃ§Ã£o",
       "valor": 70,
       "mes_ref": "2025-09",
       "criado_em": 1790817970422
@@ -238,7 +251,7 @@ muous5iu-t0j4i8lx | TURMA KIDS 2
       "horario": "",
       "duracao": 2,
       "status": "presenca",
-      "conteudo": "IA / Lógica de Programação",
+      "conteudo": "IA / LÃ³gica de ProgramaÃ§Ã£o",
       "valor": 70,
       "mes_ref": "2025-09",
       "criado_em": 1790817970422
@@ -247,7 +260,7 @@ muous5iu-t0j4i8lx | TURMA KIDS 2
       "id": "muous5iu-07d197sq",
       "professor_id": "guilherme-dono-001",
       "aluno_id": "muous5iu-469rpn6r",
-      "aluno_nome": "Maria José Junqueira da Silva",
+      "aluno_nome": "Maria JosÃ© Junqueira da Silva",
       "aluno_tipo": "vip",
       "data": "2025-09-05",
       "horario": "",
@@ -262,7 +275,7 @@ muous5iu-t0j4i8lx | TURMA KIDS 2
       "id": "muous5iu-a8z0bubj",
       "professor_id": "guilherme-dono-001",
       "aluno_id": "muous5iu-469rpn6r",
-      "aluno_nome": "Maria José Junqueira da Silva",
+      "aluno_nome": "Maria JosÃ© Junqueira da Silva",
       "aluno_tipo": "vip",
       "data": "2025-09-12",
       "horario": "",
@@ -277,7 +290,7 @@ muous5iu-t0j4i8lx | TURMA KIDS 2
       "id": "muous5iu-qvtgzgq2",
       "professor_id": "guilherme-dono-001",
       "aluno_id": "muous5iu-469rpn6r",
-      "aluno_nome": "Maria José Junqueira da Silva",
+      "aluno_nome": "Maria JosÃ© Junqueira da Silva",
       "aluno_tipo": "vip",
       "data": "2025-09-19",
       "horario": "",
@@ -292,7 +305,7 @@ muous5iu-t0j4i8lx | TURMA KIDS 2
       "id": "muous5iu-ihtg0ftv",
       "professor_id": "guilherme-dono-001",
       "aluno_id": "muous5iu-469rpn6r",
-      "aluno_nome": "Maria José Junqueira da Silva",
+      "aluno_nome": "Maria JosÃ© Junqueira da Silva",
       "aluno_tipo": "vip",
       "data": "2025-09-26",
       "horario": "",
@@ -313,7 +326,7 @@ muous5iu-t0j4i8lx | TURMA KIDS 2
       "horario": "",
       "duracao": 1,
       "status": "falta",
-      "conteudo": "Mkt Dig / AI / Ed Vídeos",
+      "conteudo": "Mkt Dig / AI / Ed VÃ­deos",
       "valor": 35,
       "mes_ref": "2025-09",
       "criado_em": 1790817970422
@@ -328,7 +341,7 @@ muous5iu-t0j4i8lx | TURMA KIDS 2
       "horario": "",
       "duracao": 2,
       "status": "presenca",
-      "conteudo": "Mkt Dig / AI / Ed Vídeos",
+      "conteudo": "Mkt Dig / AI / Ed VÃ­deos",
       "valor": 70,
       "mes_ref": "2025-09",
       "criado_em": 1790817970422
@@ -343,7 +356,7 @@ muous5iu-t0j4i8lx | TURMA KIDS 2
       "horario": "",
       "duracao": 2,
       "status": "presenca",
-      "conteudo": "Tráfego Pago",
+      "conteudo": "TrÃ¡fego Pago",
       "valor": 70,
       "mes_ref": "2025-09",
       "criado_em": 1790817970422
@@ -515,7 +528,7 @@ muous5iu-t0j4i8lx | TURMA KIDS 2
     {
       "id": "muous5iu-469rpn6r",
       "professor_id": "guilherme-dono-001",
-      "nome": "Maria José Junqueira da Silva",
+      "nome": "Maria JosÃ© Junqueira da Silva",
       "tipo": "vip",
       "turma_id": null,
       "ativo": true,
@@ -588,6 +601,106 @@ muous5iu-t0j4i8lx | TURMA KIDS 2
     }
   ],
   "fechamentos": [],
-  "cronograma": []
+  "cronograma": [
+    {
+      "id": "muoyka3s-0d2jmm2l",
+      "professor_id": "muoyka3n-w4dt0s2z",
+      "titulo": "Aula Turma KIDS",
+      "aluno_nome": "TURMA KIDS",
+      "data": "2026-10-29",
+      "horario": "17:00",
+      "duracao": 2,
+      "observacao": "Aula regular",
+      "criado_em": 1790824321576
+    },
+    {
+      "id": "muoyka3s-32m2e2xo",
+      "professor_id": "muoyka3n-w4dt0s2z",
+      "titulo": "Aula Turma KIDS",
+      "aluno_nome": "TURMA KIDS",
+      "data": "2026-10-25",
+      "horario": "15:00",
+      "duracao": 2,
+      "observacao": "Aula regular",
+      "criado_em": 1790824321576
+    },
+    {
+      "id": "muoyka3s-5pf4lgf3",
+      "professor_id": "muoyka3n-w4dt0s2z",
+      "titulo": "Aula Turma Adolescentes",
+      "aluno_nome": "TURMA ADOLESCENTES",
+      "data": "2026-10-12",
+      "horario": "17:00",
+      "duracao": 2,
+      "observacao": "Aula regular",
+      "criado_em": 1790824321576
+    },
+    {
+      "id": "muoyka3s-b4brll7j",
+      "professor_id": "muoyka3n-w4dt0s2z",
+      "titulo": "Aula Turma Adolescentes",
+      "aluno_nome": "TURMA ADOLESCENTES",
+      "data": "2026-10-05",
+      "horario": "17:00",
+      "duracao": 2,
+      "observacao": "Aula regular",
+      "criado_em": 1790824321576
+    },
+    {
+      "id": "muoyka3s-p58rhv19",
+      "professor_id": "muoyka3n-w4dt0s2z",
+      "titulo": "Aula Turma KIDS",
+      "aluno_nome": "TURMA KIDS",
+      "data": "2026-10-19",
+      "horario": "15:00",
+      "duracao": 2,
+      "observacao": "Aula regular",
+      "criado_em": 1790824321576
+    },
+    {
+      "id": "muoyka3s-rem009aj",
+      "professor_id": "muoyka3n-w4dt0s2z",
+      "titulo": "Aula Turma KIDS",
+      "aluno_nome": "TURMA KIDS",
+      "data": "2026-10-12",
+      "horario": "15:00",
+      "duracao": 2,
+      "observacao": "Aula regular",
+      "criado_em": 1790824321576
+    },
+    {
+      "id": "muoyka3s-y6807eem",
+      "professor_id": "muoyka3n-w4dt0s2z",
+      "titulo": "Aula Turma Adolescentes",
+      "aluno_nome": "TURMA ADOLESCENTES",
+      "data": "2026-10-19",
+      "horario": "17:00",
+      "duracao": 2,
+      "observacao": "Aula regular",
+      "criado_em": 1790824321576
+    },
+    {
+      "id": "muoyka3s-ylxnbc3v",
+      "professor_id": "muoyka3n-w4dt0s2z",
+      "titulo": "Aula Turma Adolescentes",
+      "aluno_nome": "TURMA ADOLESCENTES",
+      "data": "2026-10-25",
+      "horario": "17:00",
+      "duracao": 2,
+      "observacao": "Aula regular",
+      "criado_em": 1790824321576
+    },
+    {
+      "id": "muoyka3s-yoc4u7y9",
+      "professor_id": "muoyka3n-w4dt0s2z",
+      "titulo": "Aula Turma KIDS",
+      "aluno_nome": "TURMA KIDS",
+      "data": "2026-10-05",
+      "horario": "15:00",
+      "duracao": 2,
+      "observacao": "Aula regular",
+      "criado_em": 1790824321576
+    }
+  ]
 }
 ----- FIM -----
