@@ -25,7 +25,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [professor, setProfessor] = useState<Professor | null>(null);
   const [carregando, setCarregando] = useState(true);
 
-  // Carrega sessão ao montar (localStorage = persiste entre sessões)
   useEffect(() => {
     (async () => {
       try {
@@ -41,7 +40,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           }
         }
       } catch {
-        // ignore
       } finally {
         setCarregando(false);
       }
@@ -50,40 +48,35 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   async function login(username: string, senha: string) {
     try {
-      // 1. Tenta login via Worker API (D1 — banco de dados de verdade)
-      const result = await loginProfessorAPI(username.trim(), senha);
-      if (!result.ok) {
-        return { ok: false, erro: result.erro || 'Erro ao fazer login' };
+      // 1. Tenta login via Worker API (D1)
+      try {
+        const result = await loginProfessorAPI(username.trim(), senha);
+        if (result.ok && result.professor) {
+          const p = result.professor;
+          const prof: Professor = {
+            id: p.id, username: p.username, senha_hash: p.senha_hash, salt: p.salt,
+            nome: p.nome, valor_hora: p.valor_hora, valor_falta: p.valor_falta,
+            criado_em: p.criado_em, assinatura_status: p.assinatura_status,
+            assinatura_id: p.assinatura_id, trial_fim: p.trial_fim,
+            bloqueado: !!p.bloqueado, is_admin: !!p.is_admin,
+          };
+          await salvarProfessor(prof);
+          const s: Sessao = { professor_id: prof.id, username: prof.username, nome: prof.nome, login_em: Date.now() };
+          localStorage.setItem(SESSION_KEY, JSON.stringify(s));
+          setSessao(s);
+          setProfessor(prof);
+          return { ok: true };
+        }
+      } catch (e) {
+        console.warn('Worker API login falhou, tentando IndexedDB...');
       }
 
-      // 2. Converte dados do D1 (int → boolean) e salva no IndexedDB (cache local)
-      const profData = result.professor;
-      const prof: Professor = {
-        id: profData.id,
-        username: profData.username,
-        senha_hash: profData.senha_hash,
-        salt: profData.salt,
-        nome: profData.nome,
-        valor_hora: profData.valor_hora,
-        valor_falta: profData.valor_falta,
-        criado_em: profData.criado_em,
-        assinatura_status: profData.assinatura_status,
-        assinatura_id: profData.assinatura_id,
-        trial_fim: profData.trial_fim,
-        bloqueado: !!profData.bloqueado,
-        is_admin: !!profData.is_admin,
-      };
-
-      // 3. Salva no IndexedDB (pra funcionar offline)
-      await salvarProfessor(prof);
-
-      // 4. Cria sessão
-      const s: Sessao = {
-        professor_id: prof.id,
-        username: prof.username,
-        nome: prof.nome,
-        login_em: Date.now(),
-      };
+      // 2. FALLBACK: login via IndexedDB local
+      const prof = await buscarProfessorPorUsername(username.trim());
+      if (!prof) return { ok: false, erro: 'Usuário não encontrado' };
+      const ok = await verificarSenha(senha, prof.salt, prof.senha_hash);
+      if (!ok) return { ok: false, erro: 'Senha incorreta' };
+      const s: Sessao = { professor_id: prof.id, username: prof.username, nome: prof.nome, login_em: Date.now() };
       localStorage.setItem(SESSION_KEY, JSON.stringify(s));
       setSessao(s);
       setProfessor(prof);
@@ -99,44 +92,44 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (username.length < 3) return { ok: false, erro: 'Usuário deve ter no mínimo 3 caracteres' };
       if (dados.senha.length < 4) return { ok: false, erro: 'Senha deve ter no mínimo 4 caracteres' };
 
-      // 1. Cadastra via Worker API (D1)
-      const result = await cadastrarProfessorAPI({
-        username,
-        senha: dados.senha,
-        nome: dados.nome.trim(),
-        valor_hora: dados.valor_hora,
-      });
-
-      if (!result.ok) {
-        return { ok: false, erro: result.erro || 'Erro ao cadastrar' };
+      // 1. Tenta cadastrar via Worker API (D1)
+      try {
+        const result = await cadastrarProfessorAPI({ username, senha: dados.senha, nome: dados.nome.trim(), valor_hora: dados.valor_hora });
+        if (result.ok && result.professor) {
+          const p = result.professor;
+          const prof: Professor = {
+            id: p.id, username: p.username, senha_hash: p.senha_hash, salt: p.salt,
+            nome: p.nome, valor_hora: p.valor_hora, valor_falta: p.valor_falta,
+            criado_em: p.criado_em, assinatura_status: p.assinatura_status,
+            assinatura_id: p.assinatura_id, trial_fim: p.trial_fim,
+            bloqueado: !!p.bloqueado, is_admin: !!p.is_admin,
+          };
+          await salvarProfessor(prof);
+          const s: Sessao = { professor_id: prof.id, username: prof.username, nome: prof.nome, login_em: Date.now() };
+          localStorage.setItem(SESSION_KEY, JSON.stringify(s));
+          setSessao(s);
+          setProfessor(prof);
+          return { ok: true };
+        }
+      } catch (e) {
+        console.warn('Worker API cadastro falhou, tentando IndexedDB...');
       }
 
-      // 2. Converte dados do D1 e salva no IndexedDB
-      const profData = result.professor;
+      // 2. FALLBACK: cadastra no IndexedDB local
+      const existente = await buscarProfessorPorUsername(username);
+      if (existente) return { ok: false, erro: 'Usuário já existe' };
+
+      const salt = gerarSalt();
+      const senhaHash = await hashSenha(dados.senha, salt);
       const prof: Professor = {
-        id: profData.id,
-        username: profData.username,
-        senha_hash: profData.senha_hash,
-        salt: profData.salt,
-        nome: profData.nome,
-        valor_hora: profData.valor_hora,
-        valor_falta: profData.valor_falta,
-        criado_em: profData.criado_em,
-        assinatura_status: profData.assinatura_status,
-        trial_fim: profData.trial_fim,
-        bloqueado: !!profData.bloqueado,
-        is_admin: !!profData.is_admin,
+        id: gerarId(), username, senha_hash: senhaHash, salt,
+        nome: dados.nome.trim(), valor_hora: dados.valor_hora, valor_falta: 35,
+        criado_em: Date.now(), assinatura_status: 'free_trial',
+        trial_fim: Date.now() + 7 * 24 * 60 * 60 * 1000, bloqueado: false,
+        is_admin: username === 'guilherme',
       };
-
       await salvarProfessor(prof);
-
-      // 3. Cria sessão
-      const s: Sessao = {
-        professor_id: prof.id,
-        username: prof.username,
-        nome: prof.nome,
-        login_em: Date.now(),
-      };
+      const s: Sessao = { professor_id: prof.id, username: prof.username, nome: prof.nome, login_em: Date.now() };
       localStorage.setItem(SESSION_KEY, JSON.stringify(s));
       setSessao(s);
       setProfessor(prof);
