@@ -1,6 +1,6 @@
 ========================================
  CONTROLE DE AULAS - BACKUP
- Exportado em: 2026-10-07T08:25:44.059Z
+ Exportado em: 2026-10-07T08:25:47.123Z
  Versão: 1
 ========================================
 
@@ -26,7 +26,6 @@ mung05aj-x4xzheux | TURMA ADOLESCENTES | turma | ativo
 mungu0r3-3agqknpa | Flavia SEB | vip | ativo
 mungvvjy-o0o5k5rn | Marcelo Dercat | vip | ativo
 mungw4gn-ctaxzmtb | Thiago Patrick | vip | ativo
-mungwsva-xh4f3y07 | Pedro Henrique | vip | ativo
 mungxqg6-yo3nih2n | Ines 9235 | vip | ativo
 muniyocd-8lyjrw6y | Aluno QA Multi-Device | vip | ativo
 munjtqmw-phy1zkcy | Raquel Ribeiro | vip | inativo
@@ -260,7 +259,7 @@ mup7azo3-t7baln07 | TURMA KIDS
 ----- JSON COMPLETO -----
 {
   "versao": 1,
-  "exportado_em": "2026-10-07T08:25:44.059Z",
+  "exportado_em": "2026-10-07T08:25:47.123Z",
   "professor": {
     "nome": "Guilherme Miranda",
     "username": "guilherme",
@@ -2695,15 +2694,6 @@ mup7azo3-t7baln07 | TURMA KIDS
       "turma_id": null,
       "ativo": true,
       "criado_em": 1790734174871
-    },
-    {
-      "id": "mungwsva-xh4f3y07",
-      "professor_id": "mung059m-2bot73zp",
-      "nome": "Pedro Henrique",
-      "tipo": "vip",
-      "turma_id": null,
-      "ativo": true,
-      "criado_em": 1790734206502
     },
     {
       "id": "mungxqg6-yo3nih2n",
