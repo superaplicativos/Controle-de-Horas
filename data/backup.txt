@@ -1,6 +1,6 @@
 ========================================
  CONTROLE DE AULAS - BACKUP
- Exportado em: 2026-10-07T12:27:16.739Z
+ Exportado em: 2026-10-07T12:27:32.415Z
  Versão: 1
 ========================================
 
@@ -95,6 +95,7 @@ muxxdueo-n8vev51m | TURMA KIDS 1
 2026-10-02 | Pedro Henrique Russo | 17:00 | 1h | presenca   | R$ 35.00 | ECOMMERCE + IA
 2026-09-01 | Raquel Ribeiro       | 15:00 | 2h | presenca   | R$ 70.00 | CHECAR FICHA - AULAS DE CELULAR ALUNA MIGRADA PRA OUTRO PROFESSOR NÃO ANOTEI QUANTAS AULAS FORAM DADAS CORRETAMENTE. FOI EM TORNO DE 2 - 3 AULAS.
 2026-09-02 | Raquel Ribeiro       | 15:00 | 2h | presenca   | R$ 70.00 | CHECAR FICHA - AULAS DE CELULAR ALUNA MIGRADA PRA OUTRO PROFESSOR NÃO ANOTEI QUANTAS AULAS FORAM DADAS CORRETAMENTE. FOI EM TORNO DE 2 - 3 AULAS.
+2026-10-03 | Raquel Ribeiro       | 15:00 | 2h | presenca   | R$ 70.00 | CHECAR FICHA - AULAS DE CELULAR ALUNA MIGRADA PRA OUTRO PROFESSOR NÃO ANOTEI QUANTAS AULAS FORAM DADAS CORRETAMENTE. FOI EM TORNO DE 2 - 3 AULAS.
 
 ----- CRONOGRAMA (PLANEJAMENTO) -----
 2026-10-09 | TURMA ADOLESCENTES 1 | 13:00 | 2h | DESAFIO PRODUÃÂÃÂÃÂÃÂO DE GAME COM Z.AI - AULA 1 | DESAFIO PRODUÃÂÃÂÃÂÃÂO DE GAME COM Z.AI - AULA 1
@@ -109,7 +110,7 @@ muxxdueo-n8vev51m | TURMA KIDS 1
 ----- JSON COMPLETO -----
 {
   "versao": 1,
-  "exportado_em": "2026-10-07T12:27:16.739Z",
+  "exportado_em": "2026-10-07T12:27:32.415Z",
   "professor": {
     "nome": "Guilherme Miranda",
     "username": "guilherme",
@@ -985,6 +986,21 @@ muxxdueo-n8vev51m | TURMA KIDS 1
       "valor": 70,
       "mes_ref": "2026-09",
       "criado_em": 1791376033398
+    },
+    {
+      "id": "muy31pls-nqdh57hx",
+      "professor_id": "muy1pkel-8sfco4km",
+      "aluno_id": "muy2xgh1-74ejyaw1",
+      "aluno_nome": "Raquel Ribeiro",
+      "aluno_tipo": "vip",
+      "data": "2026-10-03",
+      "horario": "15:00",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "CHECAR FICHA - AULAS DE CELULAR ALUNA MIGRADA PRA OUTRO PROFESSOR NÃO ANOTEI QUANTAS AULAS FORAM DADAS CORRETAMENTE. FOI EM TORNO DE 2 - 3 AULAS.",
+      "valor": 70,
+      "mes_ref": "2026-10",
+      "criado_em": 1791376048864
     }
   ],
   "alunos": [
