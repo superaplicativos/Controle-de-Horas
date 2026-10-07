@@ -9,7 +9,13 @@
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/Controle-de-Horas/images/og-cover.jpg",
+      "src": "/Controle-de-Horas/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/Controle-de-Horas/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"

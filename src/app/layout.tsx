@@ -28,7 +28,7 @@ export const metadata: Metadata = {
       'Registre aulas dadas, organize o cronograma e saiba quanto vai receber por aula e por mês. Sistema para professores autônomos. Teste grátis por 7 dias.',
     images: [
       {
-        url: '/Controle-de-Horas/images/og-cover.jpg',
+        url: `${SITE_URL}/images/og-cover.jpg`,
         width: 1344,
         height: 768,
         alt: 'Painel do Controle de Aulas mostrando gráficos de aulas dadas, calendário e valor a receber no mês',
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     title: 'Controle de Aulas | Gestão de Aulas para Professores',
     description:
       'Registre aulas dadas, organize o cronograma e saiba quanto vai receber. Teste grátis por 7 dias.',
-    images: ['/Controle-de-Horas/images/og-cover.jpg'],
+    images: [`${SITE_URL}/images/og-cover.jpg`],
   },
   robots: {
     index: true,

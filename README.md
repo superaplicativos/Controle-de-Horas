@@ -2,9 +2,9 @@
 
 > **O sistema de gestão feito por professor, para professor.**
 
-Pare de somar horas no caderno no fim do mês. Tenha um dashboard cinematográfico com gráficos em tempo real, calendário visual, fechamento mensal automático e sincronização entre celular e computador.
+Pare de somar horas no caderno no fim do mês. Tenha um dashboard com gráficos em tempo real, calendário visual, fechamento mensal automático e sincronização entre celular e computador.
 
-**+2.500 professores** já transformaram sua rotina. Teste **7 dias grátis**, sem cartão de crédito.
+Teste **7 dias grátis**, sem cartão de crédito. Depois assine por **R$ 3,49 por mês**.
 
 👉 **Acesse agora:** [https://superaplicativos.github.io/Controle-de-Horas/](https://superaplicativos.github.io/Controle-de-Horas/)
 
@@ -25,7 +25,7 @@ Pare de somar horas no caderno no fim do mês. Tenha um dashboard cinematográfi
 |-----------------------|----------------------------|
 | 2h somando horas no fim do mês | **2 minutos** com dashboard automático |
 | Esquece de cobrar aulas faltadas | **Faltas contabilizadas automaticamente** |
-| Perde dados quando caderno rasga | **Backup automático na nuvem** |
+| Perde dados quando caderno rasga | **Backup na nuvem e exportação em .txt** |
 | Não consegue acessar fora de casa | **Sync entre celular e PC** |
 | Sem visão de evolução mensal | **Gráficos comparativos mês a mês** |
 
@@ -33,7 +33,7 @@ Pare de somar horas no caderno no fim do mês. Tenha um dashboard cinematográfi
 
 ## ✨ Funcionalidades
 
-### 📊 Dashboard cinematográfico
+### 📊 Dashboard
 - 4 KPIs principais: Nº Aulas, Horas, Ganhos e Faltas
 - Tendência comparada com o mês anterior (com setas ↑↓)
 - 5 gráficos: aulas por dia (barras), presenças vs faltas (pizza), ganhos por semana (linha), top 5 alunos (barras horizontais), horas acumuladas (área)
@@ -73,19 +73,16 @@ Pare de somar horas no caderno no fim do mês. Tenha um dashboard cinematográfi
 - Sidebar fixa no desktop
 - Modais abrem como bottom-sheet no celular
 - Safe areas do iPhone respeitadas
-- Funciona offline (PWA)
 
 ### ☁️ Sync multi-dispositivo
-- Configure uma vez em cada dispositivo com seu token GitHub privado
-- Dados sincronizados automaticamente em ~3 segundos
-- Resolução de conflitos inteligente (mais recente ganha)
+- Basta fazer login com o mesmo usuário e senha em cada dispositivo
+- Dados sincronizados automaticamente via Cloudflare Worker + D1
 - Funciona entre celular e computador
 
 ### 🔐 Segurança
-- Senhas criptografadas com SHA-256 + salt (Web Crypto API)
+- Senha validada pelo servidor (Cloudflare Worker) com hash SHA-256 e salt
 - Cada professor tem seu painel isolado
 - Multi-professor: qualquer um pode se cadastrar
-- Seus dados ficam no SEU navegador/repositório
 
 ### 💰 Cálculo flexível
 - **Presença VIP 1h:** R$ 35,00 (configurável)
@@ -99,25 +96,17 @@ Pare de somar horas no caderno no fim do mês. Tenha um dashboard cinematográfi
 
 ---
 
-## 💳 Preços
+## 💳 Preço
 
-### Plano Mensal — R$ 29/mês
+**Plano único — R$ 3,49 por mês**
 - Aulas, alunos e turmas ilimitados
 - Dashboard completo com gráficos
 - Cronograma e calendário
 - Fechamento mensal automático
 - Sync entre dispositivos
 - Backup .txt exportável
-- Suporte por email
-- **7 dias grátis**
-
-### Plano Anual — R$ 290/ano
-- Tudo do plano Mensal
-- **2 meses grátis por ano** (equivale a R$ 24/mês)
-- Atualizações prioritárias
-- Suporte por WhatsApp
-- Relatórios em PDF (em breve)
-- Multi-professor/escola (em breve)
+- **7 dias grátis**, sem cartão de crédito
+- Sem fidelidade, cancele quando quiser
 
 👉 **Comece agora:** [https://superaplicativos.github.io/Controle-de-Horas/](https://superaplicativos.github.io/Controle-de-Horas/)
 
@@ -126,27 +115,28 @@ Pare de somar horas no caderno no fim do mês. Tenha um dashboard cinematográfi
 ## ❓ Perguntas frequentes
 
 **Preciso instalar algo?**
-Não. É um PWA (Progressive Web App). Acesse pelo navegador, em qualquer dispositivo.
+Não. Acesse pelo navegador, em qualquer dispositivo.
 
 **Meus dados ficam salvos onde?**
-No seu navegador (IndexedDB criptografado) e, se ativar o sync, no seu repositório GitHub privado. Nada vai pra servidores de terceiros.
-
-**Funciona offline?**
-Sim! Depois de carregar a primeira vez, funciona offline. Quando voltar a ter internet, o sync automático envia tudo.
+No seu navegador (IndexedDB) e no banco de dados da Cloudflare (D1), sincronizados quando você faz login. Você pode exportar tudo em .txt a qualquer momento.
 
 **Tem fidelidade?**
-Zero. Pague mês a mês. Cancele com 1 clique, sem multa.
+Zero. Pague mês a mês. Cancele quando quiser, sem multa.
 
 **E se eu cancelar, perco meus dados?**
 Nunca. Exporte tudo em .txt a qualquer momento. Seus dados são seus.
+
+**Como funciona a liberação do pagamento?**
+Você paga no Mercado Pago e envia o comprovante no WhatsApp (11 96616-1611). Liberamos o acesso em até 24 horas.
 
 ---
 
 ## 📞 Contato e suporte
 
 - **Acesse o sistema:** [https://superaplicativos.github.io/Controle-de-Horas/](https://superaplicativos.github.io/Controle-de-Horas/)
-- **Suporte:** Abra uma issue neste repositório
-- **Parcerias:** Entre em contato pelo repositório
+- **WhatsApp:** 11 96616-1611
+- **Termos de uso:** [https://superaplicativos.github.io/Controle-de-Horas/termos/](https://superaplicativos.github.io/Controle-de-Horas/termos/)
+- **Privacidade:** [https://superaplicativos.github.io/Controle-de-Horas/privacidade/](https://superaplicativos.github.io/Controle-de-Horas/privacidade/)
 
 ---
 
@@ -162,7 +152,7 @@ Este software é protegido por direitos autorais. A reprodução, distribuição
 - Usar a marca, nome ou identidade visual sem consentimento
 - Vender ou licenciar este sistema a terceiros
 
-**Para licenciamento comercial, parcerias ou autorizações**, entre em contato através do repositório oficial.
+**Para licenciamento comercial, parcerias ou autorizações**, entre em contato pelo WhatsApp 11 96616-1611.
 
 ---
 
@@ -170,8 +160,7 @@ Este software é protegido por direitos autorais. A reprodução, distribuição
 
 1. Acesse [https://superaplicativos.github.io/Controle-de-Horas/](https://superaplicativos.github.io/Controle-de-Horas/)
 2. Cadastre-se com usuário, senha, nome e valor/hora
-3. Configure o sync GitHub em **Configurações** (opcional, para multi-dispositivo)
-4. Comece a registrar suas aulas
-5. Acompanhe o dashboard crescer 📈
+3. Comece a registrar suas aulas
+4. Acompanhe o dashboard crescer 📈
 
 **Feito com 💚 para professores brasileiros.**

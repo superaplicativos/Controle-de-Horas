@@ -65,7 +65,7 @@ const features = [
   { icon: Calendar, title: 'Calendário visual', desc: 'Veja o mês inteiro colorido por status: presença, falta, agendada ou cancelada. O dia atual fica destacado.' },
   { icon: Smartphone, title: '100% responsivo', desc: 'Funciona no celular, tablet e computador. Navegação inferior nativa no celular, modais que abrem como bottom-sheet.' },
   { icon: Cloud, title: 'Sincronização entre dispositivos', desc: 'Lance a aula no celular e veja aparecer no computador em poucos segundos. Sem configurar nada.' },
-  { icon: Shield, title: 'Senhas criptografadas', desc: 'SHA-256 com salt. Cada professor tem painel isolado. O token de acesso fica protegido no servidor.' },
+  { icon: Shield, title: 'Cada professor tem seu painel isolado', desc: 'Login com usuário e senha. Cada professor só enxerga os próprios dados. As senhas são validadas pelo servidor (Cloudflare Worker) com hash SHA-256 e salt.' },
   { icon: BookOpen, title: 'Fechamento mensal', desc: 'Gere snapshots imutáveis no fim de cada mês. Histórico completo para consulta e declaração de valores.' },
   { icon: TrendingUp, title: 'Ranking de alunos', desc: 'Saiba quem são os alunos que mais geram valor. Concentre seu esforço onde rende mais.' },
 ];
@@ -94,26 +94,22 @@ const comparison = [
 
 const testimonials = [
   {
-    name: 'Mariana Costa',
-    role: 'Professora de inglês, Campinas/SP',
+    role: 'Professora de inglês',
     text: 'Eu perdia horas somando horas no caderno. Agora fecho o mês em dois minutos. Só custa um cafézinho por mês.',
     stars: 5,
   },
   {
-    name: 'Rafael Mendes',
-    role: 'Professor de reforço de matemática, Recife/PE',
+    role: 'Professor de reforço de matemática',
     text: 'O sistema de faltas me salvou. Antes eu esquecia de cobrar. Agora o sistema conta automaticamente.',
     stars: 5,
   },
   {
-    name: 'Juliana Ferreira',
-    role: 'Professora de música, Belo Horizonte/MG',
+    role: 'Professora de música',
     text: 'Tenho turma de crianças e aulas VIP de adultos. O sistema trata os dois certinho: turma sempre 2 horas, VIP flexível.',
     stars: 5,
   },
   {
-    name: 'Carlos Eduardo',
-    role: 'Professor de física, Curitiba/PR',
+    role: 'Professor de física',
     text: 'A sincronização entre celular e computador funciona. Lanço a aula no celular ao sair da escola e já está no PC quando chego em casa.',
     stars: 5,
   },
@@ -150,7 +146,7 @@ const faqs = [
   },
   {
     q: 'Meus dados estão seguros?',
-    a: 'Sim. As senhas são criptografadas com SHA-256 e salt. Cada professor tem seu painel isolado. O token de acesso ao GitHub fica protegido no servidor Cloudflare Worker, nunca exposto no navegador. Os dados são armazenados no seu navegador e sincronizados de forma segura.',
+    a: 'Sim. As senhas são validadas pelo servidor (Cloudflare Worker) com hash SHA-256 e salt. Cada professor tem seu painel isolado. Os dados ficam no seu navegador e no banco de dados da Cloudflare (D1). Você pode exportar tudo em arquivo .txt a qualquer momento.',
   },
 ];
 
@@ -195,7 +191,6 @@ function WhatsAppFloat() {
 export default function LandingPage() {
   const [slideIdx, setSlideIdx] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [faqOpen, setFaqOpen] = useState<number | null>(0);
   const [email, setEmail] = useState('');
   const [sent, setSent] = useState(false);
 
@@ -605,12 +600,12 @@ export default function LandingPage() {
                     "{t.text}"
                   </p>
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center text-white font-bold">
-                      {t.name.charAt(0)}
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center text-white">
+                      <GraduationCap className="w-5 h-5" />
                     </div>
                     <div>
-                      <div className="font-semibold">{t.name}</div>
-                      <div className="text-xs text-emerald-100/60">{t.role}</div>
+                      <div className="font-semibold text-sm">{t.role}</div>
+                      <div className="text-xs text-emerald-100/60">Professor(a) usuário(a) do sistema</div>
                     </div>
                   </div>
                 </article>
@@ -671,7 +666,6 @@ export default function LandingPage() {
             </div>
 
             <div className="mt-8 flex flex-wrap justify-center gap-4 text-xs text-emerald-100/50">
-              <div className="flex items-center gap-1"><Lock className="w-3 h-3" /> Dados criptografados</div>
               <div className="flex items-center gap-1"><Shield className="w-3 h-3" /> Conforme LGPD</div>
               <div className="flex items-center gap-1"><Cloud className="w-3 h-3" /> Backup automático</div>
               <div className="flex items-center gap-1"><Coffee className="w-3 h-3" /> Só um cafézinho</div>
@@ -738,23 +732,15 @@ export default function LandingPage() {
 
             <div className="max-w-3xl mx-auto space-y-3">
               {faqs.map((faq, i) => (
-                <article key={i} className="rounded-xl bg-emerald-900/10 border border-emerald-900/40 overflow-hidden">
-                  <h3>
-                    <button
-                      onClick={() => setFaqOpen(faqOpen === i ? null : i)}
-                      className="w-full px-5 py-4 flex items-center justify-between text-left hover:bg-emerald-900/20 transition"
-                      aria-expanded={faqOpen === i}
-                    >
-                      <span className="font-semibold text-emerald-100">{faq.q}</span>
-                      <ChevronDown className={cn('w-5 h-5 text-emerald-400 flex-shrink-0 transition-transform', faqOpen === i && 'rotate-180')} />
-                    </button>
-                  </h3>
-                  {faqOpen === i && (
-                    <div className="px-5 pb-5 text-emerald-100/70 leading-relaxed">
-                      {faq.a}
-                    </div>
-                  )}
-                </article>
+                <details key={i} className="group rounded-xl bg-emerald-900/10 border border-emerald-900/40 overflow-hidden">
+                  <summary className="px-5 py-4 flex items-center justify-between cursor-pointer list-none hover:bg-emerald-900/20 transition [&::-webkit-details-marker]:hidden">
+                    <span className="font-semibold text-emerald-100">{faq.q}</span>
+                    <ChevronDown className={cn('w-5 h-5 text-emerald-400 flex-shrink-0 transition-transform group-open:rotate-180')} />
+                  </summary>
+                  <div className="px-5 pb-5 text-emerald-100/70 leading-relaxed">
+                    {faq.a}
+                  </div>
+                </details>
               ))}
             </div>
           </div>
@@ -833,10 +819,10 @@ export default function LandingPage() {
             <nav aria-label="Legal">
               <h4 className="font-semibold mb-3 text-sm">Legal</h4>
               <ul className="space-y-2 text-sm text-emerald-100/60">
-                <li><a href="#" className="hover:text-emerald-300">Termos de uso</a></li>
-                <li><a href="#" className="hover:text-emerald-300">Privacidade</a></li>
-                <li><a href="#" className="hover:text-emerald-300">LGPD</a></li>
-                <li><a href="#" className="hover:text-emerald-300">Direitos autorais</a></li>
+                <li><Link href="/termos" className="hover:text-emerald-300">Termos de uso</Link></li>
+                <li><Link href="/privacidade" className="hover:text-emerald-300">Privacidade</Link></li>
+                <li><Link href="/privacidade" className="hover:text-emerald-300">LGPD</Link></li>
+                <li><Link href="/termos" className="hover:text-emerald-300">Direitos autorais</Link></li>
               </ul>
             </nav>
           </div>
