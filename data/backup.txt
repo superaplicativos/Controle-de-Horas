@@ -1,6 +1,6 @@
 ========================================
  CONTROLE DE AULAS - BACKUP
- Exportado em: 2026-10-07T08:26:05.312Z
+ Exportado em: 2026-10-07T08:26:45.839Z
  Versão: 1
 ========================================
 
@@ -21,26 +21,14 @@ mup7azo5-7vmw2x53 | TURMA KIDS | turma | ativo
 mup7azo5-jvef96g6 | TURMA ADOLESCENTES | turma | ativo
 mup7azo5-xgc5meu3 | Joelma | vip | ativo
 mung05aj-apmoz5s4 | Joelma | vip | ativo
-mung05aj-n9cl60ah | TURMA KIDS | turma | ativo
-mung05aj-x4xzheux | TURMA ADOLESCENTES | turma | ativo
 mungu0r3-3agqknpa | Flavia SEB | vip | ativo
-mungw4gn-ctaxzmtb | Thiago Patrick | vip | ativo
 mungxqg6-yo3nih2n | Ines 9235 | vip | ativo
 muniyocd-8lyjrw6y | Aluno QA Multi-Device | vip | ativo
-munjtqmw-phy1zkcy | Raquel Ribeiro | vip | inativo
-muous5iu-egqsywid | Thiago Patrick Bellini | vip | ativo
 muous5iu-nhebprfj | Joelma Faria | vip | ativo
-muous5iu-s1l3z7im | TURMA KIDS 2 | turma | ativo
 muous5iu-uqh5lr4d | Marcelo Dercatshoff Pereira | vip | ativo
 mup1qarl-gigbkult | Maria Jose Junqueira da Silva | vip | ativo
 mup75usy-8ut6t180 | Joelma Faria | vip | ativo
-mup75usy-d4udpkq7 | TURMA KIDS | turma | ativo
-mup75usy-p58y33aj | Thiago Patrick Bellini | vip | ativo
 mup75usy-rpow3107 | Pedro Henrique Russo Nardi | vip | ativo
-mup75usy-wtg6jh3c | TURMA KIDS 2 | turma | ativo
-mup75usy-zn25p6dn | TURMA ADOLESCENTES | turma | ativo
-mup7azo5-7vmw2x53 | TURMA KIDS | turma | ativo
-mup7azo5-jvef96g6 | TURMA ADOLESCENTES | turma | ativo
 mup7azo5-xgc5meu3 | Joelma | vip | ativo
 
 ----- TURMAS -----
@@ -255,7 +243,7 @@ mup7azo3-t7baln07 | TURMA KIDS
 ----- JSON COMPLETO -----
 {
   "versao": 1,
-  "exportado_em": "2026-10-07T08:26:05.312Z",
+  "exportado_em": "2026-10-07T08:26:45.839Z",
   "professor": {
     "nome": "Guilherme Miranda",
     "username": "guilherme",
@@ -2647,24 +2635,6 @@ mup7azo3-t7baln07 | TURMA KIDS
       "criado_em": 1790732682955
     },
     {
-      "id": "mung05aj-n9cl60ah",
-      "professor_id": "mung059m-2bot73zp",
-      "nome": "TURMA KIDS",
-      "tipo": "turma",
-      "turma_id": "mung05af-5up11y1q",
-      "ativo": true,
-      "criado_em": 1790732682955
-    },
-    {
-      "id": "mung05aj-x4xzheux",
-      "professor_id": "mung059m-2bot73zp",
-      "nome": "TURMA ADOLESCENTES",
-      "tipo": "turma",
-      "turma_id": "mung05af-fnbt6a3u",
-      "ativo": true,
-      "criado_em": 1790732682955
-    },
-    {
       "id": "mungu0r3-3agqknpa",
       "professor_id": "mung059m-2bot73zp",
       "nome": "Flavia SEB",
@@ -2672,15 +2642,6 @@ mup7azo3-t7baln07 | TURMA KIDS
       "turma_id": null,
       "ativo": true,
       "criado_em": 1790734076751
-    },
-    {
-      "id": "mungw4gn-ctaxzmtb",
-      "professor_id": "mung059m-2bot73zp",
-      "nome": "Thiago Patrick",
-      "tipo": "vip",
-      "turma_id": null,
-      "ativo": true,
-      "criado_em": 1790734174871
     },
     {
       "id": "mungxqg6-yo3nih2n",
@@ -2701,38 +2662,11 @@ mup7azo3-t7baln07 | TURMA KIDS
       "criado_em": 1790737653181
     },
     {
-      "id": "munjtqmw-phy1zkcy",
-      "professor_id": "mung059m-2bot73zp",
-      "nome": "Raquel Ribeiro",
-      "tipo": "vip",
-      "turma_id": null,
-      "ativo": false,
-      "criado_em": 1790739102488
-    },
-    {
-      "id": "muous5iu-egqsywid",
-      "professor_id": "mung059m-2bot73zp",
-      "nome": "Thiago Patrick Bellini",
-      "tipo": "vip",
-      "turma_id": null,
-      "ativo": true,
-      "criado_em": 1790817970422
-    },
-    {
       "id": "muous5iu-nhebprfj",
       "professor_id": "mung059m-2bot73zp",
       "nome": "Joelma Faria",
       "tipo": "vip",
       "turma_id": null,
-      "ativo": true,
-      "criado_em": 1790817970422
-    },
-    {
-      "id": "muous5iu-s1l3z7im",
-      "professor_id": "mung059m-2bot73zp",
-      "nome": "TURMA KIDS 2",
-      "tipo": "turma",
-      "turma_id": "muous5iu-t0j4i8lx",
       "ativo": true,
       "criado_em": 1790817970422
     },
@@ -2764,24 +2698,6 @@ mup7azo3-t7baln07 | TURMA KIDS
       "criado_em": 1790838765105
     },
     {
-      "id": "mup75usy-d4udpkq7",
-      "professor_id": "mung059m-2bot73zp",
-      "nome": "TURMA KIDS",
-      "tipo": "turma",
-      "turma_id": "mup75usy-8d7n7dt6",
-      "ativo": true,
-      "criado_em": 1790838765105
-    },
-    {
-      "id": "mup75usy-p58y33aj",
-      "professor_id": "mung059m-2bot73zp",
-      "nome": "Thiago Patrick Bellini",
-      "tipo": "vip",
-      "turma_id": null,
-      "ativo": true,
-      "criado_em": 1790838765105
-    },
-    {
       "id": "mup75usy-rpow3107",
       "professor_id": "mung059m-2bot73zp",
       "nome": "Pedro Henrique Russo Nardi",
@@ -2789,42 +2705,6 @@ mup7azo3-t7baln07 | TURMA KIDS
       "turma_id": null,
       "ativo": true,
       "criado_em": 1790838765105
-    },
-    {
-      "id": "mup75usy-wtg6jh3c",
-      "professor_id": "mung059m-2bot73zp",
-      "nome": "TURMA KIDS 2",
-      "tipo": "turma",
-      "turma_id": "mup75usy-bol8ebmy",
-      "ativo": true,
-      "criado_em": 1790838765105
-    },
-    {
-      "id": "mup75usy-zn25p6dn",
-      "professor_id": "mung059m-2bot73zp",
-      "nome": "TURMA ADOLESCENTES",
-      "tipo": "turma",
-      "turma_id": "mup75usy-qj7dzs2l",
-      "ativo": true,
-      "criado_em": 1790838765105
-    },
-    {
-      "id": "mup7azo5-7vmw2x53",
-      "professor_id": "mung059m-2bot73zp",
-      "nome": "TURMA KIDS",
-      "tipo": "turma",
-      "turma_id": "mup7azo3-t7baln07",
-      "ativo": true,
-      "criado_em": 1790839004693
-    },
-    {
-      "id": "mup7azo5-jvef96g6",
-      "professor_id": "mung059m-2bot73zp",
-      "nome": "TURMA ADOLESCENTES",
-      "tipo": "turma",
-      "turma_id": "mup7azo3-p3za59ib",
-      "ativo": true,
-      "criado_em": 1790839004693
     },
     {
       "id": "mup7azo5-xgc5meu3",
