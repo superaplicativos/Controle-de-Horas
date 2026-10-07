@@ -1,6 +1,6 @@
 ========================================
  CONTROLE DE AULAS - BACKUP
- Exportado em: 2026-10-07T08:24:33.629Z
+ Exportado em: 2026-10-07T08:24:46.486Z
  Versão: 1
 ========================================
 
@@ -169,7 +169,6 @@ mup7azo3-t7baln07 | TURMA KIDS
 2026-10-29 | TURMA KIDS           | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS
 2026-10-25 | TURMA KIDS           | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS
 2026-10-12 | TURMA ADOLESCENTES   | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma Adolescentes
-2026-10-05 | TURMA KIDS           | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS
 2026-10-10 | Joelma               | --:-- | 1h | falta      | R$ 35.00 | Falta - VIP
 2026-10-05 | TURMA KIDS           | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS
 2026-10-19 | TURMA KIDS           | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS
@@ -266,7 +265,7 @@ mup7azo3-t7baln07 | TURMA KIDS
 ----- JSON COMPLETO -----
 {
   "versao": 1,
-  "exportado_em": "2026-10-07T08:24:33.629Z",
+  "exportado_em": "2026-10-07T08:24:46.486Z",
   "professor": {
     "nome": "Guilherme Miranda",
     "username": "guilherme",
@@ -1784,21 +1783,6 @@ mup7azo3-t7baln07 | TURMA KIDS
       "duracao": 2,
       "status": "presenca",
       "conteudo": "Aula regular - turma Adolescentes",
-      "valor": 70,
-      "mes_ref": "2026-10",
-      "criado_em": 1790824021168
-    },
-    {
-      "id": "muoydub4-uduyoapt",
-      "professor_id": "mung059m-2bot73zp",
-      "aluno_id": "mung05aj-n9cl60ah",
-      "aluno_nome": "TURMA KIDS",
-      "aluno_tipo": "turma",
-      "data": "2026-10-05",
-      "horario": "15:00",
-      "duracao": 2,
-      "status": "presenca",
-      "conteudo": "Aula regular - turma KIDS",
       "valor": 70,
       "mes_ref": "2026-10",
       "criado_em": 1790824021168
