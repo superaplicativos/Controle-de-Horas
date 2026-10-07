@@ -1,6 +1,6 @@
 ========================================
  CONTROLE DE AULAS - BACKUP
- Exportado em: 2026-10-07T08:24:46.486Z
+ Exportado em: 2026-10-07T08:24:59.162Z
  Versão: 1
 ========================================
 
@@ -210,7 +210,6 @@ mup7azo3-t7baln07 | TURMA KIDS
 2026-09-22 | Thiago Patrick Belli |  | 1h | falta      | R$ 35.00 | Excel / Mkt Digital
 2026-09-11 | Joelma Faria         |  | 1h | falta      | R$ 35.00 | Mkt Dig / AI / Ed Videos
 2026-09-17 | Marcelo Dercatshoff  |  | 2h | presenca   | R$ 70.00 | Marketing Digital
-2026-10-05 | TURMA ADOLESCENTES   | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma Adolescentes
 2026-10-25 | TURMA ADOLESCENTES   | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma Adolescentes
 2026-10-29 | TURMA KIDS           | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular - turma KIDS
 2026-10-10 | Joelma               | --:-- | 1h | falta      | R$ 35.00 | Falta - VIP
@@ -265,7 +264,7 @@ mup7azo3-t7baln07 | TURMA KIDS
 ----- JSON COMPLETO -----
 {
   "versao": 1,
-  "exportado_em": "2026-10-07T08:24:46.486Z",
+  "exportado_em": "2026-10-07T08:24:59.162Z",
   "professor": {
     "nome": "Guilherme Miranda",
     "username": "guilherme",
@@ -2401,21 +2400,6 @@ mup7azo3-t7baln07 | TURMA KIDS
       "valor": 70,
       "mes_ref": "2026-09",
       "criado_em": 1790838765105
-    },
-    {
-      "id": "mup7azo7-3cc99b23",
-      "professor_id": "mung059m-2bot73zp",
-      "aluno_id": "mup7azo5-jvef96g6",
-      "aluno_nome": "TURMA ADOLESCENTES",
-      "aluno_tipo": "turma",
-      "data": "2026-10-05",
-      "horario": "17:00",
-      "duracao": 2,
-      "status": "presenca",
-      "conteudo": "Aula regular - turma Adolescentes",
-      "valor": 70,
-      "mes_ref": "2026-10",
-      "criado_em": 1790839004695
     },
     {
       "id": "mup7azo7-b9odtwgv",
