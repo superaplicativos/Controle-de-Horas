@@ -1,6 +1,6 @@
 ========================================
  CONTROLE DE AULAS - BACKUP
- Exportado em: 2026-10-07T08:25:50.115Z
+ Exportado em: 2026-10-07T08:25:57.873Z
  Versão: 1
 ========================================
 
@@ -29,16 +29,13 @@ mungw4gn-ctaxzmtb | Thiago Patrick | vip | ativo
 mungxqg6-yo3nih2n | Ines 9235 | vip | ativo
 muniyocd-8lyjrw6y | Aluno QA Multi-Device | vip | ativo
 munjtqmw-phy1zkcy | Raquel Ribeiro | vip | inativo
-muokkpaq-hs73ge2b | Maria Alice | vip | ativo
 muous5iu-egqsywid | Thiago Patrick Bellini | vip | ativo
 muous5iu-nhebprfj | Joelma Faria | vip | ativo
 muous5iu-s1l3z7im | TURMA KIDS 2 | turma | ativo
 muous5iu-uqh5lr4d | Marcelo Dercatshoff Pereira | vip | ativo
 mup1qarl-gigbkult | Maria Jose Junqueira da Silva | vip | ativo
-mup75usy-2x6kanvg | Marcelo Dercatshoff Pereira | vip | ativo
 mup75usy-8ut6t180 | Joelma Faria | vip | ativo
 mup75usy-d4udpkq7 | TURMA KIDS | turma | ativo
-mup75usy-frq0fxcl | Maria Alice | vip | ativo
 mup75usy-p58y33aj | Thiago Patrick Bellini | vip | ativo
 mup75usy-rpow3107 | Pedro Henrique Russo Nardi | vip | ativo
 mup75usy-wtg6jh3c | TURMA KIDS 2 | turma | ativo
@@ -259,7 +256,7 @@ mup7azo3-t7baln07 | TURMA KIDS
 ----- JSON COMPLETO -----
 {
   "versao": 1,
-  "exportado_em": "2026-10-07T08:25:50.115Z",
+  "exportado_em": "2026-10-07T08:25:57.873Z",
   "professor": {
     "nome": "Guilherme Miranda",
     "username": "guilherme",
@@ -2723,15 +2720,6 @@ mup7azo3-t7baln07 | TURMA KIDS
       "criado_em": 1790739102488
     },
     {
-      "id": "muokkpaq-hs73ge2b",
-      "professor_id": "mung059m-2bot73zp",
-      "nome": "Maria Alice",
-      "tipo": "vip",
-      "turma_id": null,
-      "ativo": true,
-      "criado_em": 1790800826642
-    },
-    {
       "id": "muous5iu-egqsywid",
       "professor_id": "mung059m-2bot73zp",
       "nome": "Thiago Patrick Bellini",
@@ -2777,15 +2765,6 @@ mup7azo3-t7baln07 | TURMA KIDS
       "criado_em": 1790829641217
     },
     {
-      "id": "mup75usy-2x6kanvg",
-      "professor_id": "mung059m-2bot73zp",
-      "nome": "Marcelo Dercatshoff Pereira",
-      "tipo": "vip",
-      "turma_id": null,
-      "ativo": true,
-      "criado_em": 1790838765105
-    },
-    {
       "id": "mup75usy-8ut6t180",
       "professor_id": "mung059m-2bot73zp",
       "nome": "Joelma Faria",
@@ -2800,15 +2779,6 @@ mup7azo3-t7baln07 | TURMA KIDS
       "nome": "TURMA KIDS",
       "tipo": "turma",
       "turma_id": "mup75usy-8d7n7dt6",
-      "ativo": true,
-      "criado_em": 1790838765105
-    },
-    {
-      "id": "mup75usy-frq0fxcl",
-      "professor_id": "mung059m-2bot73zp",
-      "nome": "Maria Alice",
-      "tipo": "vip",
-      "turma_id": null,
       "ativo": true,
       "criado_em": 1790838765105
     },
