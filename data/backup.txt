@@ -1,6 +1,6 @@
 ========================================
  CONTROLE DE AULAS - BACKUP
- Exportado em: 2026-10-07T09:08:21.687Z
+ Exportado em: 2026-10-07T09:11:13.026Z
  Versão: 1
 ========================================
 
@@ -130,7 +130,7 @@ muxvw5s2-lsings0d | TURMA KIDS
 ----- JSON COMPLETO -----
 {
   "versao": 1,
-  "exportado_em": "2026-10-07T09:08:21.687Z",
+  "exportado_em": "2026-10-07T09:11:13.026Z",
   "professor": {
     "nome": "Guilherme Miranda",
     "username": "guilherme",
