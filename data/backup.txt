@@ -1,6 +1,6 @@
 ========================================
  CONTROLE DE AULAS - BACKUP
- Exportado em: 2026-10-07T11:53:52.987Z
+ Exportado em: 2026-10-07T11:54:52.284Z
  Versão: 1
 ========================================
 
@@ -91,6 +91,7 @@ muxxdueo-n8vev51m | TURMA KIDS 1
 2026-09-24 | Thiago Patrick Belli |  | 2h | presenca   | R$ 70.00 | Excel / Mkt Digital
 2026-09-02 | Marcelo Dercatshoff  |  | 2h | presenca   | R$ 70.00 | Marketing Digital
 2026-10-06 | TURMA KIDS 2         | 17:00 | 2h | presenca   | R$ 70.00 | CANVA COM IA
+2026-10-07 | Pedro Henrique Russo | 17:00 | 1h | presenca   | R$ 35.00 | ECOMMERCE + IA
 
 ----- CRONOGRAMA (PLANEJAMENTO) -----
 
@@ -99,7 +100,7 @@ muxxdueo-n8vev51m | TURMA KIDS 1
 ----- JSON COMPLETO -----
 {
   "versao": 1,
-  "exportado_em": "2026-10-07T11:53:52.987Z",
+  "exportado_em": "2026-10-07T11:54:52.284Z",
   "professor": {
     "nome": "Guilherme Miranda",
     "username": "guilherme",
@@ -930,6 +931,21 @@ muxxdueo-n8vev51m | TURMA KIDS 1
       "valor": 70,
       "mes_ref": "2026-10",
       "criado_em": 1791374029486
+    },
+    {
+      "id": "muy1vpaw-y8a00z0x",
+      "professor_id": "muy1pkel-8sfco4km",
+      "aluno_id": "muxxdueo-eq11a7yp",
+      "aluno_nome": "Pedro Henrique Russo Nardi",
+      "aluno_tipo": "vip",
+      "data": "2026-10-07",
+      "horario": "17:00",
+      "duracao": 1,
+      "status": "presenca",
+      "conteudo": "ECOMMERCE + IA",
+      "valor": 35,
+      "mes_ref": "2026-10",
+      "criado_em": 1791374088920
     }
   ],
   "alunos": [
