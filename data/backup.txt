@@ -1,6 +1,6 @@
 ========================================
  CONTROLE DE AULAS - BACKUP
- Exportado em: 2026-10-07T11:56:22.609Z
+ Exportado em: 2026-10-07T11:58:41.109Z
  Versão: 1
 ========================================
 
@@ -94,13 +94,14 @@ muxxdueo-n8vev51m | TURMA KIDS 1
 2026-10-02 | Pedro Henrique Russo | 17:00 | 1h | presenca   | R$ 35.00 | ECOMMERCE + IA
 
 ----- CRONOGRAMA (PLANEJAMENTO) -----
+2026-10-09 | TURMA ADOLESCENTES 1 | 13:00 | 2h | DESAFIO PRODUÇÃO DE GAME COM Z.AI - AULA 1 | DESAFIO PRODUÇÃO DE GAME COM Z.AI - AULA 1
 
 ----- FECHAMENTOS -----
 
 ----- JSON COMPLETO -----
 {
   "versao": 1,
-  "exportado_em": "2026-10-07T11:56:22.609Z",
+  "exportado_em": "2026-10-07T11:58:41.109Z",
   "professor": {
     "nome": "Guilherme Miranda",
     "username": "guilherme",
@@ -1151,6 +1152,18 @@ muxxdueo-n8vev51m | TURMA KIDS 1
     }
   ],
   "fechamentos": [],
-  "cronograma": []
+  "cronograma": [
+    {
+      "id": "muy20ltj-smai1ya1",
+      "professor_id": "muy1pkel-8sfco4km",
+      "titulo": "DESAFIO PRODUÇÃO DE GAME COM Z.AI - AULA 1",
+      "aluno_nome": "TURMA ADOLESCENTES 1",
+      "data": "2026-10-09",
+      "horario": "13:00",
+      "duracao": 2,
+      "observacao": "DESAFIO PRODUÇÃO DE GAME COM Z.AI - AULA 1",
+      "criado_em": 1791374317687
+    }
+  ]
 }
 ----- FIM -----
