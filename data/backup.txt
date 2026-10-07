@@ -1,6 +1,6 @@
 ========================================
  CONTROLE DE AULAS - BACKUP
- Exportado em: 2026-10-07T12:01:52.660Z
+ Exportado em: 2026-10-07T12:02:45.642Z
  Versão: 1
 ========================================
 
@@ -99,13 +99,14 @@ muxxdueo-n8vev51m | TURMA KIDS 1
 2026-10-23 | TURMA ADOLESCENTES 1 | 13:00 | 2h | DESAFIO PRODUÇÃO DE GAME COM Z.AI - AULA 3 | DESAFIO PRODUÇÃO DE GAME COM Z.AI - AULA 1 - AVALIAÇÃO DOS GAMES DESENVOLVIDOS COM NOTAS DE ZERO A 10
 2026-10-09 | TURMA KIDS 1         | 15:00 | 2h | DESAFIO PRODUÇÃO DE GAME COM Z.AI - AULA 1 | DESAFIO PRODUÇÃO DE GAME COM Z.AI - AULA 1
 2026-10-16 | TURMA KIDS 1         | 15:00 | 2h | DESAFIO PRODUÇÃO DE GAME COM Z.AI - AULA 2 | DESAFIO PRODUÇÃO DE GAME COM Z.AI - AULA 2
+2026-10-23 | TURMA KIDS 1         | 15:00 | 2h | DESAFIO PRODUÇÃO DE GAME COM Z.AI - AULA 3 | DESAFIO PRODUÇÃO DE GAME COM Z.AI - AULA 3 - PROVA VALENDO DE ZERO A 10 - AVALIAÇÃO DOS PROJETOS DESENVOLVIDOS E PASSAR PRÓXIMO DESAFIO
 
 ----- FECHAMENTOS -----
 
 ----- JSON COMPLETO -----
 {
   "versao": 1,
-  "exportado_em": "2026-10-07T12:01:52.660Z",
+  "exportado_em": "2026-10-07T12:02:45.642Z",
   "professor": {
     "nome": "Guilherme Miranda",
     "username": "guilherme",
@@ -1211,6 +1212,17 @@ muxxdueo-n8vev51m | TURMA KIDS 1
       "duracao": 2,
       "observacao": "DESAFIO PRODUÇÃO DE GAME COM Z.AI - AULA 2",
       "criado_em": 1791374509319
+    },
+    {
+      "id": "muy25suf-gczq0szu",
+      "professor_id": "muy1pkel-8sfco4km",
+      "titulo": "DESAFIO PRODUÇÃO DE GAME COM Z.AI - AULA 3",
+      "aluno_nome": "TURMA KIDS 1",
+      "data": "2026-10-23",
+      "horario": "15:00",
+      "duracao": 2,
+      "observacao": "DESAFIO PRODUÇÃO DE GAME COM Z.AI - AULA 3 - PROVA VALENDO DE ZERO A 10 - AVALIAÇÃO DOS PROJETOS DESENVOLVIDOS E PASSAR PRÓXIMO DESAFIO",
+      "criado_em": 1791374560071
     }
   ]
 }
