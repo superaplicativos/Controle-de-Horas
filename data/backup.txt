@@ -1,6 +1,6 @@
 ========================================
  CONTROLE DE AULAS - BACKUP
- Exportado em: 2026-10-07T12:25:55.428Z
+ Exportado em: 2026-10-07T12:26:10.054Z
  Versão: 1
 ========================================
 
@@ -94,6 +94,7 @@ muxxdueo-n8vev51m | TURMA KIDS 1
 2026-10-06 | TURMA KIDS 2         | 17:00 | 2h | presenca   | R$ 70.00 | CANVA COM IA
 2026-10-02 | Pedro Henrique Russo | 17:00 | 1h | presenca   | R$ 35.00 | ECOMMERCE + IA
 2026-09-01 | Raquel Ribeiro       | 15:00 | 2h | presenca   | R$ 70.00 | CHECAR FICHA - AULAS DE CELULAR ALUNA MIGRADA PRA OUTRO PROFESSOR NÃO ANOTEI QUANTAS AULAS FORAM DADAS CORRETAMENTE. FOI EM TORNO DE 2 - 3 AULAS.
+2026-09-01 | Raquel Ribeiro       | 15:00 | 2h | presenca   | R$ 70.00 | CHECAR FICHA - AULAS DE CELULAR ALUNA MIGRADA PRA OUTRO PROFESSOR NÃO ANOTEI QUANTAS AULAS FORAM DADAS CORRETAMENTE. FOI EM TORNO DE 2 - 3 AULAS.
 
 ----- CRONOGRAMA (PLANEJAMENTO) -----
 2026-10-09 | TURMA ADOLESCENTES 1 | 13:00 | 2h | DESAFIO PRODUÃÂÃÂO DE GAME COM Z.AI - AULA 1 | DESAFIO PRODUÃÂÃÂO DE GAME COM Z.AI - AULA 1
@@ -108,7 +109,7 @@ muxxdueo-n8vev51m | TURMA KIDS 1
 ----- JSON COMPLETO -----
 {
   "versao": 1,
-  "exportado_em": "2026-10-07T12:25:55.428Z",
+  "exportado_em": "2026-10-07T12:26:10.054Z",
   "professor": {
     "nome": "Guilherme Miranda",
     "username": "guilherme",
@@ -969,6 +970,21 @@ muxxdueo-n8vev51m | TURMA KIDS 1
       "valor": 70,
       "mes_ref": "2026-09",
       "criado_em": 1791375951902
+    },
+    {
+      "id": "muy2zy3n-d7uvxjss",
+      "professor_id": "muy1pkel-8sfco4km",
+      "aluno_id": "muy2xgh1-74ejyaw1",
+      "aluno_nome": "Raquel Ribeiro",
+      "aluno_tipo": "vip",
+      "data": "2026-09-01",
+      "horario": "15:00",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "CHECAR FICHA - AULAS DE CELULAR ALUNA MIGRADA PRA OUTRO PROFESSOR NÃO ANOTEI QUANTAS AULAS FORAM DADAS CORRETAMENTE. FOI EM TORNO DE 2 - 3 AULAS.",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791375966563
     }
   ],
   "alunos": [
