@@ -156,23 +156,26 @@ Após fechar, as aulas deste mês não poderão mais ser editadas.`)) return;
               <ChevronRight className="w-4 h-4" />
             </Button>
           </div>
-          {jaFechado ? (
-            <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2">
+            {jaFechado && (
               <span className="text-xs text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg flex items-center gap-1">
                 <CheckCircle2 className="w-3 h-3" /> <span className="hidden sm:inline">Fechado</span>
               </span>
+            )}
+            {aulasDoMes.length > 0 && (
               <button
                 onClick={() => exportarAulasPDF(mesRef, professor?.nome || '', aulasDoMes)}
                 className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-gradient-to-r from-amber-500 to-amber-600 text-white text-xs font-semibold hover:from-amber-400 hover:to-amber-500 transition-all shadow-md"
               >
                 📄 <span className="hidden sm:inline">Exportar</span> PDF
               </button>
-            </div>
-          ) : (
-            <Button variant="default" size="sm" onClick={handleFecharMes} className="bg-amber-600 hover:bg-amber-700">
-              Fechar Mês
-            </Button>
-          )}
+            )}
+            {!jaFechado && (
+              <Button variant="default" size="sm" onClick={handleFecharMes} className="bg-amber-600 hover:bg-amber-700">
+                Fechar Mês
+              </Button>
+            )}
+          </div>
         </div>
       </div>
 

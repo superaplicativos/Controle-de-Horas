@@ -9,7 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import {
   Shield, Users, DollarSign, Clock, Search, CheckCircle2, XCircle, Ban, Unlock,
-  TrendingUp, Calendar, AlertTriangle, Activity, UserCheck, UserX
+  TrendingUp, Calendar, AlertTriangle, Activity, UserCheck, UserX, UserPlus
 } from 'lucide-react';
 import { toast } from 'sonner';
 import { listarProfessoresAPI, atualizarProfessorAPI } from '@/lib/api';
@@ -93,6 +93,44 @@ export default function AdminPage() {
       carregar();
     } catch (e) {
       toast.error('Erro ao atualizar');
+    }
+  }
+
+  // Criar usuário manualmente
+  const [novoUsername, setNovoUsername] = useState('');
+  const [novoNome, setNovoNome] = useState('');
+  const [novoSenha, setNovoSenha] = useState('');
+  const [criando, setCriando] = useState(false);
+
+  async function criarUsuario() {
+    if (!novoUsername.trim() || !novoSenha.trim() || !novoNome.trim()) {
+      toast.error('Preencha todos os campos');
+      return;
+    }
+    setCriando(true);
+    try {
+      const { cadastrarProfessorAPI } = await import('@/lib/api');
+      const result = await cadastrarProfessorAPI({
+        username: novoUsername.trim().toLowerCase(),
+        senha: novoSenha,
+        nome: novoNome.trim(),
+        valor_hora: 35,
+      });
+      if (result.ok) {
+        // Libera como VIP (free/lifetime)
+        await atualizarProfessorAPI(novoUsername.trim().toLowerCase(), { assinatura_status: 'active' });
+        toast.success(`Usuário ${novoUsername} criado e liberado!`);
+        setNovoUsername('');
+        setNovoNome('');
+        setNovoSenha('');
+        carregar();
+      } else {
+        toast.error(result.erro || 'Erro ao criar usuário');
+      }
+    } catch (e) {
+      toast.error('Erro ao criar usuário');
+    } finally {
+      setCriando(false);
     }
   }
 
@@ -261,6 +299,28 @@ export default function AdminPage() {
           </Card>
         </div>
       )}
+
+      {/* Criar usuário manualmente */}
+      <Card className="border-emerald-200 bg-emerald-50/50">
+        <CardHeader>
+          <CardTitle className="text-sm sm:text-base flex items-center gap-2">
+            <UserPlus className="w-4 h-4 text-emerald-600" /> Criar Usuário (Manual)
+          </CardTitle>
+          <CardDescription className="text-xs">
+            Crie um professor e libere acesso grátis. Ele terá painel isolado.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-3">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+            <Input placeholder="Usuário (ex: joao)" value={novoUsername} onChange={(e) => setNovoUsername(e.target.value)} />
+            <Input placeholder="Nome completo" value={novoNome} onChange={(e) => setNovoNome(e.target.value)} />
+            <Input placeholder="Senha" type="password" value={novoSenha} onChange={(e) => setNovoSenha(e.target.value)} />
+          </div>
+          <Button onClick={criarUsuario} disabled={criando} className="bg-emerald-600 hover:bg-emerald-700">
+            {criando ? 'Criando...' : 'Criar e liberar acesso'}
+          </Button>
+        </CardContent>
+      </Card>
 
       {/* Filtros */}
       <Card>
