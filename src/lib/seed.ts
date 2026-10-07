@@ -3,8 +3,9 @@ import { gerarSalt, hashSenha, gerarId } from './crypto';
 import { salvarProfessor, buscarProfessorPorUsername } from './db';
 
 /**
- * Seed do Guilherme — cria APENAS o usuário (sem aulas, sem alunos, sem turmas).
- * Os dados reais vêm do sync com o GitHub/Worker.
+ * Seed do Guilherme — cria APENAS o usuario.
+ * ZERO alunos. ZERO aulas. ZERO turmas.
+ * Tudo vem do sync (GitHub) ou é cadastrado pelo professor.
  */
 export async function seedGuilherme(): Promise<void> {
   const existente = await buscarProfessorPorUsername('guilherme');
@@ -36,7 +37,6 @@ export const CREDENCIAIS_DEMO = {
 };
 
 export async function resetarDadosProfessor(professor: Professor): Promise<void> {
-  // Import dinâmico pra evitar circular dependency
   const { limparDadosProfessor } = await import('./db');
   await limparDadosProfessor(professor.id);
 }

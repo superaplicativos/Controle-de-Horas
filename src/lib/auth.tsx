@@ -28,9 +28,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     (async () => {
       try {
-        // Garante que o Guilherme existe
         await seedGuilherme();
-
         const raw = localStorage.getItem(SESSION_KEY);
         if (raw) {
           const s = JSON.parse(raw) as Sessao;
@@ -42,8 +40,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             localStorage.removeItem(SESSION_KEY);
           }
         }
-      } catch {
-      } finally {
+      } catch {} finally {
         setCarregando(false);
       }
     })();
@@ -51,9 +48,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   async function login(username: string, senha: string) {
     try {
-      // Garante Guilherme existe antes de tentar login
       await seedGuilherme();
-
       const prof = await buscarProfessorPorUsername(username.trim());
       if (!prof) return { ok: false, erro: 'Usuário não encontrado' };
       const ok = await verificarSenha(senha, prof.salt, prof.senha_hash);
@@ -73,10 +68,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const username = dados.username.trim().toLowerCase();
       if (username.length < 3) return { ok: false, erro: 'Usuário deve ter no mínimo 3 caracteres' };
       if (dados.senha.length < 4) return { ok: false, erro: 'Senha deve ter no mínimo 4 caracteres' };
-
       const existente = await buscarProfessorPorUsername(username);
       if (existente) return { ok: false, erro: 'Usuário já existe' };
-
       const salt = gerarSalt();
       const senhaHash = await hashSenha(dados.senha, salt);
       const prof: Professor = {

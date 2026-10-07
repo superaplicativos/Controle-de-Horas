@@ -1,10 +1,7 @@
 'use client';
 
 /**
- * NO-OP: não faz nada.
- * O sync manual (botão Atualizar) é a única forma de recarregar dados.
- * Isso previne loops infinitos e piscar da tela.
+ * NO-OP. Não faz nada. Previne loops.
+ * O usuário recarrega dados manualmente (botão Atualizar).
  */
-export function useAutoReload(_carregar: () => void | Promise<void>) {
-  // Não faz nada. Intencional.
-}
+export function useAutoReload(_carregar: () => void | Promise<void>) {}
