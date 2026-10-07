@@ -305,8 +305,8 @@ export default function LandingPage() {
                 </Button>
               </a>
               <Link href="/sistema">
-                <Button size="lg" variant="outline" className="border-emerald-700 text-emerald-100 hover:bg-emerald-900/30 text-base sm:text-lg px-8">
-                  Ver o sistema
+                <Button size="lg" className="bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-amber-400 hover:to-yellow-500 text-white text-base sm:text-lg px-8 shadow-lg shadow-amber-500/30">
+                  Ver como funciona
                 </Button>
               </Link>
             </div>

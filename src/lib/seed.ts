@@ -13,13 +13,7 @@ export async function seedGuilherme(): Promise<void> {
   const existente = await buscarProfessorPorUsername('guilherme');
 
   if (existente) {
-    // Se já existe mas não tem aulas no mês atual, recria as aulas do mês atual
-    const aulas = await listarAulasPorProfessor(existente.id);
-    const mesAtual = mesAtualRef();
-    const aulasMesAtual = aulas.filter((a) => a.mes_ref === mesAtual);
-    if (aulasMesAtual.length === 0) {
-      await criarAulasGuilherme(existente, mesAtual);
-    }
+    // Professor já existe — não cria aulas automaticas
     return;
   }
 
@@ -87,12 +81,8 @@ export async function seedGuilherme(): Promise<void> {
   await salvarAluno(alunoTurmaAdolescentes);
   await salvarAluno(alunoJoelma);
 
-  // Cria as aulas no mês atual
-  await criarAulasGuilherme(professor, mesAtualRef(), {
-    alunoTurmaKids,
-    alunoTurmaAdolescentes,
-    alunoJoelma,
-  });
+  // NAO cria aulas automaticas — o professor cadastra as suas
+  // (dados reais vem do sync com o GitHub)
 }
 
 async function criarAulasGuilherme(

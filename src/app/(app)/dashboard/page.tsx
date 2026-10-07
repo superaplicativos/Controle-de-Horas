@@ -3,6 +3,7 @@
 import { useEffect, useState, useCallback, useRef } from 'react';
 import { useAuth } from '@/lib/auth';
 import { listarAulasPorMes, listarAulasPorProfessor, buscarFechamentoMes } from '@/lib/db';
+import type { Aula } from '@/types';
 import { calcularResumoMes, mesAtualRef, nomeMes, mesAnteriorRef, formatarMoeda, formatarHoras } from '@/lib/calculations';
 import { KpiCard } from '@/components/KpiCard';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
@@ -19,6 +20,7 @@ import { toast } from 'sonner';
 import { useSync } from '@/lib/useSync';
 import { useAutoReload } from '@/lib/useAutoReload';
 import { cn } from '@/lib/utils';
+import { exportarRelatorioPDF } from '@/lib/pdf-export';
 
 const STATUS_COLORS = {
   presenca: '#10b981',
@@ -42,6 +44,7 @@ export default function DashboardPage() {
   const [aulasAnterior, setAulasAnterior] = useState<ReturnType<typeof calcularResumoMes> | null>(null);
   const [carregando, setCarregando] = useState(true);
   const [jaFechado, setJaFechado] = useState(false);
+  const [aulasDoMes, setAulasDoMes] = useState<Aula[]>([]);
   const [syncTick, setSyncTick] = useState(0);
   const lastSyncStatus = useRef<string>('');
 
@@ -54,6 +57,7 @@ export default function DashboardPage() {
       const aulasMesAnt = await listarAulasPorMes(professor.id, mesAnt);
       const fechamento = await buscarFechamentoMes(professor.id, mesRef);
       setAulas(calcularResumoMes(aulasMes));
+      setAulasDoMes(aulasMes);
       setAulasAnterior(calcularResumoMes(aulasMesAnt));
       setJaFechado(!!fechamento);
     } catch (e) {
@@ -148,9 +152,17 @@ export default function DashboardPage() {
             </Button>
           </div>
           {jaFechado ? (
-            <span className="text-xs text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg flex items-center gap-1">
-              <CheckCircle2 className="w-3 h-3" /> <span className="hidden sm:inline">Fechado</span>
-            </span>
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg flex items-center gap-1">
+                <CheckCircle2 className="w-3 h-3" /> <span className="hidden sm:inline">Fechado</span>
+              </span>
+              <button
+                onClick={() => exportarRelatorioPDF(mesRef, professor?.nome || '', aulasDoMes)}
+                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-gradient-to-r from-amber-500 to-amber-600 text-white text-xs font-semibold hover:from-amber-400 hover:to-amber-500 transition-all shadow-md"
+              >
+                📄 <span className="hidden sm:inline">Exportar</span> PDF
+              </button>
+            </div>
           ) : (
             <Button variant="default" size="sm" onClick={handleFecharMes} className="bg-amber-600 hover:bg-amber-700">
               Fechar Mês
