@@ -8,8 +8,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Cloud, Download, Upload, RefreshCw, AlertTriangle, CheckCircle2, RotateCcw, Zap } from 'lucide-react';
 import { toast } from 'sonner';
-import { puxarDoGitHub, enviarParaGitHub } from '@/lib/sync';
-import { gerarBackupTXT, parseBackupTXT } from '@/lib/github';
+import { puxarDoGitHub, enviarParaGitHub, subscribeSyncState } from '@/lib/sync';
+import { gerarBackupTXT, parseBackupTXT } from '@/lib/backup';
 import { exportarDadosProfessor, limparDadosProfessor } from '@/lib/db';
 import { format } from 'date-fns';
 
@@ -17,6 +17,14 @@ export default function ConfiguracoesPage() {
   const { professor } = useAuth();
   const [ultimoSync, setUltimoSync] = useState<number | null>(null);
   const [sincronizando, setSincronizando] = useState(false);
+
+  // Mostra data/hora do último sync que o módulo de sync registrou.
+  useEffect(() => {
+    const unsub = subscribeSyncState((s) => {
+      if (s.ultimoSync) setUltimoSync(s.ultimoSync);
+    });
+    return unsub;
+  }, []);
 
   async function sincronizarAgora(direcao: 'puxar' | 'enviar') {
     if (!professor) return;
