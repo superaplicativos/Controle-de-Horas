@@ -1,6 +1,6 @@
 ========================================
  CONTROLE DE AULAS - BACKUP
- Exportado em: 2026-10-07T08:25:40.404Z
+ Exportado em: 2026-10-07T08:25:44.059Z
  Versão: 1
 ========================================
 
@@ -34,7 +34,6 @@ muokkpaq-hs73ge2b | Maria Alice | vip | ativo
 muous5iu-egqsywid | Thiago Patrick Bellini | vip | ativo
 muous5iu-nhebprfj | Joelma Faria | vip | ativo
 muous5iu-s1l3z7im | TURMA KIDS 2 | turma | ativo
-muous5iu-skgmv65o | Pedro Henrique Russo Nardi | vip | ativo
 muous5iu-uqh5lr4d | Marcelo Dercatshoff Pereira | vip | ativo
 mup1qarl-gigbkult | Maria Jose Junqueira da Silva | vip | ativo
 mup75usy-2x6kanvg | Marcelo Dercatshoff Pereira | vip | ativo
@@ -261,7 +260,7 @@ mup7azo3-t7baln07 | TURMA KIDS
 ----- JSON COMPLETO -----
 {
   "versao": 1,
-  "exportado_em": "2026-10-07T08:25:40.404Z",
+  "exportado_em": "2026-10-07T08:25:44.059Z",
   "professor": {
     "nome": "Guilherme Miranda",
     "username": "guilherme",
@@ -2766,15 +2765,6 @@ mup7azo3-t7baln07 | TURMA KIDS
       "nome": "TURMA KIDS 2",
       "tipo": "turma",
       "turma_id": "muous5iu-t0j4i8lx",
-      "ativo": true,
-      "criado_em": 1790817970422
-    },
-    {
-      "id": "muous5iu-skgmv65o",
-      "professor_id": "mung059m-2bot73zp",
-      "nome": "Pedro Henrique Russo Nardi",
-      "tipo": "vip",
-      "turma_id": null,
       "ativo": true,
       "criado_em": 1790817970422
     },
