@@ -11,7 +11,6 @@ import { toast } from 'sonner';
 import { puxarDoGitHub, enviarParaGitHub } from '@/lib/sync';
 import { gerarBackupTXT, parseBackupTXT } from '@/lib/github';
 import { exportarDadosProfessor, limparDadosProfessor } from '@/lib/db';
-import { resetarDadosProfessor } from '@/lib/seed';
 import { format } from 'date-fns';
 
 export default function ConfiguracoesPage() {
@@ -108,14 +107,14 @@ export default function ConfiguracoesPage() {
 
   async function resetarDados() {
     if (!professor) return;
-    if (!confirm('Isso vai APAGAR todas as suas aulas/alunos/turmas/fechamentos/cronograma e RECRIAR os dados padrão (Guilherme) no mês atual. Continuar?')) return;
+    if (!confirm('Isso vai APAGAR todas as suas aulas/alunos/turmas/fechamentos/cronograma. Faça um backup antes. Continuar?')) return;
     try {
       setSincronizando(true);
-      await resetarDadosProfessor(professor);
-      toast.success('Dados resetados!');
+      await limparDadosProfessor(professor.id);
+      toast.success('Dados locais apagados!');
       setSincronizando(false);
     } catch (e) {
-      toast.error('Erro ao resetar dados');
+      toast.error('Erro ao apagar dados');
       setSincronizando(false);
     }
   }
@@ -207,17 +206,14 @@ export default function ConfiguracoesPage() {
         <CardContent className="space-y-3">
           <div className="flex flex-col sm:flex-row flex-wrap gap-2">
             <Button variant="outline" onClick={resetarDados} disabled={sincronizando} className="border-amber-300 text-amber-700 hover:bg-amber-50">
-              <RotateCcw className="w-4 h-4 mr-2" /> {sincronizando ? 'Resetando...' : 'Resetar dados (recriar padrão)'}
+              <RotateCcw className="w-4 h-4 mr-2" /> {sincronizando ? 'Limpando...' : 'Apagar dados locais'}
             </Button>
             <Button variant="outline" onClick={limparTudo} className="text-red-600 border-red-300 hover:bg-red-50">
               Apagar todos os dados locais
             </Button>
           </div>
           <p className="text-xs text-muted-foreground">
-            <strong>Resetar dados</strong>: apaga tudo e recria as aulas padrão (KIDS, ADOLESCENTES, Joelma) no mês atual.
-          </p>
-          <p className="text-xs text-muted-foreground">
-            <strong>Apagar tudo</strong>: limpa completamente, sem recriar nada.
+            <strong>Apagar dados</strong>: limpa tudo do navegador. A próxima vez que abrir o app, os dados voltam do banco na nuvem.
           </p>
         </CardContent>
       </Card>

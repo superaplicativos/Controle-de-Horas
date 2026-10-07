@@ -2,9 +2,9 @@
 
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
 import type { Professor, Sessao } from '@/types';
-import { gerarSalt, hashSenha, verificarSenha, gerarId } from './crypto';
 import { salvarProfessor, buscarProfessorPorUsername } from './db';
-import { seedGuilherme } from './seed';
+import { cadastrarProfessorAPI, loginProfessorAPI, puxarDoCloud } from './api';
+import { gerarId } from './crypto';
 
 const SESSION_KEY = 'controle-aulas-session';
 
@@ -20,6 +20,18 @@ interface AuthContextValue {
 
 const AuthContext = createContext<AuthContextValue | undefined>(undefined);
 
+function traduzirErro(erro: string | undefined, fallback: string): string {
+  if (!erro) return fallback;
+  const e = erro.toLowerCase();
+  if (e.includes('failed to fetch') || e.includes('network') || e.includes('load failed')) {
+    return 'Sem internet. Verifique sua conexão e tente novamente.';
+  }
+  if (e.includes('não encontrado') || e.includes('not found')) return 'Usuário não encontrado';
+  if (e.includes('senha') || e.includes('password')) return 'Senha incorreta';
+  if (e.includes('bloque')) return 'Conta bloqueada pelo administrador';
+  return erro;
+}
+
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [sessao, setSessao] = useState<Sessao | null>(null);
   const [professor, setProfessor] = useState<Professor | null>(null);
@@ -28,13 +40,24 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     (async () => {
       try {
-        await seedGuilherme();
         const raw = localStorage.getItem(SESSION_KEY);
         if (raw) {
           const s = JSON.parse(raw) as Sessao;
           const prof = await buscarProfessorPorUsername(s.username);
-          if (prof && prof.id === s.professor_id) { setSessao(s); setProfessor(prof); }
-          else localStorage.removeItem(SESSION_KEY);
+          if (prof && prof.id === s.professor_id) {
+            setSessao(s);
+            setProfessor(prof);
+            // Traz dados atualizados do cloud em background (não bloqueia o login)
+            puxarDoCloud(prof).then((r) => {
+              if (r.ok) {
+                buscarProfessorPorUsername(s.username).then((p) => {
+                  if (p) setProfessor(p);
+                });
+              }
+            }).catch(() => {});
+          } else {
+            localStorage.removeItem(SESSION_KEY);
+          }
         }
       } catch {} finally { setCarregando(false); }
     })();
@@ -42,16 +65,26 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   async function login(username: string, senha: string) {
     try {
-      await seedGuilherme();
-      const prof = await buscarProfessorPorUsername(username.trim());
-      if (!prof) return { ok: false, erro: 'Usuário não encontrado' };
-      const ok = await verificarSenha(senha, prof.salt, prof.senha_hash);
-      if (!ok) return { ok: false, erro: 'Senha incorreta' };
+      const result = await loginProfessorAPI(username.trim(), senha);
+      if (!result.ok || !result.professor) {
+        return { ok: false, erro: traduzirErro(result.erro, 'Erro ao fazer login') };
+      }
+      const prof = result.professor as Professor;
+      await salvarProfessor(prof);
       const s: Sessao = { professor_id: prof.id, username: prof.username, nome: prof.nome, login_em: Date.now() };
       localStorage.setItem(SESSION_KEY, JSON.stringify(s));
-      setSessao(s); setProfessor(prof);
+      setSessao(s);
+      setProfessor(prof);
+      // Puxa dados do cloud em background
+      puxarDoCloud(prof).then(() => {
+        buscarProfessorPorUsername(prof.username).then((p) => {
+          if (p) setProfessor(p);
+        });
+      }).catch(() => {});
       return { ok: true };
-    } catch { return { ok: false, erro: 'Erro ao fazer login' }; }
+    } catch (e: any) {
+      return { ok: false, erro: traduzirErro(e?.message, 'Erro ao fazer login') };
+    }
   }
 
   async function cadastrar(dados: { username: string; senha: string; nome: string; valor_hora: number }) {
@@ -59,23 +92,28 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const username = dados.username.trim().toLowerCase();
       if (username.length < 3) return { ok: false, erro: 'Usuário deve ter no mínimo 3 caracteres' };
       if (dados.senha.length < 4) return { ok: false, erro: 'Senha deve ter no mínimo 4 caracteres' };
-      const existente = await buscarProfessorPorUsername(username);
-      if (existente) return { ok: false, erro: 'Usuário já existe' };
-      const salt = gerarSalt();
-      const senhaHash = await hashSenha(dados.senha, salt);
-      const prof: Professor = {
-        id: gerarId(), username, senha_hash: senhaHash, salt,
-        nome: dados.nome.trim(), valor_hora: dados.valor_hora, valor_falta: 35,
-        criado_em: Date.now(), assinatura_status: 'free_trial',
-        trial_fim: Date.now() + 7*24*60*60*1000, bloqueado: false,
-        is_admin: username === 'guilherme',
-      };
+
+      const result = await cadastrarProfessorAPI({
+        username,
+        senha: dados.senha,
+        nome: dados.nome.trim() || username,
+        valor_hora: dados.valor_hora,
+      });
+      if (!result.ok || !result.professor) {
+        return { ok: false, erro: traduzirErro(result.erro, 'Erro ao cadastrar') };
+      }
+      const prof = result.professor as Professor;
       await salvarProfessor(prof);
       const s: Sessao = { professor_id: prof.id, username: prof.username, nome: prof.nome, login_em: Date.now() };
       localStorage.setItem(SESSION_KEY, JSON.stringify(s));
-      setSessao(s); setProfessor(prof);
+      setSessao(s);
+      setProfessor(prof);
+      // Puxa do cloud (deve estar vazio, mas garante consistência)
+      puxarDoCloud(prof).catch(() => {});
       return { ok: true };
-    } catch { return { ok: false, erro: 'Erro ao cadastrar' }; }
+    } catch (e: any) {
+      return { ok: false, erro: traduzirErro(e?.message, 'Erro ao cadastrar') };
+    }
   }
 
   function logout() { localStorage.removeItem(SESSION_KEY); setSessao(null); setProfessor(null); }
@@ -93,3 +131,6 @@ export function useAuth() {
   if (!ctx) throw new Error('useAuth deve ser usado dentro de AuthProvider');
   return ctx;
 }
+
+// Reexporta para conveniência (gerarId ainda é usado por outras partes do app)
+export { gerarId };

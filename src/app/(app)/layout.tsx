@@ -6,7 +6,6 @@ import Link from 'next/link';
 import { useAuth } from '@/lib/auth';
 import { Button } from '@/components/ui/button';
 import { BookOpen, LayoutDashboard, CalendarDays, ClipboardList, CalendarClock, Users, Users2, BarChart3, User, Settings, LogOut, Menu, X, Cloud, RefreshCw, Shield } from 'lucide-react';
-import { seedGuilherme } from '@/lib/seed';
 import { puxarDoGitHub, notificarAlteracao } from '@/lib/sync';
 import { cn } from '@/lib/utils';
 
@@ -55,7 +54,6 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     syncRanRef.current = true;
     const prof = professor;
     (async () => {
-      try { await seedGuilherme(); } catch {}
       setSyncStatus('syncing');
       try {
         await puxarDoGitHub(prof);

@@ -7,8 +7,8 @@ export type DuracaoAula = 1 | 1.5 | 2;
 export interface Professor {
   id: string;
   username: string;
-  senha_hash: string;
-  salt: string;
+  senha_hash?: string;
+  salt?: string;
   nome: string;
   valor_hora: number;
   valor_falta: number;
