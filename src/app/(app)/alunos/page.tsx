@@ -15,6 +15,7 @@ import { Plus, Pencil, Trash2, User, Users } from 'lucide-react';
 import { toast } from 'sonner';
 import { gerarId } from '@/lib/crypto';
 import { useSync } from '@/lib/useSync';
+import { exportarAlunosPDF } from '@/lib/pdf-export';
 import { useAutoReload } from '@/lib/useAutoReload';
 
 export default function AlunosPage() {
@@ -83,10 +84,18 @@ export default function AlunosPage() {
           <h1 className="text-xl sm:text-2xl font-bold">Alunos</h1>
           <p className="text-xs sm:text-sm text-muted-foreground">{alunos.length} cadastrados</p>
         </div>
-        <Dialog open={modalOpen} onOpenChange={setModalOpen}>
-          <DialogTrigger asChild>
-            <Button className="bg-emerald-600 hover:bg-emerald-700 flex-shrink-0" onClick={() => {
-              setEditandoId(null);
+        <div className="flex gap-1">
+          <button
+            onClick={() => exportarAlunosPDF(professor?.nome || '', alunos, turmas)}
+            className="px-3 py-2 rounded-lg bg-gradient-to-r from-amber-500 to-amber-600 text-white text-xs font-semibold hover:from-amber-400 hover:to-amber-500 transition-all shadow-md"
+            title="Exportar PDF"
+          >
+            📄 PDF
+          </button>
+          <Dialog open={modalOpen} onOpenChange={setModalOpen}>
+            <DialogTrigger asChild>
+              <Button className="bg-emerald-600 hover:bg-emerald-700 flex-shrink-0" onClick={() => {
+                setEditandoId(null);
               setForm({ nome: '', tipo: 'vip', turma_id: null, ativo: true });
             }}>
               <Plus className="w-4 h-4 mr-2" /> <span className="hidden sm:inline">Novo Aluno</span><span className="sm:hidden">Novo</span>
@@ -136,6 +145,7 @@ export default function AlunosPage() {
             </form>
           </DialogContent>
         </Dialog>
+        </div>
       </div>
 
       <Card>

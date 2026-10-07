@@ -16,6 +16,7 @@ import { Plus, Pencil, Trash2, CalendarClock, Search, X, ArrowRight } from 'luci
 import { toast } from 'sonner';
 import { gerarId } from '@/lib/crypto';
 import { useSync } from '@/lib/useSync';
+import { exportarCronogramaPDF } from '@/lib/pdf-export';
 import { useAutoReload } from '@/lib/useAutoReload';
 import { cn } from '@/lib/utils';
 
@@ -138,6 +139,14 @@ export default function CronogramaPage() {
             Planejamento das próximas aulas. Use para se organizar — estas aulas <strong>não</strong> contabilizam no dashboard automaticamente.
           </p>
         </div>
+        <div className="flex gap-1">
+          <button
+            onClick={() => exportarCronogramaPDF(professor?.nome || '', itensFiltrados)}
+            className="px-3 py-2 rounded-lg bg-gradient-to-r from-amber-500 to-amber-600 text-white text-xs font-semibold hover:from-amber-400 hover:to-amber-500 transition-all shadow-md whitespace-nowrap"
+            title="Exportar PDF"
+          >
+            📄 PDF
+          </button>
         <Dialog open={modalOpen} onOpenChange={setModalOpen}>
           <DialogTrigger asChild>
             <Button className="bg-violet-600 hover:bg-violet-700 w-full sm:w-auto flex-shrink-0" onClick={() => {
@@ -220,6 +229,7 @@ export default function CronogramaPage() {
             </form>
           </DialogContent>
         </Dialog>
+        </div>
       </div>
 
       {/* Card explicativo */}

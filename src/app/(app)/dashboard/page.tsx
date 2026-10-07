@@ -20,7 +20,7 @@ import { toast } from 'sonner';
 import { useSync } from '@/lib/useSync';
 import { useAutoReload } from '@/lib/useAutoReload';
 import { cn } from '@/lib/utils';
-import { exportarRelatorioPDF } from '@/lib/pdf-export';
+import { exportarAulasPDF } from '@/lib/pdf-export';
 
 const STATUS_COLORS = {
   presenca: '#10b981',
@@ -162,7 +162,7 @@ Após fechar, as aulas deste mês não poderão mais ser editadas.`)) return;
                 <CheckCircle2 className="w-3 h-3" /> <span className="hidden sm:inline">Fechado</span>
               </span>
               <button
-                onClick={() => exportarRelatorioPDF(mesRef, professor?.nome || '', aulasDoMes)}
+                onClick={() => exportarAulasPDF(mesRef, professor?.nome || '', aulasDoMes)}
                 className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-gradient-to-r from-amber-500 to-amber-600 text-white text-xs font-semibold hover:from-amber-400 hover:to-amber-500 transition-all shadow-md"
               >
                 📄 <span className="hidden sm:inline">Exportar</span> PDF

@@ -19,6 +19,7 @@ import { mesAtualRef } from '@/lib/calculations';
 import { useSync } from '@/lib/useSync';
 import { useAutoReload } from '@/lib/useAutoReload';
 import { cn } from '@/lib/utils';
+import { exportarAulasPDF } from '@/lib/pdf-export';
 
 const STATUS_OPCOES: { value: StatusAula; label: string; cor: string }[] = [
   { value: 'presenca', label: 'Presença', cor: 'bg-emerald-100 text-emerald-700' },
@@ -298,15 +299,27 @@ export default function AulasPage() {
                 ))}
               </SelectContent>
             </Select>
-            <Select value={filtroStatus} onValueChange={setFiltroStatus}>
-              <SelectTrigger className="w-full"><SelectValue /></SelectTrigger>
-              <SelectContent>
-                <SelectItem value="todos">Todos status</SelectItem>
-                {STATUS_OPCOES.map((s) => (
-                  <SelectItem key={s.value} value={s.value}>{s.label}</SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            <div className="flex gap-1">
+              <Select value={filtroStatus} onValueChange={setFiltroStatus}>
+                <SelectTrigger className="w-full"><SelectValue /></SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="todos">Todos status</SelectItem>
+                  {STATUS_OPCOES.map((s) => (
+                    <SelectItem key={s.value} value={s.value}>{s.label}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <button
+                onClick={() => {
+                  const mesLabel = filtroMes === 'todos' ? 'todos os meses' : filtroMes;
+                  exportarAulasPDF(filtroMes === 'todos' ? 'todos' : filtroMes, professor?.nome || '', aulasFiltradas);
+                }}
+                className="px-3 py-2 rounded-lg bg-gradient-to-r from-amber-500 to-amber-600 text-white text-xs font-semibold hover:from-amber-400 hover:to-amber-500 transition-all shadow-md whitespace-nowrap"
+                title="Exportar PDF"
+              >
+                📄
+              </button>
+            </div>
           </div>
         </CardContent>
       </Card>
