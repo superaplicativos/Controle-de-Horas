@@ -1,6 +1,6 @@
 ========================================
  CONTROLE DE AULAS - BACKUP
- Exportado em: 2026-10-07T12:24:13.875Z
+ Exportado em: 2026-10-07T12:25:55.428Z
  Versão: 1
 ========================================
 
@@ -93,21 +93,22 @@ muxxdueo-n8vev51m | TURMA KIDS 1
 2026-09-02 | Marcelo Dercatshoff  |  | 2h | presenca   | R$ 70.00 | Marketing Digital
 2026-10-06 | TURMA KIDS 2         | 17:00 | 2h | presenca   | R$ 70.00 | CANVA COM IA
 2026-10-02 | Pedro Henrique Russo | 17:00 | 1h | presenca   | R$ 35.00 | ECOMMERCE + IA
+2026-09-01 | Raquel Ribeiro       | 15:00 | 2h | presenca   | R$ 70.00 | CHECAR FICHA - AULAS DE CELULAR ALUNA MIGRADA PRA OUTRO PROFESSOR NÃO ANOTEI QUANTAS AULAS FORAM DADAS CORRETAMENTE. FOI EM TORNO DE 2 - 3 AULAS.
 
 ----- CRONOGRAMA (PLANEJAMENTO) -----
-2026-10-09 | TURMA ADOLESCENTES 1 | 13:00 | 2h | DESAFIO PRODUÃÃO DE GAME COM Z.AI - AULA 1 | DESAFIO PRODUÃÃO DE GAME COM Z.AI - AULA 1
-2026-10-16 | TURMA ADOLESCENTES 1 | 13:00 | 2h | DESAFIO PRODUÃÃO DE GAME COM Z.AI - AULA 2 | DESAFIO PRODUÃÃO DE GAME COM Z.AI - AULA 2
-2026-10-23 | TURMA ADOLESCENTES 1 | 13:00 | 2h | DESAFIO PRODUÃÃO DE GAME COM Z.AI - AULA 3 | DESAFIO PRODUÃÃO DE GAME COM Z.AI - AULA 1 - AVALIAÃÃO DOS GAMES DESENVOLVIDOS COM NOTAS DE ZERO A 10
-2026-10-09 | TURMA KIDS 1         | 15:00 | 2h | DESAFIO PRODUÃÃO DE GAME COM Z.AI - AULA 1 | DESAFIO PRODUÃÃO DE GAME COM Z.AI - AULA 1
-2026-10-16 | TURMA KIDS 1         | 15:00 | 2h | DESAFIO PRODUÃÃO DE GAME COM Z.AI - AULA 2 | DESAFIO PRODUÃÃO DE GAME COM Z.AI - AULA 2
-2026-10-23 | TURMA KIDS 1         | 15:00 | 2h | DESAFIO PRODUÃÃO DE GAME COM Z.AI - AULA 3 | DESAFIO PRODUÃÃO DE GAME COM Z.AI - AULA 3 - PROVA VALENDO DE ZERO A 10 - AVALIAÃÃO DOS PROJETOS DESENVOLVIDOS E PASSAR PRÃXIMO DESAFIO
+2026-10-09 | TURMA ADOLESCENTES 1 | 13:00 | 2h | DESAFIO PRODUÃÂÃÂO DE GAME COM Z.AI - AULA 1 | DESAFIO PRODUÃÂÃÂO DE GAME COM Z.AI - AULA 1
+2026-10-16 | TURMA ADOLESCENTES 1 | 13:00 | 2h | DESAFIO PRODUÃÂÃÂO DE GAME COM Z.AI - AULA 2 | DESAFIO PRODUÃÂÃÂO DE GAME COM Z.AI - AULA 2
+2026-10-23 | TURMA ADOLESCENTES 1 | 13:00 | 2h | DESAFIO PRODUÃÂÃÂO DE GAME COM Z.AI - AULA 3 | DESAFIO PRODUÃÂÃÂO DE GAME COM Z.AI - AULA 1 - AVALIAÃÂÃÂO DOS GAMES DESENVOLVIDOS COM NOTAS DE ZERO A 10
+2026-10-09 | TURMA KIDS 1         | 15:00 | 2h | DESAFIO PRODUÃÂÃÂO DE GAME COM Z.AI - AULA 1 | DESAFIO PRODUÃÂÃÂO DE GAME COM Z.AI - AULA 1
+2026-10-16 | TURMA KIDS 1         | 15:00 | 2h | DESAFIO PRODUÃÂÃÂO DE GAME COM Z.AI - AULA 2 | DESAFIO PRODUÃÂÃÂO DE GAME COM Z.AI - AULA 2
+2026-10-23 | TURMA KIDS 1         | 15:00 | 2h | DESAFIO PRODUÃÂÃÂO DE GAME COM Z.AI - AULA 3 | DESAFIO PRODUÃÂÃÂO DE GAME COM Z.AI - AULA 3 - PROVA VALENDO DE ZERO A 10 - AVALIAÃÂÃÂO DOS PROJETOS DESENVOLVIDOS E PASSAR PRÃÂXIMO DESAFIO
 
 ----- FECHAMENTOS -----
 
 ----- JSON COMPLETO -----
 {
   "versao": 1,
-  "exportado_em": "2026-10-07T12:24:13.875Z",
+  "exportado_em": "2026-10-07T12:25:55.428Z",
   "professor": {
     "nome": "Guilherme Miranda",
     "username": "guilherme",
@@ -953,6 +954,21 @@ muxxdueo-n8vev51m | TURMA KIDS 1
       "valor": 35,
       "mes_ref": "2026-10",
       "criado_em": 1791374179144
+    },
+    {
+      "id": "muy2zmse-d1butjr5",
+      "professor_id": "muy1pkel-8sfco4km",
+      "aluno_id": "muy2xgh1-74ejyaw1",
+      "aluno_nome": "Raquel Ribeiro",
+      "aluno_tipo": "vip",
+      "data": "2026-09-01",
+      "horario": "15:00",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "CHECAR FICHA - AULAS DE CELULAR ALUNA MIGRADA PRA OUTRO PROFESSOR NÃO ANOTEI QUANTAS AULAS FORAM DADAS CORRETAMENTE. FOI EM TORNO DE 2 - 3 AULAS.",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791375951902
     }
   ],
   "alunos": [
@@ -1171,67 +1187,67 @@ muxxdueo-n8vev51m | TURMA KIDS 1
     {
       "id": "muy20ltj-smai1ya1",
       "professor_id": "muy1pkel-8sfco4km",
-      "titulo": "DESAFIO PRODUÃÃO DE GAME COM Z.AI - AULA 1",
+      "titulo": "DESAFIO PRODUÃÂÃÂO DE GAME COM Z.AI - AULA 1",
       "aluno_nome": "TURMA ADOLESCENTES 1",
       "data": "2026-10-09",
       "horario": "13:00",
       "duracao": 2,
-      "observacao": "DESAFIO PRODUÃÃO DE GAME COM Z.AI - AULA 1",
+      "observacao": "DESAFIO PRODUÃÂÃÂO DE GAME COM Z.AI - AULA 1",
       "criado_em": 1791374317687
     },
     {
       "id": "muy21r53-y8kimmgr",
       "professor_id": "muy1pkel-8sfco4km",
-      "titulo": "DESAFIO PRODUÃÃO DE GAME COM Z.AI - AULA 2",
+      "titulo": "DESAFIO PRODUÃÂÃÂO DE GAME COM Z.AI - AULA 2",
       "aluno_nome": "TURMA ADOLESCENTES 1",
       "data": "2026-10-16",
       "horario": "13:00",
       "duracao": 2,
-      "observacao": "DESAFIO PRODUÃÃO DE GAME COM Z.AI - AULA 2",
+      "observacao": "DESAFIO PRODUÃÂÃÂO DE GAME COM Z.AI - AULA 2",
       "criado_em": 1791374371239
     },
     {
       "id": "muy23dwe-dxs9ytie",
       "professor_id": "muy1pkel-8sfco4km",
-      "titulo": "DESAFIO PRODUÃÃO DE GAME COM Z.AI - AULA 3",
+      "titulo": "DESAFIO PRODUÃÂÃÂO DE GAME COM Z.AI - AULA 3",
       "aluno_nome": "TURMA ADOLESCENTES 1",
       "data": "2026-10-23",
       "horario": "13:00",
       "duracao": 2,
-      "observacao": "DESAFIO PRODUÃÃO DE GAME COM Z.AI - AULA 1 - AVALIAÃÃO DOS GAMES DESENVOLVIDOS COM NOTAS DE ZERO A 10",
+      "observacao": "DESAFIO PRODUÃÂÃÂO DE GAME COM Z.AI - AULA 1 - AVALIAÃÂÃÂO DOS GAMES DESENVOLVIDOS COM NOTAS DE ZERO A 10",
       "criado_em": 1791374447391
     },
     {
       "id": "muy24adb-6kw0mngu",
       "professor_id": "muy1pkel-8sfco4km",
-      "titulo": "DESAFIO PRODUÃÃO DE GAME COM Z.AI - AULA 1",
+      "titulo": "DESAFIO PRODUÃÂÃÂO DE GAME COM Z.AI - AULA 1",
       "aluno_nome": "TURMA KIDS 1",
       "data": "2026-10-09",
       "horario": "15:00",
       "duracao": 2,
-      "observacao": "DESAFIO PRODUÃÃO DE GAME COM Z.AI - AULA 1",
+      "observacao": "DESAFIO PRODUÃÂÃÂO DE GAME COM Z.AI - AULA 1",
       "criado_em": 1791374489471
     },
     {
       "id": "muy24pon-bd9on7nb",
       "professor_id": "muy1pkel-8sfco4km",
-      "titulo": "DESAFIO PRODUÃÃO DE GAME COM Z.AI - AULA 2",
+      "titulo": "DESAFIO PRODUÃÂÃÂO DE GAME COM Z.AI - AULA 2",
       "aluno_nome": "TURMA KIDS 1",
       "data": "2026-10-16",
       "horario": "15:00",
       "duracao": 2,
-      "observacao": "DESAFIO PRODUÃÃO DE GAME COM Z.AI - AULA 2",
+      "observacao": "DESAFIO PRODUÃÂÃÂO DE GAME COM Z.AI - AULA 2",
       "criado_em": 1791374509319
     },
     {
       "id": "muy25suf-gczq0szu",
       "professor_id": "muy1pkel-8sfco4km",
-      "titulo": "DESAFIO PRODUÃÃO DE GAME COM Z.AI - AULA 3",
+      "titulo": "DESAFIO PRODUÃÂÃÂO DE GAME COM Z.AI - AULA 3",
       "aluno_nome": "TURMA KIDS 1",
       "data": "2026-10-23",
       "horario": "15:00",
       "duracao": 2,
-      "observacao": "DESAFIO PRODUÃÃO DE GAME COM Z.AI - AULA 3 - PROVA VALENDO DE ZERO A 10 - AVALIAÃÃO DOS PROJETOS DESENVOLVIDOS E PASSAR PRÃXIMO DESAFIO",
+      "observacao": "DESAFIO PRODUÃÂÃÂO DE GAME COM Z.AI - AULA 3 - PROVA VALENDO DE ZERO A 10 - AVALIAÃÂÃÂO DOS PROJETOS DESENVOLVIDOS E PASSAR PRÃÂXIMO DESAFIO",
       "criado_em": 1791374560071
     }
   ]
