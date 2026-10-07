@@ -1,1 +1,635 @@
-test
+========================================
+ CONTROLE DE AULAS - BACKUP
+ Exportado em: 2026-10-07T08:54:52.404Z
+ Versao: 1
+========================================
+
+PROFESSOR: Guilherme Miranda (@guilherme)
+VALOR/HORA: R$ 35.00
+
+----- ALUNOS -----
+muxvgano-9vvy9fxa | Thiago Patrick Bellini | vip | ativo
+muxvgano-l5d72f0k | Marcelo Dercatshoff Pereira | vip | ativo
+muxvgano-k5b9uit0 | Pedro Henrique Russo Nardi | vip | ativo
+muxvgano-6jb9433g | Maria Jose Junqueira da Silva | vip | ativo
+muxvgano-aytj6din | Joelma Faria | vip | ativo
+muxvgano-v074c45b | Maria Alice | vip | ativo
+muxvgano-9mbxxak2 | Raquel Ribeiro | vip | ativo
+muxvgano-yt1wbki4 | TURMA KIDS 1 | turma | ativo
+muxvgano-gg9vs2mm | TURMA ADOLESCENTES 1 | turma | ativo
+muxvgano-zzaobgsq | TURMA KIDS 2 | turma | ativo
+
+----- TURMAS -----
+muxvgano-o68kwpys | TURMA KIDS 1
+muxvgano-i1cictv1 | TURMA ADOLESCENTES 1
+muxvgano-j2m0tjtl | TURMA KIDS 2
+
+----- AULAS DADAS -----
+2026-09-08 | Thiago Patrick Bellini | --:-- | 1h | falta | R$ 35.00 | Excel / Mkt Digital
+2026-09-15 | Thiago Patrick Bellini | --:-- | 2h | presenca | R$ 70.00 | Excel / Mkt Digital
+2026-09-22 | Thiago Patrick Bellini | --:-- | 1h | falta | R$ 35.00 | Excel / Mkt Digital
+2026-09-24 | Thiago Patrick Bellini | --:-- | 2h | presenca | R$ 70.00 | Excel / Mkt Digital
+2026-09-29 | Thiago Patrick Bellini | --:-- | 1h | falta | R$ 35.00 | Excel / Mkt Digital
+2026-09-02 | Marcelo Dercatshoff Pereira | --:-- | 2h | presenca | R$ 70.00 | Marketing Digital
+2026-09-09 | Marcelo Dercatshoff Pereira | --:-- | 2h | presenca | R$ 70.00 | Marketing Digital
+2026-09-16 | Marcelo Dercatshoff Pereira | --:-- | 2h | presenca | R$ 70.00 | Marketing Digital
+2026-09-30 | Marcelo Dercatshoff Pereira | --:-- | 2h | presenca | R$ 70.00 | Marketing Digital
+2026-09-11 | Pedro Henrique Russo Nardi | --:-- | 2h | presenca | R$ 70.00 | IA / Logica de Programacao
+2026-09-18 | Pedro Henrique Russo Nardi | --:-- | 2h | presenca | R$ 70.00 | IA / Logica de Programacao
+2026-09-25 | Pedro Henrique Russo Nardi | --:-- | 2h | presenca | R$ 70.00 | IA / Logica de Programacao
+2026-09-05 | Maria Jose Junqueira da Silva | --:-- | 2h | presenca | R$ 70.00 | Uso do Celular
+2026-09-19 | Maria Jose Junqueira da Silva | --:-- | 2h | presenca | R$ 70.00 | Uso do Celular
+2026-09-26 | Maria Jose Junqueira da Silva | --:-- | 2h | presenca | R$ 70.00 | Uso do Celular
+2026-09-11 | Joelma Faria | --:-- | 1h | falta | R$ 35.00 | Mkt Dig / AI / Ed Videos
+2026-09-17 | Joelma Faria | --:-- | 2h | presenca | R$ 70.00 | Mkt Dig / AI / Ed Videos
+2026-09-30 | Maria Alice | --:-- | 2h | presenca | R$ 70.00 | Trafego Pago
+2026-09-15 | Raquel Ribeiro | --:-- | 2h | presenca | R$ 70.00 | Aula VIP
+2026-09-22 | Raquel Ribeiro | --:-- | 2h | presenca | R$ 70.00 | Aula VIP
+2026-09-29 | Raquel Ribeiro | --:-- | 2h | presenca | R$ 70.00 | Aula VIP
+2026-09-05 | TURMA KIDS 1 | 15:00 | 2h | presenca | R$ 70.00 | Aula regular
+2026-09-12 | TURMA KIDS 1 | 15:00 | 2h | presenca | R$ 70.00 | Aula regular
+2026-09-19 | TURMA KIDS 1 | 15:00 | 2h | presenca | R$ 70.00 | Aula regular
+2026-09-26 | TURMA KIDS 1 | 15:00 | 2h | presenca | R$ 70.00 | Aula regular
+2026-09-05 | TURMA ADOLESCENTES 1 | 17:00 | 2h | presenca | R$ 70.00 | Aula regular
+2026-09-12 | TURMA ADOLESCENTES 1 | 17:00 | 2h | presenca | R$ 70.00 | Aula regular
+2026-09-19 | TURMA ADOLESCENTES 1 | 17:00 | 2h | presenca | R$ 70.00 | Aula regular
+2026-09-26 | TURMA ADOLESCENTES 1 | 17:00 | 2h | presenca | R$ 70.00 | Aula regular
+2026-09-29 | TURMA KIDS 2 | 17:00 | 2h | presenca | R$ 70.00 | Aula regular
+
+----- JSON COMPLETO -----
+{
+  "versao": 1,
+  "exportado_em": "2026-10-07T08:54:52.404Z",
+  "professor": {
+    "nome": "Guilherme Miranda",
+    "username": "guilherme",
+    "valor_hora": 35
+  },
+  "aulas": [
+    {
+      "id": "muxvgano-dbo84k2g",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muxvgano-9vvy9fxa",
+      "aluno_nome": "Thiago Patrick Bellini",
+      "aluno_tipo": "vip",
+      "data": "2026-09-08",
+      "horario": "",
+      "duracao": 1,
+      "status": "falta",
+      "conteudo": "Excel / Mkt Digital",
+      "valor": 35,
+      "mes_ref": "2026-09",
+      "criado_em": 1791363292404
+    },
+    {
+      "id": "muxvgano-llf96h7f",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muxvgano-9vvy9fxa",
+      "aluno_nome": "Thiago Patrick Bellini",
+      "aluno_tipo": "vip",
+      "data": "2026-09-15",
+      "horario": "",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Excel / Mkt Digital",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791363292404
+    },
+    {
+      "id": "muxvgano-5t0spjfb",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muxvgano-9vvy9fxa",
+      "aluno_nome": "Thiago Patrick Bellini",
+      "aluno_tipo": "vip",
+      "data": "2026-09-22",
+      "horario": "",
+      "duracao": 1,
+      "status": "falta",
+      "conteudo": "Excel / Mkt Digital",
+      "valor": 35,
+      "mes_ref": "2026-09",
+      "criado_em": 1791363292404
+    },
+    {
+      "id": "muxvgano-kgjb80b2",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muxvgano-9vvy9fxa",
+      "aluno_nome": "Thiago Patrick Bellini",
+      "aluno_tipo": "vip",
+      "data": "2026-09-24",
+      "horario": "",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Excel / Mkt Digital",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791363292404
+    },
+    {
+      "id": "muxvgano-irkphgxd",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muxvgano-9vvy9fxa",
+      "aluno_nome": "Thiago Patrick Bellini",
+      "aluno_tipo": "vip",
+      "data": "2026-09-29",
+      "horario": "",
+      "duracao": 1,
+      "status": "falta",
+      "conteudo": "Excel / Mkt Digital",
+      "valor": 35,
+      "mes_ref": "2026-09",
+      "criado_em": 1791363292404
+    },
+    {
+      "id": "muxvgano-zavtfhu3",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muxvgano-l5d72f0k",
+      "aluno_nome": "Marcelo Dercatshoff Pereira",
+      "aluno_tipo": "vip",
+      "data": "2026-09-02",
+      "horario": "",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Marketing Digital",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791363292404
+    },
+    {
+      "id": "muxvgano-lahr1h03",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muxvgano-l5d72f0k",
+      "aluno_nome": "Marcelo Dercatshoff Pereira",
+      "aluno_tipo": "vip",
+      "data": "2026-09-09",
+      "horario": "",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Marketing Digital",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791363292404
+    },
+    {
+      "id": "muxvgano-s54crbnq",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muxvgano-l5d72f0k",
+      "aluno_nome": "Marcelo Dercatshoff Pereira",
+      "aluno_tipo": "vip",
+      "data": "2026-09-16",
+      "horario": "",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Marketing Digital",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791363292404
+    },
+    {
+      "id": "muxvgano-ko74q4dx",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muxvgano-l5d72f0k",
+      "aluno_nome": "Marcelo Dercatshoff Pereira",
+      "aluno_tipo": "vip",
+      "data": "2026-09-30",
+      "horario": "",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Marketing Digital",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791363292404
+    },
+    {
+      "id": "muxvgano-jnpv8ecc",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muxvgano-k5b9uit0",
+      "aluno_nome": "Pedro Henrique Russo Nardi",
+      "aluno_tipo": "vip",
+      "data": "2026-09-11",
+      "horario": "",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "IA / Logica de Programacao",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791363292404
+    },
+    {
+      "id": "muxvgano-ii515qps",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muxvgano-k5b9uit0",
+      "aluno_nome": "Pedro Henrique Russo Nardi",
+      "aluno_tipo": "vip",
+      "data": "2026-09-18",
+      "horario": "",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "IA / Logica de Programacao",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791363292404
+    },
+    {
+      "id": "muxvgano-f6jsifj9",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muxvgano-k5b9uit0",
+      "aluno_nome": "Pedro Henrique Russo Nardi",
+      "aluno_tipo": "vip",
+      "data": "2026-09-25",
+      "horario": "",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "IA / Logica de Programacao",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791363292404
+    },
+    {
+      "id": "muxvgano-234ij5nw",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muxvgano-6jb9433g",
+      "aluno_nome": "Maria Jose Junqueira da Silva",
+      "aluno_tipo": "vip",
+      "data": "2026-09-05",
+      "horario": "",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Uso do Celular",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791363292404
+    },
+    {
+      "id": "muxvgano-lo40d7bn",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muxvgano-6jb9433g",
+      "aluno_nome": "Maria Jose Junqueira da Silva",
+      "aluno_tipo": "vip",
+      "data": "2026-09-19",
+      "horario": "",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Uso do Celular",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791363292404
+    },
+    {
+      "id": "muxvgano-5fn1o9or",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muxvgano-6jb9433g",
+      "aluno_nome": "Maria Jose Junqueira da Silva",
+      "aluno_tipo": "vip",
+      "data": "2026-09-26",
+      "horario": "",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Uso do Celular",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791363292404
+    },
+    {
+      "id": "muxvgano-trfqrk34",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muxvgano-aytj6din",
+      "aluno_nome": "Joelma Faria",
+      "aluno_tipo": "vip",
+      "data": "2026-09-11",
+      "horario": "",
+      "duracao": 1,
+      "status": "falta",
+      "conteudo": "Mkt Dig / AI / Ed Videos",
+      "valor": 35,
+      "mes_ref": "2026-09",
+      "criado_em": 1791363292404
+    },
+    {
+      "id": "muxvgano-64hkceyh",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muxvgano-aytj6din",
+      "aluno_nome": "Joelma Faria",
+      "aluno_tipo": "vip",
+      "data": "2026-09-17",
+      "horario": "",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Mkt Dig / AI / Ed Videos",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791363292404
+    },
+    {
+      "id": "muxvgano-d1qozuw3",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muxvgano-v074c45b",
+      "aluno_nome": "Maria Alice",
+      "aluno_tipo": "vip",
+      "data": "2026-09-30",
+      "horario": "",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Trafego Pago",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791363292404
+    },
+    {
+      "id": "muxvgano-e92c3pty",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muxvgano-9mbxxak2",
+      "aluno_nome": "Raquel Ribeiro",
+      "aluno_tipo": "vip",
+      "data": "2026-09-15",
+      "horario": "",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Aula VIP",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791363292404
+    },
+    {
+      "id": "muxvgano-c71k0vn9",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muxvgano-9mbxxak2",
+      "aluno_nome": "Raquel Ribeiro",
+      "aluno_tipo": "vip",
+      "data": "2026-09-22",
+      "horario": "",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Aula VIP",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791363292404
+    },
+    {
+      "id": "muxvgano-humxmqgt",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muxvgano-9mbxxak2",
+      "aluno_nome": "Raquel Ribeiro",
+      "aluno_tipo": "vip",
+      "data": "2026-09-29",
+      "horario": "",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Aula VIP",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791363292404
+    },
+    {
+      "id": "muxvgano-ucz01m6j",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muxvgano-yt1wbki4",
+      "aluno_nome": "TURMA KIDS 1",
+      "aluno_tipo": "turma",
+      "data": "2026-09-05",
+      "horario": "15:00",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Aula regular",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791363292404
+    },
+    {
+      "id": "muxvgano-qd7q1b21",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muxvgano-yt1wbki4",
+      "aluno_nome": "TURMA KIDS 1",
+      "aluno_tipo": "turma",
+      "data": "2026-09-12",
+      "horario": "15:00",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Aula regular",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791363292404
+    },
+    {
+      "id": "muxvgano-7qlt0ttt",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muxvgano-yt1wbki4",
+      "aluno_nome": "TURMA KIDS 1",
+      "aluno_tipo": "turma",
+      "data": "2026-09-19",
+      "horario": "15:00",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Aula regular",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791363292404
+    },
+    {
+      "id": "muxvgano-7yhfamfk",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muxvgano-yt1wbki4",
+      "aluno_nome": "TURMA KIDS 1",
+      "aluno_tipo": "turma",
+      "data": "2026-09-26",
+      "horario": "15:00",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Aula regular",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791363292404
+    },
+    {
+      "id": "muxvgano-mwdevb6w",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muxvgano-gg9vs2mm",
+      "aluno_nome": "TURMA ADOLESCENTES 1",
+      "aluno_tipo": "turma",
+      "data": "2026-09-05",
+      "horario": "17:00",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Aula regular",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791363292404
+    },
+    {
+      "id": "muxvgano-zzixajyf",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muxvgano-gg9vs2mm",
+      "aluno_nome": "TURMA ADOLESCENTES 1",
+      "aluno_tipo": "turma",
+      "data": "2026-09-12",
+      "horario": "17:00",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Aula regular",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791363292404
+    },
+    {
+      "id": "muxvgano-2jm8fa7n",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muxvgano-gg9vs2mm",
+      "aluno_nome": "TURMA ADOLESCENTES 1",
+      "aluno_tipo": "turma",
+      "data": "2026-09-19",
+      "horario": "17:00",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Aula regular",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791363292404
+    },
+    {
+      "id": "muxvgano-0ovktcap",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muxvgano-gg9vs2mm",
+      "aluno_nome": "TURMA ADOLESCENTES 1",
+      "aluno_tipo": "turma",
+      "data": "2026-09-26",
+      "horario": "17:00",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Aula regular",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791363292404
+    },
+    {
+      "id": "muxvgano-ejzburw8",
+      "professor_id": "guilherme-dono-001",
+      "aluno_id": "muxvgano-zzaobgsq",
+      "aluno_nome": "TURMA KIDS 2",
+      "aluno_tipo": "turma",
+      "data": "2026-09-29",
+      "horario": "17:00",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Aula regular",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791363292404
+    }
+  ],
+  "alunos": [
+    {
+      "id": "muxvgano-9vvy9fxa",
+      "professor_id": "guilherme-dono-001",
+      "nome": "Thiago Patrick Bellini",
+      "tipo": "vip",
+      "turma_id": null,
+      "ativo": 1,
+      "criado_em": 1791363292404
+    },
+    {
+      "id": "muxvgano-l5d72f0k",
+      "professor_id": "guilherme-dono-001",
+      "nome": "Marcelo Dercatshoff Pereira",
+      "tipo": "vip",
+      "turma_id": null,
+      "ativo": 1,
+      "criado_em": 1791363292404
+    },
+    {
+      "id": "muxvgano-k5b9uit0",
+      "professor_id": "guilherme-dono-001",
+      "nome": "Pedro Henrique Russo Nardi",
+      "tipo": "vip",
+      "turma_id": null,
+      "ativo": 1,
+      "criado_em": 1791363292404
+    },
+    {
+      "id": "muxvgano-6jb9433g",
+      "professor_id": "guilherme-dono-001",
+      "nome": "Maria Jose Junqueira da Silva",
+      "tipo": "vip",
+      "turma_id": null,
+      "ativo": 1,
+      "criado_em": 1791363292404
+    },
+    {
+      "id": "muxvgano-aytj6din",
+      "professor_id": "guilherme-dono-001",
+      "nome": "Joelma Faria",
+      "tipo": "vip",
+      "turma_id": null,
+      "ativo": 1,
+      "criado_em": 1791363292404
+    },
+    {
+      "id": "muxvgano-v074c45b",
+      "professor_id": "guilherme-dono-001",
+      "nome": "Maria Alice",
+      "tipo": "vip",
+      "turma_id": null,
+      "ativo": 1,
+      "criado_em": 1791363292404
+    },
+    {
+      "id": "muxvgano-9mbxxak2",
+      "professor_id": "guilherme-dono-001",
+      "nome": "Raquel Ribeiro",
+      "tipo": "vip",
+      "turma_id": null,
+      "ativo": 1,
+      "criado_em": 1791363292404
+    },
+    {
+      "id": "muxvgano-yt1wbki4",
+      "professor_id": "guilherme-dono-001",
+      "nome": "TURMA KIDS 1",
+      "tipo": "turma",
+      "turma_id": "muxvgano-o68kwpys",
+      "ativo": 1,
+      "criado_em": 1791363292404
+    },
+    {
+      "id": "muxvgano-gg9vs2mm",
+      "professor_id": "guilherme-dono-001",
+      "nome": "TURMA ADOLESCENTES 1",
+      "tipo": "turma",
+      "turma_id": "muxvgano-i1cictv1",
+      "ativo": 1,
+      "criado_em": 1791363292404
+    },
+    {
+      "id": "muxvgano-zzaobgsq",
+      "professor_id": "guilherme-dono-001",
+      "nome": "TURMA KIDS 2",
+      "tipo": "turma",
+      "turma_id": "muxvgano-j2m0tjtl",
+      "ativo": 1,
+      "criado_em": 1791363292404
+    }
+  ],
+  "turmas": [
+    {
+      "id": "muxvgano-o68kwpys",
+      "professor_id": "guilherme-dono-001",
+      "nome": "TURMA KIDS 1",
+      "criado_em": 1791363292404
+    },
+    {
+      "id": "muxvgano-i1cictv1",
+      "professor_id": "guilherme-dono-001",
+      "nome": "TURMA ADOLESCENTES 1",
+      "criado_em": 1791363292404
+    },
+    {
+      "id": "muxvgano-j2m0tjtl",
+      "professor_id": "guilherme-dono-001",
+      "nome": "TURMA KIDS 2",
+      "criado_em": 1791363292404
+    }
+  ],
+  "fechamentos": [],
+  "cronograma": []
+}
+----- FIM -----
