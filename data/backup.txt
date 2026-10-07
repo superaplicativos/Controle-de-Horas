@@ -1,6 +1,6 @@
 ========================================
  CONTROLE DE AULAS - BACKUP
- Exportado em: 2026-10-07T09:13:49.013Z
+ Exportado em: 2026-10-07T09:14:30.905Z
  Versão: 1
 ========================================
 
@@ -18,10 +18,23 @@ muxw3yel-37x4b47l | Raquel Ribeiro | vip | ativo
 muxw3yel-m3njenuw | TURMA KIDS 1 | turma | ativo
 muxw3yel-6w2zsn5f | TURMA ADOLESCENTES 1 | turma | ativo
 muxw3yel-k1h7j4ir | TURMA KIDS 2 | turma | ativo
+muxw3yel-2g78j2em | Pedro Henrique Russo Nardi | vip | ativo
+muxw3yel-37x4b47l | Raquel Ribeiro | vip | ativo
+muxw3yel-5y5nw0ug | Maria Jose Junqueira da Silva | vip | ativo
+muxw3yel-6w2zsn5f | TURMA ADOLESCENTES 1 | turma | ativo
+muxw3yel-a63h7mmq | Marcelo Dercatshoff Pereira | vip | ativo
+muxw3yel-i0tfrwln | Maria Alice | vip | ativo
+muxw3yel-k1h7j4ir | TURMA KIDS 2 | turma | ativo
+muxw3yel-m3njenuw | TURMA KIDS 1 | turma | ativo
+muxw3yel-unv0rcz0 | Thiago Patrick Bellini | vip | ativo
+muxw3yel-x3affts9 | Joelma Faria | vip | ativo
 
 ----- TURMAS -----
 muxw3yel-g74wkog5 | TURMA KIDS 1
 muxw3yel-2ihlg1ns | TURMA ADOLESCENTES 1
+muxw3yel-jz9fsf69 | TURMA KIDS 2
+muxw3yel-2ihlg1ns | TURMA ADOLESCENTES 1
+muxw3yel-g74wkog5 | TURMA KIDS 1
 muxw3yel-jz9fsf69 | TURMA KIDS 2
 
 ----- AULAS DADAS -----
@@ -55,6 +68,36 @@ muxw3yel-jz9fsf69 | TURMA KIDS 2
 2026-09-19 | TURMA ADOLESCENTES 1 | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular
 2026-09-26 | TURMA ADOLESCENTES 1 | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular
 2026-09-29 | TURMA KIDS 2         | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular
+2026-09-29 | TURMA KIDS 2         | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular
+2026-09-22 | Thiago Patrick Belli |  | 1h | falta      | R$ 35.00 | Excel / Mkt Digital
+2026-09-12 | TURMA ADOLESCENTES 1 | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular
+2026-09-19 | TURMA KIDS 1         | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular
+2026-09-29 | Raquel Ribeiro       |  | 2h | presenca   | R$ 70.00 | Aula VIP
+2026-09-16 | Marcelo Dercatshoff  |  | 2h | presenca   | R$ 70.00 | Marketing Digital
+2026-09-08 | Thiago Patrick Belli |  | 1h | falta      | R$ 35.00 | Excel / Mkt Digital
+2026-09-15 | Raquel Ribeiro       |  | 2h | presenca   | R$ 70.00 | Aula VIP
+2026-09-30 | Maria Alice          |  | 2h | presenca   | R$ 70.00 | Trafego Pago
+2026-09-22 | Raquel Ribeiro       |  | 2h | presenca   | R$ 70.00 | Aula VIP
+2026-09-30 | Marcelo Dercatshoff  |  | 2h | presenca   | R$ 70.00 | Marketing Digital
+2026-09-11 | Joelma Faria         |  | 1h | falta      | R$ 35.00 | Mkt Dig / AI / Ed Videos
+2026-09-15 | Thiago Patrick Belli |  | 2h | presenca   | R$ 70.00 | Excel / Mkt Digital
+2026-09-18 | Pedro Henrique Russo |  | 2h | presenca   | R$ 70.00 | IA / Logica de Programacao
+2026-09-24 | Thiago Patrick Belli |  | 2h | presenca   | R$ 70.00 | Excel / Mkt Digital
+2026-09-17 | Joelma Faria         |  | 2h | presenca   | R$ 70.00 | Mkt Dig / AI / Ed Videos
+2026-09-25 | Pedro Henrique Russo |  | 2h | presenca   | R$ 70.00 | IA / Logica de Programacao
+2026-09-19 | Maria Jose Junqueira |  | 2h | presenca   | R$ 70.00 | Uso do Celular
+2026-09-05 | TURMA KIDS 1         | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular
+2026-09-19 | TURMA ADOLESCENTES 1 | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular
+2026-09-29 | Thiago Patrick Belli |  | 1h | falta      | R$ 35.00 | Excel / Mkt Digital
+2026-09-11 | Pedro Henrique Russo |  | 2h | presenca   | R$ 70.00 | IA / Logica de Programacao
+2026-09-26 | TURMA KIDS 1         | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular
+2026-09-26 | TURMA ADOLESCENTES 1 | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular
+2026-09-26 | Maria Jose Junqueira |  | 2h | presenca   | R$ 70.00 | Uso do Celular
+2026-09-12 | TURMA KIDS 1         | 15:00 | 2h | presenca   | R$ 70.00 | Aula regular
+2026-09-02 | Marcelo Dercatshoff  |  | 2h | presenca   | R$ 70.00 | Marketing Digital
+2026-09-05 | TURMA ADOLESCENTES 1 | 17:00 | 2h | presenca   | R$ 70.00 | Aula regular
+2026-09-05 | Maria Jose Junqueira |  | 2h | presenca   | R$ 70.00 | Uso do Celular
+2026-09-09 | Marcelo Dercatshoff  |  | 2h | presenca   | R$ 70.00 | Marketing Digital
 
 ----- CRONOGRAMA (PLANEJAMENTO) -----
 
@@ -63,7 +106,7 @@ muxw3yel-jz9fsf69 | TURMA KIDS 2
 ----- JSON COMPLETO -----
 {
   "versao": 1,
-  "exportado_em": "2026-10-07T09:13:49.013Z",
+  "exportado_em": "2026-10-07T09:14:30.905Z",
   "professor": {
     "nome": "Guilherme Miranda",
     "username": "guilherme",
@@ -519,6 +562,456 @@ muxw3yel-jz9fsf69 | TURMA KIDS 2
       "valor": 70,
       "mes_ref": "2026-09",
       "criado_em": 1791364396268
+    },
+    {
+      "id": "muxw3yel-1f642eb1",
+      "professor_id": "muxw48jc-22a6ee8s",
+      "aluno_id": "muxw3yel-k1h7j4ir",
+      "aluno_nome": "TURMA KIDS 2",
+      "aluno_tipo": "turma",
+      "data": "2026-09-29",
+      "horario": "17:00",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Aula regular",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791364396268
+    },
+    {
+      "id": "muxw3yel-4lrz9kqt",
+      "professor_id": "muxw48jc-22a6ee8s",
+      "aluno_id": "muxw3yel-unv0rcz0",
+      "aluno_nome": "Thiago Patrick Bellini",
+      "aluno_tipo": "vip",
+      "data": "2026-09-22",
+      "horario": "",
+      "duracao": 1,
+      "status": "falta",
+      "conteudo": "Excel / Mkt Digital",
+      "valor": 35,
+      "mes_ref": "2026-09",
+      "criado_em": 1791364396268
+    },
+    {
+      "id": "muxw3yel-6647bnfc",
+      "professor_id": "muxw48jc-22a6ee8s",
+      "aluno_id": "muxw3yel-6w2zsn5f",
+      "aluno_nome": "TURMA ADOLESCENTES 1",
+      "aluno_tipo": "turma",
+      "data": "2026-09-12",
+      "horario": "17:00",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Aula regular",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791364396268
+    },
+    {
+      "id": "muxw3yel-8pbgh53w",
+      "professor_id": "muxw48jc-22a6ee8s",
+      "aluno_id": "muxw3yel-m3njenuw",
+      "aluno_nome": "TURMA KIDS 1",
+      "aluno_tipo": "turma",
+      "data": "2026-09-19",
+      "horario": "15:00",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Aula regular",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791364396268
+    },
+    {
+      "id": "muxw3yel-8q296d0s",
+      "professor_id": "muxw48jc-22a6ee8s",
+      "aluno_id": "muxw3yel-37x4b47l",
+      "aluno_nome": "Raquel Ribeiro",
+      "aluno_tipo": "vip",
+      "data": "2026-09-29",
+      "horario": "",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Aula VIP",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791364396268
+    },
+    {
+      "id": "muxw3yel-9e0mlkn1",
+      "professor_id": "muxw48jc-22a6ee8s",
+      "aluno_id": "muxw3yel-a63h7mmq",
+      "aluno_nome": "Marcelo Dercatshoff Pereira",
+      "aluno_tipo": "vip",
+      "data": "2026-09-16",
+      "horario": "",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Marketing Digital",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791364396268
+    },
+    {
+      "id": "muxw3yel-a99ze9yp",
+      "professor_id": "muxw48jc-22a6ee8s",
+      "aluno_id": "muxw3yel-unv0rcz0",
+      "aluno_nome": "Thiago Patrick Bellini",
+      "aluno_tipo": "vip",
+      "data": "2026-09-08",
+      "horario": "",
+      "duracao": 1,
+      "status": "falta",
+      "conteudo": "Excel / Mkt Digital",
+      "valor": 35,
+      "mes_ref": "2026-09",
+      "criado_em": 1791364396268
+    },
+    {
+      "id": "muxw3yel-ccq5nbwu",
+      "professor_id": "muxw48jc-22a6ee8s",
+      "aluno_id": "muxw3yel-37x4b47l",
+      "aluno_nome": "Raquel Ribeiro",
+      "aluno_tipo": "vip",
+      "data": "2026-09-15",
+      "horario": "",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Aula VIP",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791364396268
+    },
+    {
+      "id": "muxw3yel-ekot1n6c",
+      "professor_id": "muxw48jc-22a6ee8s",
+      "aluno_id": "muxw3yel-i0tfrwln",
+      "aluno_nome": "Maria Alice",
+      "aluno_tipo": "vip",
+      "data": "2026-09-30",
+      "horario": "",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Trafego Pago",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791364396268
+    },
+    {
+      "id": "muxw3yel-eypqa6wh",
+      "professor_id": "muxw48jc-22a6ee8s",
+      "aluno_id": "muxw3yel-37x4b47l",
+      "aluno_nome": "Raquel Ribeiro",
+      "aluno_tipo": "vip",
+      "data": "2026-09-22",
+      "horario": "",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Aula VIP",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791364396268
+    },
+    {
+      "id": "muxw3yel-f4ro5ebj",
+      "professor_id": "muxw48jc-22a6ee8s",
+      "aluno_id": "muxw3yel-a63h7mmq",
+      "aluno_nome": "Marcelo Dercatshoff Pereira",
+      "aluno_tipo": "vip",
+      "data": "2026-09-30",
+      "horario": "",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Marketing Digital",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791364396268
+    },
+    {
+      "id": "muxw3yel-fvuwjtur",
+      "professor_id": "muxw48jc-22a6ee8s",
+      "aluno_id": "muxw3yel-x3affts9",
+      "aluno_nome": "Joelma Faria",
+      "aluno_tipo": "vip",
+      "data": "2026-09-11",
+      "horario": "",
+      "duracao": 1,
+      "status": "falta",
+      "conteudo": "Mkt Dig / AI / Ed Videos",
+      "valor": 35,
+      "mes_ref": "2026-09",
+      "criado_em": 1791364396268
+    },
+    {
+      "id": "muxw3yel-hzn3tzza",
+      "professor_id": "muxw48jc-22a6ee8s",
+      "aluno_id": "muxw3yel-unv0rcz0",
+      "aluno_nome": "Thiago Patrick Bellini",
+      "aluno_tipo": "vip",
+      "data": "2026-09-15",
+      "horario": "",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Excel / Mkt Digital",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791364396268
+    },
+    {
+      "id": "muxw3yel-igfa6lxw",
+      "professor_id": "muxw48jc-22a6ee8s",
+      "aluno_id": "muxw3yel-2g78j2em",
+      "aluno_nome": "Pedro Henrique Russo Nardi",
+      "aluno_tipo": "vip",
+      "data": "2026-09-18",
+      "horario": "",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "IA / Logica de Programacao",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791364396268
+    },
+    {
+      "id": "muxw3yel-kipzyc03",
+      "professor_id": "muxw48jc-22a6ee8s",
+      "aluno_id": "muxw3yel-unv0rcz0",
+      "aluno_nome": "Thiago Patrick Bellini",
+      "aluno_tipo": "vip",
+      "data": "2026-09-24",
+      "horario": "",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Excel / Mkt Digital",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791364396268
+    },
+    {
+      "id": "muxw3yel-lccex0vk",
+      "professor_id": "muxw48jc-22a6ee8s",
+      "aluno_id": "muxw3yel-x3affts9",
+      "aluno_nome": "Joelma Faria",
+      "aluno_tipo": "vip",
+      "data": "2026-09-17",
+      "horario": "",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Mkt Dig / AI / Ed Videos",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791364396268
+    },
+    {
+      "id": "muxw3yel-lemxetir",
+      "professor_id": "muxw48jc-22a6ee8s",
+      "aluno_id": "muxw3yel-2g78j2em",
+      "aluno_nome": "Pedro Henrique Russo Nardi",
+      "aluno_tipo": "vip",
+      "data": "2026-09-25",
+      "horario": "",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "IA / Logica de Programacao",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791364396268
+    },
+    {
+      "id": "muxw3yel-lo6trp9v",
+      "professor_id": "muxw48jc-22a6ee8s",
+      "aluno_id": "muxw3yel-5y5nw0ug",
+      "aluno_nome": "Maria Jose Junqueira da Silva",
+      "aluno_tipo": "vip",
+      "data": "2026-09-19",
+      "horario": "",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Uso do Celular",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791364396268
+    },
+    {
+      "id": "muxw3yel-m0ks3ifw",
+      "professor_id": "muxw48jc-22a6ee8s",
+      "aluno_id": "muxw3yel-m3njenuw",
+      "aluno_nome": "TURMA KIDS 1",
+      "aluno_tipo": "turma",
+      "data": "2026-09-05",
+      "horario": "15:00",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Aula regular",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791364396268
+    },
+    {
+      "id": "muxw3yel-nz27d55p",
+      "professor_id": "muxw48jc-22a6ee8s",
+      "aluno_id": "muxw3yel-6w2zsn5f",
+      "aluno_nome": "TURMA ADOLESCENTES 1",
+      "aluno_tipo": "turma",
+      "data": "2026-09-19",
+      "horario": "17:00",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Aula regular",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791364396268
+    },
+    {
+      "id": "muxw3yel-osf9ifkr",
+      "professor_id": "muxw48jc-22a6ee8s",
+      "aluno_id": "muxw3yel-unv0rcz0",
+      "aluno_nome": "Thiago Patrick Bellini",
+      "aluno_tipo": "vip",
+      "data": "2026-09-29",
+      "horario": "",
+      "duracao": 1,
+      "status": "falta",
+      "conteudo": "Excel / Mkt Digital",
+      "valor": 35,
+      "mes_ref": "2026-09",
+      "criado_em": 1791364396268
+    },
+    {
+      "id": "muxw3yel-p9769b3f",
+      "professor_id": "muxw48jc-22a6ee8s",
+      "aluno_id": "muxw3yel-2g78j2em",
+      "aluno_nome": "Pedro Henrique Russo Nardi",
+      "aluno_tipo": "vip",
+      "data": "2026-09-11",
+      "horario": "",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "IA / Logica de Programacao",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791364396268
+    },
+    {
+      "id": "muxw3yel-qarsbbuc",
+      "professor_id": "muxw48jc-22a6ee8s",
+      "aluno_id": "muxw3yel-m3njenuw",
+      "aluno_nome": "TURMA KIDS 1",
+      "aluno_tipo": "turma",
+      "data": "2026-09-26",
+      "horario": "15:00",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Aula regular",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791364396268
+    },
+    {
+      "id": "muxw3yel-qcdoslfh",
+      "professor_id": "muxw48jc-22a6ee8s",
+      "aluno_id": "muxw3yel-6w2zsn5f",
+      "aluno_nome": "TURMA ADOLESCENTES 1",
+      "aluno_tipo": "turma",
+      "data": "2026-09-26",
+      "horario": "17:00",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Aula regular",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791364396268
+    },
+    {
+      "id": "muxw3yel-ra54v8us",
+      "professor_id": "muxw48jc-22a6ee8s",
+      "aluno_id": "muxw3yel-5y5nw0ug",
+      "aluno_nome": "Maria Jose Junqueira da Silva",
+      "aluno_tipo": "vip",
+      "data": "2026-09-26",
+      "horario": "",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Uso do Celular",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791364396268
+    },
+    {
+      "id": "muxw3yel-w4pqofuu",
+      "professor_id": "muxw48jc-22a6ee8s",
+      "aluno_id": "muxw3yel-m3njenuw",
+      "aluno_nome": "TURMA KIDS 1",
+      "aluno_tipo": "turma",
+      "data": "2026-09-12",
+      "horario": "15:00",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Aula regular",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791364396268
+    },
+    {
+      "id": "muxw3yel-whwdfn9z",
+      "professor_id": "muxw48jc-22a6ee8s",
+      "aluno_id": "muxw3yel-a63h7mmq",
+      "aluno_nome": "Marcelo Dercatshoff Pereira",
+      "aluno_tipo": "vip",
+      "data": "2026-09-02",
+      "horario": "",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Marketing Digital",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791364396268
+    },
+    {
+      "id": "muxw3yel-xvd6gy08",
+      "professor_id": "muxw48jc-22a6ee8s",
+      "aluno_id": "muxw3yel-6w2zsn5f",
+      "aluno_nome": "TURMA ADOLESCENTES 1",
+      "aluno_tipo": "turma",
+      "data": "2026-09-05",
+      "horario": "17:00",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Aula regular",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791364396268
+    },
+    {
+      "id": "muxw3yel-y3usu59a",
+      "professor_id": "muxw48jc-22a6ee8s",
+      "aluno_id": "muxw3yel-5y5nw0ug",
+      "aluno_nome": "Maria Jose Junqueira da Silva",
+      "aluno_tipo": "vip",
+      "data": "2026-09-05",
+      "horario": "",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Uso do Celular",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791364396268
+    },
+    {
+      "id": "muxw3yel-zmlfvufz",
+      "professor_id": "muxw48jc-22a6ee8s",
+      "aluno_id": "muxw3yel-a63h7mmq",
+      "aluno_nome": "Marcelo Dercatshoff Pereira",
+      "aluno_tipo": "vip",
+      "data": "2026-09-09",
+      "horario": "",
+      "duracao": 2,
+      "status": "presenca",
+      "conteudo": "Marketing Digital",
+      "valor": 70,
+      "mes_ref": "2026-09",
+      "criado_em": 1791364396268
     }
   ],
   "alunos": [
@@ -611,6 +1104,96 @@ muxw3yel-jz9fsf69 | TURMA KIDS 2
       "turma_id": "muxw3yel-jz9fsf69",
       "ativo": 1,
       "criado_em": 1791364396268
+    },
+    {
+      "id": "muxw3yel-2g78j2em",
+      "professor_id": "muxw48jc-22a6ee8s",
+      "nome": "Pedro Henrique Russo Nardi",
+      "tipo": "vip",
+      "turma_id": null,
+      "ativo": 1,
+      "criado_em": 1791364396268
+    },
+    {
+      "id": "muxw3yel-37x4b47l",
+      "professor_id": "muxw48jc-22a6ee8s",
+      "nome": "Raquel Ribeiro",
+      "tipo": "vip",
+      "turma_id": null,
+      "ativo": 1,
+      "criado_em": 1791364396268
+    },
+    {
+      "id": "muxw3yel-5y5nw0ug",
+      "professor_id": "muxw48jc-22a6ee8s",
+      "nome": "Maria Jose Junqueira da Silva",
+      "tipo": "vip",
+      "turma_id": null,
+      "ativo": 1,
+      "criado_em": 1791364396268
+    },
+    {
+      "id": "muxw3yel-6w2zsn5f",
+      "professor_id": "muxw48jc-22a6ee8s",
+      "nome": "TURMA ADOLESCENTES 1",
+      "tipo": "turma",
+      "turma_id": "muxw3yel-2ihlg1ns",
+      "ativo": 1,
+      "criado_em": 1791364396268
+    },
+    {
+      "id": "muxw3yel-a63h7mmq",
+      "professor_id": "muxw48jc-22a6ee8s",
+      "nome": "Marcelo Dercatshoff Pereira",
+      "tipo": "vip",
+      "turma_id": null,
+      "ativo": 1,
+      "criado_em": 1791364396268
+    },
+    {
+      "id": "muxw3yel-i0tfrwln",
+      "professor_id": "muxw48jc-22a6ee8s",
+      "nome": "Maria Alice",
+      "tipo": "vip",
+      "turma_id": null,
+      "ativo": 1,
+      "criado_em": 1791364396268
+    },
+    {
+      "id": "muxw3yel-k1h7j4ir",
+      "professor_id": "muxw48jc-22a6ee8s",
+      "nome": "TURMA KIDS 2",
+      "tipo": "turma",
+      "turma_id": "muxw3yel-jz9fsf69",
+      "ativo": 1,
+      "criado_em": 1791364396268
+    },
+    {
+      "id": "muxw3yel-m3njenuw",
+      "professor_id": "muxw48jc-22a6ee8s",
+      "nome": "TURMA KIDS 1",
+      "tipo": "turma",
+      "turma_id": "muxw3yel-g74wkog5",
+      "ativo": 1,
+      "criado_em": 1791364396268
+    },
+    {
+      "id": "muxw3yel-unv0rcz0",
+      "professor_id": "muxw48jc-22a6ee8s",
+      "nome": "Thiago Patrick Bellini",
+      "tipo": "vip",
+      "turma_id": null,
+      "ativo": 1,
+      "criado_em": 1791364396268
+    },
+    {
+      "id": "muxw3yel-x3affts9",
+      "professor_id": "muxw48jc-22a6ee8s",
+      "nome": "Joelma Faria",
+      "tipo": "vip",
+      "turma_id": null,
+      "ativo": 1,
+      "criado_em": 1791364396268
     }
   ],
   "turmas": [
@@ -629,6 +1212,24 @@ muxw3yel-jz9fsf69 | TURMA KIDS 2
     {
       "id": "muxw3yel-jz9fsf69",
       "professor_id": "guilherme-dono-001",
+      "nome": "TURMA KIDS 2",
+      "criado_em": 1791364396268
+    },
+    {
+      "id": "muxw3yel-2ihlg1ns",
+      "professor_id": "muxw48jc-22a6ee8s",
+      "nome": "TURMA ADOLESCENTES 1",
+      "criado_em": 1791364396268
+    },
+    {
+      "id": "muxw3yel-g74wkog5",
+      "professor_id": "muxw48jc-22a6ee8s",
+      "nome": "TURMA KIDS 1",
+      "criado_em": 1791364396268
+    },
+    {
+      "id": "muxw3yel-jz9fsf69",
+      "professor_id": "muxw48jc-22a6ee8s",
       "nome": "TURMA KIDS 2",
       "criado_em": 1791364396268
     }
