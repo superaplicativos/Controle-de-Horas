@@ -14,13 +14,14 @@ export function calcularValorAula(
   valorHora: number,
   valorFalta: number
 ): number {
+  let valor = 0;
   if (status === 'presenca') {
-    return valorHora * duracao;
+    valor = valorHora * duracao;
+  } else if (status === 'falta') {
+    valor = valorFalta; // sempre 1h, fixo
   }
-  if (status === 'falta') {
-    return valorFalta; // sempre 1h, fixo
-  }
-  return 0; // cancelada ou agendada
+  // cancelada ou agendada → 0
+  return Math.round(valor * 100) / 100;
 }
 
 export function formatarMoeda(valor: number): string {
