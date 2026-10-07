@@ -41,7 +41,7 @@ interface ControleAulasDB extends DBSchema {
 let dbInstance: IDBPDatabase<ControleAulasDB> | null = null;
 
 const DB_NAME = 'controle-aulas-db';
-const DB_VERSION = 2;
+const DB_VERSION = 3;
 
 export async function getDB(): Promise<IDBPDatabase<ControleAulasDB>> {
   if (dbInstance) return dbInstance;
@@ -82,6 +82,11 @@ export async function getDB(): Promise<IDBPDatabase<ControleAulasDB>> {
           cronStore.createIndex('by-professor', 'professor_id');
           cronStore.createIndex('by-data', 'data');
         }
+      }
+      if (oldVersion < 3) {
+        // V3: Adiciona campos de assinatura nos professores existentes
+        // Não precisa criar nova store — só atualizar dados existentes
+        // (feito automaticamente quando salvarProfessor for chamado)
       }
     },
   });

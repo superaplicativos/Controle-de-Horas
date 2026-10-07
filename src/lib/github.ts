@@ -5,18 +5,13 @@ import { salvarAula, salvarAluno, salvarTurma, salvarFechamento, salvarCronogram
  * Configurações FIXAS do sync (não pede mais nada do usuário).
  *
  * Como funciona:
- * - ESCRITA: POST /sync no Cloudflare Worker (token GitHub fica no Worker, seguro)
- * - LEITURA: GET direto na GitHub API (repo público, sem necessidade de token)
- *
- * Isso resolve o problema de multi-professor: qualquer um só cadastra usuário+senha
- * e o sync já funciona. Token GitHub nunca aparece no navegador.
+ * - ESCRITA: POST /sync no Cloudflare Worker
+ * - LEITURA: GET /backup no Cloudflare Worker (também usa token GitHub, evita rate limit)
  */
 
-const WORKER_URL = 'https://controle-aulas-sync.controler-2a4.workers.dev';
+const WORKER_URL = 'https://controle-aulas-sync.control-de-horas.workers.dev';
 const API_SECRET = 'controle-aulas-2026-emerald';
-const GITHUB_PUBLIC_REPO = 'superaplicativos/Controle-de-Horas';
 const BACKUP_PATH = 'data/backup.txt';
-const GITHUB_API = 'https://api.github.com';
 
 export interface SyncResult {
   ok: boolean;
@@ -30,14 +25,14 @@ export interface SyncResult {
 }
 
 /**
- * Lê o arquivo data/backup.txt do repositório GitHub PÚBLICO.
- * Não precisa de token (repo é público).
+ * Lê o arquivo data/backup.txt via Cloudflare Worker.
+ * O Worker tem o token GitHub embutido — não sofre com rate limit.
  */
 export async function lerBackupDoGitHub(): Promise<{ conteudo: string; sha: string } | null> {
-  const url = `${GITHUB_API}/repos/${GITHUB_PUBLIC_REPO}/contents/${BACKUP_PATH}`;
-  const resp = await fetch(url, {
+  const resp = await fetch(`${WORKER_URL}/backup`, {
     headers: {
-      Accept: 'application/vnd.github+json',
+      'Authorization': `Bearer ${API_SECRET}`,
+      'Accept': 'application/json',
     },
   });
 
@@ -45,17 +40,19 @@ export async function lerBackupDoGitHub(): Promise<{ conteudo: string; sha: stri
     return null;
   }
   if (!resp.ok) {
-    throw new Error(`GitHub API: ${resp.status} ${resp.statusText}`);
+    const errData = await resp.json().catch(() => ({}));
+    throw new Error(`Worker GET /backup: ${resp.status} - ${errData?.error || resp.statusText}`);
   }
 
   const data = await resp.json();
-  const conteudo = atob(data.content.replace(/\n/g, ''));
-  return { conteudo, sha: data.sha };
+  if (!data.exists) {
+    return null;
+  }
+  return { conteudo: data.content, sha: data.sha };
 }
 
 /**
  * Salva/atualiza o arquivo data/backup.txt via Cloudflare Worker.
- * O token GitHub fica seguro no Worker (não exposto pro navegador).
  */
 export async function salvarBackupNoGitHub(conteudo: string): Promise<boolean> {
   const resp = await fetch(`${WORKER_URL}/sync`, {
@@ -72,7 +69,7 @@ export async function salvarBackupNoGitHub(conteudo: string): Promise<boolean> {
 
   if (!resp.ok) {
     const errData = await resp.json().catch(() => ({}));
-    throw new Error(`Worker: ${resp.status} - ${errData?.error || resp.statusText}`);
+    throw new Error(`Worker POST /sync: ${resp.status} - ${errData?.error || resp.statusText}`);
   }
 
   return true;
@@ -85,7 +82,7 @@ export async function sincronizarDoGitHub(professor: Professor): Promise<SyncRes
   try {
     const resultado = await lerBackupDoGitHub();
     if (!resultado) {
-      return { ok: true, aulasImportadas: 0, deOnde: 'Arquivo não existe ainda no repo' };
+      return { ok: true, aulasImportadas: 0, deOnde: 'Arquivo não existe ainda' };
     }
 
     const backup = parseBackupTXT(resultado.conteudo);
@@ -93,103 +90,51 @@ export async function sincronizarDoGitHub(professor: Professor): Promise<SyncRes
       return { ok: false, erro: 'Formato inválido' };
     }
 
+    // Só importa se for deste professor
+    if (backup.professor.username !== professor.username) {
+      return { ok: true, aulasImportadas: 0, deOnde: 'Backup é de outro professor' };
+    }
+
     const professorId = professor.id;
-    const professorUsername = professor.username;
 
-    // Dados locais
-    const locaisAulas = await listarAulasPorProfessor(professorId);
-    const locaisAlunos = await listarAlunosPorProfessor(professorId);
-    const locaisTurmas = await listarTurmasPorProfessor(professorId);
-    const locaisCronograma = await listarCronogramaPorProfessor(professorId);
+    // FULL REPLACE: limpa tudo local antes de importar
+    const { limparDadosProfessor } = await import('./db');
+    await limparDadosProfessor(professorId);
 
-    // Mapas por ID (locais)
-    const aulasMap = new Map<string, Aula>();
-    const alunosMap = new Map<string, Aluno>();
-    const turmasMap = new Map<string, Turma>();
-    const cronogramaMap = new Map<string, CronogramaItem>();
+    // Importa tudo do backup (adaptando professor_id)
+    let total = 0;
 
-    for (const a of locaisAulas) aulasMap.set(a.id, a);
-    for (const a of locaisAlunos) alunosMap.set(a.id, a);
-    for (const t of locaisTurmas) turmasMap.set(t.id, t);
-    for (const c of locaisCronograma) cronogramaMap.set(c.id, c);
-
-    // Filtra por username (não por ID — pode ser diferente entre dispositivos)
-    const isFromThisProfessor = backup.professor.username === professorUsername;
-
-    let aulasN = 0, alunosN = 0, turmasN = 0, fechamentosN = 0, cronogramaN = 0;
-
-    if (isFromThisProfessor) {
-      // Mapas por nome (evita duplicação)
-      const alunosPorNome = new Map<string, Aluno>();
-      for (const a of locaisAlunos) alunosPorNome.set(a.nome.toLowerCase(), a);
-      const turmasPorNome = new Map<string, Turma>();
-      for (const t of locaisTurmas) turmasPorNome.set(t.nome.toLowerCase(), t);
-      const aulasPorKey = new Map<string, Aula>();
-      for (const a of locaisAulas) aulasPorKey.set(`${a.data}|${a.aluno_nome}|${a.horario}`, a);
-      const cronPorKey = new Map<string, CronogramaItem>();
-      for (const c of locaisCronograma) cronPorKey.set(`${c.data}|${c.aluno_nome}|${c.horario}`, c);
-
-      for (const a of backup.aulas) {
-        const localById = aulasMap.get(a.id);
-        const localByKey = aulasPorKey.get(`${a.data}|${a.aluno_nome}|${a.horario}`);
-        const aulaAdaptada = { ...a, professor_id: professorId };
-        if (!localById && !localByKey) {
-          await salvarAula(aulaAdaptada);
-          aulasN++;
-        } else if (localById && a.criado_em > localById.criado_em) {
-          await salvarAula(aulaAdaptada);
-          aulasN++;
-        }
-      }
-      for (const a of backup.alunos) {
-        const localById = alunosMap.get(a.id);
-        const localByName = alunosPorNome.get(a.nome.toLowerCase());
-        const alunoAdaptado = { ...a, professor_id: professorId };
-        if (!localById && !localByName) {
-          await salvarAluno(alunoAdaptado);
-          alunosN++;
-        } else if (localById && a.criado_em > localById.criado_em) {
-          await salvarAluno(alunoAdaptado);
-          alunosN++;
-        }
-      }
-      for (const t of backup.turmas) {
-        const localById = turmasMap.get(t.id);
-        const localByName = turmasPorNome.get(t.nome.toLowerCase());
-        const turmaAdaptada = { ...t, professor_id: professorId };
-        if (!localById && !localByName) {
-          await salvarTurma(turmaAdaptada);
-          turmasN++;
-        } else if (localById && t.criado_em > localById.criado_em) {
-          await salvarTurma(turmaAdaptada);
-          turmasN++;
-        }
-      }
-      const backupCronograma = (backup.cronograma || []) as CronogramaItem[];
-      for (const c of backupCronograma) {
-        const localById = cronogramaMap.get(c.id);
-        const localByKey = cronPorKey.get(`${c.data}|${c.aluno_nome}|${c.horario}`);
-        const cronAdaptado = { ...c, professor_id: professorId };
-        if (!localById && !localByKey) {
-          await salvarCronogramaItem(cronAdaptado);
-          cronogramaN++;
-        } else if (localById && c.criado_em > localById.criado_em) {
-          await salvarCronogramaItem(cronAdaptado);
-          cronogramaN++;
-        }
-      }
+    for (const a of backup.alunos) {
+      await salvarAluno({ ...a, professor_id: professorId });
+      total++;
+    }
+    for (const t of backup.turmas) {
+      await salvarTurma({ ...t, professor_id: professorId });
+      total++;
+    }
+    for (const a of backup.aulas) {
+      await salvarAula({ ...a, professor_id: professorId });
+      total++;
+    }
+    for (const c of (backup.cronograma || [])) {
+      await salvarCronogramaItem({ ...c, professor_id: professorId });
+      total++;
+    }
+    for (const f of backup.fechamentos) {
+      await salvarFechamento({ ...f, professor_id: professorId });
+      total++;
     }
 
     return {
       ok: true,
-      aulasImportadas: aulasN,
-      alunosImportados: alunosN,
-      turmasImportadas: turmasN,
-      fechamentosImportados: fechamentosN,
-      deOnde: 'GitHub',
+      aulasImportadas: backup.aulas.length,
+      alunosImportados: backup.alunos.length,
+      turmasImportadas: backup.turmas.length,
+      fechamentosImportados: backup.fechamentos.length,
+      deOnde: 'GitHub (full replace)',
     };
   } catch (e: unknown) {
-    const msg = e instanceof Error ? e.message : 'Erro desconhecido';
+    const msg = e instanceof Error ? e.message : 'Erro';
     return { ok: false, erro: msg };
   }
 }
@@ -339,7 +284,7 @@ export function parseBackupTXT(conteudo: string): BackupTXT | null {
 export async function getConfig(): Promise<Config | null> {
   return {
     github_token: '***worker-managed***',
-    github_repo: GITHUB_PUBLIC_REPO,
+    github_repo: 'superaplicativos/Controle-de-Horas',
     github_branch: 'main',
     ultimo_sync: null,
     auto_sync: true,

@@ -4,6 +4,7 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from '
 import type { Professor, Sessao } from '@/types';
 import { gerarSalt, hashSenha, verificarSenha, gerarId } from './crypto';
 import { salvarProfessor, buscarProfessorPorUsername } from './db';
+import { seedGuilherme } from './seed';
 
 const SESSION_KEY = 'controle-aulas-session';
 
@@ -24,10 +25,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [professor, setProfessor] = useState<Professor | null>(null);
   const [carregando, setCarregando] = useState(true);
 
-  // Carrega sessão ao montar (localStorage = persiste entre sessões)
   useEffect(() => {
     (async () => {
       try {
+        // Garante que o Guilherme existe
+        await seedGuilherme();
+
         const raw = localStorage.getItem(SESSION_KEY);
         if (raw) {
           const s = JSON.parse(raw) as Sessao;
@@ -40,7 +43,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           }
         }
       } catch {
-        // ignore
       } finally {
         setCarregando(false);
       }
@@ -49,25 +51,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   async function login(username: string, senha: string) {
     try {
+      // Garante Guilherme existe antes de tentar login
+      await seedGuilherme();
+
       const prof = await buscarProfessorPorUsername(username.trim());
-      if (!prof) {
-        return { ok: false, erro: 'Usuário não encontrado' };
-      }
+      if (!prof) return { ok: false, erro: 'Usuário não encontrado' };
       const ok = await verificarSenha(senha, prof.salt, prof.senha_hash);
-      if (!ok) {
-        return { ok: false, erro: 'Senha incorreta' };
-      }
-      const s: Sessao = {
-        professor_id: prof.id,
-        username: prof.username,
-        nome: prof.nome,
-        login_em: Date.now(),
-      };
+      if (!ok) return { ok: false, erro: 'Senha incorreta' };
+      const s: Sessao = { professor_id: prof.id, username: prof.username, nome: prof.nome, login_em: Date.now() };
       localStorage.setItem(SESSION_KEY, JSON.stringify(s));
       setSessao(s);
       setProfessor(prof);
       return { ok: true };
-    } catch (e) {
+    } catch {
       return { ok: false, erro: 'Erro ao fazer login' };
     }
   }
@@ -83,30 +79,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
       const salt = gerarSalt();
       const senhaHash = await hashSenha(dados.senha, salt);
-
       const prof: Professor = {
-        id: gerarId(),
-        username,
-        senha_hash: senhaHash,
-        salt,
-        nome: dados.nome.trim(),
-        valor_hora: dados.valor_hora,
-        valor_falta: 35, // default
-        criado_em: Date.now(),
+        id: gerarId(), username, senha_hash: senhaHash, salt,
+        nome: dados.nome.trim(), valor_hora: dados.valor_hora, valor_falta: 35,
+        criado_em: Date.now(), assinatura_status: 'free_trial',
+        trial_fim: Date.now() + 7 * 24 * 60 * 60 * 1000, bloqueado: false,
+        is_admin: username === 'guilherme',
       };
-
       await salvarProfessor(prof);
-      const s: Sessao = {
-        professor_id: prof.id,
-        username: prof.username,
-        nome: prof.nome,
-        login_em: Date.now(),
-      };
+      const s: Sessao = { professor_id: prof.id, username: prof.username, nome: prof.nome, login_em: Date.now() };
       localStorage.setItem(SESSION_KEY, JSON.stringify(s));
       setSessao(s);
       setProfessor(prof);
       return { ok: true };
-    } catch (e) {
+    } catch {
       return { ok: false, erro: 'Erro ao cadastrar' };
     }
   }

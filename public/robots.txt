@@ -1,4 +1,20 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://superaplicativos.github.io/Controle-de-Horas/sitemap.xml
+# Permite explicitamente crawlers de IA
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+Sitemap: https://superaplicativos.github.io/sitemap.xml

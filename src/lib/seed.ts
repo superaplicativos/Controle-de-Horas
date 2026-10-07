@@ -2,6 +2,7 @@ import type { Aula, Aluno, Turma, Fechamento, Professor, CronogramaItem } from '
 import { gerarSalt, hashSenha, gerarId } from './crypto';
 import { salvarProfessor, salvarAula, salvarAluno, salvarTurma, salvarFechamento, salvarCronogramaItem, buscarProfessorPorUsername, listarAulasPorProfessor, listarAlunosPorProfessor } from './db';
 import { calcularResumoMes, mesAtualRef } from './calculations';
+import { loginProfessorAPI, cadastrarProfessorAPI } from './api';
 
 // Gera YYYY-MM-DD para o dia informado, no mês/ano atuais
 function dataNoMesAtual(dia: number): string {
@@ -10,13 +11,59 @@ function dataNoMesAtual(dia: number): string {
 }
 
 export async function seedGuilherme(): Promise<void> {
+  // 1. Verifica se já existe no IndexedDB (cache local)
   const existente = await buscarProfessorPorUsername('guilherme');
-
   if (existente) {
-    // Professor já existe — não cria aulas automaticas
+    const aulas = await listarAulasPorProfessor(existente.id);
+    const mesAtual = mesAtualRef();
+    const aulasMesAtual = aulas.filter((a) => a.mes_ref === mesAtual);
+    if (aulasMesAtual.length === 0) {
+      await criarAulasGuilherme(existente, mesAtual);
+    }
     return;
   }
 
+  // 2. Tenta login via Worker API (D1)
+  try {
+    const loginResult = await loginProfessorAPI('guilherme', 'professor123');
+    if (loginResult.ok && loginResult.professor) {
+      const p = loginResult.professor;
+      const prof: Professor = {
+        id: p.id, username: p.username, senha_hash: p.senha_hash, salt: p.salt,
+        nome: p.nome, valor_hora: p.valor_hora, valor_falta: p.valor_falta,
+        criado_em: p.criado_em, assinatura_status: p.assinatura_status,
+        assinatura_id: p.assinatura_id, trial_fim: p.trial_fim,
+        bloqueado: !!p.bloqueado, is_admin: !!p.is_admin,
+      };
+      await salvarProfessor(prof);
+      const aulas = await listarAulasPorProfessor(prof.id);
+      if (aulas.length === 0) await criarAulasGuilherme(prof, mesAtualRef());
+      return;
+    }
+  } catch (e) { console.warn('login API falhou, tentando cadastro', e); }
+
+  // 3. Tenta cadastrar via Worker API
+  try {
+    const cadResult = await cadastrarProfessorAPI({
+      username: 'guilherme', senha: 'professor123',
+      nome: 'Guilherme Miranda', valor_hora: 35,
+    });
+    if (cadResult.ok && cadResult.professor) {
+      const p = cadResult.professor;
+      const prof: Professor = {
+        id: p.id, username: p.username, senha_hash: p.senha_hash, salt: p.salt,
+        nome: p.nome, valor_hora: p.valor_hora, valor_falta: p.valor_falta,
+        criado_em: p.criado_em, assinatura_status: p.assinatura_status,
+        assinatura_id: p.assinatura_id, trial_fim: p.trial_fim,
+        bloqueado: !!p.bloqueado, is_admin: !!p.is_admin,
+      };
+      await salvarProfessor(prof);
+      await criarAulasGuilherme(prof, mesAtualRef());
+      return;
+    }
+  } catch (e) { console.warn('cadastro API falhou, fallback IndexedDB', e); }
+
+  // 4. Fallback: cria no IndexedDB (modo offline)
   const salt = gerarSalt();
   const senhaHash = await hashSenha('professor123', salt);
 
@@ -29,6 +76,9 @@ export async function seedGuilherme(): Promise<void> {
     valor_hora: 35,
     valor_falta: 35,
     criado_em: Date.now(),
+    assinatura_status: 'lifetime',
+    bloqueado: false,
+    is_admin: true,
   };
 
   await salvarProfessor(professor);
@@ -81,8 +131,12 @@ export async function seedGuilherme(): Promise<void> {
   await salvarAluno(alunoTurmaAdolescentes);
   await salvarAluno(alunoJoelma);
 
-  // NAO cria aulas automaticas — o professor cadastra as suas
-  // (dados reais vem do sync com o GitHub)
+  // Cria as aulas no mês atual
+  await criarAulasGuilherme(professor, mesAtualRef(), {
+    alunoTurmaKids,
+    alunoTurmaAdolescentes,
+    alunoJoelma,
+  });
 }
 
 async function criarAulasGuilherme(
