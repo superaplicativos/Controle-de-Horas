@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useStore } from '../../store/store';
-import { aulasVisiveis } from '../../store/seletores';
+import { useStoreShallow, aulasVisiveis } from '../../store/seletores';
 import { mesRefAtual, nomeMes, somarMes, diasDoMes, hojeLocal } from '../../domain/datas';
 import type { StatusAula } from '../../domain/tipos';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
@@ -15,7 +14,7 @@ const STATUS_COR: Record<StatusAula, string> = {
 
 export function Calendario() {
   const [mesRef, setMesRef] = useState(mesRefAtual());
-  const aulas = useStore(aulasVisiveis);
+  const aulas = useStoreShallow(aulasVisiveis);
   const navigate = useNavigate();
 
   const totalDias = diasDoMes(mesRef);

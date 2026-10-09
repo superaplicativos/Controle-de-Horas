@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { useStore } from '../../store/store';
-import { aulasVisiveis } from '../../store/seletores';
+import { useStoreShallow, aulasVisiveis } from '../../store/seletores';
 import { fecharMes, reabrirMes } from '../../store/acoes';
 import { calcularResumoMes, formatarCentavos, formatarMinutos, variacaoPercentual } from '../../domain/calculos';
 import { mesRefAtual, nomeMes, somarMes, diaDaSemana } from '../../domain/datas';
@@ -12,8 +11,9 @@ import {
 
 export function Dashboard() {
   const [mesRef, setMesRef] = useState(mesRefAtual());
-  const aulas = useStore(aulasVisiveis);
-  const fechamentos = useStore((s) => s.fechamentos);
+  // useStoreShallow evita loop infinito: seletores que filtram criam array novo.
+  const aulas = useStoreShallow(aulasVisiveis);
+  const fechamentos = useStoreShallow((s) => s.fechamentos.filter((f) => !f.excluido));
 
   const aulasMes = aulas.filter((a) => a.mesRef === mesRef);
   const resumo = calcularResumoMes(aulasMes);

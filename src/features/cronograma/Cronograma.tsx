@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { useStore } from '../../store/store';
-import { cronogramaVisivel } from '../../store/seletores';
+import { useStoreShallow, cronogramaVisivel } from '../../store/seletores';
 import { salvarCronogramaItem, excluirCronogramaItem } from '../../store/acoes';
 import { hojeLocal, diaDaSemana } from '../../domain/datas';
 
@@ -23,7 +22,7 @@ const VAZIO: FormState = {
 };
 
 export function Cronograma() {
-  const itens = useStore(cronogramaVisivel);
+  const itens = useStoreShallow(cronogramaVisivel);
   const [editandoId, setEditandoId] = useState<string | null>(null);
   const [form, setForm] = useState<FormState>(VAZIO);
   const [mostrarForm, setMostrarForm] = useState(false);

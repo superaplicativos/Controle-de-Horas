@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useStore } from '../../store/store';
+import { useStoreShallow } from '../../store/seletores';
 import { salvarConfig } from '../../store/acoes';
 import { formatarCentavos } from '../../domain/calculos';
 import { carregarSync, salvarSync, limparSync, copiarConfiguracao, colarConfiguracao } from '../../data/storage';
@@ -11,7 +12,7 @@ import { Link } from 'react-router-dom';
 
 export function Configuracoes() {
   const config = useStore((s) => s.config);
-  const pendentes = useStore((s) => s.meta.pendentes);
+  const pendentes = useStoreShallow((s) => s.meta.pendentes);
 
   const [nome, setNome] = useState(config.nome);
   const [valorHora, setValorHora] = useState(String((config.valorHoraCentavos / 100).toFixed(2)));

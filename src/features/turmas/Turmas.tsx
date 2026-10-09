@@ -1,10 +1,9 @@
 import { useState } from 'react';
-import { useStore } from '../../store/store';
-import { turmasVisiveis } from '../../store/seletores';
+import { useStoreShallow, turmasVisiveis } from '../../store/seletores';
 import { salvarTurma, excluirTurma } from '../../store/acoes';
 
 export function Turmas() {
-  const turmas = useStore(turmasVisiveis);
+  const turmas = useStoreShallow(turmasVisiveis);
   const [editandoId, setEditandoId] = useState<string | null>(null);
   const [nome, setNome] = useState('');
   const [mostrarForm, setMostrarForm] = useState(false);

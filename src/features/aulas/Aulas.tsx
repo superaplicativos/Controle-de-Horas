@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { useStore } from '../../store/store';
-import { aulasVisiveis, mesesComAulas } from '../../store/seletores';
+import { useStoreShallow, aulasVisiveis, mesesComAulas } from '../../store/seletores';
 import { salvarAula, excluirAula } from '../../store/acoes';
 import { calcularValorAulaCentavos, formatarCentavos } from '../../domain/calculos';
 import { hojeLocal, mesRefAtual, nomeMes, diaDaSemana } from '../../domain/datas';
@@ -28,8 +28,8 @@ const VAZIO: FormState = {
 
 export function Aulas() {
   const config = useStore((s) => s.config);
-  const aulas = useStore(aulasVisiveis);
-  const meses = useStore(mesesComAulas);
+  const aulas = useStoreShallow(aulasVisiveis);
+  const meses = useStoreShallow(mesesComAulas);
   const [mesFiltro, setMesFiltro] = useState(mesRefAtual());
   const [editandoId, setEditandoId] = useState<string | null>(null);
   const [form, setForm] = useState<FormState>(VAZIO);
@@ -37,8 +37,8 @@ export function Aulas() {
   const [erro, setErro] = useState('');
 
   // Listas para o seletor
-  const alunosVip = useStore((s) => s.alunos.filter((a) => !a.excluido && a.tipo === 'vip'));
-  const turmas = useStore((s) => s.turmas.filter((t) => !t.excluido));
+  const alunosVip = useStoreShallow((s) => s.alunos.filter((a) => !a.excluido && a.tipo === 'vip'));
+  const turmas = useStoreShallow((s) => s.turmas.filter((t) => !t.excluido));
 
   const opcoes = form.tipo === 'vip' ? alunosVip : turmas;
 

@@ -1,5 +1,4 @@
-import { useStore } from '../../store/store';
-import { aulasVisiveis } from '../../store/seletores';
+import { useStoreShallow, aulasVisiveis } from '../../store/seletores';
 import { reabrirMes } from '../../store/acoes';
 import { formatarCentavos, formatarMinutos } from '../../domain/calculos';
 import { nomeMes } from '../../domain/datas';
@@ -7,8 +6,8 @@ import { divergeDoSnapshot } from '../../domain/fechamentos';
 import type { Fechamento } from '../../domain/tipos';
 
 export function Fechamentos() {
-  const fechamentos = useStore((s) => s.fechamentos.filter((f) => !f.excluido));
-  const aulas = useStore(aulasVisiveis);
+  const fechamentos = useStoreShallow((s) => s.fechamentos.filter((f) => !f.excluido));
+  const aulas = useStoreShallow(aulasVisiveis);
 
   const ordenados = [...fechamentos].sort((a, b) => b.mesRef.localeCompare(a.mesRef));
 

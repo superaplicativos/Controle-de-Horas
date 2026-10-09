@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { useStore } from '../../store/store';
-import { alunosVisiveis, turmasVisiveis } from '../../store/seletores';
+import { useStoreShallow, alunosVisiveis, turmasVisiveis } from '../../store/seletores';
 import { salvarAluno, excluirAluno } from '../../store/acoes';
 import type { TipoAula } from '../../domain/tipos';
 
@@ -14,8 +13,8 @@ interface FormState {
 const VAZIO: FormState = { nome: '', tipo: 'vip', turmaId: '', ativo: true };
 
 export function Alunos() {
-  const alunos = useStore(alunosVisiveis);
-  const turmas = useStore(turmasVisiveis);
+  const alunos = useStoreShallow(alunosVisiveis);
+  const turmas = useStoreShallow(turmasVisiveis);
   const [editandoId, setEditandoId] = useState<string | null>(null);
   const [form, setForm] = useState<FormState>(VAZIO);
   const [erro, setErro] = useState('');
