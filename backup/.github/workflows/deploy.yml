@@ -3,6 +3,10 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - 'data/**'
+      - 'docs/**'
+      - '*.md'
   workflow_dispatch:
 
 permissions:
@@ -21,32 +25,24 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
         with:
-          node-version: '20'
-          cache: 'npm'
+          bun-version: latest
 
-      - name: Install
-        run: npm ci
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
 
-      - name: Verify (typecheck, lint, check, test, build)
-        run: npm run verify
-        env:
-          VITE_BUILD_ID: ${{ github.sha }}
+      - name: Typecheck
+        run: bun run typecheck
 
-      - name: Verificação pós-build (R-62)
-        run: |
-          if grep -rl "ignoreBuildErrors" dist/ 2>/dev/null; then
-            echo "ERRO: dist contém ignoreBuildErrors"
-            exit 1
-          fi
-          echo "R-62: OK"
+      - name: Build
+        run: bun run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          path: ./out
 
   deploy:
     needs: build

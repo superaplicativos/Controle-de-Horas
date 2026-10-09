@@ -1,48 +1,27 @@
-# Dependencies
+# Dependências
 node_modules/
-.pnp
-.pnp.js
 
-# Next.js
-.next/
-out/
+# Build
+dist/
 
-# Production
-build/
+# Dados locais (R-57: nunca versionar dados reais)
+.env*
+*.db
+backup*.txt
+dados/
 
-# Dados locais (nunca versionar)
-data/
-db/
-upload/
-download/
-
-# TypeScript incremental build
+# Cache
+.vite/
 *.tsbuildinfo
-
-# Backup TXT (gerado dinamicamente pelo app, não versionar)
-data/backup.txt
-
-# Misc
-.DS_Store
-*.pem
-
-# Debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Local env files
-.env
-.env*.local
 
 # IDE
 .vscode/
 .idea/
 
-# Logs
-*.log
-dev.log
-server.log
+# SO
+.DS_Store
+Thumbs.db
 
-# Z-scripts
-.zscripts/
+# Playwright
+test-results/
+playwright-report/
