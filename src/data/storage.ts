@@ -109,3 +109,45 @@ export function baixarBackupBruto(): string {
   partes.push(localStorage.getItem(CHAVE_META) ?? '(vazio)');
   return partes.join('\n');
 }
+
+// ===== Copiar e colar configuração (R-53) =====
+
+/**
+ * R-53: gera uma linha em base64 com { repo, branch, token }.
+ * Para colar no segundo aparelho e evitar digitar o token duas vezes.
+ */
+export function copiarConfiguracao(): string {
+  const sync = carregarSync();
+  if (!sync) return '';
+  const json = JSON.stringify(sync);
+  // base64 seguro para UTF-8
+  const bytes = new TextEncoder().encode(json);
+  let binario = '';
+  for (const byte of bytes) {
+    binario += String.fromCharCode(byte);
+  }
+  return btoa(binario);
+}
+
+/**
+ * R-53: decodifica uma linha base64 e preenche a configuração de sync.
+ * Testa validade retornando erro se inválido.
+ */
+export function colarConfiguracao(linha: string): { ok: boolean; erro?: string; config?: ConfigSync } {
+  try {
+    const binario = atob(linha.trim());
+    const bytes = new Uint8Array(binario.length);
+    for (let i = 0; i < binario.length; i++) {
+      bytes[i] = binario.charCodeAt(i);
+    }
+    const json = new TextDecoder().decode(bytes);
+    const config = JSON.parse(json) as ConfigSync;
+    if (!config.repo || !config.branch || !config.token) {
+      return { ok: false, erro: 'Configuração incompleta' };
+    }
+    salvarSync(config);
+    return { ok: true, config };
+  } catch (e) {
+    return { ok: false, erro: 'Base64 inválido: ' + (e instanceof Error ? e.message : '?') };
+  }
+}

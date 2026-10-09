@@ -1,12 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useStore } from '../../store/store';
 import { salvarConfig } from '../../store/acoes';
 import { formatarCentavos } from '../../domain/calculos';
-import { carregarSync, salvarSync, limparSync } from '../../data/storage';
+import { carregarSync, salvarSync, limparSync, copiarConfiguracao, colarConfiguracao } from '../../data/storage';
 import { detectarRepositorio, buscarRepoInfo } from '../../data/github';
 import { sincronizar, subscribeStatus, type StatusSync } from '../../data/sync';
+import { baixarBackup, importarBackupTxt } from '../../data/backup';
+import { baixarEImportarLegado } from '../../data/legado';
 import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
 
 export function Configuracoes() {
   const config = useStore((s) => s.config);
@@ -36,6 +37,11 @@ export function Configuracoes() {
     ultimoErro: null,
     arquivosPendentes: 0,
   });
+
+  // Backup, legado, copiar/colar
+  const [mensagem, setMensagem] = useState('');
+  const [colarInput, setColarInput] = useState('');
+  const [importandoLegado, setImportandoLegado] = useState(false);
 
   useEffect(() => {
     return subscribeStatus(setStatusSync);
@@ -160,6 +166,103 @@ export function Configuracoes() {
         )}
       </div>
 
+      {/* Copiar/Colar configuração (R-53) */}
+      <div className="rounded-xl border border-slate-200 bg-white p-4 mb-4 space-y-3">
+        <h2 className="text-sm font-semibold text-slate-700">Transferir configuração para outro aparelho</h2>
+        <p className="text-xs text-slate-500">Evita digitar o token duas vezes. Copie aqui, cole no outro aparelho.</p>
+        <div className="flex gap-2">
+          <button
+            onClick={() => {
+              const linha = copiarConfiguracao();
+              if (linha) {
+                navigator.clipboard.writeText(linha);
+                setMensagem('Configuração copiada! Cole no outro aparelho.');
+              } else {
+                setErro('Nenhuma configuração salva ainda.');
+              }
+            }}
+            className="rounded-lg border border-slate-300 px-4 py-2 text-sm hover:bg-slate-50"
+          >
+            Copiar configuração
+          </button>
+        </div>
+        <div className="flex gap-2">
+          <input
+            type="text"
+            value={colarInput}
+            onChange={(e) => setColarInput(e.target.value)}
+            placeholder="Cole aqui a linha do outro aparelho"
+            className="flex-1 rounded-lg border border-slate-300 px-3 py-2 text-sm"
+          />
+          <button
+            onClick={() => {
+              const r = colarConfiguracao(colarInput);
+              if (r.ok && r.config) {
+                setRepo(r.config.repo);
+                setBranch(r.config.branch);
+                setToken(r.config.token);
+                setMensagem('Configuração colada e salva!');
+                setColarInput('');
+              } else {
+                setErro(r.erro ?? 'Erro ao colar');
+              }
+            }}
+            className="rounded-lg bg-marca-600 text-white px-4 py-2 text-sm font-semibold hover:bg-marca-700"
+          >
+            Colar
+          </button>
+        </div>
+      </div>
+
+      {/* Backup e importação (R-48) */}
+      <div className="rounded-xl border border-slate-200 bg-white p-4 mb-4 space-y-3">
+        <h2 className="text-sm font-semibold text-slate-700">Backup e importação</h2>
+        <div className="flex flex-wrap gap-2">
+          <button
+            onClick={() => baixarBackup(useStore.getState())}
+            className="rounded-lg border border-slate-300 px-4 py-2 text-sm hover:bg-slate-50"
+          >
+            Exportar backup .txt
+          </button>
+          <label className="rounded-lg border border-slate-300 px-4 py-2 text-sm hover:bg-slate-50 cursor-pointer">
+            Importar backup .txt
+            <input
+              type="file"
+              accept=".txt"
+              className="hidden"
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (!file) return;
+                file.text().then((conteudo) => {
+                  const r = importarBackupTxt(conteudo);
+                  if (r.erro) setErro(r.erro);
+                  else setMensagem(`Backup importado! ${r.alteracoes} registros mesclados.`);
+                });
+              }}
+            />
+          </label>
+        </div>
+        <div className="border-t border-slate-100 pt-3">
+          <h3 className="text-xs font-semibold text-slate-600 mb-1">Importar histórico antigo</h3>
+          <p className="text-xs text-slate-500 mb-2">Baixa o backup do sistema anterior (Next.js) e mescla com os dados atuais. Importar duas vezes não duplica.</p>
+          <button
+            onClick={async () => {
+              setMensagem('');
+              setErro('');
+              setImportandoLegado(true);
+              const r = await baixarEImportarLegado();
+              setImportandoLegado(false);
+              if (r.erro) setErro(r.erro);
+              else setMensagem(`Histórico importado! ${r.alteracoes} registros mesclados.`);
+            }}
+            disabled={importandoLegado}
+            className="rounded-lg border border-amber-300 text-amber-700 px-4 py-2 text-sm font-semibold hover:bg-amber-50 disabled:opacity-50"
+          >
+            {importandoLegado ? 'Baixando e importando...' : 'Importar histórico antigo'}
+          </button>
+        </div>
+      </div>
+
       {/* Resumo + Diagnóstico */}
       <div className="rounded-xl border border-slate-200 bg-white p-4 mb-4">
         <h2 className="text-sm font-semibold text-slate-700 mb-2">Resumo</h2>
@@ -169,6 +272,10 @@ export function Configuracoes() {
         </div>
         <Link to="/diagnostico" className="inline-block mt-3 text-sm text-marca-600 hover:underline">Ver Diagnóstico →</Link>
       </div>
+
+      {/* Mensagens */}
+      {mensagem && <div className="rounded-lg bg-marca-50 border border-marca-200 px-4 py-2 text-sm text-marca-700 mb-4">{mensagem}</div>}
+      {erro && <div className="rounded-lg bg-red-50 border border-red-200 px-4 py-2 text-sm text-red-700 mb-4">{erro}</div>}
     </div>
   );
 }
