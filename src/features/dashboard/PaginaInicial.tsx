@@ -1,45 +1,71 @@
-import { formatarCentavos } from '../../domain/calculos';
-import { hojeLocal, nomeMes, mesRefAtual } from '../../domain/datas';
+import { Link } from 'react-router-dom';
+import { useStore } from '../../store/store';
+import { alunosVisiveis, turmasVisiveis, aulasVisiveis, cronogramaVisivel } from '../../store/seletores';
+import { formatarCentavos, calcularResumoMes } from '../../domain/calculos';
+import { mesRefAtual, nomeMes } from '../../domain/datas';
 
-/**
- * Página mínima do M1. (seção 21)
- *
- * Mostra que o app abre, que o domain funciona e que o build publica.
- * As telas reais (aulas, calendário, etc.) vêm nos próximos marcos.
- */
 export function PaginaInicial() {
-  const hoje = hojeLocal();
+  const config = useStore((s) => s.config);
+  const alunos = useStore(alunosVisiveis);
+  const turmas = useStore(turmasVisiveis);
+  const aulas = useStore(aulasVisiveis);
+  const cronograma = useStore(cronogramaVisivel);
+
   const mes = mesRefAtual();
+  const aulasMes = aulas.filter((a) => a.mesRef === mes);
+  const resumo = calcularResumoMes(aulasMes);
+
+  const cards = [
+    { label: 'Aulas neste mês', valor: String(resumo.totalAulas), href: '/aulas' },
+    { label: 'A receber este mês', valor: formatarCentavos(resumo.totalCentavos), href: '/aulas' },
+    { label: 'Alunos ativos', valor: String(alunos.filter((a) => a.ativo).length), href: '/alunos' },
+    { label: 'Turmas', valor: String(turmas.length), href: '/turmas' },
+    { label: 'Itens no cronograma', valor: String(cronograma.length), href: '/cronograma' },
+  ];
 
   return (
-    <main className="max-w-3xl mx-auto px-4 py-10">
-      <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
-        <h1 className="text-3xl font-bold text-marca-700 mb-2">Controle de Horas</h1>
-        <p className="text-slate-500 mb-6">Sistema de gestão para professor autônomo.</p>
+    <div>
+      <h1 className="text-2xl font-bold text-slate-800 mb-1">Olá, {config.nome}</h1>
+      <p className="text-sm text-slate-500 mb-6">{nomeMes(mes)}</p>
 
-        <div className="grid grid-cols-2 gap-4 text-sm">
-          <div className="rounded-lg bg-slate-50 p-4">
-            <div className="text-slate-500">Hoje</div>
-            <div className="font-semibold">{hoje}</div>
-          </div>
-          <div className="rounded-lg bg-slate-50 p-4">
-            <div className="text-slate-500">Mês atual</div>
-            <div className="font-semibold">{nomeMes(mes)}</div>
-          </div>
-          <div className="rounded-lg bg-slate-50 p-4">
-            <div className="text-slate-500">Valor da hora</div>
-            <div className="font-semibold">{formatarCentavos(3500)}</div>
-          </div>
-          <div className="rounded-lg bg-slate-50 p-4">
-            <div className="text-slate-500">Valor da falta</div>
-            <div className="font-semibold">{formatarCentavos(3500)}</div>
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
+        {cards.map((c) => (
+          <Link
+            key={c.label}
+            to={c.href}
+            className="rounded-xl border border-slate-200 bg-white p-4 hover:border-marca-400 hover:shadow-sm transition-all"
+          >
+            <div className="text-xs text-slate-500 mb-1">{c.label}</div>
+            <div className="text-xl font-bold text-slate-800">{c.valor}</div>
+          </Link>
+        ))}
+      </div>
+
+      {aulasMes.length === 0 ? (
+        <div className="rounded-xl border border-slate-200 bg-white p-6 text-center">
+          <p className="text-sm text-slate-500 mb-3">Nenhuma aula em {nomeMes(mes)} ainda.</p>
+          <Link
+            to="/aulas"
+            className="inline-block rounded-lg bg-marca-600 text-white px-4 py-2 text-sm font-semibold hover:bg-marca-700"
+          >
+            Lançar primeira aula
+          </Link>
+        </div>
+      ) : (
+        <div className="rounded-xl border border-slate-200 bg-white p-4">
+          <h2 className="text-sm font-semibold text-slate-700 mb-3">Últimas aulas do mês</h2>
+          <div className="space-y-1">
+            {aulasMes.slice(-5).reverse().map((a) => (
+              <div key={a.id} className="flex items-center justify-between text-sm py-1.5 border-b border-slate-100 last:border-0">
+                <span className="text-slate-600">
+                  {a.data.slice(8, 10)}/{a.data.slice(5, 7)} · {a.alunoNome}
+                </span>
+                <span className="font-semibold text-slate-700">{formatarCentavos(a.valorCentavos)}</span>
+              </div>
+            ))}
           </div>
         </div>
-
-        <p className="mt-6 text-xs text-slate-400">
-          M1 — base do projeto. Próximos marcos adicionam CRUD, dashboard, sync e GitHub.
-        </p>
-      </div>
-    </main>
+      )}
+    </div>
   );
 }
