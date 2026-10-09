@@ -1,18 +1,21 @@
 import { NavLink, Outlet } from 'react-router-dom';
-import { BookOpen, LayoutDashboard, ClipboardList, Users, Users2, CalendarClock, Settings } from 'lucide-react';
+import { BookOpen, LayoutDashboard, ClipboardList, CalendarDays, CalendarClock, Users, Users2, BarChart3, Settings } from 'lucide-react';
 
 const navItems = [
-  { href: '/', label: 'Início', icon: LayoutDashboard },
+  { href: '/', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/aulas', label: 'Aulas', icon: ClipboardList },
+  { href: '/calendario', label: 'Calendário', icon: CalendarDays },
   { href: '/cronograma', label: 'Cronograma', icon: CalendarClock },
   { href: '/alunos', label: 'Alunos', icon: Users },
   { href: '/turmas', label: 'Turmas', icon: Users2 },
+  { href: '/fechamentos', label: 'Fechamentos', icon: BarChart3 },
   { href: '/configuracoes', label: 'Config', icon: Settings },
 ];
 
 const mobileNav = [
   { href: '/', label: 'Início', icon: LayoutDashboard },
   { href: '/aulas', label: 'Aulas', icon: ClipboardList },
+  { href: '/calendario', label: 'Calend.', icon: CalendarDays },
   { href: '/alunos', label: 'Alunos', icon: Users },
   { href: '/configuracoes', label: 'Mais', icon: Settings },
 ];
@@ -68,7 +71,7 @@ export function Layout() {
       </main>
 
       {/* Bottom nav mobile */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t grid grid-cols-4 h-16">
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t grid grid-cols-5 h-16">
         {mobileNav.map((item) => {
           const Icon = item.icon;
           return (

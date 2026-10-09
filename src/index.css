@@ -6,3 +6,32 @@ body {
   @apply bg-slate-50 text-slate-900 antialiased;
   font-family: system-ui, -apple-system, sans-serif;
 }
+
+/* R-51: impressão do relatório mensal via window.print() */
+@media print {
+  /* Esconde sidebar e navegação mobile */
+  aside,
+  nav,
+  header {
+    display: none !important;
+  }
+
+  /* Remove margens e padding do main */
+  main {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Fundo branco, sem sombras */
+  body {
+    background: white !important;
+  }
+
+  /* Tabelas com quebra de página controlada */
+  table {
+    page-break-inside: auto;
+  }
+  tr {
+    page-break-inside: avoid;
+  }
+}

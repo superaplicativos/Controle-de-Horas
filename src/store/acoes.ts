@@ -6,10 +6,11 @@
 
 import { useStore } from './store';
 import { salvarEstado, salvarMeta } from '../data/storage';
-import { CAMINHO_CADASTROS, CAMINHO_CONFIG, CAMINHO_CRONOGRAMA, caminhoAulaMes } from '../data/sync';
+import { CAMINHO_CADASTROS, CAMINHO_CONFIG, CAMINHO_CRONOGRAMA, CAMINHO_FECHAMENTOS, caminhoAulaMes } from '../data/sync';
 import { calcularValorAulaCentavos } from '../domain/calculos';
 import { mesRefDe } from '../domain/datas';
-import type { TipoAula, StatusAula, Aluno, Turma, Aula, CronogramaItem, Config } from '../domain/tipos';
+import { criarFechamento, mesFechado } from '../domain/fechamentos';
+import type { TipoAula, StatusAula, Aluno, Turma, Aula, CronogramaItem, Config, Fechamento } from '../domain/tipos';
 
 // ===== Helpers internos =====
 
@@ -156,6 +157,14 @@ export function salvarAula(dados: {
   const id = dados.id ?? gerarId();
   const atualizadoEm = agora();
 
+  // R-25: edição de aula de mês fechado exige confirmação.
+  const state = useStore.getState();
+  if (dados.id && mesFechado(state.fechamentos, mesRef)) {
+    throw new Error(
+      `O mês ${mesRef} já foi fechado. Use a tela de Fechamentos para reabrir antes de editar.`,
+    );
+  }
+
   const aula: Aula = {
     id,
     atualizadoEm,
@@ -172,7 +181,6 @@ export function salvarAula(dados: {
     mesRef,
   };
 
-  const state = useStore.getState();
   const original = state.aulas.find((a) => a.id === id);
 
   // R-20: mudança de mês → nova aula (novo id) + antiga como excluída
@@ -256,4 +264,43 @@ export function excluirCronogramaItem(id: string): void {
   useStore.setState({ cronograma });
   persistir();
   marcarPendente(CAMINHO_CRONOGRAMA);
+}
+
+// ===== Fechamentos =====
+
+/** R-25: fecha o mês criando snapshot imutável. Recusa se já está fechado. */
+export function fecharMes(mesRef: string): void {
+  const state = useStore.getState();
+  if (mesFechado(state.fechamentos, mesRef)) {
+    throw new Error(`Mês ${mesRef} já está fechado`);
+  }
+  const aulasDoMes = state.aulas.filter((a) => !a.excluido && a.mesRef === mesRef);
+  const fechamento: Fechamento = criarFechamento(mesRef, aulasDoMes);
+  const fechamentos = [...state.fechamentos, fechamento];
+  useStore.setState({ fechamentos });
+  persistir();
+  marcarPendente(CAMINHO_FECHAMENTOS);
+}
+
+/** Reabre um mês (marca o Fechamento como excluído — lápide). */
+export function reabrirMes(mesRef: string): void {
+  const state = useStore.getState();
+  const fechamentos = state.fechamentos.map((f) =>
+    f.mesRef === mesRef && !f.excluido ? { ...f, excluido: true as const, atualizadoEm: agora() } : f,
+  );
+  useStore.setState({ fechamentos });
+  persistir();
+  marcarPendente(CAMINHO_FECHAMENTOS);
+}
+
+/** R-25: editar aula de mês fechado exige confirmação (a UI chama). */
+export function editarAulaMesFechado(id: string, dados: Parameters<typeof salvarAula>[0]): void {
+  const state = useStore.getState();
+  const aula = state.aulas.find((a) => a.id === id);
+  if (!aula) throw new Error('Aula não encontrada');
+  const fechamento = mesFechado(state.fechamentos, aula.mesRef);
+  if (fechamento) {
+    // A UI já pediu confirmação. Prossegue.
+  }
+  salvarAula(dados);
 }
