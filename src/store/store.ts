@@ -6,7 +6,7 @@
 import { create } from 'zustand';
 import type { Estado } from '../domain/tipos';
 import { estadoVazio } from '../domain/tipos';
-import { carregarEstado, carregarMeta, type Meta } from '../data/storage';
+import { carregarEstado, carregarMeta, limparTudo, type Meta } from '../data/storage';
 
 export interface StoreComMeta extends Estado {
   meta: Meta;
@@ -33,7 +33,7 @@ export const useStore = create<StoreComMeta>(inicializar);
 /** Reinicia o store para estado vazio (usado em testes e na recuperação de corrupção). */
 export function reiniciar(): void {
   if (typeof window !== 'undefined') {
-    localStorage.clear();
+    limparTudo();
   }
   useStore.setState({
     ...estadoVazio(),

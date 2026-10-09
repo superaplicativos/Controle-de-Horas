@@ -58,6 +58,13 @@ export function limparEstado(): void {
   localStorage.removeItem(CHAVE_ESTADO);
 }
 
+/** R-34 (reiniciar): remove TODAS as chaves do app. Usado só em testes e recuperação de corrupção. */
+export function limparTudo(): void {
+  localStorage.removeItem(CHAVE_ESTADO);
+  localStorage.removeItem(CHAVE_SYNC);
+  localStorage.removeItem(CHAVE_META);
+}
+
 export function carregarSync(): ConfigSync | null {
   const bruto = localStorage.getItem(CHAVE_SYNC);
   if (!bruto) return null;
