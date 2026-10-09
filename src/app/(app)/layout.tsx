@@ -47,19 +47,33 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     if (sessao?.username === 'guilherme' && pathname === '/assinar') router.replace('/dashboard');
   }, [sessao, pathname, router]);
 
-  // Sync: SÓ PUXA, UMA VEZ. Nunca envia automaticamente.
+  // Sync: puxa ao montar (uma vez) e quando a aba volta a ser visível.
+  // Nunca envia automaticamente — só puxa.
   useEffect(() => {
     if (!sessao || !professor) return;
-    if (syncRanRef.current) return;
-    syncRanRef.current = true;
     const prof = professor;
-    (async () => {
+    const puxar = async () => {
       setSyncStatus('syncing');
       try {
         await puxarDoGitHub(prof);
         setSyncStatus('synced');
       } catch { setSyncStatus('error'); }
-    })();
+    };
+    // Puxa imediatamente na primeira vez.
+    if (!syncRanRef.current) {
+      syncRanRef.current = true;
+      puxar();
+    }
+    // Puxa quando a aba volta a ser visível ou foca.
+    const onVisible = () => {
+      if (document.visibilityState === 'visible') puxar();
+    };
+    document.addEventListener('visibilitychange', onVisible);
+    window.addEventListener('focus', onVisible);
+    return () => {
+      document.removeEventListener('visibilitychange', onVisible);
+      window.removeEventListener('focus', onVisible);
+    };
   }, [sessao, professor]);
 
   useEffect(() => { setMenuOpen(false); }, [pathname]);

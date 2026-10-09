@@ -6,7 +6,7 @@
  */
 
 import type { Professor, Aula, Aluno, Turma, Fechamento, CronogramaItem } from '@/types';
-import { salvarAula, salvarAluno, salvarTurma, salvarFechamento, salvarCronogramaItem, listarAulasPorProfessor, listarAlunosPorProfessor, listarTurmasPorProfessor, listarFechamentosPorProfessor, listarCronogramaPorProfessor, salvarProfessor } from './db';
+import { salvarAula, salvarAluno, salvarTurma, salvarFechamento, salvarCronogramaItem, listarAulasPorProfessor, listarAlunosPorProfessor, listarTurmasPorProfessor, listarFechamentosPorProfessor, listarCronogramaPorProfessor, salvarProfessor, limparDadosProfessor } from './db';
 
 export const WORKER_URL = 'https://controle-aulas-sync.control-de-horas.workers.dev';
 export const API_SECRET = 'controle-aulas-2026-emerald';
@@ -56,7 +56,13 @@ export async function loginProfessorAPI(username: string, senha: string): Promis
 // ===== SYNC =====
 
 /**
- * Puxa TODOS os dados do professor do D1 e salva no IndexedDB (cache local).
+ * Puxa TODOS os dados do professor do D1 e SALVA no IndexedDB.
+ *
+ * FULL REPLACE: limpa o cache local antes de importar, para que o navegador
+ * seja um espelho exato da nuvem (sem lixo de versões antigas).
+ *
+ * Segurança: só limpa o local se a nuvem responder OK e com dados.
+ * Se a nuvem vier vazia ou com erro, NÃO toca no local (pra não apagar tudo).
  */
 export async function puxarDoCloud(professor: Professor): Promise<{ ok: boolean; erro?: string; alteracoes: number }> {
   try {
@@ -73,6 +79,22 @@ export async function puxarDoCloud(professor: Professor): Promise<{ ok: boolean;
     if (!data.ok) {
       return { ok: false, erro: data.erro, alteracoes: 0 };
     }
+
+    // Conta quantos itens vieram da nuvem. Se vier zero de tudo, NÃO limpa local.
+    const totalNuvem =
+      (data.alunos?.length || 0) +
+      (data.turmas?.length || 0) +
+      (data.aulas?.length || 0) +
+      (data.cronograma?.length || 0) +
+      (data.fechamentos?.length || 0);
+
+    if (totalNuvem === 0) {
+      // Nuvem vazia: não faz nada. Não é papel do pull apagar o local.
+      return { ok: true, alteracoes: 0 };
+    }
+
+    // FULL REPLACE: limpa tudo do professor no cache local antes de importar.
+    await limparDadosProfessor(professor.id);
 
     let alteracoes = 0;
 

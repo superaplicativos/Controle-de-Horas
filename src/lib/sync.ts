@@ -31,6 +31,10 @@ let currentState: SyncState = { status: 'idle', ultimoSync: null, erro: null, au
 let debounceTimer: ReturnType<typeof setTimeout> | null = null;
 let pendenteEnvio = false;
 let professorAtivo: Professor | null = null;
+// Bloqueia auto-envio até o primeiro pull bem-sucedido.
+// Evita que dado velho do IndexedDB seja empurrado pra nuvem
+// antes de o local ter sido espelhado a partir do D1.
+let pullInicialConcluido = false;
 
 function notify() { for (const l of listeners) l(currentState); }
 function setState(s: Partial<SyncState>) { currentState = { ...currentState, ...s }; notify(); }
@@ -82,6 +86,8 @@ export async function puxarDoGitHub(professor: Professor): Promise<SyncState> {
     if (result.ok) {
       setState({ status: 'synced', ultimoSync: Date.now(), erro: null, aulasSincronizadas: result.alteracoes });
       pendenteEnvio = false;
+      // Libera o auto-envio: o local agora é espelho da nuvem.
+      pullInicialConcluido = true;
     } else {
       // NUNCA apaga dados locais se a resposta vier vazia ou com erro.
       setState({ status: 'error', erro: result.erro || 'Erro ao puxar do banco' });
@@ -114,6 +120,11 @@ export async function enviarParaGitHub(professor: Professor): Promise<SyncState>
 export function notificarAlteracao(professor: Professor) {
   professorAtivo = professor;
   pendenteEnvio = true;
+  // Não envia nada até o primeiro pull ter espelhado o local a partir da nuvem.
+  // Isso evita empurrar dado velho do IndexedDB por cima do dado certo do D1.
+  if (!pullInicialConcluido) {
+    return;
+  }
   if (debounceTimer) clearTimeout(debounceTimer);
   debounceTimer = setTimeout(async () => {
     try { await enviarParaGitHub(professor); } catch (e) { console.error('auto-sync:', e); }
@@ -130,6 +141,9 @@ export async function sincronizarTudo(professor: Professor): Promise<SyncState> 
 
 async function flushPendencia() {
   if (!pendenteEnvio || !professorAtivo) return;
+  // Só envia ao fechar a aba se o pull inicial já tiver concluído.
+  // Caso contrário, pode ser dado velho sendo empurrado pra nuvem.
+  if (!pullInicialConcluido) return;
   const prof = professorAtivo;
   try {
     const [aulas, alunos, turmas, fechamentos, cronograma] = await Promise.all([
@@ -161,7 +175,7 @@ if (typeof window !== 'undefined') {
     if (document.visibilityState === 'hidden') flushPendencia();
   });
   window.addEventListener('online', () => {
-    if (pendenteEnvio && professorAtivo) {
+    if (pendenteEnvio && professorAtivo && pullInicialConcluido) {
       enviarParaGitHub(professorAtivo);
     }
   });
