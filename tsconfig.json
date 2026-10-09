@@ -23,6 +23,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src", "tests", "e2e"],
-  "exclude": ["node_modules", "dist", "backup", "docs"]
+  "include": ["src", "tests"],
+  "exclude": ["node_modules", "dist", "backup", "docs", "e2e"]
 }

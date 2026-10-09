@@ -14,7 +14,9 @@ const PADROES_PROIBIDOS = [
   // F-01: opções que ignoram erros de tipo/lint
   { regex: /ignoreBuildErrors|@ts-ignore|@ts-nocheck|eslint-disable/, motivo: 'F-01: opção que ignora erro' },
   // F-09: new Date('AAAA-MM-DD'), Date.parse de string de data
-  { regex: /new Date\(['"`]|Date\.parse\(/, motivo: 'F-09: new Date(string) interpreta como UTC; use helpers de domain/datas.ts' },
+  // Permite new Date(cabeçalho HTTP) — variáveis com "Header" no nome são RFC 7231, não data de negócio.
+  { regex: /new Date\(['"`]/, motivo: 'F-09: new Date(string literal) interpreta como UTC; use helpers de domain/datas.ts' },
+  { regex: /Date\.parse\(/, motivo: 'F-09: Date.parse de string de data; use helpers de domain/datas.ts' },
   // tipagem real: : any e as any
   { regex: /:\s*any\b|as\s+any\b/, motivo: 'tipagem fraca: any' },
   // F-06: catch vazio

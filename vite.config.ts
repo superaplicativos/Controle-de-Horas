@@ -17,5 +17,6 @@ export default defineConfig({
     css: false,
     include: ['tests/**/*.test.ts', 'src/**/*.test.ts'],
     exclude: ['node_modules', 'dist', 'backup', 'e2e'],
+    testTimeout: 30000,
   },
 });

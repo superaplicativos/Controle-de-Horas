@@ -6,7 +6,7 @@
 
 import { useStore } from './store';
 import { salvarEstado, salvarMeta } from '../data/storage';
-import { CAMINHO_CADASTROS, CAMINHO_CONFIG, CAMINHO_CRONOGRAMA, CAMINHO_FECHAMENTOS, caminhoAulaMes } from '../data/sync';
+import { CAMINHO_CADASTROS, CAMINHO_CONFIG, CAMINHO_CRONOGRAMA, CAMINHO_FECHAMENTOS, caminhoAulaMes, agendarSync } from '../data/sync';
 import { calcularValorAulaCentavos } from '../domain/calculos';
 import { mesRefDe } from '../domain/datas';
 import { criarFechamento, mesFechado } from '../domain/fechamentos';
@@ -27,6 +27,8 @@ function marcarPendente(caminho: string): void {
   const novaMeta = { ...meta, pendentes: [...meta.pendentes, caminho] };
   salvarMeta(novaMeta);
   useStore.setState({ meta: novaMeta });
+  // R-41: debounce 2s → ciclo de sync
+  agendarSync();
 }
 
 function gerarId(): string {

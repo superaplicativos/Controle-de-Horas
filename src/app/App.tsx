@@ -10,6 +10,7 @@ import { Alunos } from '../features/alunos/Alunos';
 import { Turmas } from '../features/turmas/Turmas';
 import { Fechamentos } from '../features/fechamentos/Fechamentos';
 import { Configuracoes } from '../features/configuracoes/Configuracoes';
+import { Diagnostico } from '../features/diagnostico/Diagnostico';
 
 export function App() {
   const erroCorrupcao = useStore((s) => s.erroCorrupcao);
@@ -29,6 +30,7 @@ export function App() {
         <Route path="/turmas" element={<Turmas />} />
         <Route path="/fechamentos" element={<Fechamentos />} />
         <Route path="/configuracoes" element={<Configuracoes />} />
+        <Route path="/diagnostico" element={<Diagnostico />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>
