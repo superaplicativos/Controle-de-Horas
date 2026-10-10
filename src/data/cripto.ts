@@ -39,15 +39,6 @@ function paraArrayBuffer(bytes: Uint8Array): ArrayBuffer {
   return ab;
 }
 
-// Helper: garante que o retorno seja um Uint8Array com ArrayBuffer puro (não SharedArrayBuffer)
-// Necessário porque crypto.subtle no Node exige ArrayBuffer, não SharedArrayBuffer.
-function paraUint8Array(bytes: Uint8Array): Uint8Array {
-  const ab = new ArrayBuffer(bytes.byteLength);
-  const view = new Uint8Array(ab);
-  view.set(bytes);
-  return view;
-}
-
 // ===== Aleatório (R-73: crypto.getRandomValues, nunca Math.random) =====
 
 export function ivAleatorio(): Uint8Array {
@@ -70,7 +61,7 @@ export async function derivarChaveDeSenha(senha: string, sal: Uint8Array): Promi
   const encoder = new TextEncoder();
   const materialBase = await crypto.subtle.importKey(
     'raw',
-    paraUint8Array(encoder.encode(senha)),
+    paraArrayBuffer(encoder.encode(senha)),
     { name: ALGORITMO_KDF },
     false,
     ['deriveKey'],
@@ -79,7 +70,7 @@ export async function derivarChaveDeSenha(senha: string, sal: Uint8Array): Promi
   return crypto.subtle.deriveKey(
     {
       name: ALGORITMO_KDF,
-      salt: paraUint8Array(sal),
+      salt: paraArrayBuffer(sal),
       iterations: ITERACOES_KDF,
       hash: 'SHA-256',
     },
@@ -94,7 +85,7 @@ export async function derivarChaveDeSenha(senha: string, sal: Uint8Array): Promi
 export async function importarChaveDados(chaveDados: Uint8Array): Promise<CryptoKey> {
   return crypto.subtle.importKey(
     'raw',
-    paraUint8Array(chaveDados),
+    paraArrayBuffer(chaveDados),
     { name: ALGORITMO_CIFRA },
     false,
     ['encrypt', 'decrypt'],
@@ -122,12 +113,12 @@ export async function cifrarArquivo(chave: CryptoKey, textoClaro: string, aad: s
   const ctBuffer = await crypto.subtle.encrypt(
     {
       name: ALGORITMO_CIFRA,
-      iv: paraUint8Array(iv),
-      additionalData: paraUint8Array(encoder.encode(aad)),
+      iv: paraArrayBuffer(iv),
+      additionalData: paraArrayBuffer(encoder.encode(aad)),
       tagLength: 128,
     },
     chave,
-    paraUint8Array(encoder.encode(textoClaro)),
+    paraArrayBuffer(encoder.encode(textoClaro)),
   );
   return {
     formato: 1,
@@ -151,12 +142,12 @@ export async function decifrarArquivo(chave: CryptoKey, arq: ArquivoCifrado, aad
     const textoBuffer = await crypto.subtle.decrypt(
       {
         name: ALGORITMO_CIFRA,
-        iv: paraUint8Array(iv),
-        additionalData: paraUint8Array(encoder.encode(aad)),
+        iv: paraArrayBuffer(iv),
+        additionalData: paraArrayBuffer(encoder.encode(aad)),
         tagLength: 128,
       },
       chave,
-      paraUint8Array(ct),
+      paraArrayBuffer(ct),
     );
     return new TextDecoder().decode(textoBuffer);
   } catch {
@@ -189,12 +180,12 @@ export async function cifrarAcesso(senha: string, conteudo: { chaveDados: string
   const ctBuffer = await crypto.subtle.encrypt(
     {
       name: ALGORITMO_CIFRA,
-      iv: paraUint8Array(iv),
-      additionalData: paraUint8Array(encoder.encode('dados/acesso.txt')),
+      iv: paraArrayBuffer(iv),
+      additionalData: paraArrayBuffer(encoder.encode('dados/acesso.txt')),
       tagLength: 128,
     },
     chave,
-    paraUint8Array(encoder.encode(JSON.stringify(conteudo))),
+    paraArrayBuffer(encoder.encode(JSON.stringify(conteudo))),
   );
   return {
     formato: 1,
@@ -222,12 +213,12 @@ export async function decifrarAcesso(senha: string, arq: AcessoCifrado): Promise
     const textoBuffer = await crypto.subtle.decrypt(
       {
         name: ALGORITMO_CIFRA,
-        iv: paraUint8Array(iv),
-        additionalData: paraUint8Array(encoder.encode('dados/acesso.txt')),
+        iv: paraArrayBuffer(iv),
+        additionalData: paraArrayBuffer(encoder.encode('dados/acesso.txt')),
         tagLength: 128,
       },
       chave,
-      paraUint8Array(ct),
+      paraArrayBuffer(ct),
     );
     const texto = new TextDecoder().decode(textoBuffer);
     return JSON.parse(texto) as { chaveDados: string; token: string };
