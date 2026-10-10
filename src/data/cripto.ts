@@ -31,11 +31,15 @@ export function base64ParaBytes(b64: string): Uint8Array {
   return bytes;
 }
 
-// Helper: copia bytes para um ArrayBuffer puro (crypto.subtle do Node exige ArrayBuffer, não SharedArrayBuffer)
-function paraBytes(bytes: Uint8Array): ArrayBuffer {
-  const ab = new globalThis.ArrayBuffer(bytes.byteLength);
-  new Uint8Array(ab).set(bytes);
-  return ab;
+// Helper: copia bytes para um Buffer do Node (aceito por crypto.subtle em Node e navegador)
+// Usamos Buffer.from quando disponível (Node), senão Uint8Array (navegador).
+function paraBytes(bytes: Uint8Array): BufferSource {
+  if (typeof Buffer !== 'undefined') {
+    return Buffer.from(bytes);
+  }
+  const copia = new Uint8Array(bytes.byteLength);
+  copia.set(bytes);
+  return copia;
 }
 
 // ===== Aleatório (R-73: crypto.getRandomValues, nunca Math.random) =====
