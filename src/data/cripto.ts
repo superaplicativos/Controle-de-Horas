@@ -33,9 +33,9 @@ export function base64ParaBytes(b64: string): Uint8Array {
 
 // Helper: copia bytes para um ArrayBuffer puro (crypto.subtle do Node exige ArrayBuffer, não SharedArrayBuffer)
 function paraBytes(bytes: Uint8Array): ArrayBuffer {
-  const copia = new Uint8Array(bytes.byteLength);
-  copia.set(bytes);
-  return copia.buffer;
+  const ab = new globalThis.ArrayBuffer(bytes.byteLength);
+  new Uint8Array(ab).set(bytes);
+  return ab;
 }
 
 // ===== Aleatório (R-73: crypto.getRandomValues, nunca Math.random) =====
