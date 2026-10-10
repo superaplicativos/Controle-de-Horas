@@ -57,11 +57,17 @@ O app funciona **sem token** (modo local, dados só no navegador). Com token, si
 
 Para configurar um segundo aparelho sem digitar o token de novo: use "Copiar configuração" no primeiro e "Colar configuração" no segundo.
 
-## Privacidade
+## Segurança e modelo de ameaça (seção 24.10)
 
-Se o repositório de dados for **público**, qualquer pessoa pode ler os arquivos da branch `dados` (nomes de alunos). O app detecta e mostra um aviso. Recomendado: apontar o sync para um repositório **privado**.
+Os dados na nuvem (branch `dados`) são **cifrados com AES-256-GCM**. A chave de dados (32 bytes aleatórios) é gerada uma única vez na primeira configuração e cifrada com a sua senha (PBKDF2-SHA256, 600.000 iterações) dentro do `acesso.txt`.
 
-O token é a única credencial. Fine-grained, limitado a UM repositório, permissão Contents: Read and write. Guardado só no `localStorage` deste aparelho. Nunca no código, nunca em log, nunca em mensagem de erro.
+- **Repositório público?** Quem lê vê só texto cifrado. A proteção depende da força da sua senha e do PBKDF2.
+- **Token:** fica dentro do `acesso.txt` cifrado. Use token fine-grained, restrito a UM repositório, permissão Contents.
+- **Senha fraca?** Um atacante pode tentar adivinhá-la offline. Use no mínimo 10 caracteres, evite senhas comuns.
+- **Esqueceu a senha?** A chave de recuperação (mostrada uma vez no assistente) é a única forma de recuperar. Sem a senha E sem a chave, não há recuperação.
+- **Recomendação opcional:** ative um ruleset em `main` exigindo pull request, para que um token vazado não altere o código do site.
+
+Em qualquer aparelho novo, basta digitar a senha para ver os mesmos dados — sem colar token, sem configurar nada.
 
 ## Backup e importação
 

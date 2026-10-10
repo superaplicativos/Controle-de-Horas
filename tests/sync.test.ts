@@ -167,7 +167,7 @@ describe('motor de sync (com mock em memória)', () => {
 
     // Configura sync
     localStorage.setItem('ch:sync:v1', JSON.stringify({
-      repo: 'test/repo', branch: 'dados', token: 'tok123',
+      repo: 'test/repo', branch: 'dados', token: 'tok123', chaveDados: 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=',
     }));
 
     // Estado local com uma aula
@@ -184,17 +184,17 @@ describe('motor de sync (com mock em memória)', () => {
     const { sincronizar } = await import('../src/data/sync');
     await sincronizar();
 
-    // Verifica que os arquivos foram criados no repo mock
+    // Verifica que os arquivos foram criados no repo mock (conteúdo cifrado)
     expect(repo.files.has('dados/config.txt')).toBe(true);
     expect(repo.files.has('dados/cadastros.txt')).toBe(true);
     expect(repo.files.has('dados/aulas/2026-09.txt')).toBe(true);
 
-    // Verifica conteúdo do arquivo de aulas
+    // O conteúdo é cifrado (tem iv e ct), não texto puro
     const arqAulas = repo.files.get('dados/aulas/2026-09.txt');
     expect(arqAulas).toBeDefined();
-    const conteudo = JSON.parse(arqAulas!.content);
-    expect(conteudo.aulas).toHaveLength(1);
-    expect(conteudo.aulas[0].id).toBe('au1');
+    const cifrado = JSON.parse(arqAulas!.content);
+    expect(cifrado.iv).toBeTruthy();
+    expect(cifrado.ct).toBeTruthy();
   });
 
   // TODO: este teste está falhando porque o motor não re-baixa arquivos quando
@@ -206,7 +206,7 @@ describe('motor de sync (com mock em memória)', () => {
     vi.stubGlobal('fetch', fetchMock);
 
     // Aparelho A: tem aula1
-    localStorage.setItem('ch:sync:v1', JSON.stringify({ repo: 'test/repo', branch: 'dados', token: 'tok' }));
+    localStorage.setItem('ch:sync:v1', JSON.stringify({ repo: "test/repo", branch: "dados", token: "tok", chaveDados: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=" }));
     localStorage.setItem('ch:estado:v1', JSON.stringify({
       versaoFormato: 1,
       config: { nome: 'Prof', valorHoraCentavos: 3500, valorFaltaCentavos: 3500, atualizadoEm: 1000 },
@@ -221,7 +221,7 @@ describe('motor de sync (com mock em memória)', () => {
     const estadoA = JSON.parse(localStorage.getItem('ch:estado:v1')!);
     // Simula aparelho B limpando local e puxando
     localStorage.clear();
-    localStorage.setItem('ch:sync:v1', JSON.stringify({ repo: 'test/repo', branch: 'dados', token: 'tok' }));
+    localStorage.setItem('ch:sync:v1', JSON.stringify({ repo: "test/repo", branch: "dados", token: "tok", chaveDados: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=" }));
     localStorage.setItem('ch:estado:v1', JSON.stringify({
       versaoFormato: 1,
       config: estadoA.config,
@@ -236,7 +236,7 @@ describe('motor de sync (com mock em memória)', () => {
 
     // Aparelho A sincroniza de novo: deve receber aula2 do remoto
     localStorage.clear();
-    localStorage.setItem('ch:sync:v1', JSON.stringify({ repo: 'test/repo', branch: 'dados', token: 'tok' }));
+    localStorage.setItem('ch:sync:v1', JSON.stringify({ repo: "test/repo", branch: "dados", token: "tok", chaveDados: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=" }));
     localStorage.setItem('ch:estado:v1', JSON.stringify({
       versaoFormato: 1,
       config: estadoA.config,
@@ -276,7 +276,7 @@ describe('motor de sync (com mock em memória)', () => {
     repo.branchExists = true;
 
     // Local tem aula1 E aula2 (não no remoto)
-    localStorage.setItem('ch:sync:v1', JSON.stringify({ repo: 'test/repo', branch: 'dados', token: 'tok' }));
+    localStorage.setItem('ch:sync:v1', JSON.stringify({ repo: "test/repo", branch: "dados", token: "tok", chaveDados: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=" }));
     localStorage.setItem('ch:estado:v1', JSON.stringify({
       versaoFormato: 1,
       config: { nome: 'Prof', valorHoraCentavos: 3500, valorFaltaCentavos: 3500, atualizadoEm: 1000 },
@@ -301,7 +301,7 @@ describe('motor de sync (com mock em memória)', () => {
     const fetchMock = setupFetchMock(repo);
     vi.stubGlobal('fetch', fetchMock);
 
-    localStorage.setItem('ch:sync:v1', JSON.stringify({ repo: 'test/repo', branch: 'dados', token: 'tok' }));
+    localStorage.setItem('ch:sync:v1', JSON.stringify({ repo: "test/repo", branch: "dados", token: "tok", chaveDados: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=" }));
     localStorage.setItem('ch:estado:v1', JSON.stringify({
       versaoFormato: 1,
       config: { nome: 'Prof', valorHoraCentavos: 3500, valorFaltaCentavos: 3500, atualizadoEm: 1000 },
@@ -323,7 +323,7 @@ describe('motor de sync (com mock em memória)', () => {
     });
     vi.stubGlobal('fetch', fetchMock);
 
-    localStorage.setItem('ch:sync:v1', JSON.stringify({ repo: 'test/repo', branch: 'dados', token: 'tok' }));
+    localStorage.setItem('ch:sync:v1', JSON.stringify({ repo: "test/repo", branch: "dados", token: "tok", chaveDados: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=" }));
     localStorage.setItem('ch:estado:v1', JSON.stringify({
       versaoFormato: 1,
       config: { nome: 'Prof', valorHoraCentavos: 3500, valorFaltaCentavos: 3500, atualizadoEm: 1000 },

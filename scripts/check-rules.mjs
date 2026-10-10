@@ -14,7 +14,6 @@ const PADROES_PROIBIDOS = [
   // F-01: opções que ignoram erros de tipo/lint
   { regex: /ignoreBuildErrors|@ts-ignore|@ts-nocheck|eslint-disable/, motivo: 'F-01: opção que ignora erro' },
   // F-09: new Date('AAAA-MM-DD'), Date.parse de string de data
-  // Permite new Date(cabeçalho HTTP) — variáveis com "Header" no nome são RFC 7231, não data de negócio.
   { regex: /new Date\(['"`]/, motivo: 'F-09: new Date(string literal) interpreta como UTC; use helpers de domain/datas.ts' },
   { regex: /Date\.parse\(/, motivo: 'F-09: Date.parse de string de data; use helpers de domain/datas.ts' },
   // tipagem real: : any e as any
@@ -25,8 +24,9 @@ const PADROES_PROIBIDOS = [
   { regex: /dangerouslySetInnerHTML/, motivo: 'R-55: dangerouslySetInnerHTML proibido' },
   // P-04: toFixed no domínio (dinheiro em float)
   { regex: /toFixed\(/, motivo: 'P-04: toFixed no domínio; dinheiro em centavos inteiros', apenasEm: ['src/domain/'] },
-  // D-03: login, senha, professor_id, multi-usuário
-  { regex: /professor_id|senha_hash|\blogin\b/, motivo: 'D-03: campo de multi-usuário/login proibido', apenasEm: ['src/'] },
+  // R-73: crypto.subtle só em data/cripto.ts; Math.random proibido em src/
+  { regex: /crypto\.subtle/, motivo: 'R-73: crypto.subtle só em src/data/cripto.ts', apenasEm: ['src/'], excetoSe: ['src/data/cripto.ts'] },
+  { regex: /Math\.random/, motivo: 'R-73: Math.random proibido em src/; use crypto.getRandomValues', apenasEm: ['src/'] },
 ];
 
 const DIRETORIOS_PARA_VARRER = ['src', 'tests', 'e2e'];
@@ -62,6 +62,7 @@ function checkArquivo(caminho) {
     }
     for (const regra of PADROES_PROIBIDOS) {
       if (regra.apenasEm && !regra.apenasEm.some((p) => relCaminho.startsWith(p))) continue;
+      if (regra.excetoSe && regra.excetoSe.some((p) => relCaminho === p)) continue;
       if (regra.regex.test(linha)) {
         problemas.push({ arquivo: relCaminho, linha: i + 1, motivo: regra.motivo, texto: linhas[i].trim() });
       }

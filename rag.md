@@ -4,6 +4,8 @@ Este arquivo é a fonte única de verdade para qualquer agente de IA que trabalh
 
 Formato pensado para recuperação: cada regra tem um código estável (P, R, F, D) para ser citado em commits e relatórios. Exemplo: "respeita P-03 e R-12".
 
+Revisão 2: a seção 24 (acesso por senha e criptografia) substitui o antigo "modo local solto". Em caso de conflito entre a seção 24 e qualquer regra anterior, vale a seção 24.
+
 ---
 
 ## 0. Como o agente deve usar este arquivo
@@ -34,11 +36,11 @@ D-01 Hospedagem: 100% GitHub Pages (site estático). Sem servidor, sem banco de 
 
 D-02 Uso individual. Cada professor tem a SUA cópia do projeto: o dono faz um fork, publica no repositório do professor e entrega o endereço do Pages. Existe exatamente um usuário por instalação.
 
-D-03 Não existe e não deve ser criado: login, cadastro, senha, multi-professor, painel admin, assinatura, pagamento, landing page de vendas, isolamento entre usuários, campo `professor_id` em qualquer registro. Se o agente sentir vontade de criar qualquer um desses itens, está violando o escopo.
+D-03 Não existe e não deve ser criado: contas de usuário, login em servidor, cadastro, multi-professor, painel admin, assinatura, pagamento, landing page de vendas, isolamento entre usuários, campo `professor_id` em qualquer registro. A única exceção é a senha do sistema da seção 24, usada só para decifrar os dados. Se o agente sentir vontade de criar qualquer outro item da lista, está violando o escopo.
 
 D-04 Dados: arquivos TXT (conteúdo JSON) guardados num repositório GitHub, acessados direto do navegador pela API do GitHub com um token. Por padrão o repositório de dados é o MESMO repositório do site, numa branch separada chamada `dados`. Isso evita que gravar dados dispare novo deploy do site (F-07).
 
-D-05 O app funciona sem token (modo local, dados só no navegador). Com token, sincroniza entre aparelhos.
+D-05 Todo aparelho novo passa pelo fluxo de acesso da seção 24 (primeira configuração ou senha). Não existe modo "local solto": dado nunca fica preso num navegador (F-20).
 
 D-06 Expansível: cada funcionalidade vive num módulo próprio (seção 20) e o modelo de dados é versionado e migrável.
 
@@ -67,6 +69,10 @@ P-08 Nenhuma credencial, dado real de aluno ou arquivo de banco entra no reposit
 P-09 Só existe uma implementação de cada coisa: um cliente da API do GitHub, um motor de sync, um store, uma função de cálculo.
 
 P-10 O site só afirma o que o app realmente faz. README e textos de tela não prometem funções inexistentes (F-11).
+
+P-11 Nenhum dado fica preso num navegador. O localStorage é só cache. Um aparelho novo chega ao mesmo estado digitando a senha do sistema, sem colar token (F-20).
+
+P-12 A primeira tela de qualquer aparelho nunca é um dashboard vazio: é o assistente de primeira configuração, a tela de senha ou o app já desbloqueado (R-71).
 
 ---
 
@@ -125,6 +131,9 @@ Proibidas: next, prisma, @prisma/client, next-auth, qualquer pacote `@cloudflare
       sync.ts            motor de sincronização (singleton)
       backup.ts          exportar e importar TXT
       legado.ts          importação do histórico antigo
+      cripto.ts          ÚNICO arquivo que usa crypto.subtle (AES-GCM, PBKDF2)
+      acesso.ts          máquina de estados de acesso e assistente (seção 24)
+      senhas-comuns.ts   lista de 100 senhas rejeitadas
     features/            um diretório por módulo de tela
       dashboard/ aulas/ calendario/ cronograma/ alunos/ turmas/
       fechamentos/ configuracoes/ diagnostico/
@@ -247,7 +256,7 @@ R-33 `data/storage.ts` é o único arquivo que usa `localStorage`. Três chaves,
 | Chave | Conteúdo |
 | --- | --- |
 | `ch:estado:v1` | estado completo de dados |
-| `ch:sync:v1` | `{ repo, branch, token }` |
+| `ch:sync:v1` | `{ repo, branch, token, chaveDados }` (chaveDados em base64) |
 | `ch:meta:v1` | `{ shas: Record<caminho, sha>, pendentes: string[], ultimoSync, ultimoErro }` |
 
 R-34 Se o armazenamento local estiver corrompido, não apague: mostre erro explicativo com botão "baixar cópia do conteúdo bruto" e abra com estado vazio sem sobrescrever a chave até o usuário confirmar.
@@ -355,7 +364,7 @@ Alunos e Turmas. VIP (individual) e de turma, ativo e inativo. Turma agrupa alun
 
 Fechamentos. Lista dos meses fechados com os totais do snapshot.
 
-Configurações. Nome, valor da hora, valor da falta, sincronização (repositório, branch, token), backup, importação do histórico, Diagnóstico.
+Configurações. Nome, valor da hora, valor da falta, segurança (trocar senha, mostrar chave de recuperação mediante senha, sair deste aparelho), sincronização (estado e botão sincronizar agora), backup, importação do histórico, Diagnóstico.
 
 Diagnóstico. Contagem local por tipo, arquivos pendentes, shas, último sync, último erro completo, identificador do build (`VITE_BUILD_ID`), botão "Reler a nuvem" (zera os shas guardados para forçar nova leitura e mescla; nunca apaga dado local).
 
@@ -367,15 +376,15 @@ R-51 Impressão: CSS `@media print` dedicado ao relatório mensal (cabeçalho, t
 
 ## 14. Segurança e privacidade
 
-R-52 O token do GitHub é a única credencial. Fine-grained, limitado a UM repositório, permissão Contents: Read and write. Guardado só em `ch:sync:v1`. Nunca no código, nunca em log, nunca em mensagem de erro. Exibir mascarado na tela.
+R-52 O token do GitHub é a única credencial de rede. Fine-grained, limitado a UM repositório, permissão Contents: Read and write. Guardado em `ch:sync:v1` no aparelho e, cifrado, em `dados/acesso.txt` (seção 24). Nunca no código, nunca em log, nunca em mensagem de erro. Exibir mascarado na tela.
 
-R-53 Botão "Copiar configuração" gera uma linha em base64 com `{ repo, branch, token }`; campo "Colar configuração" preenche tudo no segundo aparelho e testa. O token nunca é digitado duas vezes.
+R-53 Não existe cópia manual de token entre aparelhos. O aparelho novo usa a senha do sistema (seção 24). O token só é digitado uma vez na vida, no assistente de primeira configuração.
 
-R-54 Botão "Remover token deste aparelho".
+R-54 Botão "Sair deste aparelho" em Configurações (seção 24.8).
 
 R-55 Sem scripts de terceiros. Sem `dangerouslySetInnerHTML`. `index.html` com `<meta http-equiv="Content-Security-Policy">` restringindo `default-src 'self'`, `connect-src 'self' https://api.github.com https://raw.githubusercontent.com`, `img-src 'self' data:`, `style-src 'self' 'unsafe-inline'`.
 
-R-56 Aviso de privacidade: se o repositório de dados for público, qualquer pessoa lê os arquivos da branch `dados`, que contêm nomes de alunos. O app detecta (`private === false` em `GET /repos/{repo}`) e mostra um aviso âmbar com checkbox "Entendi, continuar". Não bloqueia. O README explica a alternativa: apontar o repositório de dados para outro repositório privado (basta trocar o campo, sem mudar código).
+R-56 Privacidade: os arquivos da branch `dados` são cifrados (seção 24). O repositório pode ser público sem expor nomes de alunos. O README explica o modelo de ameaça e a força mínima da senha.
 
 R-57 O repositório do código nunca contém dados reais, `.env`, arquivos `.db` ou backups (F-08). O `.gitignore` bloqueia `*.db`, `.env*`, `backup*.txt`, `dados/`.
 
@@ -406,8 +415,11 @@ R-63 O script varre `src/`, `e2e/`, `tests/` e a raiz, e reprova se encontrar:
 | `localStorage` ou `sessionStorage` fora de `src/data/storage.ts` | P-09 |
 | `fetch(` fora de `src/data/github.ts` e `src/data/legado.ts` | P-09 |
 | `dangerouslySetInnerHTML` | R-55 |
+| `crypto.subtle` fora de `src/data/cripto.ts` | R-73 |
+| `Math.random` em `src/` | R-73 |
+| log de token ou chave (`console.*` com `token` ou `chaveDados`) | R-79 |
 | `toFixed(` em `src/domain/` | P-04 |
-| `professor_id`, `senha`, `login` em `src/` | D-03 |
+| `professor_id`, `usuarioId`, `assinatura`, `admin` em `src/` | D-03 |
 | arquivos `.env*`, `*.db`, `backup*.txt` rastreados | P-08 |
 | dependências `next`, `prisma`, `next-auth`, `@cloudflare/*` | seção 3 |
 | dependência declarada e nunca importada | R-11 |
@@ -439,7 +451,7 @@ E-02 A edita a aula e B apaga outra, ambos sincronizam; os dois ficam iguais e c
 E-03 B abre depois de dias com estado antigo e sincroniza; nada do que A fez some e nada do que B tinha some.
 E-04 Recarregar a página mantém todos os dados.
 E-05 Dia 31 às 23h30 permanece no mês correto.
-E-06 Sem token, tudo funciona em modo local.
+E-06 Navegador novo digita a senha e vê os MESMOS números do dashboard, sem colar token.
 E-07 Importar o histórico duas vezes mantém 27 aulas.
 
 ---
@@ -503,6 +515,8 @@ Estas falhas realmente ocorreram na versão anterior do sistema. Cada uma tem a 
 | F-17 | 11 erros de lint por estado derivado em `useEffect` | Padrão `setState` dentro de efeito | R-16 |
 | F-18 | Parte do pedido ignorada (versão, identificador de build) sem aviso | Entrega parcial sem checklist | R-64, R-67 |
 | F-19 | Segredo de API escrito no JavaScript público | Backend exposto ao navegador | P-08, R-52 |
+| F-20 | Navegador ou janela nova abria vazio e parecia ter perdido os dados | Dados só no localStorage de quem os criou; sync exigia colar token em cada navegador; faltava fluxo de primeiro acesso | P-11, P-12, R-70, R-71, seção 24 |
+| F-21 | Nomes de alunos legíveis por qualquer pessoa num repositório público | Dados em texto puro na branch de dados | R-56, seção 24.4 |
 
 ---
 
@@ -518,7 +532,7 @@ Antes de entregar, confirme que NADA disso existe no código:
 6. Operação que apague ou substitua o estado local inteiro.
 7. Listener de `focus` para sincronizar; mais de um ciclo de sync simultâneo.
 8. Hook ou evento "recarregar" manual.
-9. Login, senha, `professor_id`, multi-usuário, admin, assinatura, pagamento, landing de vendas.
+9. Contas de usuário, login em servidor, `professor_id`, multi-usuário, admin, assinatura, pagamento, landing de vendas (a senha do sistema da seção 24 é permitida).
 10. Dependência sem uso; versão inventada; `^` em `package.json`.
 11. Segredo, token, dado real, `.env` ou `.db` no repositório do código.
 12. Caminho absoluto de asset; service worker; PWA.
@@ -548,7 +562,7 @@ Receita para novo campo ou nova coleção de dados:
 
 Ideias de expansão já compatíveis com esta arquitetura, em ordem de custo: exportar CSV; tarifa por aluno; relatório anual; metas mensais; lembretes locais; apelido do aluno para privacidade em relatórios; filtro de busca global.
 
-R-69 Expansão nunca introduz servidor, login ou multiusuário. Isso pertence a outro produto.
+R-69 Expansão nunca introduz servidor, contas de usuário ou multiusuário. Isso pertence a outro produto.
 
 ---
 
@@ -560,13 +574,13 @@ M2: store, armazenamento local, CRUD de config, alunos, turmas, aulas e cronogra
 
 M3: dashboard, calendário, fechamentos, impressão.
 
-M4: cliente GitHub, motor de sync, tela de configuração, Diagnóstico, testes com GitHub falso e E2E de dois aparelhos.
+M4: cliente GitHub, motor de sync, acesso por senha e criptografia (seção 24), Diagnóstico, testes com GitHub falso e E2E de dois aparelhos.
 
-M5: backup, importação do histórico, aviso de privacidade, "copiar configuração".
+M5: backup, importação do histórico, trocar senha e recuperação, sair deste aparelho.
 
 M6: revisão final contra a seção 19, README, relatório com os 20 testes manuais.
 
-Testes manuais finais: 1 abrir sem token mostra modo local; 2 criar aluno VIP e turma; 3 presença 1h = R$ 35,00; 4 presença 1h30 = R$ 52,50; 5 presença 2h = R$ 70,00; 6 falta = R$ 35,00; 7 cancelada e agendada = R$ 0,00; 8 aula dia 31 às 23h30 fica no mês certo; 9 dashboard bate com a soma da lista; 10 variação contra o mês anterior; 11 calendário destaca hoje e abre criar aula; 12 editar e excluir atualizam tudo sem recarregar; 13 fechar mês cria snapshot; 14 imprimir o PDF; 15 repositório público mostra aviso e só salva após marcar; 16 sync válido envia os arquivos; 17 segundo aparelho com a mesma configuração mostra os MESMOS números; 18 editar nos dois e sincronizar mantém as duas edições; 19 importar o histórico traz 27 aulas e importar de novo não duplica; 20 recarregar mantém tudo.
+Testes manuais finais: 1 aparelho novo mostra a tela de senha (ou o assistente de primeira configuração), nunca uma tela vazia; 2 criar aluno VIP e turma; 3 presença 1h = R$ 35,00; 4 presença 1h30 = R$ 52,50; 5 presença 2h = R$ 70,00; 6 falta = R$ 35,00; 7 cancelada e agendada = R$ 0,00; 8 aula dia 31 às 23h30 fica no mês certo; 9 dashboard bate com a soma da lista; 10 variação contra o mês anterior; 11 calendário destaca hoje e abre criar aula; 12 editar e excluir atualizam tudo sem recarregar; 13 fechar mês cria snapshot; 14 imprimir o PDF; 15 senha errada é recusada e a senha certa libera os mesmos dados em qualquer navegador; 16 sync válido envia os arquivos; 17 segundo aparelho com a mesma configuração mostra os MESMOS números; 18 editar nos dois e sincronizar mantém as duas edições; 19 importar o histórico traz 27 aulas e importar de novo não duplica; 20 recarregar mantém tudo.
 
 ---
 
@@ -578,7 +592,7 @@ Esta seção descreve a operação do dono, não funcionalidade do app.
 2. Em `src/config/instancia.ts`, ajustar nome do professor e valores padrão (hora e falta) e fazer commit.
 3. Em Settings, Pages, escolher "GitHub Actions" como fonte.
 4. Aguardar o deploy e abrir o endereço `https://<usuario>.github.io/<repositorio>/`.
-5. No app, Configurações, colar o token do professor (criado por ele, limitado ao repositório).
+5. Abrir o app e executar a primeira configuração (seção 24.3): escolher a senha do sistema e colar o token do professor (criado por ele, limitado ao repositório). É a única vez que o token é digitado.
 
 Nada no código muda entre professores além de `instancia.ts`. Não se cria lógica de múltiplos professores (D-03).
 
@@ -587,3 +601,104 @@ Nada no código muda entre professores além de `instancia.ts`. Não se cria ló
 ## 23. Definição de pronto (qualquer tarefa)
 
 Pronta significa: `npm run verify` verde com saída colada; testes novos ou ajustados para o que mudou; `test:e2e` verde (ou justificativa explícita); nenhuma proibição da seção 19; CHANGELOG e NOTAS atualizados; relatório no formato da seção 17 com cada critério de aceite em PASS comprovado.
+
+---
+
+## 24. Acesso, primeiro uso e criptografia
+
+Esta seção substitui qualquer comportamento de "modo local solto" e prevalece sobre as regras anteriores em caso de conflito.
+
+### 24.1 Problema que resolve (F-20)
+
+Um aparelho ou navegador novo abria vazio, porque os dados só existiam no localStorage de quem os criou e a sincronização exigia colar um token em cada navegador. Para o usuário, o sistema parecia perder os dados. Isso é erro de produto, não detalhe técnico, e nunca mais pode acontecer.
+
+R-70 Nenhum dado fica preso num navegador. O localStorage é só cache. Todo aparelho novo chega ao mesmo estado digitando uma senha, sem colar token e sem configurar nada.
+
+R-71 Nunca exibir um dashboard vazio como primeira tela de um aparelho novo. As únicas primeiras telas possíveis são: assistente de primeira configuração, tela de senha, ou o app já desbloqueado.
+
+### 24.2 Máquina de estados de acesso
+
+| Estado | Condição | Tela |
+| --- | --- | --- |
+| detectando | abrindo o app | splash curta |
+| desbloqueado | o aparelho tem `chaveDados` e `token` em `ch:sync:v1` | app (cache primeiro, sync em segundo plano) |
+| pedeSenha | sem material local e `dados/acesso.txt` existe | tela "Digite a senha do sistema" |
+| primeiraConfiguracao | sem material local e a branch `dados` ou o `acesso.txt` não existe | assistente |
+| erroRede | não foi possível consultar o GitHub | mensagem com botão "tentar de novo", sem apagar nada |
+
+R-72 `data/acesso.ts` expõe uma função pura `decidirEstado(entrada)`, testada para cada linha da tabela. A interface só renderiza o estado devolvido.
+
+### 24.3 Primeira configuração (assistente, uma tela por passo)
+
+1. Senha do sistema: mínimo 10 caracteres, medidor de força, campo de confirmação, rejeitar as 100 senhas comuns de `src/data/senhas-comuns.ts`. Texto: "Esta senha protege os dados dos seus alunos. Sem ela e sem a chave de recuperação, não há como recuperar."
+2. Token: instruções em 3 linhas e botão que abre a página de criação de token do GitHub. O app valida com `GET /repos/{repo}` exigindo `permissions.push === true` e mostra o nome do repositório confirmado.
+3. Chave de recuperação: mostrar a chave de dados em grupos de 4 caracteres (base32), botão copiar, botão baixar `.txt` e checkbox obrigatório "guardei a chave".
+4. Criação: criar a branch `dados` (R-39), gravar `dados/acesso.txt` e os arquivos iniciais cifrados. Se já existirem arquivos de dados em texto puro na branch (versão anterior), executar a migração 24.9.
+5. Oferecer importar o histórico antigo (seção 12) e entrar no app.
+
+### 24.4 Formato dos arquivos
+
+Chave de dados K: 32 bytes aleatórios (`crypto.getRandomValues`), gerada uma única vez.
+
+`dados/acesso.txt` (público e cifrado):
+
+```
+{ formato: 1,
+  kdf: { alg: 'PBKDF2-SHA256', iteracoes: 600000, sal: <base64, 16 bytes> },
+  iv: <base64, 12 bytes>,
+  ct: <base64> }
+```
+
+O texto claro de `ct` é o JSON `{ chaveDados: <base64>, token: <string> }`, cifrado com AES-256-GCM usando a chave derivada da senha. AAD = `dados/acesso.txt`.
+
+Arquivos de dados: `{ formato: 1, iv: <base64, 12 bytes>, ct: <base64> }`, AES-256-GCM com K, AAD = caminho do arquivo. O texto claro é o JSON descrito na seção 11.1.
+
+R-73 Toda cifra e decifra passa por `data/cripto.ts`, o único arquivo que usa `crypto.subtle`. `Math.random` é proibido em `src/`.
+
+R-74 O IV nunca é reaproveitado: novo IV aleatório a cada escrita, sempre.
+
+R-75 Falha de autenticação do GCM (senha errada, arquivo adulterado, arquivo trocado de lugar) vira mensagem em português ("Senha incorreta" na tela de senha, "Arquivo corrompido ou alterado" nos dados) e nunca é ignorada. A mescla da seção 11 acontece sempre DEPOIS de decifrar; a decisão de enviar usa o texto claro, nunca o cifrado.
+
+### 24.5 Leitura sem token
+
+Para pedir a senha num aparelho novo, o app precisa ler `acesso.txt` sem token. Caminho: `GET /repos/{repo}/git/ref/heads/dados` sem autenticação (1 chamada) para obter o sha do commit, e depois `https://raw.githubusercontent.com/{repo}/{sha}/dados/acesso.txt`. A URL por sha nunca serve versão velha do cache. Depois de desbloqueado, o sync usa a API autenticada normalmente.
+
+R-76 O limite sem autenticação é de 60 chamadas por hora por IP. Tratar 403 e 429 com mensagem clara e nova tentativa posterior; nunca entrar em loop.
+
+R-77 Se o repositório for privado, a leitura anônima falha (404). Nesse caso o assistente pede o token ANTES da senha e segue o mesmo fluxo de cifragem. É um caminho alternativo, não o padrão.
+
+### 24.6 Depois de desbloquear
+
+Guardar `{ repo, branch, token, chaveDados }` em `ch:sync:v1`. Os arquivos são decifrados em memória e o estado decifrado vai para o cache `ch:estado:v1` (o aparelho é considerado confiável; "Sair deste aparelho" apaga tudo).
+
+### 24.7 Trocar a senha e recuperar o acesso
+
+Trocar a senha: pede a senha atual e a nova (mesmas regras do passo 1) e regrava apenas `acesso.txt`. Nenhum arquivo de dados é regravado, porque K não muda.
+
+Recuperar com a chave de recuperação: aceita a chave de dados, valida decifrando um arquivo de dados, pede o token e uma nova senha, e regrava `acesso.txt`.
+
+R-78 Senha esquecida e chave de recuperação perdida: não há recuperação. A tela de primeira configuração e o README dizem isso com clareza.
+
+### 24.8 Sair deste aparelho
+
+Botão em Configurações, com confirmação, apaga `ch:estado:v1`, `ch:sync:v1` e `ch:meta:v1`. Os dados na nuvem permanecem. O aparelho volta ao estado `pedeSenha`.
+
+### 24.9 Migração de dados em texto puro
+
+Se a branch `dados` já tiver arquivos sem os campos `iv` e `ct` (versão anterior), o assistente lê tudo, mescla com o local, cifra e regrava. Depois RECRIA a branch para apagar o histórico em texto puro: obtém o sha de `main`, executa `DELETE /git/refs/heads/dados`, cria a ref de novo e grava tudo cifrado em um único commit. Avisar o usuário de que cópias já feitas por terceiros (caches, forks) não podem ser apagadas.
+
+### 24.10 Segurança honesta (o README deve repetir)
+
+Modelo de ameaça: o repositório pode ser público e quem o lê vê só texto cifrado. A proteção depende da força da senha e do PBKDF2 com 600 mil iterações. O token fica dentro do `acesso.txt` cifrado, por isso deve ser fine-grained, restrito a UM repositório, com permissão Contents. Com senha fraca, um atacante pode tentar adivinhá-la offline. Recomendação opcional no README: ativar um ruleset em `main` exigindo pull request, para que um token vazado não consiga alterar o código do site.
+
+R-79 Token e chave nunca aparecem em log, mensagem de erro, URL ou texto de tela, exceto a chave de recuperação mostrada uma vez no assistente e, depois, em Configurações mediante a senha.
+
+### 24.11 Testes obrigatórios desta seção
+
+Unitários: round-trip de cifra de arquivo; senha errada falha; arquivo adulterado em 1 byte falha; arquivo cifrado num caminho e lido em outro falha (AAD); IV diferente a cada cifra do mesmo texto; derivação determinística com o mesmo sal; `decidirEstado` para cada linha da tabela 24.2; força de senha rejeita as 100 comuns e as curtas; migração de texto puro para cifrado preserva todos os registros.
+
+E2E (Playwright, API do GitHub simulada): E-08 contexto novo abre o site, digita a senha e vê os MESMOS números do dashboard sem colar token; E-09 primeira configuração completa em repositório vazio; E-10 trocar a senha e entrar em outro contexto com a nova; E-11 senha errada é recusada; E-12 sair deste aparelho e voltar com a senha.
+
+### 24.12 Entrega ao cliente
+
+Fork, ajuste de `instancia.ts`, ativar o Pages, abrir o site e fazer a primeira configuração com o professor (ou por ele): cerca de 5 minutos. A partir daí o professor usa em qualquer aparelho só com a senha.
